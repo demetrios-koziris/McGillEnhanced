@@ -1,0 +1,31 @@
+{
+  "name": "McGill Enhanced",
+  "manifest_version": 2,
+  "version": "2.0.0",
+  "description": "Enhance the functionality of McGill.ca",
+  "permissions" : [
+    "declarativeContent"
+  ],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_icon": {
+      "19": "icons/mcgill-19.png",
+      "38": "icons/mcgill-38.png"
+    },
+    "default_title": "McGill Enhanced is improving this page."
+  },
+  "icons": {
+    "16": "icons/mcgill-16.png",
+    "48": "icons/mcgill-48.png",
+    "128": "icons/mcgill-128.png"
+  },
+  "content_scripts" : [
+    {
+      "matches" : ["*://www.mcgill.ca/study/*", "*://www.ratemyprofessors.com/search*", "*://horizon.mcgill.ca/pban1/bzskmcer.p_display_form*", "*://horizon.mcgill.ca/pban1/bwckgens.p_proc_term_date*"],
+      "js" : ["lib/jquery-1.11.2.js", "js/script.js"]
+    }
+  ]
+}

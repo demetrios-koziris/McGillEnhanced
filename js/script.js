@@ -1,0 +1,1 @@
+alert("McGill Enhanced is working on this page!");
