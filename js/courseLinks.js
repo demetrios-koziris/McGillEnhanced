@@ -38,11 +38,111 @@ else {
 
         courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //Replace Course names with links to course overview page
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         newContentElement = document.getElementById(isNewStyle ? "content" : "content-area");
         newContent = newContentElement.innerHTML;
         newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
         newContentElement.innerHTML = newContent;
+
+
+
+
+
+
+        courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
+        courseTermsCodes = [];
+        if (courseTerms.match(/Fall/) != null) {
+            courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
+        }
+        if (courseTerms.match(/Winter/) != null) {
+            courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
+        }
+        if (courseTerms.match(/Summer/) != null) {
+            courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
+        }
+        //console.log(courseTermsCodes);
+
+        var sidebar = document.createElement('div');
+        sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
+        sidebar.style.border = "0px";
+        sidebar.style.marginBottom = "10px";
+
+        var courseEval = document.createElement('div');
+        courseEval.style.margin = "10px 0px";
+        sidebar.appendChild(courseEval);
+
+        var courseEvalTitle = document.createElement('h4');
+        courseEvalTitle.innerHTML = "View Mercury Evaluations";
+        courseEval.appendChild(courseEvalTitle);
+
+        courseEvalParams = {
+            course: courseName,
+            autoSubmit: true
+        };
+        courseEvalParamsString = JSON.stringify(courseEvalParams);
+
+        var courseEvalForm = document.createElement('form');
+        courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
+        courseEvalForm.setAttribute("method", "POST");
+        courseEvalForm.setAttribute("onsubmit", "top.name='" + courseEvalParamsString + "'");
+        courseEval.appendChild(courseEvalForm);
+
+        var courseEvalButton = document.createElement('input');
+        courseEvalButton.setAttribute("type", "submit");
+        courseEvalButton.setAttribute("value", courseName.replace("-", " ") + " Course Evaluations");
+        courseEvalButton.style.width="100%";
+        courseEvalButton.style.padding="7px";
+        courseEvalButton.style.margin="2% 0%";
+        courseEvalForm.appendChild(courseEvalButton);
+
+        var courseReg = document.createElement('div');
+        courseReg.style.margin = "10px 0px";
+        sidebar.appendChild(courseReg);
+
+        var courseRegTitle = document.createElement('h4');
+        courseRegTitle.innerHTML = "View Minerva Registration";
+        courseReg.appendChild(courseRegTitle);
+
+        for (var i = 0; i < courseTermsCodes.length; i++) {
+
+            var courseRegForm = document.createElement('form');
+            courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwckgens.p_proc_term_date");
+            courseRegForm.setAttribute("method", "POST");
+            courseRegForm.setAttribute("onsubmit", "return checkSubmit()");
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_calling_proc\" value=\"P_CrseSearch\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"search_mode_in\" value=\"NON_NT\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_term\" value=\"" + courseTermsCodes[i].code + "\">";
+            courseReg.appendChild(courseRegForm);
+
+            var courseRegButton = document.createElement('input');
+            courseRegButton.setAttribute("type", "submit");
+            courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
+            courseRegButton.style.width="100%";
+            courseRegButton.style.padding="7px";
+            courseRegButton.style.margin="2% 0%";
+            courseRegForm.appendChild(courseRegButton);
+        }
+
+        var container = document.getElementById(isNewStyle ? "inner-container" : "container");
+        if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
+            container.insertBefore(sidebar, document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
+        }
+        else {
+            if (isNewStyle) {
+                document.getElementById("inner-container").style.width = "100%";
+                document.getElementById("main-column").style.width = "724px";
+                container.appendChild(sidebar);
+            }
+            else {
+                document.getElementById("center-column").style.width = "620px";
+                container.insertBefore(sidebar, document.getElementById("footer"));
+            }
+
+        }
+
+
 
 
         //create array of departments mentioned
@@ -97,43 +197,6 @@ else {
 
             relatedCourses.appendChild(depCoursesLink);
         }
-
-
-        var mcgillEnhancedLinks = document.createElement('div');
-        mcgillEnhancedLinks.innerHTML = "<br>"
-        container.appendChild(mcgillEnhancedLinks);
-
-        var mcgillEnhancedLinksTitle = document.createElement('h3');
-        mcgillEnhancedLinksTitle.innerHTML = "McGill Enhanced Links"
-        mcgillEnhancedLinks.appendChild(mcgillEnhancedLinksTitle);
-
-        var mcgillEnhancedLinksDesc = document.createElement('p');
-        mcgillEnhancedLinksDesc.innerHTML = "Here are links to extra functionality provided by the McGill Enhanced Extension."
-        mcgillEnhancedLinks.appendChild(mcgillEnhancedLinksDesc);
-
-        var courseEval = document.createElement('div');
-        mcgillEnhancedLinks.appendChild(courseEval);
-
-        courseEvalParams = {
-            course: courseName,
-            autoSubmit: true
-        };
-        courseEvalParamsString = JSON.stringify(courseEvalParams);
-        var courseEvalButton = document.createElement('input');
-        courseEvalButton.setAttribute("type", "button");
-        courseEvalButton.setAttribute("onclick", "top.name='" + courseEvalParamsString + "'; self.location='https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form'");
-        courseEvalButton.setAttribute("value", courseName.replace("-", " ") + " Mercury Course Evaluations");
-        courseEval.appendChild(courseEvalButton);
-
-        var courseEvalDesc = document.createElement('p');
-        courseEvalDesc.innerHTML = "Click here to view Mercury Evaluations for this course. (Must be signed into Minerva)";
-        courseEval.appendChild(courseEvalDesc);
-
-
-
-
-
-
 
 
 

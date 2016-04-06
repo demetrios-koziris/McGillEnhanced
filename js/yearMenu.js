@@ -80,8 +80,19 @@ if (!isNewStyle) {
     var container = document.getElementById("container");
     container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
 
-    //remove alert about wrong year
-    document.getElementById('top-content').getElementsByClassName('block-nodeblock')[0].style.display = "none";
+
+    //remove alerts about wrong year
+    noteBlocks = ["block-nodeblock", "block-block"]
+    for (b = 0; b < noteBlocks.length; b++) {
+        var noteBlock = document.getElementById('top-content').getElementsByClassName(noteBlocks[b]);
+        for (n = 0; n < noteBlock.length; n++) {
+            console.log(noteBlock[n].innerHTML);
+            if (noteBlock[n].innerHTML.match(/the most recent/) != null) {
+                noteBlock[n].style.display = "none";
+            }
+        }
+    }
+
 }
 else {
 
