@@ -1,23 +1,23 @@
 
 if (url.match(/.+horizon.mcgill.ca\/pban1\/bzskmcer.p_display_form/) != null)
 {
-    console.log(top.name);
-    courseEvalParams = JSON.parse(top.name);
-    courseName = courseEvalParams.course;
-    autoSubmit = courseEvalParams.autoSubmit;
+    if (top.name != "MainMinervaWin") {
+        console.log(top.name);
+        courseEvalParams = JSON.parse(top.name);
+        courseName = courseEvalParams.course;
+        autoSubmit = courseEvalParams.autoSubmit;
 
-
-
-    if (autoSubmit) {
-        document.getElementById('subj_id').value="" + courseName.split("-")[0].toUpperCase();
-        if (courseName.split("-")[1] != undefined) {
-            document.getElementById('crse_id').value="" + courseName.split("-")[1];
+        if (autoSubmit) {
+            document.getElementById('subj_id').value="" + courseName.split("-")[0].toUpperCase();
+            if (courseName.split("-")[1] != undefined) {
+                document.getElementById('crse_id').value="" + courseName.split("-")[1];
+            }
+            top.name = "MainMinervaWin";
+            document.forms["search_form"].submit();
         }
-        courseEvalParams.autoSubmit = false;
-        courseEvalParamsString = JSON.stringify(courseEvalParams);
-        top.name = courseEvalParamsString;
-        document.forms["search_form"].submit();
     }
+
+
 
 }
 else {
