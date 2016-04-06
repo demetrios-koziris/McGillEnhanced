@@ -1,15 +1,27 @@
 
 if (url.match(/.+horizon.mcgill.ca\/pban1\/bzskmcer.p_display_form/) != null)
 {
-    //alert("Here is the mercury form for " + top.name.split("-")[0] + " " + top.name.split("-")[1]);
-    document.getElementById('subj_id').value="" + top.name.split("-")[0].toUpperCase();
-    if (top.name.split("-")[1] != undefined) {
-        document.getElementById('crse_id').value="" + top.name.split("-")[1];
+    console.log(top.name);
+    courseEvalParams = JSON.parse(top.name);
+    courseName = courseEvalParams.course;
+    autoSubmit = courseEvalParams.autoSubmit;
+
+
+
+    if (autoSubmit) {
+        document.getElementById('subj_id').value="" + courseName.split("-")[0].toUpperCase();
+        if (courseName.split("-")[1] != undefined) {
+            document.getElementById('crse_id').value="" + courseName.split("-")[1];
+        }
+        courseEvalParams.autoSubmit = false;
+        courseEvalParamsString = JSON.stringify(courseEvalParams);
+        top.name = courseEvalParamsString;
+        document.forms["search_form"].submit();
     }
 
-    //document.forms[0].submit()
 }
 else {
+    top.name = "";
 
     url = window.location.href;
 
@@ -31,6 +43,7 @@ else {
         newContent = newContentElement.innerHTML;
         newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
         newContentElement.innerHTML = newContent;
+
 
         //create array of departments mentioned
         urlDep = url.match(/.+([A-Za-z]{4})-[0-9]{3}/)[1].toUpperCase();
@@ -101,11 +114,15 @@ else {
         var courseEval = document.createElement('div');
         mcgillEnhancedLinks.appendChild(courseEval);
 
+        courseEvalParams = {
+            course: courseName,
+            autoSubmit: true
+        };
+        courseEvalParamsString = JSON.stringify(courseEvalParams);
         var courseEvalButton = document.createElement('input');
         courseEvalButton.setAttribute("type", "button");
-        courseEvalButton.setAttribute("onclick", "top.name='" + courseName + "'");
+        courseEvalButton.setAttribute("onclick", "top.name='" + courseEvalParamsString + "'; self.location='https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form'");
         courseEvalButton.setAttribute("value", courseName.replace("-", " ") + " Mercury Course Evaluations");
-        courseEvalButton.setAttribute("self.location", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
         courseEval.appendChild(courseEvalButton);
 
         var courseEvalDesc = document.createElement('p');
