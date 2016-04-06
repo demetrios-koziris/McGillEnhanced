@@ -24,7 +24,7 @@
   },
   "content_scripts" : [
     {
-      "matches" : ["*://www.mcgill.ca/study/*", "*://www.ratemyprofessors.com/search*", "*://horizon.mcgill.ca/pban1/bzskmcer.p_display_form*", "*://horizon.mcgill.ca/pban1/bwckgens.p_proc_term_date*"],
+      "matches" : ["*://www.mcgill.ca/study/*", "*://horizon.mcgill.ca/pban1/bzskmcer.p_display_form*"],
       "js" : ["lib/jquery-1.11.2.js", "js/yearMenu.js", "js/courseLinks.js"]
     }
   ]
