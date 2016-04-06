@@ -5,8 +5,10 @@ urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
 urlYearW = urlYearF+1;
 urlYears = urlYearF + "-" + urlYearW;
 sysYear = new Date().getFullYear();
+isNewStyle = document.getElementsByClassName("transition").length > 0;
 
-if (document.getElementsByClassName("transition").length == 0) {
+
+if (!isNewStyle) {
 
     var yearMenuBarDIV = document.createElement('div');
     yearMenuBarDIV.id = "navigation";
@@ -25,6 +27,10 @@ if (document.getElementsByClassName("transition").length == 0) {
         for (i = j; i < j+10; i++)
         {
             yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));
+            //convert filter url attributes from old to new style
+            if (i <= 2009 || i >= 2016) {
+                yearMenuItemURL = yearMenuItemURL.replace("filters=ss_subject%3A", "f[0]=field_subject_code%3A");
+            }
 
             var yearMenuItemTD = document.createElement('td');
             yearMenuItemTD.style.padding = "0px";
@@ -40,7 +46,6 @@ if (document.getElementsByClassName("transition").length == 0) {
             yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
 
             var yearMenuItemA = document.createElement('a');
-
             yearMenuItemA.innerHTML = i + "-" + (i + 1);
             yearMenuItemA.style.margin = "4px 10px";
             yearMenuItemA.style.borderRadius = "8px";
@@ -73,10 +78,10 @@ if (document.getElementsByClassName("transition").length == 0) {
     }
 
     var container = document.getElementById("container");
-    console.log(yearMenuBarDIV);
     container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
 
-    document.getElementById('top-content').innerHTML="";
+    //remove alert about wrong year
+    document.getElementById('top-content').getElementsByClassName('block-nodeblock')[0].style.display = "none";
 }
 else {
 
@@ -94,6 +99,10 @@ else {
         for (i = j; i < j+10; i++)
         {
             yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));
+            //convert filter url attributes from old to new style
+            if (i > 2009 || i < 2016) {
+                yearMenuItemURL = yearMenuItemURL.replace("f[0]=field_subject_code%3A", "filters=ss_subject%3A");
+            }
 
             var yearMenuItemLI = document.createElement('li');
             yearMenuItemLI.style.backgroundColor = "#444844";
@@ -136,7 +145,6 @@ else {
         }
 
         var container = document.getElementById("container");
-        console.log(yearMenuBarDIV);
         container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
     }
 
