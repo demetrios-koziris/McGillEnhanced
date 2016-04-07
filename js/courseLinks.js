@@ -1,271 +1,536 @@
 
-//Mercury course evaluation handling
-//if (url.match(/.+horizon.mcgill.ca\/pban1\/bzskmcer.p_display_form/) != null)
-//{
-//    if (top.name != "MainMinervaWin") {
-//        console.log(top.name);
-//        courseEvalParams = JSON.parse(top.name);
-//
-//        if (courseEvalParams.autoSubmit) {
-//            document.getElementById('subj_id').value="" + courseEvalParams.courseSubject;
-//            document.getElementById('crse_id').value="" + courseEvalParams.courseNumber;
-//            top.name = "MainMinervaWin";
-//            document.forms["search_form"].submit();
-//        }
-//    }
-//}
-//else {
-//    top.name = "";
 
-    url = window.location.href;
 
-    urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-    urlYearW = urlYearF+1;
-    urlYears = urlYearF + "-" + urlYearW;
-    sysYear = new Date().getFullYear();
-    isNewStyle = document.getElementsByClassName("transition").length > 0;
-
-    //Course name regex
-    regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
-
-    if (url.match(/.+study.+courses.+[-]+/) != null) {
-
-        courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //Replace Course names with links to course overview page
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        newContentElement = document.getElementById(isNewStyle ? "content" : "content-area");
-        newContent = newContentElement.innerHTML;
-        newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-        newContentElement.innerHTML = newContent;
+url = window.location.href;
 
 
 
+var loadMessage = "McGill Enhanced is loading ratings for this professor&#13Please hover mouse off then back on to refresh this tooltip";
 
+function getProfUrl(first, last, general, part)
+{
+    var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + first + " " + last;
+    if (general)
+    {
+        profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + last;
+    }
 
-        courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
-        courseTermsCodes = [];
-        if (courseTerms.match(/Fall/) != null) {
-            courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
-        }
-        if (courseTerms.match(/Winter/) != null) {
-            courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
-        }
-        if (courseTerms.match(/Summer/) != null) {
-            courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
-        }
-        console.log(courseTermsCodes);
-
-
-        //make sidebar take up same width as in old style
-        if (isNewStyle) {
-            document.getElementById("inner-container").style.width = "100%";
-            document.getElementById("main-column").style.width = "620px"
-            if (urlYearF >= 2016) {
-                document.getElementById("sidebar-column").style.width = "280px";
-                document.getElementById("block-views-catalog-program-block-1").style.width = "260px";
-            }
-        }
-
-
-        var sidebar = document.createElement('div');
-        sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
-        sidebar.style.width = "280px";
-        sidebar.style.border = "0px";
-        sidebar.style.marginBottom = "10px";
-
-        var courseEval = document.createElement('div');
-        courseEval.style.margin = "10px 0px";
-        sidebar.appendChild(courseEval);
-
-        var courseEvalTitle = document.createElement('h4');
-        courseEvalTitle.innerHTML = "View Mercury Evaluations";
-        courseEval.appendChild(courseEvalTitle);
-
-        courseEvalParams = {
-            courseSubject: courseName.split("-")[0],
-            courseNumber: courseName.split("-")[1],
-            autoSubmit: true
-        };
-        courseEvalParamsString = JSON.stringify(courseEvalParams);
-
-        var courseEvalForm = document.createElement('form');
-        courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
-        courseEvalForm.setAttribute("method", "POST");
-        courseEvalForm.setAttribute("name", "search_form");
-        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
-        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
-        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
-        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
-        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
-        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
-        courseEval.appendChild(courseEvalForm);
-
-        var courseEvalButton = document.createElement('input');
-        courseEvalButton.setAttribute("type", "submit");
-        courseEvalButton.setAttribute("name", "");
-        courseEvalButton.setAttribute("value", courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " Course Evaluations");
-        courseEvalButton.style.width="100%";
-        courseEvalButton.style.padding="7px";
-        courseEvalButton.style.margin="2% 0%";
-        courseEvalForm.appendChild(courseEvalButton);
-
-        if (courseTermsCodes.length > 0) {
-
-            var courseReg = document.createElement('div');
-            courseReg.style.margin = "10px 0px";
-            sidebar.appendChild(courseReg);
-
-            var courseRegTitle = document.createElement('h4');
-            courseRegTitle.innerHTML = "View Minerva Registration";
-            courseReg.appendChild(courseRegTitle);
-
-            for (var i = 0; i < courseTermsCodes.length; i++) {
-
-                var courseRegForm = document.createElement('form');
-                courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
-                courseRegForm.setAttribute("method", "POST");
-                courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"" + courseTermsCodes[i].code + "\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_day\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_insm\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_camp\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_sess\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_to_cred\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"%\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"%\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"%\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_hh\" value=\"0\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_mi\" value=\"0\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_ap\" value=\"a\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_hh\" value=\"0\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
-                courseReg.appendChild(courseRegForm);
-
-                var courseRegButton = document.createElement('input');
-                courseRegButton.setAttribute("type", "submit");
-                courseRegButton.setAttribute("name", "SUB_BTN");
-                courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
-                courseRegButton.style.width="100%";
-                courseRegButton.style.padding="7px";
-                courseRegButton.style.margin="2% 0%";
-                courseRegForm.appendChild(courseRegButton);
-
-            }
-        }
-
-
-
-        var deptCourses = document.createElement('div');
-        deptCourses.style.margin = "10px 0px";
-        sidebar.appendChild(deptCourses);
-
-        var deptCoursesTitle = document.createElement('h4');
-        deptCoursesTitle.innerHTML = "View Related Courses by Subject";
-        deptCourses.appendChild(deptCoursesTitle);
-
-        urlDep = url.match(/.+([A-Za-z]{4})-[0-9]{3}/)[1].toUpperCase();
-        courses = newContent.match(/[A-Z]{4}\s[0-9]{3}/g);
-        depsDup = [urlDep];
-        if (courses != null)
+    var xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: profURL,
+    }
+    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+        try
         {
-            for (c=0; c<courses.length; c++)
+            var profURL = data.url;
+            var profURLHTML = data.responseXML;
+
+            var div = document.createElement('div');
+            div.innerHTML = profURLHTML;
+
+            if (div.getElementsByClassName("result-count")[1].innerHTML.match(/Your search didn't return any results/) != null)
             {
-                depsDup.push(courses[c].match(/([A-Z]{4})\s[0-9]{3}/)[1]);
+                if (general)
+                {
+                    getProfContent(first, last, profURL, part, 0);
+                }
+                else
+                {
+                    profURL = getProfUrl(first, last, true, part);
+                }
+            }
+            else if (div.getElementsByClassName("result-count")[1].innerHTML.match(/.*Showing 1-1 of 1 result.*/) != null)
+            {
+                var profURLId = profURLHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
+                profURL = "http://www.ratemyprofessors.com/" + profURLId;
+                getProfContent(first, last, profURL, part, 1);
+            }
+            else
+            {
+                getProfContent(first, last, profURL, part, 2);
             }
         }
-        var deps = depsDup.filter(function(elem, pos) {
-            return depsDup.indexOf(elem) == pos;
-        });
-
-        for (d = 0; d<deps.length; d++)
+        catch(err)
         {
-            deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
-
-            console.log(deptCoursesURL);
-
-            //var deptCoursesForm = document.createElement('form');
-            //deptCoursesForm.setAttribute("action", deptCoursesURL);
-            //deptCourses.appendChild(deptCoursesForm);
-            //
-            //var deptCoursesButton = document.createElement('input');
-            //deptCoursesButton.setAttribute("type", "submit");
-            //deptCoursesButton.setAttribute("value", urlYears+ " " + deps[d] + " Courses");
-            //deptCoursesButton.style.width="100%";
-            //deptCoursesButton.style.padding="7px";
-            //deptCoursesButton.style.margin="2% 0%";
-            //deptCoursesForm.appendChild(deptCoursesButton);
-
-            var deptCoursesLink = document.createElement('input');
-            deptCoursesLink.setAttribute("type", "button");
-            deptCoursesLink.setAttribute("value", deps[d] + " Courses");
-            deptCoursesLink.setAttribute("onclick", "location.href='" + deptCoursesURL + "';");
-            deptCoursesLink.style.width="100%";
-            deptCoursesLink.style.padding="7px";
-            deptCoursesLink.style.margin="2% 0%";
-            deptCourses.appendChild(deptCoursesLink);
-
+            console.log(first + " " + last + " " + part + " " + err);
         }
+    });
+}
+
+
+function getProfContent(first, last, profURL, part, res)
+{
+    var xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: profURL,
+    }
+    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+        try
+        {
+            var profURL = data.url;
+            var profURLHTML = data.responseXML;
 
 
 
-        //insert enhanced sidebar
-        var container = document.getElementById(isNewStyle ? "inner-container" : "container");
-        if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
-            container.insertBefore(sidebar, document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
-        }
-        else {
-            if (isNewStyle) {
-                container.appendChild(sidebar);
-            }
-            else {
-                document.getElementById("center-column").style.width = "620px";
-                container.insertBefore(sidebar, document.getElementById("footer"));
+            //var div = document.createElement('div');
+            //div.innerHTML = profURLHTML;
+            var rating = {
+                overall: -1,
+                helpfulness: -1,
+                clarity: -1,
+                easiness: -1
             }
 
+            rating.overall = $(profURLHTML).find(".grade").html();
+            rating.helpfulness = $(profURLHTML).find(".rating:eq(0)").html();
+            rating.clarity = $(profURLHTML).find(".rating:eq(1)").html();
+            rating.easiness = $(profURLHTML).find(".rating:eq(2)").html();
+            //rating.number = div.getElementsByClassName("rating-count")[1].innerHTML.match(/([0-9]+) Student Ratings/)[1];
+
+            firstName = $(profURLHTML).find(".pfname").html().trim();
+            lastName = $(profURLHTML).find(".plname").html().trim();
+
+            tooltipContent = firstName + " " + lastName + "&#13"
+                + "-Overall:&#09&#09 " + rating.overall
+                + "&#13-Helpfulness:&#09 " + rating.helpfulness
+                + "&#13-Clarity:&#09&#09 " + rating.clarity
+                + "&#13-Easiness:&#09 " + rating.easiness
+            //+ "&#13Ratings: " + rating.number
+
+            if (rating.overall === undefined)
+            {
+                if (res == 0)
+                {
+                    tooltipContent = "Instructor not found.";
+                }
+                else if (res = 2)
+                {
+                    tooltipContent = "Multiple Instructors found&#13Please click to see results";
+                }
+
+            }
+            else//if (part < 0)
+            {
+                //check holly dressel in ENVR 400 and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
+                var div = document.createElement('div');
+                div.innerHTML = profURLHTML;
+                if (div.getElementsByClassName("rating-count")[0] === undefined)
+                {
+                    tooltipContent = "This instructor has no ratings&#13Click to be the first to rate";
+                }
+                else
+                {
+                    numOfRatings = div.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
+                    //console.log(profURLHTML.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]);
+                    tooltipContent += "&#13-From " + numOfRatings + " ratings";
+                }
+
+            }
+
+            makeProfSection(first, last, profURL, part, tooltipContent);
+
         }
+        catch(err)
+        {
+            console.log(first + " " + last + " " + part)
+            console.log(err);
+        }
+    });
 
 
-        //main center area long enough to keep sidebar pushed to the right (test ACCT 352)
-        console.log(document.getElementById(isNewStyle ? "main-column" : "center-column").style.minHeight = "500px");
+
+}
+
+
+function makeProfSection(first, last, profURL, part, tooltipContent)
+{
+    if (part < 0)
+    {
+
+        newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
+        var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
+        newContent = newContent.replace(instFilter, profURL.split("://")[1] + "\" title=\"" + tooltipContent + "\"");
+
+        document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
+
+    }
+    else
+    {
+        catalogName = "catalog-instructorsMod" + part;
+        newCatalog = document.getElementsByClassName(catalogName)[0].innerHTML;
+        var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
+        newCatalog = newCatalog.replace(instFilter, profURL.split("://")[1] + "\" title=\"" + tooltipContent + "\"");
+
+        document.getElementsByClassName(catalogName)[0].innerHTML = newCatalog;
+
+    }
+
+}
+
+urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
+urlYearW = urlYearF+1;
+urlYears = urlYearF + "-" + urlYearW;
+sysYear = new Date().getFullYear();
+isNewStyle = document.getElementsByClassName("transition").length > 0;
+
+//Course name regex
+regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
+
+if (url.match(/.+study.+courses.+[-]+/) != null) {
+
+    courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Replace Course names with links to course overview page
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    newContentElement = document.getElementById(isNewStyle ? "content" : "content-area");
+    newContent = newContentElement.innerHTML;
+    newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+    newContentElement.innerHTML = newContent;
 
 
 
+
+
+    courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
+    courseTermsCodes = [];
+    if (courseTerms.match(/Fall/) != null) {
+        courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
+    }
+    if (courseTerms.match(/Winter/) != null) {
+        courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
+    }
+    if (courseTerms.match(/Summer/) != null) {
+        courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
+    }
+    console.log(courseTermsCodes);
+
+
+    //make sidebar take up same width as in old style
+    if (isNewStyle) {
+        document.getElementById("inner-container").style.width = "100%";
+        document.getElementById("main-column").style.width = "620px"
+        if (urlYearF >= 2016) {
+            document.getElementById("sidebar-column").style.width = "280px";
+            document.getElementById("block-views-catalog-program-block-1").style.width = "260px";
+        }
+    }
+
+
+    var sidebar = document.createElement('div');
+    sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
+    sidebar.style.width = "280px";
+    sidebar.style.border = "0px";
+    sidebar.style.marginBottom = "10px";
+
+    var courseEval = document.createElement('div');
+    courseEval.style.margin = "10px 0px";
+    sidebar.appendChild(courseEval);
+
+    var courseEvalTitle = document.createElement('h4');
+    courseEvalTitle.innerHTML = "View Mercury Evaluations";
+    courseEval.appendChild(courseEvalTitle);
+
+    courseEvalParams = {
+        courseSubject: courseName.split("-")[0],
+        courseNumber: courseName.split("-")[1],
+        autoSubmit: true
+    };
+    courseEvalParamsString = JSON.stringify(courseEvalParams);
+
+    var courseEvalForm = document.createElement('form');
+    courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
+    courseEvalForm.setAttribute("method", "POST");
+    courseEvalForm.setAttribute("name", "search_form");
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
+    courseEval.appendChild(courseEvalForm);
+
+    var courseEvalButton = document.createElement('input');
+    courseEvalButton.setAttribute("type", "submit");
+    courseEvalButton.setAttribute("name", "");
+    courseEvalButton.setAttribute("value", courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " Course Evaluations");
+    courseEvalButton.style.width="100%";
+    courseEvalButton.style.padding="7px";
+    courseEvalButton.style.margin="2% 0%";
+    courseEvalForm.appendChild(courseEvalButton);
+
+    if (courseTermsCodes.length > 0) {
+
+        var courseReg = document.createElement('div');
+        courseReg.style.margin = "10px 0px";
+        sidebar.appendChild(courseReg);
+
+        var courseRegTitle = document.createElement('h4');
+        courseRegTitle.innerHTML = "View Minerva Registration";
+        courseReg.appendChild(courseRegTitle);
+
+        for (var i = 0; i < courseTermsCodes.length; i++) {
+
+            var courseRegForm = document.createElement('form');
+            courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
+            courseRegForm.setAttribute("method", "POST");
+            courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"" + courseTermsCodes[i].code + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_day\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_insm\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_camp\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_sess\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_to_cred\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_hh\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_mi\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_ap\" value=\"a\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_hh\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
+            courseReg.appendChild(courseRegForm);
+
+            var courseRegButton = document.createElement('input');
+            courseRegButton.setAttribute("type", "submit");
+            courseRegButton.setAttribute("name", "SUB_BTN");
+            courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
+            courseRegButton.style.width="100%";
+            courseRegButton.style.padding="7px";
+            courseRegButton.style.margin="2% 0%";
+            courseRegForm.appendChild(courseRegButton);
+
+        }
+    }
+
+
+
+    var deptCourses = document.createElement('div');
+    deptCourses.style.margin = "10px 0px";
+    sidebar.appendChild(deptCourses);
+
+    var deptCoursesTitle = document.createElement('h4');
+    deptCoursesTitle.innerHTML = "View Related Courses by Subject";
+    deptCourses.appendChild(deptCoursesTitle);
+
+    urlDep = url.match(/.+([A-Za-z]{4})-[0-9]{3}/)[1].toUpperCase();
+    courses = newContent.match(/[A-Z]{4}\s[0-9]{3}/g);
+    depsDup = [urlDep];
+    if (courses != null)
+    {
+        for (c=0; c<courses.length; c++)
+        {
+            depsDup.push(courses[c].match(/([A-Z]{4})\s[0-9]{3}/)[1]);
+        }
+    }
+    var deps = depsDup.filter(function(elem, pos) {
+        return depsDup.indexOf(elem) == pos;
+    });
+
+    for (d = 0; d<deps.length; d++)
+    {
+        deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
+
+        //console.log(deptCoursesURL);
+
+        //var deptCoursesForm = document.createElement('form');
+        //deptCoursesForm.setAttribute("action", deptCoursesURL);
+        //deptCourses.appendChild(deptCoursesForm);
+        //
+        //var deptCoursesButton = document.createElement('input');
+        //deptCoursesButton.setAttribute("type", "submit");
+        //deptCoursesButton.setAttribute("value", urlYears+ " " + deps[d] + " Courses");
+        //deptCoursesButton.style.width="100%";
+        //deptCoursesButton.style.padding="7px";
+        //deptCoursesButton.style.margin="2% 0%";
+        //deptCoursesForm.appendChild(deptCoursesButton);
+
+        var deptCoursesLink = document.createElement('input');
+        deptCoursesLink.setAttribute("type", "button");
+        deptCoursesLink.setAttribute("value", deps[d] + " Courses");
+        deptCoursesLink.setAttribute("onclick", "location.href='" + deptCoursesURL + "';");
+        deptCoursesLink.style.width="100%";
+        deptCoursesLink.style.padding="7px";
+        deptCoursesLink.style.margin="2% 0%";
+        deptCourses.appendChild(deptCoursesLink);
+
+    }
+
+
+
+    //insert enhanced sidebar
+    var container = document.getElementById(isNewStyle ? "inner-container" : "container");
+    if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
+        container.insertBefore(sidebar, document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
     }
     else {
-        //Replace Course names with links to course overview page
-        cns = document.getElementsByClassName("program-course-description-inner");
-        for (cn = 0; cn<cns.length; cn++)
-        {
-            newContent = document.getElementsByClassName("program-course-description-inner")[cn].innerHTML
-            newContent = newContent.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
-            newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-            document.getElementsByClassName("program-course-description-inner")[cn].innerHTML = newContent;
+        if (isNewStyle) {
+            container.appendChild(sidebar);
         }
+        else {
+            document.getElementById("center-column").style.width = "620px";
+            container.insertBefore(sidebar, document.getElementById("footer"));
+        }
+
+    }
+
+
+    //main center area long enough to keep sidebar pushed to the right (test ACCT 352)
+    document.getElementById(isNewStyle ? "main-column" : "center-column").style.minHeight = "500px";
+
+
+
+
+
+    newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
+
+    //Modification of Instructor content
+    allInst = [];
+    instM = "</p>";
+    regF = /Instructors:\s+(.+)\(Fall.+<.p>/;
+    instF = newContent.match(regF);
+    if (instF != null)
+    {
+        instFN = instF[1];
+        instFA = instFN.split(", ");
+        instM += "<p>Instructors (Fall): ";
+        for (f=0; f<instFA.length; f++)
+        {
+            instFA[f] = instFA[f].trim();
+            allInst.push(instFA[f]);
+            search = "mcgill " + instFA[f].match(/([^\s]+)\s.+/)[1] + " " + instFA[f].match(/.+\s([^\s]+)/)[1];
+            //search = search.replace(/-/, " ");
+            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" target=\"_blank\" title=\"" + loadMessage + "\">" + instFA[f] +"</a>, ");
+        }
+        instM += "</p>";
+        regW = /Instructors:.+\)(.+)\(W.+<.p>/;
+    }
+    else
+    {
+        regW = /Instructors:\s+(.+)\(Winter.+<.p>/;
+    }
+    instW = newContent.match(regW);
+    if (instW != null)
+    {
+        instWN = instW[1];
+        instWA = instWN.split(", ");
+        instM += "<p>Instructors (Winter): ";
+        for (w = 0; w < instWA.length; w++)
+        {
+            instWA[w] = instWA[w].trim();
+            allInst.push(instWA[w]);
+            search = "mcgill " + instWA[w].match(/([^\s]+)\s.+/)[1] + " " + instWA[w].match(/.+\s([^\s]+)/)[1];
+            //search = search.replace(/-/, " ");
+            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" target=\"_blank\" title=\"" + loadMessage + "\">"+ instWA[w] +"</a>, ");
+        }
+        instM += "</p>";
+    }
+    regS = /Instructors:.+\).+\(.+\)(.+)\(.+<.p>/;
+    instS = newContent.match(regS);
+    if (instS != null)
+    {
+        instSN = instS[1];
+        instSA = instSN.split(", ");
+        instM += "<p>Instructors (Summer): ";
+        for (s = 0; s < instSA.length; s++)
+        {
+            instSA[s] = instSA[s].trim();
+            allInst.push(instSA[s]);
+            search = "mcgill " + instSA[s].match(/([^\s]+)\s.+/)[1] + " " + instSA[s].match(/.+\s([^\s]+)/)[1];
+            //search = search.replace(/-/, " ");
+            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" target=\"_blank\" title=\"" + loadMessage + "\">"+ instSA[s] +"</a>, ");
+        }
+        instM += "</p>";
+    }
+    if (instF == null && instW == null)
+    {
+        instM += "<p>Instructors: There are no professors associated with this course for the " + urlYears + " academic year.</p>";
+    }
+    //replace instructor content by modified instructor content
+    newContent = newContent.replace(/Instructors:.+<.p>/, instM);
+    //add "&" before last inst if there are more than one for the semester
+    newContent = newContent.replace(/<.a>,\s([^,\)]{2,300})<.a>,\s<.p>/g, "</a>, and " + "$1" + "</a></p>");
+    //take the commas off the end of the last inst listed for the semester
+    newContent = newContent.replace(/<.a>,\s<.p>/g, "</a></p>");
+
+
+
+    //add "See other course taught by ..." section to bottom of content
+    if (allInst.length > 0)
+    {
+        var allInst = allInst.filter(function(elem, pos) {
+            return allInst.indexOf(elem) == pos;
+        });
+        newContent += "<br/><p>See other courses from the " + urlYears + " academic year taught by "
+        for (a=0; a< allInst.length; a++)
+        {
+            allInst[a] = allInst[a].trim();
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var profName = allInst[a].split(" ");
+            getProfUrl(profName[0], profName[profName.length-1], false, -1);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            prof = allInst[a].replace(/\s/g, "%20");
+            url = "https://www.mcgill.ca/study/" + urlYears + "/search/apachesolr_search/\"" + prof + "\"?filters=type%3Acatalog";
+            urlHTML = ("<a href="+url+">"+allInst[a]+"</a>");
+            if (a == allInst.length-1)
+            {
+                newContent += (urlHTML + ".");
+            }
+            else if (a == allInst.length-2)
+            {
+                newContent += (urlHTML + ",&nbspor&nbsp");
+            }
+            else
+            {
+                newContent += (urlHTML + ",&nbsp");
+            }
+        }
+        newContent += "</p>";
     }
 
 
 
+    document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
 
 
-//}
+}
+else {
+    //Replace Course names with links to course overview page
+    cns = document.getElementsByClassName("program-course-description-inner");
+    for (cn = 0; cn<cns.length; cn++)
+    {
+        newContent = document.getElementsByClassName("program-course-description-inner")[cn].innerHTML
+        newContent = newContent.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
+        newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+        document.getElementsByClassName("program-course-description-inner")[cn].innerHTML = newContent;
+    }
+}
+
+
+
+
+
+
 
 
