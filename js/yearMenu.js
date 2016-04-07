@@ -1,7 +1,7 @@
 
 url = window.location.href;
 
-if (url.match(/.+mcgill.ca.study.+/) != null) {
+if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
 
     urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
     urlYearW = urlYearF+1;
@@ -83,7 +83,9 @@ if (url.match(/.+mcgill.ca.study.+/) != null) {
         container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
 
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //remove alerts about wrong year
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         noteBlocks = ["block-nodeblock", "block-block"]
         for (b = 0; b < noteBlocks.length; b++) {
             var noteBlock = document.getElementById('top-content').getElementsByClassName(noteBlocks[b]);
