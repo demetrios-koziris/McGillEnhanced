@@ -1,21 +1,21 @@
 
 //Mercury course evaluation handling
-if (url.match(/.+horizon.mcgill.ca\/pban1\/bzskmcer.p_display_form/) != null)
-{
-    if (top.name != "MainMinervaWin") {
-        console.log(top.name);
-        courseEvalParams = JSON.parse(top.name);
-
-        if (courseEvalParams.autoSubmit) {
-            document.getElementById('subj_id').value="" + courseEvalParams.courseSubject;
-            document.getElementById('crse_id').value="" + courseEvalParams.courseNumber;
-            top.name = "MainMinervaWin";
-            document.forms["search_form"].submit();
-        }
-    }
-}
-else {
-    top.name = "";
+//if (url.match(/.+horizon.mcgill.ca\/pban1\/bzskmcer.p_display_form/) != null)
+//{
+//    if (top.name != "MainMinervaWin") {
+//        console.log(top.name);
+//        courseEvalParams = JSON.parse(top.name);
+//
+//        if (courseEvalParams.autoSubmit) {
+//            document.getElementById('subj_id').value="" + courseEvalParams.courseSubject;
+//            document.getElementById('crse_id').value="" + courseEvalParams.courseNumber;
+//            top.name = "MainMinervaWin";
+//            document.forms["search_form"].submit();
+//        }
+//    }
+//}
+//else {
+//    top.name = "";
 
     url = window.location.href;
 
@@ -44,7 +44,6 @@ else {
 
 
 
-
         courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
         courseTermsCodes = [];
         if (courseTerms.match(/Fall/) != null) {
@@ -58,8 +57,21 @@ else {
         }
         console.log(courseTermsCodes);
 
+
+        //make sidebar take up same width as in old style
+        if (isNewStyle) {
+            document.getElementById("inner-container").style.width = "100%";
+            document.getElementById("main-column").style.width = "620px"
+            if (urlYearF >= 2016) {
+                document.getElementById("sidebar-column").style.width = "280px";
+                document.getElementById("block-views-catalog-program-block-1").style.width = "260px";
+            }
+        }
+
+
         var sidebar = document.createElement('div');
         sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
+        sidebar.style.width = "280px";
         sidebar.style.border = "0px";
         sidebar.style.marginBottom = "10px";
 
@@ -77,8 +89,6 @@ else {
             autoSubmit: true
         };
         courseEvalParamsString = JSON.stringify(courseEvalParams);
-
-
 
         var courseEvalForm = document.createElement('form');
         courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
@@ -101,85 +111,77 @@ else {
         courseEvalButton.style.margin="2% 0%";
         courseEvalForm.appendChild(courseEvalButton);
 
-        var courseReg = document.createElement('div');
-        courseReg.style.margin = "10px 0px";
-        sidebar.appendChild(courseReg);
+        if (courseTermsCodes.length > 0) {
 
-        var courseRegTitle = document.createElement('h4');
-        courseRegTitle.innerHTML = "View Minerva Registration";
-        courseReg.appendChild(courseRegTitle);
+            var courseReg = document.createElement('div');
+            courseReg.style.margin = "10px 0px";
+            sidebar.appendChild(courseReg);
 
-        for (var i = 0; i < courseTermsCodes.length; i++) {
+            var courseRegTitle = document.createElement('h4');
+            courseRegTitle.innerHTML = "View Minerva Registration";
+            courseReg.appendChild(courseRegTitle);
 
-            var courseRegForm = document.createElement('form');
-            courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
-            courseRegForm.setAttribute("method", "POST");
-            courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"" + courseTermsCodes[i].code + "\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_day\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_insm\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_camp\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_sess\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_to_cred\" value=\"\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"%\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"%\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"%\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_hh\" value=\"0\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_mi\" value=\"0\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_ap\" value=\"a\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_hh\" value=\"0\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
-            courseReg.appendChild(courseRegForm);
+            for (var i = 0; i < courseTermsCodes.length; i++) {
 
-            var courseRegButton = document.createElement('input');
-            courseRegButton.setAttribute("type", "submit");
-            courseRegButton.setAttribute("name", "SUB_BTN");
-            courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
-            courseRegButton.style.width="100%";
-            courseRegButton.style.padding="7px";
-            courseRegButton.style.margin="2% 0%";
-            courseRegForm.appendChild(courseRegButton);
+                var courseRegForm = document.createElement('form');
+                courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
+                courseRegForm.setAttribute("method", "POST");
+                courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"" + courseTermsCodes[i].code + "\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_day\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_insm\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_camp\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_sess\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_to_cred\" value=\"\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"%\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"%\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"%\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_hh\" value=\"0\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_mi\" value=\"0\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_ap\" value=\"a\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_hh\" value=\"0\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
+                courseReg.appendChild(courseRegForm);
 
-        }
+                var courseRegButton = document.createElement('input');
+                courseRegButton.setAttribute("type", "submit");
+                courseRegButton.setAttribute("name", "SUB_BTN");
+                courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
+                courseRegButton.style.width="100%";
+                courseRegButton.style.padding="7px";
+                courseRegButton.style.margin="2% 0%";
+                courseRegForm.appendChild(courseRegButton);
 
-        var container = document.getElementById(isNewStyle ? "inner-container" : "container");
-        if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
-            container.insertBefore(sidebar, document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
-        }
-        else {
-            if (isNewStyle) {
-                document.getElementById("inner-container").style.width = "100%";
-                document.getElementById("main-column").style.width = "724px";
-                container.appendChild(sidebar);
             }
-            else {
-                document.getElementById("center-column").style.width = "620px";
-                container.insertBefore(sidebar, document.getElementById("footer"));
-            }
-
         }
 
 
 
+        var deptCourses = document.createElement('div');
+        deptCourses.style.margin = "10px 0px";
+        sidebar.appendChild(deptCourses);
 
-        //create array of departments mentioned
+        var deptCoursesTitle = document.createElement('h4');
+        deptCoursesTitle.innerHTML = "View Related Courses by Subject";
+        deptCourses.appendChild(deptCoursesTitle);
+
         urlDep = url.match(/.+([A-Za-z]{4})-[0-9]{3}/)[1].toUpperCase();
         courses = newContent.match(/[A-Z]{4}\s[0-9]{3}/g);
         depsDup = [urlDep];
@@ -194,45 +196,56 @@ else {
             return depsDup.indexOf(elem) == pos;
         });
 
-
-        var container = document.getElementById(isNewStyle ? "block-system-main" : "content-area").getElementsByClassName("content")[0];
-
-
-        var relatedCourses = document.createElement('div');
-
-        var relatedCoursesTitle = document.createElement('h3');
-        relatedCoursesTitle.innerHTML = "Related Courses Links"
-        relatedCourses.appendChild(relatedCoursesTitle);
-
-        var relatedCoursesDesc = document.createElement('p');
-        relatedCoursesDesc.innerHTML = "Here are links to related programs by department or professor name."
-        relatedCourses.appendChild(relatedCoursesDesc);
-        container.appendChild(relatedCourses);
-
-
-
         for (d = 0; d<deps.length; d++)
         {
-            depCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
+            deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
 
-            //var depCoursesLink = document.createElement('input');
-            //depCoursesLink.setAttribute("type", "button");
-            //depCoursesLink.setAttribute("value", "See all " + deps[d] + " courses offered for the " + urlYears + " academic year.");
-            //depCoursesLink.setAttribute("self.location", depCoursesURL);
-            //depCoursesLink.style.marginBottom = "10px";
+            console.log(deptCoursesURL);
 
-            var depCoursesLink = document.createElement('a');
-            depCoursesLink.innerHTML = (isNewStyle ? "<p>" : "")
-                + (!isNewStyle && d>0 ? "<br>" : "")
-                + "See all " + deps[d] + " courses offered for the " + urlYears + " academic year."
-                + (isNewStyle ? "</p>" : "");
-            depCoursesLink.style.marginBottom = "10px";
-            depCoursesLink.setAttribute("href", depCoursesURL);
+            //var deptCoursesForm = document.createElement('form');
+            //deptCoursesForm.setAttribute("action", deptCoursesURL);
+            //deptCourses.appendChild(deptCoursesForm);
+            //
+            //var deptCoursesButton = document.createElement('input');
+            //deptCoursesButton.setAttribute("type", "submit");
+            //deptCoursesButton.setAttribute("value", urlYears+ " " + deps[d] + " Courses");
+            //deptCoursesButton.style.width="100%";
+            //deptCoursesButton.style.padding="7px";
+            //deptCoursesButton.style.margin="2% 0%";
+            //deptCoursesForm.appendChild(deptCoursesButton);
 
-            relatedCourses.appendChild(depCoursesLink);
+            var deptCoursesLink = document.createElement('input');
+            deptCoursesLink.setAttribute("type", "button");
+            deptCoursesLink.setAttribute("value", deps[d] + " Courses");
+            deptCoursesLink.setAttribute("onclick", "location.href='" + deptCoursesURL + "';");
+            deptCoursesLink.style.width="100%";
+            deptCoursesLink.style.padding="7px";
+            deptCoursesLink.style.margin="2% 0%";
+            deptCourses.appendChild(deptCoursesLink);
+
         }
 
 
+
+        //insert enhanced sidebar
+        var container = document.getElementById(isNewStyle ? "inner-container" : "container");
+        if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
+            container.insertBefore(sidebar, document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
+        }
+        else {
+            if (isNewStyle) {
+                container.appendChild(sidebar);
+            }
+            else {
+                document.getElementById("center-column").style.width = "620px";
+                container.insertBefore(sidebar, document.getElementById("footer"));
+            }
+
+        }
+
+
+        //main center area long enough to keep sidebar pushed to the right (test ACCT 352)
+        console.log(document.getElementById(isNewStyle ? "main-column" : "center-column").style.minHeight = "500px");
 
 
 
@@ -253,6 +266,6 @@ else {
 
 
 
-}
+//}
 
 
