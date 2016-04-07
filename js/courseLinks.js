@@ -78,15 +78,24 @@ else {
         };
         courseEvalParamsString = JSON.stringify(courseEvalParams);
 
+
+
         var courseEvalForm = document.createElement('form');
         courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
         courseEvalForm.setAttribute("method", "POST");
-        courseEvalForm.setAttribute("onsubmit", "top.name='" + courseEvalParamsString + "'");
+        courseEvalForm.setAttribute("name", "search_form");
+        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
+        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
+        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
+        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
+        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
+        courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
         courseEval.appendChild(courseEvalForm);
 
         var courseEvalButton = document.createElement('input');
         courseEvalButton.setAttribute("type", "submit");
-        courseEvalButton.setAttribute("value", courseName.replace("-", " ") + " Course Evaluations");
+        courseEvalButton.setAttribute("name", "");
+        courseEvalButton.setAttribute("value", courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " Course Evaluations");
         courseEvalButton.style.width="100%";
         courseEvalButton.style.padding="7px";
         courseEvalButton.style.margin="2% 0%";
@@ -148,28 +157,6 @@ else {
             courseRegButton.style.margin="2% 0%";
             courseRegForm.appendChild(courseRegButton);
 
-
-
-
-
-
-            //
-            //var courseRegForm = document.createElement('form');
-            //courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwckgens.p_proc_term_date");
-            //courseRegForm.setAttribute("method", "POST");
-            //courseRegForm.setAttribute("onsubmit", "top.name='" + courseEvalParamsString + "'; return checkSubmit();");
-            //courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_calling_proc\" value=\"P_CrseSearch\">";
-            //courseRegForm.innerHTML += "<input type=\"hidden\" name=\"search_mode_in\" value=\"NON_NT\">";
-            //courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_term\" value=\"" + courseTermsCodes[i].code + "\">";
-            //courseReg.appendChild(courseRegForm);
-            //
-            //var courseRegButton = document.createElement('input');
-            //courseRegButton.setAttribute("type", "submit");
-            //courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
-            //courseRegButton.style.width="100%";
-            //courseRegButton.style.padding="7px";
-            //courseRegButton.style.margin="2% 0%";
-            //courseRegForm.appendChild(courseRegButton);
         }
 
         var container = document.getElementById(isNewStyle ? "inner-container" : "container");
