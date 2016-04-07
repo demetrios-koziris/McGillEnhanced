@@ -1,24 +1,18 @@
 
+//Mercury course evaluation handling
 if (url.match(/.+horizon.mcgill.ca\/pban1\/bzskmcer.p_display_form/) != null)
 {
     if (top.name != "MainMinervaWin") {
         console.log(top.name);
         courseEvalParams = JSON.parse(top.name);
-        courseName = courseEvalParams.course;
-        autoSubmit = courseEvalParams.autoSubmit;
 
-        if (autoSubmit) {
-            document.getElementById('subj_id').value="" + courseName.split("-")[0].toUpperCase();
-            if (courseName.split("-")[1] != undefined) {
-                document.getElementById('crse_id').value="" + courseName.split("-")[1];
-            }
+        if (courseEvalParams.autoSubmit) {
+            document.getElementById('subj_id').value="" + courseEvalParams.courseSubject;
+            document.getElementById('crse_id').value="" + courseEvalParams.courseNumber;
             top.name = "MainMinervaWin";
             document.forms["search_form"].submit();
         }
     }
-
-
-
 }
 else {
     top.name = "";
@@ -62,7 +56,7 @@ else {
         if (courseTerms.match(/Summer/) != null) {
             courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
         }
-        //console.log(courseTermsCodes);
+        console.log(courseTermsCodes);
 
         var sidebar = document.createElement('div');
         sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
@@ -78,7 +72,8 @@ else {
         courseEval.appendChild(courseEvalTitle);
 
         courseEvalParams = {
-            course: courseName,
+            courseSubject: courseName.split("-")[0],
+            courseNumber: courseName.split("-")[1],
             autoSubmit: true
         };
         courseEvalParamsString = JSON.stringify(courseEvalParams);
@@ -108,21 +103,73 @@ else {
         for (var i = 0; i < courseTermsCodes.length; i++) {
 
             var courseRegForm = document.createElement('form');
-            courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwckgens.p_proc_term_date");
+            courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
             courseRegForm.setAttribute("method", "POST");
-            courseRegForm.setAttribute("onsubmit", "return checkSubmit()");
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_calling_proc\" value=\"P_CrseSearch\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"search_mode_in\" value=\"NON_NT\">";
-            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_term\" value=\"" + courseTermsCodes[i].code + "\">";
+            courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"" + courseTermsCodes[i].code + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_day\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_insm\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_camp\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_sess\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_to_cred\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_hh\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_mi\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_ap\" value=\"a\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_hh\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
             courseReg.appendChild(courseRegForm);
 
             var courseRegButton = document.createElement('input');
             courseRegButton.setAttribute("type", "submit");
+            courseRegButton.setAttribute("name", "SUB_BTN");
             courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
             courseRegButton.style.width="100%";
             courseRegButton.style.padding="7px";
             courseRegButton.style.margin="2% 0%";
             courseRegForm.appendChild(courseRegButton);
+
+
+
+
+
+
+            //
+            //var courseRegForm = document.createElement('form');
+            //courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwckgens.p_proc_term_date");
+            //courseRegForm.setAttribute("method", "POST");
+            //courseRegForm.setAttribute("onsubmit", "top.name='" + courseEvalParamsString + "'; return checkSubmit();");
+            //courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_calling_proc\" value=\"P_CrseSearch\">";
+            //courseRegForm.innerHTML += "<input type=\"hidden\" name=\"search_mode_in\" value=\"NON_NT\">";
+            //courseRegForm.innerHTML += "<input type=\"hidden\" name=\"p_term\" value=\"" + courseTermsCodes[i].code + "\">";
+            //courseReg.appendChild(courseRegForm);
+            //
+            //var courseRegButton = document.createElement('input');
+            //courseRegButton.setAttribute("type", "submit");
+            //courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
+            //courseRegButton.style.width="100%";
+            //courseRegButton.style.padding="7px";
+            //courseRegButton.style.margin="2% 0%";
+            //courseRegForm.appendChild(courseRegButton);
         }
 
         var container = document.getElementById(isNewStyle ? "inner-container" : "container");
