@@ -83,11 +83,11 @@ function getProfContent(first, last, profURL, part, res) {
             }
 
 
-            tooltipContent = firstName + " " + lastName
-                + "&#13- Overall:&#09 " + rating.overall
-                + "&#13- Helpfulness:&#09 " + rating.helpfulness
-                + "&#13- Clarity:&#09&#09 " + rating.clarity
-                + "&#13- Easiness:&#09 " + rating.easiness
+            tooltipContent = "<b>" + firstName + " " + lastName + "</b>"
+                + "<br><b>" + rating.overall + "&nbsp Overall Quality</b>"
+                + "<br>" + rating.helpfulness + "&nbsp Helpfulness"
+                + "<br>" + rating.clarity + "&nbsp Clarity"
+                + "<br>" + rating.easiness + "&nbsp Easiness<b>"
             //+ "&#13Ratings: " + rating.number
 
             if (rating.overall === undefined) {
@@ -95,7 +95,7 @@ function getProfContent(first, last, profURL, part, res) {
                     tooltipContent = "Instructor not found.";
                 }
                 else if (res = 2) {
-                    tooltipContent = "Multiple Instructors found&#13Please click to see results";
+                    tooltipContent = "Multiple Instructors found<br>Please click to see results";
                 }
             }
             else {//if (part < 0)
@@ -103,12 +103,12 @@ function getProfContent(first, last, profURL, part, res) {
                 var div = document.createElement('div');
                 div.innerHTML = profURLHTML;
                 if (div.getElementsByClassName("rating-count")[0] === undefined) {
-                    tooltipContent = "This instructor has no ratings&#13Click to be the first to rate";
+                    tooltipContent = "This instructor has no ratings<br>Click to be the first to rate";
                 }
                 else {
                     numOfRatings = div.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
                     //console.log(profURLHTML.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]);
-                    tooltipContent += "&#13- From " + numOfRatings + " ratings";
+                    tooltipContent += "<br>From " + numOfRatings + " rating" + (numOfRatings > 1 ? "s" : "");
                 }
             }
             makeProfSection(first, last, profURL, part, tooltipContent);
@@ -122,10 +122,15 @@ function getProfContent(first, last, profURL, part, res) {
 
 
 function makeProfSection(first, last, profURL, part, tooltipContent) {
+    work = JSON.parse(top.name);
+    work.done++
+    top.name = JSON.stringify(work);
+    console.log(top.name);
+    //tooltipContent = "a\na/n<br>t"
     if (part < 0) {
         newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
         var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
-        newContent = newContent.replace(instFilter, profURL.split("://")[1] + "\" title=\"" + tooltipContent + "\"");
+        newContent = newContent.replace(instFilter, profURL.split("://")[1] + "\" class=\"hasProfTip\"  title=\"" + tooltipContent + "\"");
 
         document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
     }
@@ -137,6 +142,36 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
 
         document.getElementsByClassName(catalogName)[0].innerHTML = newCatalog;
     }
+    //tooltips = document.getElementsByClassName("hasProfTip");
+    //for (t=0; t<tooltips.length; t++) {
+    //    tooltips[t].tooltipsy();
+    //}
+
+   // if (first == "Robert") {
+   //     console.log(first + last);
+   //     tipClass = "." + first + last
+   // console.log(document.getElementById("block-system-main"));
+    if (work.done == work.total) {
+        console.log("ready");
+        $(".hasProfTip").tooltipsy({
+            css: {
+                fontFamily: "CartoGothicStdBook",
+                padding: "10px",
+                //maxWidth: "140px",
+                //color: "#303030",
+                fontSize: ".9em",
+                backgroundColor: "#C5C5C5",
+                borderRadius: "8px",
+                border: "2px solid "
+            }
+        });
+    }
+
+    //}
+
+
+    //alert("here");
+    //document.getElementById(first + last).className = "";
 }
 
 
@@ -151,7 +186,12 @@ regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
+    top.name = "";
+    console.log(top.name);
+    console.log(document.getElementById("block-system-main"));
+
     courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,7 +222,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             allInst.push(instFA[f]);
             search = "mcgill " + instFA[f].match(/([^\s]+)\s.+/)[1] + " " + instFA[f].match(/.+\s([^\s]+)/)[1];
             //search = search.replace(/-/, " ");
-            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" target=\"_blank\" title=\"" + loadMessage + "\">" + instFA[f] +"</a>, ");
+            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + instFA[f] +"</a>, ");
         }
         instM += "</p>";
         regW = /Instructors:.+\)(.+)\(W.+<.p>/;
@@ -200,7 +240,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             allInst.push(instWA[w]);
             search = "mcgill " + instWA[w].match(/([^\s]+)\s.+/)[1] + " " + instWA[w].match(/.+\s([^\s]+)/)[1];
             //search = search.replace(/-/, " ");
-            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" target=\"_blank\" title=\"" + loadMessage + "\">"+ instWA[w] +"</a>, ");
+            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" title=\"" + loadMessage + "\">"+ instWA[w] +"</a>, ");
         }
         instM += "</p>";
     }
@@ -236,6 +276,14 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         var allInst = allInst.filter(function(elem, pos) {
             return allInst.indexOf(elem) == pos;
         });
+
+        work = {
+            total: allInst.length,
+            done: 0
+        };
+        top.name = JSON.stringify(work);
+        console.log(top.name);
+
         for (a=0; a< allInst.length; a++) {
             allInst[a] = allInst[a].trim();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,7 +320,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     if (isNewStyle) {
         document.getElementById("inner-container").style.width = "100%";
         document.getElementById("main-column").style.width = "620px"
-        if (urlYearF >= 2016) {
+        if (urlYearF >= 2016 && document.getElementById("sidebar-column") != null) {
             document.getElementById("sidebar-column").style.width = "280px";
             document.getElementById("block-views-catalog-program-block-1").style.width = "260px";
         }
@@ -470,11 +518,12 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         container.insertBefore(sidebar, document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
     }
     else {
+        document.getElementById(isNewStyle ? "main-column" : "center-column").style.width = "620px";
+        document.getElementById(isNewStyle ? "main-column" : "center-column").style.float = "left";
         if (isNewStyle) {
             container.appendChild(sidebar);
         }
         else {
-            document.getElementById("center-column").style.width = "620px";
             container.insertBefore(sidebar, document.getElementById("footer"));
         }
     }

@@ -7,7 +7,10 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
     urlYearW = urlYearF+1;
     urlYears = urlYearF + "-" + urlYearW;
     sysYear = new Date().getFullYear();
+    sysMonth = new Date().getMonth();
+    currentYear = (sysMonth > 5 ? sysYear : sysYear-1)
     isNewStyle = document.getElementsByClassName("transition").length > 0;
+    firstYear = Math.max(sysYear-10, 2009);
 
 
     if (!isNewStyle) {
@@ -21,7 +24,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
         yearMenuBarTABLE.style.width = "100%";
         yearMenuBarDIV.appendChild(yearMenuBarTABLE)
 
-        for (j = 2009; j <= sysYear; j += 10)
+        for (j = firstYear; j <= sysYear; j += 10)
         {
             var yearMenuBarTR = document.createElement('tr');
             yearMenuBarTABLE.appendChild(yearMenuBarTR)
@@ -42,7 +45,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
                 yearMenuBarTABLE.appendChild(yearMenuItemTD);
 
                 var yearMenuItemDIV = document.createElement('div');
-                yearMenuItemDIV.style.width = "94px";
+                yearMenuItemDIV.style.width = "100%";
                 yearMenuItemDIV.style.height = "30px";
                 yearMenuItemDIV.style.backgroundColor = "#FFFFFF";
                 yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
@@ -53,7 +56,10 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
                 yearMenuItemA.style.borderRadius = "8px";
                 yearMenuItemA.style.color = "#FFFFFF";
 
-
+                if (i == currentYear) {
+                    //yearMenuItemA.innerHTML = "Current Year: " + yearMenuItemA.innerHTML;
+                    //yearMenuItemTD.style.width = "20%";
+                }
                 if (i == urlYearF){
                     yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                     yearMenuItemA.style.color = "#5b5b5a";
@@ -76,11 +82,18 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
                         yearMenuItemA.setAttribute("href", yearMenuItemURL);
                     }
                 }
+
+
+
+
             }
         }
 
         var container = document.getElementById("container");
         container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
+
+
+
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +113,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
     }
     else {
 
-        for (j = 2009; j <= sysYear; j += 10)
+        for (j = firstYear; j <= sysYear; j += 10)
         {
             var yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
@@ -127,7 +140,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
                 var yearMenuItemDIV = document.createElement('div');
                 yearMenuItemDIV.style.backgroundColor = "#FFFFFC";
                 yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
-                yearMenuItemDIV.style.width = "94px";
+                yearMenuItemDIV.style.width = "100%";
                 yearMenuItemDIV.style.height = "33px";
 
                 var yearMenuItemA = document.createElement('a');

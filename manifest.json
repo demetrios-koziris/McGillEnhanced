@@ -25,7 +25,7 @@
   "content_scripts" : [
     {
       "matches" : ["*://www.mcgill.ca/study/*"],
-      "js" : ["lib/jquery-1.11.2.js", "js/yearMenu.js", "js/courseLinks.js"]
+      "js" : ["lib/jquery-1.11.2.js", "lib/tooltipsy.min.js", "js/yearMenu.js", "js/courseLinks.js"]
     }
   ]
 }
