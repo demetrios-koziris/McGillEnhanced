@@ -1,4 +1,6 @@
 
+window.debugMode = true;
+if(window.debugMode){console.log("McGill Enhanced Debug mode is ON");}
 
 url = window.location.href;
 
@@ -125,8 +127,8 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
     work = JSON.parse(top.name);
     work.done++
     top.name = JSON.stringify(work);
-    console.log(top.name);
-    //tooltipContent = "a\na/n<br>t"
+    if(window.debugMode){console.log(top.name);}
+
     if (part < 0) {
         newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
         var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
@@ -142,17 +144,9 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
 
         document.getElementsByClassName(catalogName)[0].innerHTML = newCatalog;
     }
-    //tooltips = document.getElementsByClassName("hasProfTip");
-    //for (t=0; t<tooltips.length; t++) {
-    //    tooltips[t].tooltipsy();
-    //}
 
-   // if (first == "Robert") {
-   //     console.log(first + last);
-   //     tipClass = "." + first + last
-   // console.log(document.getElementById("block-system-main"));
     if (work.done == work.total) {
-        console.log("ready");
+        if(window.debugMode){console.log("Ready for tooltipsy");}
         $(".hasProfTip").tooltipsy({
             css: {
                 fontFamily: "CartoGothicStdBook",
@@ -167,11 +161,6 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
         });
     }
 
-    //}
-
-
-    //alert("here");
-    //document.getElementById(first + last).className = "";
 }
 
 
@@ -187,8 +176,7 @@ regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     top.name = "";
-    console.log(top.name);
-    console.log(document.getElementById("block-system-main"));
+    if(window.debugMode){console.log(top.name);}
 
     courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
 
@@ -282,7 +270,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             done: 0
         };
         top.name = JSON.stringify(work);
-        console.log(top.name);
+        if(window.debugMode){console.log(top.name);}
 
         for (a=0; a< allInst.length; a++) {
             allInst[a] = allInst[a].trim();
@@ -312,7 +300,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     if (courseTerms.match(/Summer/) != null) {
         courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
     }
-    console.log(courseTermsCodes);
+    if(window.debugMode){console.log(courseTermsCodes);}
 
 
 
@@ -475,7 +463,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     }
 
-    console.log(allInst);
+    if(window.debugMode){console.log(allInst);}
 
     if (allInst.length > 0) {
 
