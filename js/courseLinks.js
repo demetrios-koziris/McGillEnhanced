@@ -73,8 +73,15 @@ function getProfContent(first, last, profURL, part, res) {
             rating.easiness = $(profURLHTML).find(".rating:eq(2)").html();
             //rating.number = div.getElementsByClassName("rating-count")[1].innerHTML.match(/([0-9]+) Student Ratings/)[1];
 
-            firstName = $(profURLHTML).find(".pfname").html().trim();
-            lastName = $(profURLHTML).find(".plname").html().trim();
+            firstName = $(profURLHTML).find(".pfname").html();
+            if (firstName != undefined) {
+                firstName = firstName.trim();
+            }
+            lastName = $(profURLHTML).find(".plname").html();
+            if (lastName != undefined) {
+                lastName = firstName.trim();
+            }
+
 
             tooltipContent = firstName + " " + lastName
                 + "&#13- Overall:&#09 " + rating.overall
