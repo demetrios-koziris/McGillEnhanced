@@ -79,7 +79,7 @@ function getProfContent(first, last, profURL, part, res) {
             }
             lastName = $(profURLHTML).find(".plname").html();
             if (lastName != undefined) {
-                lastName = firstName.trim();
+                lastName = lastName.trim();
             }
 
 
