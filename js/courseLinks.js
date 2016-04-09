@@ -1,5 +1,5 @@
 
-window.debugMode = false;
+window.debugMode = true;
 if(window.debugMode){console.log("McGill Enhanced Debug mode is ON");}
 
 url = window.location.href;
@@ -124,10 +124,10 @@ function getProfContent(first, last, profURL, part, res) {
 
 
 function makeProfSection(first, last, profURL, part, tooltipContent) {
-    work = JSON.parse(top.name);
-    work.done++
-    top.name = JSON.stringify(work);
-    if(window.debugMode){console.log(top.name);}
+    profStateObject = JSON.parse(window.profState);
+    profStateObject.done++
+    window.profState = JSON.stringify(profStateObject);
+    if(window.debugMode){console.log(window.profState);}
 
     if (part < 0) {
         newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
@@ -145,7 +145,7 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
         document.getElementsByClassName(catalogName)[0].innerHTML = newCatalog;
     }
 
-    if (work.done == work.total) {
+    if (profStateObject.done == profStateObject.total) {
         if(window.debugMode){console.log("Ready for tooltipsy");}
         $(".hasProfTip").tooltipsy({
             css: {
@@ -159,6 +159,7 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
                 border: "2px solid "
             }
         });
+        window.profState = undefined;
     }
 
 }
@@ -175,8 +176,8 @@ regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
-    top.name = "";
-    if(window.debugMode){console.log(top.name);}
+    window.profState = "";
+    if(window.debugMode){console.log(window.profState);}
 
     courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
 
@@ -265,12 +266,12 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             return allInst.indexOf(elem) == pos;
         });
 
-        work = {
+        profStateObject = {
             total: allInst.length,
             done: 0
         };
-        top.name = JSON.stringify(work);
-        if(window.debugMode){console.log(top.name);}
+        window.profState = JSON.stringify(profStateObject);
+        if(window.debugMode){console.log(window.profState);}
 
         for (a=0; a< allInst.length; a++) {
             allInst[a] = allInst[a].trim();
