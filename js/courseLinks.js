@@ -7,11 +7,9 @@ url = window.location.href;
 
 var loadMessage = "McGill Enhanced is loading ratings for this professor&#13Please hover mouse off then back on to refresh this tooltip";
 
-function getProfUrl(first, last, general, part)
-{
+function getProfUrl(first, last, general, part) {
     var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + first + " " + last;
-    if (general)
-    {
+    if (general) {
         profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + last;
     }
 
@@ -21,38 +19,31 @@ function getProfUrl(first, last, general, part)
         url: profURL,
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-        try
-        {
+        try {
             var profURL = data.url;
             var profURLHTML = data.responseXML;
 
             var div = document.createElement('div');
             div.innerHTML = profURLHTML;
 
-            if (div.getElementsByClassName("result-count")[1].innerHTML.match(/Your search didn't return any results/) != null)
-            {
-                if (general)
-                {
+            if (div.getElementsByClassName("result-count")[1].innerHTML.match(/Your search didn't return any results/) != null) {
+                if (general) {
                     getProfContent(first, last, profURL, part, 0);
                 }
-                else
-                {
+                else {
                     profURL = getProfUrl(first, last, true, part);
                 }
             }
-            else if (div.getElementsByClassName("result-count")[1].innerHTML.match(/.*Showing 1-1 of 1 result.*/) != null)
-            {
+            else if (div.getElementsByClassName("result-count")[1].innerHTML.match(/.*Showing 1-1 of 1 result.*/) != null) {
                 var profURLId = profURLHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
                 profURL = "http://www.ratemyprofessors.com/" + profURLId;
                 getProfContent(first, last, profURL, part, 1);
             }
-            else
-            {
+            else {
                 getProfContent(first, last, profURL, part, 2);
             }
         }
-        catch(err)
-        {
+        catch(err) {
             console.log(first + " " + last + " " + part + " " + err);
         }
     });
@@ -67,12 +58,9 @@ function getProfContent(first, last, profURL, part, res)
         url: profURL,
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-        try
-        {
+        try {
             var profURL = data.url;
             var profURLHTML = data.responseXML;
-
-
 
             //var div = document.createElement('div');
             //div.innerHTML = profURLHTML;
@@ -92,79 +80,62 @@ function getProfContent(first, last, profURL, part, res)
             firstName = $(profURLHTML).find(".pfname").html().trim();
             lastName = $(profURLHTML).find(".plname").html().trim();
 
-            tooltipContent = firstName + " " + lastName + "&#13"
-                + "-Overall:&#09&#09 " + rating.overall
-                + "&#13-Helpfulness:&#09 " + rating.helpfulness
-                + "&#13-Clarity:&#09&#09 " + rating.clarity
-                + "&#13-Easiness:&#09 " + rating.easiness
+            tooltipContent = firstName + " " + lastName
+                + "&#13- Overall:&#09 " + rating.overall
+                + "&#13- Helpfulness:&#09 " + rating.helpfulness
+                + "&#13- Clarity:&#09&#09 " + rating.clarity
+                + "&#13- Easiness:&#09 " + rating.easiness
             //+ "&#13Ratings: " + rating.number
 
-            if (rating.overall === undefined)
-            {
-                if (res == 0)
-                {
+            if (rating.overall === undefined) {
+                if (res == 0) {
                     tooltipContent = "Instructor not found.";
                 }
-                else if (res = 2)
-                {
+                else if (res = 2) {
                     tooltipContent = "Multiple Instructors found&#13Please click to see results";
                 }
-
             }
-            else//if (part < 0)
-            {
+            else {//if (part < 0)
                 //check holly dressel in ENVR 400 and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
                 var div = document.createElement('div');
                 div.innerHTML = profURLHTML;
-                if (div.getElementsByClassName("rating-count")[0] === undefined)
-                {
+                if (div.getElementsByClassName("rating-count")[0] === undefined) {
                     tooltipContent = "This instructor has no ratings&#13Click to be the first to rate";
                 }
-                else
-                {
+                else {
                     numOfRatings = div.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
                     //console.log(profURLHTML.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]);
-                    tooltipContent += "&#13-From " + numOfRatings + " ratings";
+                    tooltipContent += "&#13- From " + numOfRatings + " ratings";
                 }
-
             }
-
             makeProfSection(first, last, profURL, part, tooltipContent);
-
         }
-        catch(err)
-        {
+        catch(err) {
             console.log(first + " " + last + " " + part)
             console.log(err);
         }
     });
-
-
 
 }
 
 
 function makeProfSection(first, last, profURL, part, tooltipContent)
 {
-    if (part < 0)
-    {
+    if (part < 0) {
 
         newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
         var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
         newContent = newContent.replace(instFilter, profURL.split("://")[1] + "\" title=\"" + tooltipContent + "\"");
 
         document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
-
     }
-    else
-    {
+    else {
         catalogName = "catalog-instructorsMod" + part;
         newCatalog = document.getElementsByClassName(catalogName)[0].innerHTML;
         var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
         newCatalog = newCatalog.replace(instFilter, profURL.split("://")[1] + "\" title=\"" + tooltipContent + "\"");
 
         document.getElementsByClassName(catalogName)[0].innerHTML = newCatalog;
-
     }
 
 }
@@ -408,13 +379,11 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     instM = "</p>";
     regF = /Instructors:\s+(.+)\(Fall.+<.p>/;
     instF = newContent.match(regF);
-    if (instF != null)
-    {
+    if (instF != null) {
         instFN = instF[1];
         instFA = instFN.split(", ");
         instM += "<p>Instructors (Fall): ";
-        for (f=0; f<instFA.length; f++)
-        {
+        for (f=0; f<instFA.length; f++) {
             instFA[f] = instFA[f].trim();
             allInst.push(instFA[f]);
             search = "mcgill " + instFA[f].match(/([^\s]+)\s.+/)[1] + " " + instFA[f].match(/.+\s([^\s]+)/)[1];
@@ -424,18 +393,15 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         instM += "</p>";
         regW = /Instructors:.+\)(.+)\(W.+<.p>/;
     }
-    else
-    {
+    else {
         regW = /Instructors:\s+(.+)\(Winter.+<.p>/;
     }
     instW = newContent.match(regW);
-    if (instW != null)
-    {
+    if (instW != null) {
         instWN = instW[1];
         instWA = instWN.split(", ");
         instM += "<p>Instructors (Winter): ";
-        for (w = 0; w < instWA.length; w++)
-        {
+        for (w = 0; w < instWA.length; w++) {
             instWA[w] = instWA[w].trim();
             allInst.push(instWA[w]);
             search = "mcgill " + instWA[w].match(/([^\s]+)\s.+/)[1] + " " + instWA[w].match(/.+\s([^\s]+)/)[1];
@@ -446,13 +412,11 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     }
     regS = /Instructors:.+\).+\(.+\)(.+)\(.+<.p>/;
     instS = newContent.match(regS);
-    if (instS != null)
-    {
+    if (instS != null) {
         instSN = instS[1];
         instSA = instSN.split(", ");
         instM += "<p>Instructors (Summer): ";
-        for (s = 0; s < instSA.length; s++)
-        {
+        for (s = 0; s < instSA.length; s++) {
             instSA[s] = instSA[s].trim();
             allInst.push(instSA[s]);
             search = "mcgill " + instSA[s].match(/([^\s]+)\s.+/)[1] + " " + instSA[s].match(/.+\s([^\s]+)/)[1];
@@ -461,8 +425,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         }
         instM += "</p>";
     }
-    if (instF == null && instW == null)
-    {
+    if (instF == null && instW == null) {
         instM += "<p>Instructors: There are no professors associated with this course for the " + urlYears + " academic year.</p>";
     }
     //replace instructor content by modified instructor content
@@ -475,14 +438,12 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
 
     //add "See other course taught by ..." section to bottom of content
-    if (allInst.length > 0)
-    {
+    if (allInst.length > 0) {
         var allInst = allInst.filter(function(elem, pos) {
             return allInst.indexOf(elem) == pos;
         });
-        newContent += "<br/><p>See other courses from the " + urlYears + " academic year taught by "
-        for (a=0; a< allInst.length; a++)
-        {
+        //newContent += "<br/><p>See other courses from the " + urlYears + " academic year taught by "
+        for (a=0; a< allInst.length; a++) {
             allInst[a] = allInst[a].trim();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -490,32 +451,28 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             getProfUrl(profName[0], profName[profName.length-1], false, -1);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            prof = allInst[a].replace(/\s/g, "%20");
-            url = "https://www.mcgill.ca/study/" + urlYears + "/search/apachesolr_search/\"" + prof + "\"?filters=type%3Acatalog";
-            urlHTML = ("<a href="+url+">"+allInst[a]+"</a>");
-            if (a == allInst.length-1)
-            {
-                newContent += (urlHTML + ".");
-            }
-            else if (a == allInst.length-2)
-            {
-                newContent += (urlHTML + ",&nbspor&nbsp");
-            }
-            else
-            {
-                newContent += (urlHTML + ",&nbsp");
-            }
+//            prof = allInst[a].replace(/\s/g, "%20");
+//            url = "https://www.mcgill.ca/study/" + urlYears + "/search/apachesolr_search/\"" + prof + "\"?filters=type%3Acatalog";
+//            urlHTML = ("<a href="+url+">"+allInst[a]+"</a>");
+//            if (a == allInst.length-1) {
+//                newContent += (urlHTML + ".");
+//            }
+//            else if (a == allInst.length-2) {
+//                newContent += (urlHTML + ",&nbspor&nbsp");
+//            }
+//            else {
+//                newContent += (urlHTML + ",&nbsp");
+//            }
         }
-        newContent += "</p>";
+        //newContent += "</p>";
     }
-
 
 
     document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
 
-
 }
 else {
+
     //Replace Course names with links to course overview page
     cns = document.getElementsByClassName("program-course-description-inner");
     for (cn = 0; cn<cns.length; cn++)
