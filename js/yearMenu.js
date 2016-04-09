@@ -21,7 +21,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
         yearMenuBarTABLE.style.width = "100%";
         yearMenuBarDIV.appendChild(yearMenuBarTABLE)
 
-        for (j = 2010; j <= sysYear; j += 10)
+        for (j = 2009; j <= sysYear; j += 10)
         {
             var yearMenuBarTR = document.createElement('tr');
             yearMenuBarTABLE.appendChild(yearMenuBarTR)
@@ -100,7 +100,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
     }
     else {
 
-        for (j = 2010; j <= sysYear; j += 10)
+        for (j = 2009; j <= sysYear; j += 10)
         {
             var yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
