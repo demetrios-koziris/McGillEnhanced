@@ -1,5 +1,5 @@
 
-window.debugMode = true;
+window.debugMode = false;
 if(window.debugMode){console.log("McGill Enhanced Debug mode is ON");}
 
 url = window.location.href;
