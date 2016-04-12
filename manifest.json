@@ -1,7 +1,7 @@
 {
   "name": "McGill Enhanced",
   "manifest_version": 2,
-  "version": "2.0.24",
+  "version": "2.1.0",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent"
