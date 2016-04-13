@@ -10,7 +10,7 @@ if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
     sysMonth = new Date().getMonth();
     currentYear = (sysMonth > 5 ? sysYear : sysYear-1)
     isNewStyle = document.getElementsByClassName("transition").length > 0;
-    firstYear = Math.max(sysYear-10, 2009);
+    firstYear = Math.max(sysYear-10, 2010);
 
 
     if (!isNewStyle) {

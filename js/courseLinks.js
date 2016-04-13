@@ -531,15 +531,119 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     var sidebar = document.createElement('div');
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
-    //sidebar.style.width = "280px";
+    sidebar.style.minWidth = "280px";
     sidebar.style.border = "0px";
     sidebar.style.marginBottom = "10px";
-    
+
+
+    var formsBlock = document.createElement('div');
+    //formsBlock.style.width = "280px";
+    //formsBlock.style.border = "0px";
+    formsBlock.style.marginBottom = "16px";
+    formsBlock.style.padding = "10px 0px";
+    sidebar.appendChild(formsBlock);
+
+    var courseEval = document.createElement('div');
+    courseEval.style.margin = "0px 0px 5px 0px";
+    formsBlock.appendChild(courseEval);
+
+    var courseEvalTitle = document.createElement(isNewStyle ? "h3" : "h4");
+    courseEvalTitle.innerHTML = "Mercury Evaluations";
+    courseEval.appendChild(courseEvalTitle);
+
+    var courseEvalForm = document.createElement('form');
+    courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
+    courseEvalForm.setAttribute("method", "POST");
+    courseEvalForm.setAttribute("name", "search_form");
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
+    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
+    courseEval.appendChild(courseEvalForm);
+
+    var courseEvalButton = document.createElement('input');
+    courseEvalButton.setAttribute("type", "submit");
+    courseEvalButton.setAttribute("name", "");
+    courseEvalButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " Evaluations");
+    courseEvalButton.className = "form-submit";
+    courseEvalButton.style.width="100%";
+    courseEvalButton.style.height="35px";
+    courseEvalButton.style.margin="4px 0px";
+    courseEvalForm.appendChild(courseEvalButton);
+
+
+    if (courseTermsCodes.length > 0) {
+
+        formsBlock.appendChild(document.createElement("br"));
+
+        var courseReg = document.createElement('div');
+        courseReg.style.margin = "0px 0px 5px 0px";
+        formsBlock.appendChild(courseReg);
+
+        var courseRegTitle = document.createElement(isNewStyle ? "h3" : "h4");
+        courseRegTitle.innerHTML = "Minerva Registration";
+        courseReg.appendChild(courseRegTitle);
+
+        for (var i = 0; i < courseTermsCodes.length; i++) {
+
+            var courseRegForm = document.createElement('form');
+            courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
+            courseRegForm.setAttribute("method", "POST");
+            courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"" + courseTermsCodes[i].code + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_day\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_insm\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_camp\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_sess\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_to_cred\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_levl\" value=\"\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"%\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_hh\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_mi\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"begin_ap\" value=\"a\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_hh\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
+            courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
+            courseReg.appendChild(courseRegForm);
+
+            var courseRegButton = document.createElement('input');
+            courseRegButton.setAttribute("type", "submit");
+            courseRegButton.setAttribute("name", "SUB_BTN");
+            courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
+            courseRegButton.className = "form-submit";
+            courseRegButton.style.width="100%";
+            courseRegButton.style.height="35px";
+            courseRegButton.style.margin="4px 0px";
+            courseRegForm.appendChild(courseRegButton);
+
+        }
+    }
+
 
     var sidebarBlock = document.createElement('div');
     sidebarBlock.className = "block";
     //sidebarBlock.style.width = "260px";
     sidebarBlock.style.padding = "16px 10px";
+    sidebarBlock.style.minWidth = "260px";
     if (isNewStyle) {
         sidebarBlock.style.border = "1px solid #eee";
         sidebarBlock.style.marginBottom = "16px";
@@ -548,6 +652,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     var sidebarBlockTitle = document.createElement('h3');
     sidebarBlockTitle.innerHTML = "Related Courses"
+    sidebarBlockTitle.style.maxWidth = "100%";
     if (isNewStyle) {
         sidebarBlockTitle.style.background = "#C5C5C5";
     }
@@ -619,6 +724,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         sidebarBlock.className = "block";
         //sidebarBlock.style.width = "260px";
         sidebarBlock.style.padding = "16px 10px";
+        sidebarBlock.style.minWidth = "260px";
         if (isNewStyle) {
             sidebarBlock.style.border = "1px solid #eee";
             sidebarBlock.style.marginBottom = "16px";
@@ -627,6 +733,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         var sidebarBlockTitle = document.createElement('h3');
         sidebarBlockTitle.innerHTML = "Related Programs"
+        sidebarBlockTitle.style.maxWidth = "100%";
         if (isNewStyle) {
             sidebarBlockTitle.style.background = "#C5C5C5";
         }
@@ -646,9 +753,12 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     //document.getElementById(isNewStyle ? "main-column" : "center-column").style.width = "620px";
     //document.getElementById(isNewStyle ? "main-column" : "center-column").style.float = "left";
     if (isNewStyle) {
+        document.getElementById("main-column").style.maxWidth = "620px";
+        document.getElementById("main-column").style.float = "left"; //check comp 553
         container.appendChild(sidebar);
     }
     else {
+        document.getElementById("center-column").style.width = "620px";
         container.insertBefore(sidebar, document.getElementById("footer"));
     }
     
