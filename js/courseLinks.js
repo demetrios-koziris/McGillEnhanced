@@ -336,20 +336,22 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
     sidebar.style.minWidth = "280px";
     sidebar.style.border = "0px";
-    sidebar.style.marginBottom = "10px";
+    
 
 
     var formsBlock = document.createElement('div');
-    formsBlock.style.marginBottom = "16px";
+    formsBlock.id = "formsBlock";
+    formsBlock.style.marginBottom = (isNewStyle ? "10px" : "0px");
     formsBlock.style.padding = "10px 0px";
     sidebar.appendChild(formsBlock);
 
     var courseEval = document.createElement('div');
-    courseEval.style.margin = "0px 0px 5px 0px";
+    courseEval.style.margin = "0px 0px 8px 0px";
     formsBlock.appendChild(courseEval);
 
     var courseEvalTitle = document.createElement(isNewStyle ? "h3" : "h4");
     courseEvalTitle.innerHTML = "Mercury Evaluations";
+    courseEvalTitle.style.margin = "0px";
     courseEval.appendChild(courseEvalTitle);
 
     var courseEvalForm = document.createElement('form');
@@ -366,25 +368,33 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     var courseEvalButton = document.createElement('input');
     courseEvalButton.setAttribute("type", "submit");
+    courseEvalButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+    courseEvalButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
     courseEvalButton.setAttribute("name", "");
     courseEvalButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " Evaluations");
     courseEvalButton.className = "form-submit";
     courseEvalButton.style.width="100%";
     courseEvalButton.style.height="35px";
     courseEvalButton.style.margin="4px 0px";
+    if (isNewStyle) {
+        courseEvalButton.style.border = "1px solid #5B5B5A";
+        courseEvalButton.style.WebkitBoxShadow  = "none";
+        courseEvalButton.style.boxShadow = "none";
+    }
     courseEvalForm.appendChild(courseEvalButton);
 
 
     if (courseTermsCodes.length > 0) {
 
-        formsBlock.appendChild(document.createElement("br"));
+        //formsBlock.appendChild(document.createElement("br"));
 
         var courseReg = document.createElement('div');
-        courseReg.style.margin = "0px 0px 5px 0px";
+        courseReg.style.margin = "0px 0px 8px 0px";
         formsBlock.appendChild(courseReg);
 
         var courseRegTitle = document.createElement(isNewStyle ? "h3" : "h4");
         courseRegTitle.innerHTML = "Minerva Registration";
+        courseRegTitle.style.margin = "0px";
         courseReg.appendChild(courseRegTitle);
 
         for (var i = 0; i < courseTermsCodes.length; i++) {
@@ -428,12 +438,19 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
             var courseRegButton = document.createElement('input');
             courseRegButton.setAttribute("type", "submit");
+            courseRegButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            courseRegButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
             courseRegButton.setAttribute("name", "SUB_BTN");
-            courseRegButton.setAttribute("value", "Register " + courseTermsCodes[i].name);
+            courseRegButton.setAttribute("value", "View " + courseTermsCodes[i].name + " Registration");
             courseRegButton.className = "form-submit";
             courseRegButton.style.width="100%";
             courseRegButton.style.height="35px";
             courseRegButton.style.margin="4px 0px";
+            if (isNewStyle) {
+                courseRegButton.style.border = "1px solid #5B5B5A";
+                courseRegButton.style.WebkitBoxShadow  = "none";
+                courseRegButton.style.boxShadow = "none";
+            }
             courseRegForm.appendChild(courseRegButton);
 
         }
@@ -454,7 +471,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     sidebarBlockTitle.innerHTML = "Related Courses"
     sidebarBlockTitle.style.maxWidth = "100%";
     if (isNewStyle) {
-        sidebarBlockTitle.style.background = "#C5C5C5";
+        sidebarBlockTitle.style.background = "#DBDBDB";
     }
     sidebarBlock.appendChild(sidebarBlockTitle);
 
@@ -534,7 +551,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         sidebarBlockTitle.innerHTML = "Related Programs"
         sidebarBlockTitle.style.maxWidth = "100%";
         if (isNewStyle) {
-            sidebarBlockTitle.style.background = "#C5C5C5";
+            sidebarBlockTitle.style.background = "#DBDBDB";
         }
         sidebarBlock.appendChild(sidebarBlockTitle);
 
@@ -561,6 +578,68 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     
 
 
+
+    var xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: 'http://www.docuum.com/McGill/' + courseEvalParams.courseSubject + '/' + courseEvalParams.courseNumber
+    }
+    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+        var htmlElement = document.createElement('div');
+        htmlElement.innerHTML = data.responseXML
+
+        if (data.responseXML.match(/something went wrong/) == null) {
+
+            formsBlock = document.getElementById("formsBlock");
+            //console.log(xmlRequestInfo.url);
+
+            //formsBlock.appendChild(document.createElement("br"));
+
+            var docuum = document.createElement('div');
+            docuum.style.margin = "0px 0px 8px 0px";
+            formsBlock.appendChild(docuum);
+
+            var docuumTitle = document.createElement(isNewStyle ? "h3" : "h4");
+            docuumTitle.innerHTML = "Other resources";
+            docuumTitle.style.margin = "0px";
+            docuum.appendChild(docuumTitle);
+
+            // var docuumLink = document.createElement('input');
+            // docuumLink.setAttribute("type", "button");
+            // docuumLink.setAttribute("onmouseover", "this.style.backgroundColor=\"#9A9A9A\"");
+            // docuumLink.setAttribute("onmouseout", "this.style.backgroundColor=\"#C5C5C5\"");
+            // docuumLink.setAttribute("value", "View course on Docuum");
+            // docuumLink.setAttribute("onclick", "location.href='" + xmlRequestInfo.url + "';");
+            // docuumLink.className = "form-submit";
+            // docuumLink.style.width = "100%";
+            // docuumLink.style.height = "35px";
+            // docuumLink.style.margin = "4px 0px";
+            // docuum.appendChild(docuumLink);
+
+
+            var docuumForm = document.createElement('form');
+            docuumForm.setAttribute("action", xmlRequestInfo.url);
+            docuumForm.setAttribute("method", "POST");
+            docuum.appendChild(docuumForm);
+
+            var docuumButton = document.createElement('input');
+            docuumButton.setAttribute("type", "submit");
+            docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            docuumButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum");
+            docuumButton.className = "form-submit";
+            docuumButton.style.width="100%";
+            docuumButton.style.height="35px";
+            docuumButton.style.margin="4px 0px";
+            if (isNewStyle) {
+                docuumButton.style.border = "1px solid #5B5B5A";
+                docuumButton.style.WebkitBoxShadow  = "none";
+                docuumButton.style.boxShadow = "none";
+            }
+            docuumForm.appendChild(docuumButton);
+
+        }
+    });
 
 
 
