@@ -650,7 +650,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             var htmlElement = document.createElement('div');
             htmlElement.innerHTML = data.responseXML
 
-            if (data.responseXML.match(/is no longer available in this system/) == null) {
+            if (data.responseXML.match(/is no longer available in this system/) == null && data.responseXML.match(/is only available in the/) == null) {
                 window.ME_data.vsbWinter.valid = true
             }
             if (window.ME_data.total == window.ME_data.done) {
@@ -736,7 +736,7 @@ function insertSidebar (sidebar) {
             vsbWinterButton.setAttribute("type", "submit");
             vsbWinterButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
             vsbWinterButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-            vsbWinterButton.setAttribute("value", "View on VSB Winter " + urlYearF);
+            vsbWinterButton.setAttribute("value", "View on VSB Winter " + urlYearW);
             vsbWinterButton.className = "form-submit";
             vsbWinterButton.style.width="100%";
             vsbWinterButton.style.height="35px";
