@@ -9,14 +9,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
     if (request.action == "xhttp") {
         var xhttp = new XMLHttpRequest();
         var method = request.method ? request.method.toUpperCase() : 'GET';
-        var url = request.url;
 
         var data = {
             responseXML : "",
-            url: url
+            url: request.url
         };
 
         xhttp.onload = function() {
+            console.log(data);
             data.responseXML = this.responseText;
             callback(data);
         };
@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
             // callback to clean up the communication port.
             callback();
         };
-        xhttp.open(method, request.url, false);
+        xhttp.open(method, request.url, true);
         if (method == 'POST') {
             xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         }

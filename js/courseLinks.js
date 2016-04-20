@@ -124,9 +124,9 @@ function getProfContent(first, last, profURL, part, res) {
 
 
 function makeProfSection(first, last, profURL, part, tooltipContent) {
-    profStateObject = JSON.parse(window.profState);
+    profStateObject = window.profState;
     profStateObject.done++
-    window.profState = JSON.stringify(profStateObject);
+    window.profState = profStateObject;
     if(window.debugMode){console.log(window.profState);}
 
     if (part < 0) {
@@ -270,7 +270,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             total: allInst.length,
             done: 0
         };
-        window.profState = JSON.stringify(profStateObject);
+        window.profState = profStateObject;
         if(window.debugMode){console.log(window.profState);}
 
         for (a=0; a< allInst.length; a++) {
@@ -310,8 +310,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         courseNumber: courseName.split("-")[1],
         autoSubmit: true
     };
-    courseEvalParamsString = JSON.stringify(courseEvalParams);
-
+    courseEvalParamsString = courseEvalParams;
 
 
     urlDep = url.match(/.+([A-Za-z]{4})-[0-9]{3}/)[1].toUpperCase();
@@ -329,6 +328,16 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     });
 
 
+        window.ME_data = {
+        docuum: { url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, valid: false},
+        vsbFall: { url: "https://vsb.mcgill.ca/vsb/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        vsbWinter: { url: "https://vsb.mcgill.ca/vsb/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        done: 0,
+        total: (urlYearF >= sysYear-1 ? 3 : 1)
+    }
+    if(window.debugMode){console.log(window.ME_data);}
+
+
 
     document.getElementsByTagName("body")[0].style.lineHeight = "1.125em";
 
@@ -336,6 +345,8 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
     sidebar.style.minWidth = "280px";
     sidebar.style.border = "0px";
+
+
     
 
 
@@ -560,8 +571,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         sidebarBlock.appendChild(relatedPrograms);
     }
 
-
-    //insert enhanced sidebar
+        //insert enhanced sidebar
     var container = document.getElementById(isNewStyle ? "inner-container" : "container");
     if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
         document.createElement("div").appendChild(document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
@@ -575,71 +585,81 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         document.getElementById("center-column").style.width = "620px";
         container.insertBefore(sidebar, document.getElementById("footer"));
     }
-    
 
+    
+    
 
 
     var xmlRequestInfo = {
         method: 'GET',
         action: 'xhttp',
-        url: 'http://www.docuum.com/McGill/' + courseEvalParams.courseSubject + '/' + courseEvalParams.courseNumber
+        url: window.ME_data.docuum.url
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+        window.ME_data.done++;
+        if(window.debugMode){console.log(window.ME_data);}
+
         var htmlElement = document.createElement('div');
         htmlElement.innerHTML = data.responseXML
 
         if (data.responseXML.match(/something went wrong/) == null) {
-
-            formsBlock = document.getElementById("formsBlock");
-            //console.log(xmlRequestInfo.url);
-
-            //formsBlock.appendChild(document.createElement("br"));
-
-            var docuum = document.createElement('div');
-            docuum.style.margin = "0px 0px 8px 0px";
-            formsBlock.appendChild(docuum);
-
-            var docuumTitle = document.createElement(isNewStyle ? "h3" : "h4");
-            docuumTitle.innerHTML = "Other resources";
-            docuumTitle.style.margin = "0px";
-            docuum.appendChild(docuumTitle);
-
-            // var docuumLink = document.createElement('input');
-            // docuumLink.setAttribute("type", "button");
-            // docuumLink.setAttribute("onmouseover", "this.style.backgroundColor=\"#9A9A9A\"");
-            // docuumLink.setAttribute("onmouseout", "this.style.backgroundColor=\"#C5C5C5\"");
-            // docuumLink.setAttribute("value", "View course on Docuum");
-            // docuumLink.setAttribute("onclick", "location.href='" + xmlRequestInfo.url + "';");
-            // docuumLink.className = "form-submit";
-            // docuumLink.style.width = "100%";
-            // docuumLink.style.height = "35px";
-            // docuumLink.style.margin = "4px 0px";
-            // docuum.appendChild(docuumLink);
-
-
-            var docuumForm = document.createElement('form');
-            docuumForm.setAttribute("action", xmlRequestInfo.url);
-            docuumForm.setAttribute("method", "POST");
-            docuum.appendChild(docuumForm);
-
-            var docuumButton = document.createElement('input');
-            docuumButton.setAttribute("type", "submit");
-            docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-            docuumButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum");
-            docuumButton.className = "form-submit";
-            docuumButton.style.width="100%";
-            docuumButton.style.height="35px";
-            docuumButton.style.margin="4px 0px";
-            if (isNewStyle) {
-                docuumButton.style.border = "1px solid #5B5B5A";
-                docuumButton.style.WebkitBoxShadow  = "none";
-                docuumButton.style.boxShadow = "none";
-            }
-            docuumForm.appendChild(docuumButton);
-
+            window.ME_data.docuum.valid = true
         }
+        if (window.ME_data.total == window.ME_data.done) {
+            insertSidebar(sidebar);
+        }
+        
     });
+
+
+    if (urlYearF >= sysYear-1) {
+
+        var xmlRequestInfo = {
+            method: 'GET',
+            action: 'xhttp',
+            url: window.ME_data.vsbFall.url
+        }
+        chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+            window.ME_data.done++;
+            if(window.debugMode){console.log(window.ME_data);}
+
+            var htmlElement = document.createElement('div');
+            htmlElement.innerHTML = data.responseXML
+
+            if (data.responseXML.match(/is no longer available in this system/) == null) {
+                window.ME_data.vsbFall.valid = true
+            }
+            if (window.ME_data.total == window.ME_data.done) {
+                insertSidebar(sidebar);
+            }
+            
+        });
+
+        var xmlRequestInfo = {
+            method: 'GET',
+            action: 'xhttp',
+            url: window.ME_data.vsbWinter.url
+        }
+        chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+            window.ME_data.done++;
+            if(window.debugMode){console.log(window.ME_data);}
+
+            var htmlElement = document.createElement('div');
+            htmlElement.innerHTML = data.responseXML
+
+            if (data.responseXML.match(/is no longer available in this system/) == null) {
+                window.ME_data.vsbWinter.valid = true
+            }
+            if (window.ME_data.total == window.ME_data.done) {
+                insertSidebar(sidebar);
+            }
+            
+        });
+    }
+    
 
 
 
@@ -667,3 +687,109 @@ else {
 
 
 
+function insertSidebar (sidebar) {
+
+
+    
+    if (ME_data.vsbFall.valid || ME_data.vsbWinter.valid) {
+        //console.log(xmlRequestInfo);
+        var vsb = document.createElement('div');
+        vsb.style.margin = "0px 0px 8px 0px";
+        //vsb.id = "vsb";
+        formsBlock.appendChild(vsb);
+
+        var vsbTitle = document.createElement(isNewStyle ? "h3" : "h4");
+        vsbTitle.innerHTML = "Visual Schedule Builder";
+        vsbTitle.style.margin = "0px";
+        vsb.appendChild(vsbTitle);
+
+        if (ME_data.vsbFall.valid) {
+            var vsbFallForm = document.createElement('form');
+            vsbFallForm.setAttribute("action", ME_data.vsbFall.url);
+            vsbFallForm.setAttribute("method", "POST");
+            vsb.appendChild(vsbFallForm);
+
+            var vsbFallButton = document.createElement('input');
+            vsbFallButton.setAttribute("type", "submit");
+            vsbFallButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            vsbFallButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            vsbFallButton.setAttribute("value", "View on VSB Fall " + urlYearF);
+            vsbFallButton.className = "form-submit";
+            vsbFallButton.style.width="100%";
+            vsbFallButton.style.height="35px";
+            vsbFallButton.style.margin="4px 0px";
+            if (isNewStyle) {
+                vsbFallButton.style.border = "1px solid #5B5B5A";
+                vsbFallButton.style.WebkitBoxShadow  = "none";
+                vsbFallButton.style.boxShadow = "none";
+            }
+            vsbFallForm.appendChild(vsbFallButton);
+        }
+
+        if (ME_data.vsbWinter.valid) {
+            var vsbWinterForm = document.createElement('form');
+            vsbWinterForm.setAttribute("action", ME_data.vsbWinter.url);
+            vsbWinterForm.setAttribute("method", "POST");
+            vsb.appendChild(vsbWinterForm);
+
+            var vsbWinterButton = document.createElement('input');
+            vsbWinterButton.setAttribute("type", "submit");
+            vsbWinterButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            vsbWinterButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            vsbWinterButton.setAttribute("value", "View on VSB Winter " + urlYearF);
+            vsbWinterButton.className = "form-submit";
+            vsbWinterButton.style.width="100%";
+            vsbWinterButton.style.height="35px";
+            vsbWinterButton.style.margin="4px 0px";
+            if (isNewStyle) {
+                vsbWinterButton.style.border = "1px solid #5B5B5A";
+                vsbWinterButton.style.WebkitBoxShadow  = "none";
+                vsbWinterButton.style.boxShadow = "none";
+            }
+            vsbWinterForm.appendChild(vsbWinterButton);
+        }
+        
+    }
+
+
+    if (ME_data.docuum.valid) {
+        //console.log(xmlRequestInfo);
+        var docuum = document.createElement('div');
+        docuum.style.margin = "0px 0px 8px 0px";
+        formsBlock.appendChild(docuum);
+
+        var docuumTitle = document.createElement(isNewStyle ? "h3" : "h4");
+        docuumTitle.innerHTML = "Other resources";
+        docuumTitle.style.margin = "0px";
+        docuum.appendChild(docuumTitle);
+
+        var docuumForm = document.createElement('form');
+        docuumForm.setAttribute("action", ME_data.docuum.url);
+        docuumForm.setAttribute("method", "POST");
+        docuum.appendChild(docuumForm);
+
+        var docuumButton = document.createElement('input');
+        docuumButton.setAttribute("type", "submit");
+        docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        docuumButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum");
+        docuumButton.className = "form-submit";
+        docuumButton.style.width="100%";
+        docuumButton.style.height="35px";
+        docuumButton.style.margin="4px 0px";
+        if (isNewStyle) {
+            docuumButton.style.border = "1px solid #5B5B5A";
+            docuumButton.style.WebkitBoxShadow  = "none";
+            docuumButton.style.boxShadow = "none";
+        }
+        docuumForm.appendChild(docuumButton);
+    }
+          
+
+
+
+
+
+
+    
+}
