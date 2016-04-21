@@ -94,8 +94,12 @@ function getProfContent(first, last, profURL, part, res) {
                     rating.clarity = $(profURLHTML).find(".rating:eq(1)").html();
                     rating.easiness = $(profURLHTML).find(".rating:eq(2)").html();
                     rating.grade = $(profURLHTML).find(".grade:eq(1)").html();
-                    rating.hotness = $(profURLHTML).find(".grade:eq(2)").html().match(/chilis\/(.+)\-chili\.png/)[1];
 
+                    rating.hotness = $(profURLHTML).find(".grade:eq(2)").html();
+                    if (rating.hotness != undefined) {
+                        rating.hotness = rating.hotness.match(/chilis\/(.+)\-chili\.png/)[1];
+                    }
+                    
                     firstName = $(profURLHTML).find(".pfname").html();
                     if (firstName != undefined) {
                         firstName = firstName.trim();
