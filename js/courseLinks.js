@@ -63,34 +63,14 @@ function getProfContent(first, last, profURL, part, res) {
             //var div = document.createElement('div');
             //div.innerHTML = profURLHTML;
             var rating = {
-                overall: -1,
+                overall: $(profURLHTML).find(".grade").html(),
                 helpfulness: -1,
                 clarity: -1,
-                easiness: -1
+                easiness: -1,
+                grade: -1,
+                hotness: -1
             }
-
-            rating.overall = $(profURLHTML).find(".grade").html();
-            rating.helpfulness = $(profURLHTML).find(".rating:eq(0)").html();
-            rating.clarity = $(profURLHTML).find(".rating:eq(1)").html();
-            rating.easiness = $(profURLHTML).find(".rating:eq(2)").html();
-            //rating.number = div.getElementsByClassName("rating-count")[1].innerHTML.match(/([0-9]+) Student Ratings/)[1];
-
-            firstName = $(profURLHTML).find(".pfname").html();
-            if (firstName != undefined) {
-                firstName = firstName.trim();
-            }
-            lastName = $(profURLHTML).find(".plname").html();
-            if (lastName != undefined) {
-                lastName = lastName.trim();
-            }
-
-
-            tooltipContent = "<b>" + firstName + " " + lastName + "</b>"
-                + "<br><b>" + rating.overall + "&nbsp Overall Quality</b>"
-                + "<br>" + rating.helpfulness + "&nbsp Helpfulness"
-                + "<br>" + rating.clarity + "&nbsp Clarity"
-                + "<br>" + rating.easiness + "&nbsp Easiness<b>"
-            //+ "&#13Ratings: " + rating.number
+            
 
             if (rating.overall === undefined) {
                 if (res == 0) {
@@ -102,15 +82,43 @@ function getProfContent(first, last, profURL, part, res) {
             }
             else {//if (part < 0)
                 //check holly dressel in ENVR 400 and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
+
                 var div = document.createElement('div');
                 div.innerHTML = profURLHTML;
                 if (div.getElementsByClassName("rating-count")[0] === undefined) {
                     tooltipContent = "This instructor has no ratings<br>Click to be the first to rate";
                 }
                 else {
+
+                    rating.helpfulness = $(profURLHTML).find(".rating:eq(0)").html();
+                    rating.clarity = $(profURLHTML).find(".rating:eq(1)").html();
+                    rating.easiness = $(profURLHTML).find(".rating:eq(2)").html();
+                    rating.grade = $(profURLHTML).find(".grade:eq(1)").html();
+                    rating.hotness = $(profURLHTML).find(".grade:eq(2)").html().match(/chilis\/(.+)\-chili\.png/)[1];
+
+                    firstName = $(profURLHTML).find(".pfname").html();
+                    if (firstName != undefined) {
+                        firstName = firstName.trim();
+                    }
+                    lastName = $(profURLHTML).find(".plname").html();
+                    if (lastName != undefined) {
+                        lastName = lastName.trim();
+                    }
+
+                    //console.log(firstName + " " + rating.grade + " " + rating.hotness);
+
+                    tooltipContent = "<b>" + firstName + " " + lastName + "</b>"
+                    + "<br><b>" + rating.overall + "&nbsp Overall Quality</b>"
+                    + "<br>" + rating.helpfulness + "&nbsp Helpfulness"
+                    + "<br>" + rating.clarity + "&nbsp Clarity"
+                    + "<br>" + rating.easiness + "&nbsp Easiness"
+
+
                     numOfRatings = div.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
                     //console.log(profURLHTML.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]);
-                    tooltipContent += "<br>From " + numOfRatings + " rating" + (numOfRatings > 1 ? "s" : "");
+                    tooltipContent += "<br><b>From " + numOfRatings + " student rating" + (numOfRatings > 1 ? "s" : "") + "</b>"
+                                    + "<br>Rater Ave Grade: " + rating.grade + "&nbsp"
+                                    + "<br>Prof Hotness: " + rating.hotness.toUpperCase() + "&nbsp"
                 }
             }
             makeProfSection(first, last, profURL, part, tooltipContent);
@@ -152,9 +160,9 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
                 fontFamily: "CartoGothicStdBook",
                 padding: "10px",
                 //maxWidth: "140px",
-                //color: "#303030",
+                color: (isNewStyle ? "#444444" : "#2C566D"),
                 fontSize: ".9em",
-                backgroundColor: "#C5C5C5",
+                backgroundColor: (isNewStyle ? "#C5C5C5" : "#F4F5ED"),
                 borderRadius: "8px",
                 border: "2px solid "
             }
@@ -328,7 +336,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     });
 
 
-        window.ME_data = {
+    window.ME_data = {
         docuum: { url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, valid: false},
         vsbFall: { url: "https://vsb.mcgill.ca/vsb/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
         vsbWinter: { url: "https://vsb.mcgill.ca/vsb/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
@@ -607,7 +615,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             window.ME_data.docuum.valid = true
         }
         if (window.ME_data.total == window.ME_data.done) {
-            insertSidebar(sidebar);
+            addVerifiedLinks(sidebar);
         }
         
     });
@@ -632,7 +640,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
                 window.ME_data.vsbFall.valid = true
             }
             if (window.ME_data.total == window.ME_data.done) {
-                insertSidebar(sidebar);
+                addVerifiedLinks(sidebar);
             }
             
         });
@@ -654,16 +662,11 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
                 window.ME_data.vsbWinter.valid = true
             }
             if (window.ME_data.total == window.ME_data.done) {
-                insertSidebar(sidebar);
+                addVerifiedLinks(sidebar);
             }
             
         });
     }
-    
-
-
-
-
 
 
 }
@@ -682,14 +685,7 @@ else {
 
 
 
-
-
-
-
-
-function insertSidebar (sidebar) {
-
-
+function addVerifiedLinks (sidebar) {
     
     if (ME_data.vsbFall.valid || ME_data.vsbWinter.valid) {
         //console.log(xmlRequestInfo);
@@ -725,7 +721,6 @@ function insertSidebar (sidebar) {
             }
             vsbFallForm.appendChild(vsbFallButton);
         }
-
         if (ME_data.vsbWinter.valid) {
             var vsbWinterForm = document.createElement('form');
             vsbWinterForm.setAttribute("action", ME_data.vsbWinter.url);
@@ -748,9 +743,7 @@ function insertSidebar (sidebar) {
             }
             vsbWinterForm.appendChild(vsbWinterButton);
         }
-        
     }
-
 
     if (ME_data.docuum.valid) {
         //console.log(xmlRequestInfo);
@@ -784,12 +777,5 @@ function insertSidebar (sidebar) {
         }
         docuumForm.appendChild(docuumButton);
     }
-          
-
-
-
-
-
-
     
 }
