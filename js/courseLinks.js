@@ -82,7 +82,7 @@ function getProfContent(first, last, profURL, part, res) {
                 }
             }
             else {//if (part < 0)
-                //check holly dressel in ENVR 400 and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
+                //check holly dressel in ENVR400(13-14) and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
 
                 var div = document.createElement('div');
                 div.innerHTML = profURLHTML;
@@ -177,12 +177,16 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
 
 }
 
+if (url.match(/.+vsb.mcgill.ca.+/) == null) {
 
-urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-urlYearW = urlYearF+1;
-urlYears = urlYearF + "-" + urlYearW;
-sysYear = new Date().getFullYear();
-isNewStyle = document.getElementsByClassName("transition").length > 0;
+    urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
+    urlYearW = urlYearF+1;
+    urlYears = urlYearF + "-" + urlYearW;
+    sysYear = new Date().getFullYear();
+    isNewStyle = document.getElementsByClassName("transition").length > 0;
+
+}
+
 
 //Course name regex
 regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
@@ -336,8 +340,8 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     window.ME_data = {
         docuum: { url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, valid: false},
-        vsbFall: { url: "https://vsb.mcgill.ca/vsb/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
-        vsbWinter: { url: "https://vsb.mcgill.ca/vsb/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        vsbFall: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        vsbWinter: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
         done: 0,
         total: (urlYearF >= sysYear-1 ? 3 : 1)
     }
