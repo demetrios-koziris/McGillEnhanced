@@ -4,7 +4,8 @@ if(window.debugMode){console.log("McGill Enhanced Debug mode is ON");}
 
 url = window.location.href;
 
-var loadMessage = "McGill Enhanced is loading ratings for this professor&#13Please hover mouse off then back on to refresh this tooltip";
+//var loadMessage = "McGill Enhanced is loading ratings for this professor&#13Please hover mouse off then back on to refresh this tooltip";
+var loadMessage = "McGill Enhanced is loading ratings!";
 
 function getProfUrl(first, last, general, part) {
     var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + first + " " + last;
@@ -193,112 +194,105 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
 
+    
 
+    profs = [];
+    profsF = [];
+    profsW = [];
+    profsS = [];
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Replace Course names with links to course overview page
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    newContentElement = document.getElementById(isNewStyle ? "content" : "content-area");
-    newContent = newContentElement.innerHTML;
-    newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-    newContentElement.innerHTML = newContent;
+    profsSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
+    profsSource = profsSource.split("Instructors:")[1];
+    newProfsHTML = ""
 
-
-
-
-
-    newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
-
-    //Modification of Instructor content
-    allInst = [];
-    instM = "</p>";
-    regF = /Instructors:\s+(.+)\(Fall.+<.p>/;
-    instF = newContent.match(regF);
-    if (instF != null) {
-        instFN = instF[1];
-        instFA = instFN.split(", ");
-        instM += "<p>Instructors (Fall): ";
-        for (f=0; f<instFA.length; f++) {
-            instFA[f] = instFA[f].trim();
-            allInst.push(instFA[f]);
-            search = "mcgill " + instFA[f].match(/([^\s]+)\s.+/)[1] + " " + instFA[f].match(/.+\s([^\s]+)/)[1];
-            //search = search.replace(/-/, " ");
-            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + instFA[f] +"</a>, ");
+    profsSourceF = profsSource.split("(Fall)");
+    if (profsSourceF.length > 1) {
+        profsF = profsSourceF[0].split(",");
+        newProfsHTML += "<p>Instructors (Fall): "
+        for (p=0; p<profsF.length; p++) {
+            profsF[p] = profsF[p].trim();
+            profs.push(profsF[p]);
+            search = "mcgill " + profsF[p].match(/([^\s]+)\s.+/)[1] + " " + profsF[p].match(/.+\s([^\s]+)/)[1];
+            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsF[p].replace(/ /g, "&nbsp") +"</a>");
+            if (p <= profsF.length-2) {
+                newProfsHTML += ", "
+            }
+            if (p == profsF.length-2) {
+                newProfsHTML += "and "
+            }
         }
-        instM += "</p>";
-        regW = /Instructors:.+\)(.+)\(W.+<.p>/;
+        newProfsHTML += "</p>"
+        if(window.debugMode){console.log(profsF);}
+        profsSource = profsSourceF[1]
     }
-    else {
-        regW = /Instructors:\s+(.+)\(Winter.+<.p>/;
-    }
-    instW = newContent.match(regW);
-    if (instW != null) {
-        instWN = instW[1];
-        instWA = instWN.split(", ");
-        instM += "<p>Instructors (Winter): ";
-        for (w = 0; w < instWA.length; w++) {
-            instWA[w] = instWA[w].trim();
-            allInst.push(instWA[w]);
-            search = "mcgill " + instWA[w].match(/([^\s]+)\s.+/)[1] + " " + instWA[w].match(/.+\s([^\s]+)/)[1];
-            //search = search.replace(/-/, " ");
-            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" title=\"" + loadMessage + "\">"+ instWA[w] +"</a>, ");
+
+    profsSourceW = profsSource.split("(Winter)");
+    if (profsSourceW.length > 1) {
+        profsW = profsSourceW[0].split(",");
+        newProfsHTML += "<p>Instructors (Winter): "
+        for (p=0; p<profsW.length; p++) {
+            profsW[p] = profsW[p].trim();
+            profs.push(profsW[p]);
+            search = "mcgill " + profsW[p].match(/([^\s]+)\s.+/)[1] + " " + profsW[p].match(/.+\s([^\s]+)/)[1];
+            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsW[p].replace(/ /g, "&nbsp") +"</a>");
+            if (p <= profsW.length-2) {
+                newProfsHTML += ", "
+            }
+            if (p == profsW.length-2) {
+                newProfsHTML += "and "
+            }
         }
-        instM += "</p>";
+        newProfsHTML += "</p>"
+        if(window.debugMode){console.log(profsW);}
+        profsSource = profsSourceW[1]
     }
-    regS = /Instructors:.+\).+\(.+\)(.+)\(.+<.p>/;
-    instS = newContent.match(regS);
-    if (instS != null) {
-        instSN = instS[1];
-        instSA = instSN.split(", ");
-        instM += "<p>Instructors (Summer): ";
-        for (s = 0; s < instSA.length; s++) {
-            instSA[s] = instSA[s].trim();
-            allInst.push(instSA[s]);
-            search = "mcgill " + instSA[s].match(/([^\s]+)\s.+/)[1] + " " + instSA[s].match(/.+\s([^\s]+)/)[1];
-            //search = search.replace(/-/, " ");
-            instM += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\" target=\"_blank\" title=\"" + loadMessage + "\">"+ instSA[s] +"</a>, ");
+
+    profsSourceS = profsSource.split("(Summer)");
+    if (profsSourceS.length > 1) {
+        profsS = profsSourceS[0].split(",");
+        newProfsHTML += "<p>Instructors (Summer): "
+        for (p=0; p<profsS.length; p++) {
+            profsS[p] = profsS[p].trim();
+            profs.push(profsS[p]);
+            search = "mcgill " + profsS[p].match(/([^\s]+)\s.+/)[1] + " " + profsS[p].match(/.+\s([^\s]+)/)[1];
+            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsS[p].replace(/ /g, "&nbsp") +"</a>");
+            if (p <= profsS.length-2) {
+                newProfsHTML += ", "
+            }
+            if (p == profsS.length-2) {
+                newProfsHTML += "and "
+            }
         }
-        instM += "</p>";
+        newProfsHTML += "</p>"
+        if(window.debugMode){console.log(profsS);}
+        profsSource = profsSourceS[1]
     }
-    if (instF == null && instW == null) {
-        instM += "<p>Instructors: There are no professors associated with this course for the " + urlYears + " academic year.</p>";
-    }
-    //replace instructor content by modified instructor content
-    newContent = newContent.replace(/Instructors:.+<.p>/, instM);
-    //add "&" before last inst if there are more than one for the semester
-    newContent = newContent.replace(/<.a>,\s([^,\)]{2,300})<.a>,\s<.p>/g, "</a>, and " + "$1" + "</a></p>");
-    //take the commas off the end of the last inst listed for the semester
-    newContent = newContent.replace(/<.a>,\s<.p>/g, "</a></p>");
 
+    document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML
 
-
-    //change prof link urls from ratemyprof query urls to their found ratemyprof url with tooltip
-    if (allInst.length > 0) {
-        var allInst = allInst.filter(function(elem, pos) {
-            return allInst.indexOf(elem) == pos;
+    if (profs.length > 0) {
+        var profs = profs.filter(function(elem, pos) {
+            return profs.indexOf(elem) == pos;
         });
+        if(window.debugMode){console.log(profs)}
 
         profStateObject = {
-            total: allInst.length,
+            total: profs.length,
             done: 0
         };
         window.profState = profStateObject;
         if(window.debugMode){console.log(window.profState);}
 
-        for (a=0; a< allInst.length; a++) {
-            allInst[a] = allInst[a].trim();
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            var profName = allInst[a].split(" ");
+        for (a=0; a< profs.length; a++) {
+            var profName = profs[a].split(" ");
             getProfUrl(profName[0], profName[profName.length-1], false, -1);
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 
-    document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
 
 
+
+    newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
 
 
 
@@ -528,7 +522,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         
         
-    if (allInst.length > 0) {
+    if (profs.length > 0) {
 
         var profCourses = document.createElement('div');
         profCourses.className = "view-catalog-program";
@@ -540,19 +534,19 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         profCoursesTitle.innerHTML = "<i>View Related Courses by Professor</i>";
         profCourses.appendChild(profCoursesTitle);
 
-        for (p = 0; p < allInst.length; p++) {
-            prof = allInst[p].replace(/\s/g, "%20");
+        for (p = 0; p < profs.length; p++) {
+            prof = profs[p].replace(/\s/g, "%20");
             //https://www.mcgill.ca/study/2016-2017/courses/search?search_api_views_fulltext=thomas&sort_by=field_subject_code
             //url = "https://www.mcgill.ca/study/" + urlYears + "/search/apachesolr_search/\"" + prof + "\"?filters=type%3Acatalog";
             profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + prof;
 
             var profCoursesLinkDiv = document.createElement('div');
-            profCoursesLinkDiv.className = p==allInst.length-1 ? "views-row views-row-last" : "views-row";
+            profCoursesLinkDiv.className = p==profs.length-1 ? "views-row views-row-last" : "views-row";
             profCourses.appendChild(profCoursesLinkDiv);
 
             var profCoursesLink = document.createElement('a');
             profCoursesLink.setAttribute("href", profCoursesURL);
-            profCoursesLink.innerHTML = allInst[p];
+            profCoursesLink.innerHTML = profs[p];
             profCoursesLinkDiv.appendChild(profCoursesLink);
         }
     }
