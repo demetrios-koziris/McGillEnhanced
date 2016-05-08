@@ -638,7 +638,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             var htmlElement = document.createElement('div');
             htmlElement.innerHTML = data.responseXML
 
-            if (data.responseXML.match(/is no longer available in this system/) == null) {
+            if (data.responseXML.match(/is no longer available in this system/) == null && data.responseXML.match(/is only available in the/) == null) {
                 window.ME_data.vsbFall.valid = true
             }
             if (window.ME_data.total == window.ME_data.done) {
