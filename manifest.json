@@ -25,7 +25,7 @@
   "content_scripts" : [
     {
       "matches" : ["*://www.mcgill.ca/study/*", "*://horizon.mcgill.ca/*", "*://www.ratemyprofessors.com/search*", "*://www.docuum.com/McGill*", "*://vsb.mcgill.ca/*"],
-      "js" : ["lib/jquery-1.11.2.js", "lib/tooltipsy.min.js", "js/yearMenu.js", "js/courseLinks.js", "js/vsbEnhanced.js"]
+      "js" : ["lib/jquery-1.11.2.min.js", "lib/tooltipsy.min.js", "js/yearMenu.js", "js/courseLinks.js", "js/vsbEnhanced.js"]
     }
   ],
   "externally_connectable": {
