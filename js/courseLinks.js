@@ -638,7 +638,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             var htmlElement = document.createElement('div');
             htmlElement.innerHTML = data.responseXML
 
-            if (htmlElement.getElementsByClassName("warningNoteBad").length > 0) {
+            if (htmlElement.getElementsByClassName("warningNoteBad").length == 0) {
                 window.ME_data.vsbFall.valid = true
             }
             if (window.ME_data.total == window.ME_data.done) {
@@ -660,7 +660,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             var htmlElement = document.createElement('div');
             htmlElement.innerHTML = data.responseXML
 
-            if (htmlElement.getElementsByClassName("warningNoteBad").length > 0) {
+            if (htmlElement.getElementsByClassName("warningNoteBad").length == 0) {
                 window.ME_data.vsbWinter.valid = true
             }
             if (window.ME_data.total == window.ME_data.done) {
