@@ -613,7 +613,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         var htmlElement = document.createElement('div');
         htmlElement.innerHTML = data.responseXML
 
-        if (data.responseXML.match(/something went wrong/) == null) {
+        if (htmlElement.getElementsByClassName("dialog").length == 0) {
             window.ME_data.docuum.valid = true
         }
         if (window.ME_data.total == window.ME_data.done) {
