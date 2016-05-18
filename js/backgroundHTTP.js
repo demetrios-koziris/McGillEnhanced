@@ -15,16 +15,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
             url: request.url
         };
 
-        xhttp.onload = function() {
-            console.log(data);
-            data.responseXML = this.responseText;
-            callback(data);
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4) {
+                if (xhttp.status == 200) {
+                    console.log(xhttp.status + " " + JSON.stringify(data));
+                    data.responseXML = this.responseText;
+                    callback(data);
+                }
+                else {
+                    console.log(xhttp.status + JSON.stringify(data));
+                    data.responseXML = "error";
+                    callback(data);
+                }
+            }
         };
-        xhttp.onerror = function() {
-            // Do whatever you want on error. Don't forget to invoke the
-            // callback to clean up the communication port.
-            callback();
-        };
+
         xhttp.open(method, request.url, true);
         if (method == 'POST') {
             xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

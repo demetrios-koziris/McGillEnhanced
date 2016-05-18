@@ -597,8 +597,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     }
 
     
-    
-
 
     var xmlRequestInfo = {
         method: 'GET',
@@ -610,12 +608,14 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         window.ME_data.done++;
         if(window.debugMode){console.log(window.ME_data);}
 
-        var htmlElement = document.createElement('div');
-        htmlElement.innerHTML = data.responseXML
-
-        if (htmlElement.getElementsByClassName("dialog").length == 0) {
-            window.ME_data.docuum.valid = true
+        if (data.responseXML != "error") {
+            var htmlElement = document.createElement('div');
+            htmlElement.innerHTML = data.responseXML
+            if (htmlElement.getElementsByClassName("dialog").length == 0) {
+                window.ME_data.docuum.valid = true
+            }
         }
+
         if (window.ME_data.total == window.ME_data.done) {
             addVerifiedLinks(sidebar);
         }
@@ -635,12 +635,14 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             window.ME_data.done++;
             if(window.debugMode){console.log(window.ME_data);}
 
-            var htmlElement = document.createElement('div');
-            htmlElement.innerHTML = data.responseXML
-
-            if (htmlElement.getElementsByClassName("warningNoteBad").length == 0) {
-                window.ME_data.vsbFall.valid = true
+            if (data.responseXML != "error") {
+                var htmlElement = document.createElement('div');
+                htmlElement.innerHTML = data.responseXML
+                if (htmlElement.getElementsByClassName("warningNoteGood").length > 0) {
+                    window.ME_data.vsbFall.valid = true
+                }
             }
+
             if (window.ME_data.total == window.ME_data.done) {
                 addVerifiedLinks(sidebar);
             }
@@ -657,12 +659,14 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             window.ME_data.done++;
             if(window.debugMode){console.log(window.ME_data);}
 
-            var htmlElement = document.createElement('div');
-            htmlElement.innerHTML = data.responseXML
-
-            if (htmlElement.getElementsByClassName("warningNoteBad").length == 0) {
-                window.ME_data.vsbWinter.valid = true
+            if (data.responseXML != "error") {
+                var htmlElement = document.createElement('div');
+                htmlElement.innerHTML = data.responseXML
+                if (htmlElement.getElementsByClassName("warningNoteGood").length > 0) {
+                    window.ME_data.vsbWinter.valid = true
+                }
             }
+
             if (window.ME_data.total == window.ME_data.done) {
                 addVerifiedLinks(sidebar);
             }
