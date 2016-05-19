@@ -1,6 +1,6 @@
 
-window.debugMode = false;
-if(window.debugMode){console.log("McGill Enhanced Debug mode is ON");}
+debugMode = false;
+if(debugMode){console.log("McGill Enhanced Debug mode is ON");}
 
 url = window.location.href;
 
@@ -137,10 +137,10 @@ function getProfContent(first, last, profURL, part, res) {
 
 
 function makeProfSection(first, last, profURL, part, tooltipContent) {
-    profStateObject = window.profState;
+    profStateObject = profState;
     profStateObject.done++
-    window.profState = profStateObject;
-    if(window.debugMode){console.log(window.profState);}
+    profState = profStateObject;
+    if(debugMode){console.log(profState);}
 
     if (part < 0) {
         newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
@@ -159,7 +159,7 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
     }
 
     if (profStateObject.done == profStateObject.total) {
-        if(window.debugMode){console.log("Ready for tooltipsy");}
+        if(debugMode){console.log("Ready for tooltipsy");}
         $(".hasProfTip").tooltipsy({
             css: {
                 fontFamily: "CartoGothicStdBook",
@@ -172,7 +172,7 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
                 border: "2px solid "
             }
         });
-        window.profState = undefined;
+        profState = undefined;
     }
 
 }
@@ -193,10 +193,46 @@ regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
-    window.profState = "";
-    if(window.debugMode){console.log(window.profState);}
+
+    profState = "";
+    if(debugMode){console.log(profState);}
+
 
     courseName = url.match(/courses\/([A-Za-z]{4}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+
+
+    courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
+    courseTermsCodes = [];
+    if (courseTerms.match(/Fall/) != null) {
+        courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
+    }
+    if (courseTerms.match(/Winter/) != null) {
+        courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
+    }
+    if (courseTerms.match(/Summer/) != null) {
+        courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
+    }
+    if(debugMode){console.log(courseTermsCodes);}
+
+
+    courseEvalParams = {
+        courseSubject: courseName.split("-")[0],
+        courseNumber: courseName.split("-")[1],
+        autoSubmit: true
+    };
+    courseEvalParamsString = courseEvalParams;
+
+
+    ME_data = {
+        docuum: { url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, valid: false},
+        vsbFall: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        vsbWinter: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        done: 0,
+        total: (urlYearF >= sysYear-1 ? 3 : 1),
+        codeReady: false
+    }
+    if(debugMode){console.log(ME_data);}
+    validateExternalLinks();
 
     
 
@@ -226,7 +262,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             }
         }
         newProfsHTML += "</p>"
-        if(window.debugMode){console.log(profsF);}
+        if(debugMode){console.log(profsF);}
         profsSource = profsSourceF[1]
     }
 
@@ -247,7 +283,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             }
         }
         newProfsHTML += "</p>"
-        if(window.debugMode){console.log(profsW);}
+        if(debugMode){console.log(profsW);}
         profsSource = profsSourceW[1]
     }
 
@@ -268,7 +304,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             }
         }
         newProfsHTML += "</p>"
-        if(window.debugMode){console.log(profsS);}
+        if(debugMode){console.log(profsS);}
         profsSource = profsSourceS[1]
     }
 
@@ -278,14 +314,14 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         var profs = profs.filter(function(elem, pos) {
             return profs.indexOf(elem) == pos;
         });
-        if(window.debugMode){console.log(profs)}
+        if(debugMode){console.log(profs)}
 
         profStateObject = {
             total: profs.length,
             done: 0
         };
-        window.profState = profStateObject;
-        if(window.debugMode){console.log(window.profState);}
+        profState = profStateObject;
+        if(debugMode){console.log(profState);}
 
         for (a=0; a< profs.length; a++) {
             var profName = profs[a].split(" ");
@@ -299,28 +335,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
 
 
-
-    courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
-    courseTermsCodes = [];
-    if (courseTerms.match(/Fall/) != null) {
-        courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
-    }
-    if (courseTerms.match(/Winter/) != null) {
-        courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
-    }
-    if (courseTerms.match(/Summer/) != null) {
-        courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
-    }
-    if(window.debugMode){console.log(courseTermsCodes);}
-
-
-
-    courseEvalParams = {
-        courseSubject: courseName.split("-")[0],
-        courseNumber: courseName.split("-")[1],
-        autoSubmit: true
-    };
-    courseEvalParamsString = courseEvalParams;
 
 
     urlDep = url.match(/.+([A-Za-z]{4})-[0-9]{3}/)[1].toUpperCase();
@@ -336,16 +350,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     var deps = depsDup.filter(function(elem, pos) {
         return depsDup.indexOf(elem) == pos;
     });
-
-
-    window.ME_data = {
-        docuum: { url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, valid: false},
-        vsbFall: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
-        vsbWinter: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
-        done: 0,
-        total: (urlYearF >= sysYear-1 ? 3 : 1)
-    }
-    if(window.debugMode){console.log(window.ME_data);}
 
 
 
@@ -596,83 +600,14 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         container.insertBefore(sidebar, document.getElementById("footer"));
     }
 
+    ME_data.codeReady = true
+
+    if (ME_data.total == ME_data.done && ME_data.codeReady == true) {
+        addVerifiedLinks(sidebar);
+    }
+    
     
 
-    var xmlRequestInfo = {
-        method: 'GET',
-        action: 'xhttp',
-        url: window.ME_data.docuum.url
-    }
-    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-
-        window.ME_data.done++;
-        if(window.debugMode){console.log(window.ME_data);}
-
-        if (data.responseXML != "error") {
-            var htmlElement = document.createElement('div');
-            htmlElement.innerHTML = data.responseXML
-            if (htmlElement.getElementsByClassName("dialog").length == 0) {
-                window.ME_data.docuum.valid = true
-            }
-        }
-
-        if (window.ME_data.total == window.ME_data.done) {
-            addVerifiedLinks(sidebar);
-        }
-        
-    });
-
-
-    if (urlYearF >= sysYear-1) {
-
-        var xmlRequestInfo = {
-            method: 'GET',
-            action: 'xhttp',
-            url: window.ME_data.vsbFall.url
-        }
-        chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-
-            window.ME_data.done++;
-            if(window.debugMode){console.log(window.ME_data);}
-
-            if (data.responseXML != "error") {
-                var htmlElement = document.createElement('div');
-                htmlElement.innerHTML = data.responseXML
-                if (htmlElement.getElementsByClassName("warningNoteGood").length > 0) {
-                    window.ME_data.vsbFall.valid = true
-                }
-            }
-
-            if (window.ME_data.total == window.ME_data.done) {
-                addVerifiedLinks(sidebar);
-            }
-            
-        });
-
-        var xmlRequestInfo = {
-            method: 'GET',
-            action: 'xhttp',
-            url: window.ME_data.vsbWinter.url
-        }
-        chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-
-            window.ME_data.done++;
-            if(window.debugMode){console.log(window.ME_data);}
-
-            if (data.responseXML != "error") {
-                var htmlElement = document.createElement('div');
-                htmlElement.innerHTML = data.responseXML
-                if (htmlElement.getElementsByClassName("warningNoteGood").length > 0) {
-                    window.ME_data.vsbWinter.valid = true
-                }
-            }
-
-            if (window.ME_data.total == window.ME_data.done) {
-                addVerifiedLinks(sidebar);
-            }
-            
-        });
-    }
 
 
 }
@@ -784,4 +719,71 @@ function addVerifiedLinks (sidebar) {
         docuumForm.appendChild(docuumButton);
     }
     
+}
+
+
+function validateExternalLinks() {
+
+    validateDocuumLink(ME_data.docuum)
+
+    if (urlYearF >= sysYear-1) {
+        validateVSBLink(ME_data.vsbFall)
+        validateVSBLink(ME_data.vsbWinter)
+    }
+}
+
+
+function validateVSBLink(linkData) { 
+
+    var xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: linkData.url
+    }
+    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+        ME_data.done++;
+        if(debugMode){console.log(ME_data);}
+
+        if (data.responseXML != "error") {
+            var htmlElement = document.createElement('div');
+            htmlElement.innerHTML = data.responseXML
+            if (htmlElement.getElementsByClassName("warningNoteGood").length > 0) {
+                linkData.valid = true
+            }
+        }
+
+        if (ME_data.total == ME_data.done && ME_data.codeReady == true) {
+            addVerifiedLinks(sidebar);
+        }  
+    });
+
+}
+
+
+function validateDocuumLink(linkData) { 
+
+    var xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: linkData.url
+    }
+    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+        ME_data.done++;
+        if(debugMode){console.log(ME_data);}
+
+        if (data.responseXML != "error") {
+            var htmlElement = document.createElement('div');
+            htmlElement.innerHTML = data.responseXML
+            if (htmlElement.getElementsByClassName("dialog").length == 0) {
+                linkData.valid = true
+            }
+        }
+        
+        if (ME_data.total == ME_data.done && ME_data.codeReady == true) {
+            addVerifiedLinks(sidebar);
+        }  
+    });
+
 }
