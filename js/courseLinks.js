@@ -257,844 +257,844 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     
 
-
     recordingURLs = {
         AECH111 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11256" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11256" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13093" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13093" }
             ] 
         },
         ANAT214 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12204" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12204" }
             ] 
         },
         ANAT321 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10435" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10435" }
             ] 
         },
         ANAT416 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11265" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11265" }
             ] 
         },
         ANSC234 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12551" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12551" }
             ] 
         },
         ATOC184 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11293" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11293" }
             ] 
         },
         ATOC185 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9858" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9858" }
             ] 
         },
         BIOC300D2 : { 
             201501 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11297" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11297" }
             ]
         },
         BIOC311 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10451" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10451" }
             ] 
         },
         BIOC312 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11264" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11264" }
             ] 
         },
         BIOC450 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10452" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10452" }
             ] 
         },
         BIOL115 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12042" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12042" }
             ] 
         },
         BIOL201 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12958" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12958" }
             ] 
         },
         BIOL202 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11132" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11132" }
             ],
             201505 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11425" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11425" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12959" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12959" }
             ] 
         },
         BIOL309 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10255" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10255" }
             ] 
         },
         BIOL313 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12828" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12828" }
             ] 
         },
         BUS2365 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12197" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12197" }
             ] 
         },
         CHEM110 : { 
             201009 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1420" },
-                { section: 002, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1421" },
-                { section: 003, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1430" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1420" },
+                { section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1421" },
+                { section: "003", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1430" }
             ],
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1460" },
-                { section: 002, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1461" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1460" },
+                { section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1461" }
             ],
             201209 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1514" },
-                { section: 002, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1515" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1514" },
+                { section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1515" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1571" },
-                { section: 002, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1572" },
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10258" }        
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1571" },
+                { section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1572" },
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10258" }        
             ], 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12039" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12039" }
             ]
         },
         CHEM120 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1432" },
-                { section: 002, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1433" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1432" },
+                { section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1433" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1477" },
-                { section: 002, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1478" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1477" },
+                { section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1478" }
             ],
             201501 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1588" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1588" }
             ]
         },
         CHEM180 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1435" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1435" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1480" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1480" }
             ],
             201301 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1516" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1516" }
             ],
             201401 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1545" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1545" }
             ] 
         },
         CHEM181 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1434" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1434" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1479" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1479" }
             ],
             201301 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1517" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1517" }
             ],
             201401 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1546" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1546" }
             ],
             201501 : [ 
-                { section: 761, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11287" }
+                { section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11287" }
             ],
             201601 : [ 
-                { section: 761, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13124" }
+                { section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13124" }
             ] 
         },
         CHEM182 : { 
             201009 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1417" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1417" }
             ],
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1463" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1463" }
             ],
             201209 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1504" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1504" }
             ],
             201309 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1535" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1535" }
             ] 
         },
         CHEM183 : { 
             201009 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1418" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1418" }
             ],
             201109 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1464" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1464" }
             ],
             201209 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1505" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1505" }
             ],
             201309 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1536" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1536" }
             ],
             201409 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1574" },
-                { section: 761, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9852" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1574" },
+                { section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9852" }
             ],
             201509 : [ 
-                { section: 761, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1607" },
-                { section: 761, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11556" }
+                { section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1607" },
+                { section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11556" }
             ] 
         },
         CHEM204 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1437" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1437" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1482" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1482" }
             ],
             201301 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1522" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1522" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1576" },
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10286" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1576" },
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10286" }
             ] 
         },
         CHEM211 : { 
             201209 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1506" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1506" }
             ],
             201309 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1531" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1531" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1570" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1570" }
             ] 
         },
         CHEM212 : { 
             201009 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1429" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1429" }
             ],
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1440" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1440" }
             ],
             201105 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1455" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1455" }
             ],
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1465" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1465" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1485" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1485" }
             ],
             201205 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1500" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1500" }
             ],
             201301 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1524" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1524" }
             ],
             201305 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1525" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1525" }
             ],
             201401 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1553" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1553" }
             ],
             201405 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1560" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1560" }
             ],
             201501 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1590" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1590" }
             ],
             201505 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1593" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1593" }
             ] 
         },
         CHEM214 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1439" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1439" }
             ],
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11146" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11146" }
             ] 
         },
         CHEM222 : { 
             201009 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1422" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1422" }
             ],
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1438" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1438" }
             ],
             201105 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1458" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1458" }
             ],
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1466" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1466" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1483" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1483" }
             ],
             201205 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1502" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1502" }
             ],
             201209 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1507" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1507" }
             ],
             201301 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1523" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1523" }
             ],
             201305 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1526" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1526" }
             ],
             201309 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1529" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1529" }
             ],
             201401 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1552" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1552" }
             ],
             201405 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1561" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1561" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1568" },
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10323" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1568" },
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10323" }
             ],
             201501 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1584" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1584" }
             ],
             201505 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1594" },
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11423" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1594" },
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11423" }
             ],
             201509 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1601" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1601" }
             ],
             201601 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1616" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1616" }
             ] 
         },
         CHEM232 : { 
             201009 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1419" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1419" }
             ],
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1467" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1467" }
             ],
             201209 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1511" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1511" }
             ],
             201309 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1530" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1530" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1569" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1569" }
             ] 
         },
         CHEM281 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1436" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1436" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1481" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1481" }
             ] 
         },
         CHEM302 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1441" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1441" }
             ],
             201301 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1521" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1521" }
             ] 
         },
         CHEM462 : { 
             201209 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1512" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1512" }
             ],
             201309 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1537" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1537" }
             ] 
         },
         CHEM502 : { 
             201401 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1556" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1556" }
             ] 
         },
         CIVE320 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10225" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10225" }
             ],
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11999" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11999" }
             ] 
         },
         CLAS203 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10001" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10001" }
             ],
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11700" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11700" }
             ] 
         },
         COMP202 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12237" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12237" }
             ],
             201605 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13267" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13267" }
             ] 
         },
         COMP250 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10464" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10464" }
             ],
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12243" },
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11806" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12243" },
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11806" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13068" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13068" }
             ]
         },
         COMP273 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13075" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13075" }
             ] 
         },
         COMP302 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13118" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13118" }
             ] 
         },
         COMP310 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13081" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13081" }
             ] 
         },
         COMP557 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10865" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10865" }
             ] 
         },
         DENT220D1 : { 
             201601 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12642" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12642" }
             ]
         },
         DENT318J1 : { 
             201509 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12324" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12324" }
             ]
         },
         DENT320J3 : { 
             201605 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13322" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13322" }
             ]
         },
         DENT323J1 : { 
             201509 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12328" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12328" }
             ]
         },
         DENT411 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12339" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12339" }
             ] 
         },
         DENT412D2 : { 
             201601 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12646" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12646" }
             ]
         },
         DENT413 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12341" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12341" }
             ] 
         },
         ECON208 : { 
             201501 : [ 
-                { section: 004, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11009" }
+                { section: "004", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11009" }
             ] 
         },
         ECON209 : { 
             201501 : [ 
-                { section: 003, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11010" }
+                { section: "003", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11010" }
             ] 
         },
         ECON230D1 : { 
             201409 : [
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10016" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10016" }
             ],
             201509 : [
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11716" }
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11716" }
             ]
         },
         ECON313 : { 
             201409 : [ 
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10192" }
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10192" }
             ],
             201505 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11450" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11450" }
             ],
             201509 : [ 
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11953" }
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11953" }
             ] 
         },
         ECON314 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9891" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9891" }
             ],
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11600" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11600" }
             ] 
         },
         ECSE211 : { 
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1468" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1468" }
             ],
             201301 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1519" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1519" }
             ],
             201309 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1539" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1539" }
             ],
             201401 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1548" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1548" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1567" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1567" }
             ],
             201501 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1586" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1586" }
             ] 
         },
         ECSE322 : { 
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1469" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1469" }
             ],
             201301 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1520" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1520" }
             ],
             201401 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1549" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1549" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1566" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1566" }
             ],
             201501 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1587" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1587" }
             ] 
         },
         ECSE549 : { 
             201109 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1470" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1470" }
             ],
             201309 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1540" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1540" }
             ],
             201409 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1565" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1565" }
             ] 
         },
         EPSC180 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11290" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11290" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13127" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13127" }
             ] 
         },
         EPSC201 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12270" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12270" }
             ] 
         },
         FACC100 : { 
             201501 : [ 
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11295" }
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11295" }
             ] 
         },
         GEOG200 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12169" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12169" }
             ] 
         },
         HIST249 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10371" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10371" }
             ],
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12145" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12145" }
             ] 
         },
         LAWG210 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11964" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11964" }
             ] 
         },
         LAWG273 : { 
             201605 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13346" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13346" }
             ] 
         },
         LAWG300 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12703" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12703" }
             ] 
         },
         LING201 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10887" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10887" }
             ] 
         },
         MATH323 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13020" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13020" }
             ] 
         },
         MATH595 : { 
             201505 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11458" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11458" }
             ] 
         },
         MATH598 : { 
             201505 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11459" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11459" }
             ] 
         },
         MGCR222 : { 
             201409 : [ 
-                { section: 006, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10063" }
+                { section: "006", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10063" }
             ],
             201501 : [ 
-                { section: 005, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11337" },
-                { section: 006, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10745" }
+                { section: "005", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11337" },
+                { section: "006", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10745" }
             ] 
         },
         MGCR331 : { 
             201409 : [ 
-                { section: 751, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10179" }
+                { section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10179" }
             ],
             201509 : [ 
-                { section: 751, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11870" }
+                { section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11870" }
             ],
             201605 : [ 
-                { section: 751, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13333" }
+                { section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13333" }
             ] 
         },
         MGCR341 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12413" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12413" }
             ] 
         },
         MGPO640 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10765" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10765" }
             ] 
         },
         MIMM212 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9878" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9878" }
             ] 
         },
         MIMM214 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10715" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10715" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12479" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12479" }
             ] 
         },
         MIMM314 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11200" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11200" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13029" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13029" }
             ] 
         },
         MIMM323 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10424" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10424" }
             ] 
         },
         MIMM413 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11203" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11203" }
             ] 
         },
         NUR1420 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12025" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12025" }
             ] 
         },
         NUTR545 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11552" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11552" }
             ] 
         },
         OCC1551 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13036" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13036" }
             ] 
         },
         OCCH608 : { 
             201101 : [ 
-                { section: 088, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1447" }
+                { section: "088", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1447" }
             ] 
         },
         OCCH615 : { 
             201101 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1450" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1450" }
             ],
             201201 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1495" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1495" }
             ],
             201401 : [ 
-                { section: 001, url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1558" }
+                { section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1558" }
             ] 
         },
         ORGB685 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11171" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11171" }
             ] 
         },
         PHGY209 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12213" },
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12080" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12213" },
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12080" }
             ] 
         },
         PHGY210 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12906" },
-                { section: 002, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13060" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12906" },
+                { section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13060" }
             ] 
         },
         PHGY212 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12107" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12107" }
             ] 
         },
         PHGY314 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12215" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12215" }
             ] 
         },
         PHIL210 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9987" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9987" }
             ] 
         },
         PHTH440 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10806" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10806" }
             ] 
         },
         PHTH551 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12229" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12229" }
             ] 
         },
         PHYS102 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12987" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12987" }
             ] 
         },
         POLI227 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12798" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12798" }
             ] 
         },
         POLI243 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10977" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10977" }
             ] 
         },
         POLI346 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10463" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10463" }
             ] 
         },
         POTH225 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12554" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12554" }
             ] 
         },
         POTH401 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11249" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11249" }
             ] 
         },
         POTH563 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11771" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11771" }
             ] 
         },
         POTH684 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10736" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10736" }
             ],
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12500" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12500" }
             ] 
         },
         PSYC215 : { 
             201501 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11129" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11129" }
             ] 
         },
         PSYC331 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10132" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10132" }
             ],
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11817" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11817" }
             ] 
         },
         PSYC337 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10483" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10483" }
             ] 
         },
         PSYC410 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10484" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10484" }
             ] 
         },
         SOCI225 : { 
             201509 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11839" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11839" }
             ] 
         },
         SOCI254 : { 
             201409 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10039" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10039" }
             ] 
         },
         SOCI265 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12600" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12600" }
             ] 
         },
         SOCI270 : { 
             201601 : [ 
-                { section: 001, url: "http://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12601" }
+                { section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12601" }
             ] 
         }
     };
+
 
 
 

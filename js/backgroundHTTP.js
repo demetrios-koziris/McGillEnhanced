@@ -17,14 +17,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
 
         xhttp.timeout = 800;
 
-        // xhttp.ontimeout = function (e) {
-        //     console.log(xhttp.status + JSON.stringify(data));
-        //     data.responseXML = "error";
-        //     callback(data);
-        // };
-
-
-
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4) {
                 if (xhttp.status == 200) {
