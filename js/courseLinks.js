@@ -193,6 +193,66 @@ regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
+    wikinotes = {
+        ANAT322 : "https://www.wikinotes.ca/ANAT_322",
+        ANTH335 : "https://www.wikinotes.ca/ANTH_335",
+        ANTH360 : "https://www.wikinotes.ca/ANTH_360",
+        BIOL111 : "https://www.wikinotes.ca/BIOL_111",
+        BIOL112 : "https://www.wikinotes.ca/BIOL_112",
+        BIOL201 : "https://www.wikinotes.ca/BIOL_201",
+        BIOL215 : "https://www.wikinotes.ca/BIOL_215",
+        BIOL310 : "https://www.wikinotes.ca/BIOL_310",
+        CHEM212 : "https://www.wikinotes.ca/CHEM_212",
+        CHEM222 : "https://www.wikinotes.ca/CHEM_222",
+        COMP206 : "https://www.wikinotes.ca/COMP_206",
+        COMP251 : "https://www.wikinotes.ca/COMP_251",
+        COMP273 : "https://www.wikinotes.ca/COMP_273",
+        COMP302 : "https://www.wikinotes.ca/COMP_302",
+        COMP303 : "https://www.wikinotes.ca/COMP_303",
+        COMP310 : "https://www.wikinotes.ca/COMP_310",
+        COMP322 : "https://www.wikinotes.ca/COMP_322",
+        COMP330 : "https://www.wikinotes.ca/COMP_330",
+        COMP350 : "https://www.wikinotes.ca/COMP_350",
+        COMP360 : "https://www.wikinotes.ca/COMP_360",
+        COMP409 : "https://www.wikinotes.ca/COMP_409",
+        COMP421 : "https://www.wikinotes.ca/COMP_421",
+        COMP424 : "https://www.wikinotes.ca/COMP_424",
+        COMP527 : "https://www.wikinotes.ca/COMP_527",
+        COMP547 : "https://www.wikinotes.ca/COMP_547",
+        COMP646 : "https://www.wikinotes.ca/COMP_646",
+        EAST240 : "https://www.wikinotes.ca/EAST_240",
+        ECON209 : "https://www.wikinotes.ca/ECON_209",
+        ENGL200 : "https://www.wikinotes.ca/ENGL_200",
+        GEOG205 : "https://www.wikinotes.ca/GEOG_205",
+        INTD200 : "https://www.wikinotes.ca/INTD_200",
+        MATH133 : "https://www.wikinotes.ca/MATH_133",
+        MATH141 : "https://www.wikinotes.ca/MATH_141",
+        MATH151 : "https://www.wikinotes.ca/MATH_151",
+        MATH204 : "https://www.wikinotes.ca/MATH_204",
+        MATH222 : "https://www.wikinotes.ca/MATH_222",
+        MATH223 : "https://www.wikinotes.ca/MATH_223",
+        MATH235 : "https://www.wikinotes.ca/MATH_235",
+        MATH236 : "https://www.wikinotes.ca/MATH_236",
+        MATH240 : "https://www.wikinotes.ca/MATH_240",
+        MATH242 : "https://www.wikinotes.ca/MATH_242",
+        MATH247 : "https://www.wikinotes.ca/MATH_247",
+        MATH255 : "https://www.wikinotes.ca/MATH_255",
+        MATH314 : "https://www.wikinotes.ca/MATH_314",
+        MATH315 : "https://www.wikinotes.ca/MATH_315",
+        MATH317 : "https://www.wikinotes.ca/MATH_317",
+        MATH318 : "https://www.wikinotes.ca/MATH_318",
+        MATH323 : "https://www.wikinotes.ca/MATH_323",
+        MATH324 : "https://www.wikinotes.ca/MATH_324",
+        MATH340 : "https://www.wikinotes.ca/MATH_340",
+        MATH407 : "https://www.wikinotes.ca/MATH_407",
+        NEUR310 : "https://www.wikinotes.ca/NEUR_310",
+        PHGY210 : "https://www.wikinotes.ca/PHGY_210",
+        PHYS232 : "https://www.wikinotes.ca/PHYS_232",
+        POLI243 : "https://www.wikinotes.ca/POLI_243",
+        PSYC100 : "https://www.wikinotes.ca/PSYC_100",
+        PSYC340 : "https://www.wikinotes.ca/PSYC_340"
+    };
+
 
     profState = "";
     if(debugMode){console.log(profState);}
@@ -224,9 +284,18 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
 
     ME_data = {
-        docuum: { url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, valid: false},
-        vsbFall: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
-        vsbWinter: { url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, valid: false},
+        docuum: { 
+            url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, 
+            valid: false
+        },
+        vsbFall: { 
+            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, 
+            valid: false
+        },
+        vsbWinter: { 
+            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, 
+            valid: false
+        },
         done: 0,
         total: (urlYearF >= sysYear-1 ? 3 : 1),
         codeReady: false
@@ -686,21 +755,25 @@ function addVerifiedLinks (sidebar) {
         }
     }
 
-    if (ME_data.docuum.valid) {
-        //console.log(xmlRequestInfo);
-        var docuum = document.createElement('div');
-        docuum.style.margin = "0px 0px 8px 0px";
-        formsBlock.appendChild(docuum);
+    wikinotesURL = wikinotes[courseEvalParams.courseSubject + courseEvalParams.courseNumber]
 
-        var docuumTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        docuumTitle.innerHTML = "Other resources";
-        docuumTitle.style.margin = "0px";
-        docuum.appendChild(docuumTitle);
+    if (ME_data.docuum.valid || wikinotesURL != null) {
+
+        var other = document.createElement('div');
+        other.style.margin = "0px 0px 8px 0px";
+        formsBlock.appendChild(other);
+
+        var otherTitle = document.createElement(isNewStyle ? "h3" : "h4");
+        otherTitle.innerHTML = "Other resources";
+        otherTitle.style.margin = "0px";
+        other.appendChild(otherTitle);
+    }
+
+    if (ME_data.docuum.valid) {
 
         var docuumForm = document.createElement('form');
         docuumForm.setAttribute("action", ME_data.docuum.url);
-        docuumForm.setAttribute("method", "POST");
-        docuum.appendChild(docuumForm);
+        other.appendChild(docuumForm);
 
         var docuumButton = document.createElement('input');
         docuumButton.setAttribute("type", "submit");
@@ -717,6 +790,29 @@ function addVerifiedLinks (sidebar) {
             docuumButton.style.boxShadow = "none";
         }
         docuumForm.appendChild(docuumButton);
+    }
+
+    if (wikinotesURL != null) {
+
+        var wikinotesForm = document.createElement('form');
+        wikinotesForm.setAttribute("action", wikinotesURL);
+        other.appendChild(wikinotesForm);
+
+        var wikinotesButton = document.createElement('input');
+        wikinotesButton.setAttribute("type", "submit");
+        wikinotesButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        wikinotesButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        wikinotesButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes");
+        wikinotesButton.className = "form-submit";
+        wikinotesButton.style.width="100%";
+        wikinotesButton.style.height="35px";
+        wikinotesButton.style.margin="4px 0px";
+        if (isNewStyle) {
+            wikinotesButton.style.border = "1px solid #5B5B5A";
+            wikinotesButton.style.WebkitBoxShadow  = "none";
+            wikinotesButton.style.boxShadow = "none";
+        }
+        wikinotesForm.appendChild(wikinotesButton);
     }
     
 }
@@ -787,3 +883,11 @@ function validateDocuumLink(linkData) {
     });
 
 }
+
+
+
+
+
+
+
+
