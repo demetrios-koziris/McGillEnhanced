@@ -1092,6 +1092,17 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     if(debugMode){console.log(ME_data);}
     validateExternalLinks();
 
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Replace Course names with links to course overview page
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    newContentElement = document.getElementById(isNewStyle ? "content" : "content-area");
+    newContent = newContentElement.innerHTML;
+    newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+    newContentElement.innerHTML = newContent;
+
     
 
     profs = [];
