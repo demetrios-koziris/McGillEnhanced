@@ -1,3 +1,5 @@
+start = Date.now();
+
 
 debugMode = false;
 if(debugMode){console.log("McGill Enhanced Debug mode is ON");}
@@ -253,7 +255,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         PSYC340 : "https://www.wikinotes.ca/PSYC_340"
     };
 
-
+    
 
     recordingURLs = {
         AECH111 : { 
@@ -1043,6 +1045,8 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
 
 
+
+
     profState = "";
     if(debugMode){console.log(profState);}
 
@@ -1122,7 +1126,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             profsF[p] = profsF[p].trim();
             profs.push(profsF[p]);
             search = "mcgill " + profsF[p].match(/([^\s]+)\s.+/)[1] + " " + profsF[p].match(/.+\s([^\s]+)/)[1];
-            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsF[p].replace(/ /g, "&nbsp") +"</a>");
+            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsF[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
             if (p <= profsF.length-2) {
                 newProfsHTML += ", "
             }
@@ -1143,7 +1147,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             profsW[p] = profsW[p].trim();
             profs.push(profsW[p]);
             search = "mcgill " + profsW[p].match(/([^\s]+)\s.+/)[1] + " " + profsW[p].match(/.+\s([^\s]+)/)[1];
-            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsW[p].replace(/ /g, "&nbsp") +"</a>");
+            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsW[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
             if (p <= profsW.length-2) {
                 newProfsHTML += ", "
             }
@@ -1164,7 +1168,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             profsS[p] = profsS[p].trim();
             profs.push(profsS[p]);
             search = "mcgill " + profsS[p].match(/([^\s]+)\s.+/)[1] + " " + profsS[p].match(/.+\s([^\s]+)/)[1];
-            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsS[p].replace(/ /g, "&nbsp") +"</a>");
+            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsS[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
             if (p <= profsS.length-2) {
                 newProfsHTML += ", "
             }
@@ -1690,7 +1694,7 @@ function addVerifiedLinks (sidebar) {
         wikinotesForm.appendChild(wikinotesButton);
     }
 
- 
+ console.log(Date.now() - start);
     
 }
 
