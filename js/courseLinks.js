@@ -1282,6 +1282,79 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     courseEvalForm.appendChild(courseEvalButton);
 
 
+    
+    course = courseEvalParams.courseSubject + courseEvalParams.courseNumber
+
+    if (course in recordingURLs) {
+
+        var recordings = document.createElement('div');
+        recordings.style.margin = "0px 0px 8px 0px";
+        formsBlock.appendChild(recordings);
+
+        var recordingsTitle = document.createElement(isNewStyle ? "h3" : "h4");
+        recordingsTitle.innerHTML = "Lecture Recordings";
+        recordingsTitle.style.margin = "0px";
+        recordings.appendChild(recordingsTitle);
+
+        if (urlYearF in recordingURLs[course]) {
+            yearRecordingURLs = recordingURLs[course][urlYearF]
+
+            for (var r = 0; r < yearRecordingURLs.length; r++) {
+
+                var recordingsForm = document.createElement('form');
+                recordingsForm.setAttribute("action", yearRecordingURLs[r].url);
+                recordingsForm.setAttribute("method", "POST");
+                recordings.appendChild(recordingsForm);
+
+                var recordingsButton = document.createElement('input');
+                recordingsButton.setAttribute("type", "submit");
+                recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+                recordingsButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+                recordingsButton.setAttribute("value", "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures");
+                recordingsButton.className = "form-submit";
+                recordingsButton.style.width="100%";
+                recordingsButton.style.height="35px";
+                recordingsButton.style.margin="4px 0px";
+                if (isNewStyle) {
+                    recordingsButton.style.border = "1px solid #5B5B5A";
+                    recordingsButton.style.WebkitBoxShadow  = "none";
+                    recordingsButton.style.boxShadow = "none";
+                }
+                recordingsForm.appendChild(recordingsButton);    
+            }
+
+
+        }
+        else {
+            years = Object.keys(recordingURLs[course])
+            maxYear = Math.max.apply(Math, years);
+
+            maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
+
+            var recordingsForm = document.createElement('form');
+            recordingsForm.setAttribute("action", maxYearURL);
+            recordings.appendChild(recordingsForm);
+
+            var recordingsButton = document.createElement('input');
+            recordingsButton.setAttribute("type", "submit");
+            recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            recordingsButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            recordingsButton.setAttribute("value", "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures");
+            recordingsButton.className = "form-submit";
+            recordingsButton.style.width="100%";
+            recordingsButton.style.height="35px";
+            recordingsButton.style.margin="4px 0px";
+            if (isNewStyle) {
+                recordingsButton.style.border = "1px solid #5B5B5A";
+                recordingsButton.style.WebkitBoxShadow  = "none";
+                recordingsButton.style.boxShadow = "none";
+            }
+            recordingsForm.appendChild(recordingsButton);
+        }
+
+    }  
+
+
     if (courseTermsCodes.length > 0) {
 
         //formsBlock.appendChild(document.createElement("br"));
@@ -1559,78 +1632,6 @@ function addVerifiedLinks (sidebar) {
             vsbWinterForm.appendChild(vsbWinterButton);
         }
     }
-
-
-    course = courseEvalParams.courseSubject + courseEvalParams.courseNumber
-
-    if (course in recordingURLs) {
-
-        var recordings = document.createElement('div');
-        recordings.style.margin = "0px 0px 8px 0px";
-        formsBlock.appendChild(recordings);
-
-        var recordingsTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        recordingsTitle.innerHTML = "Lecture Recordings";
-        recordingsTitle.style.margin = "0px";
-        recordings.appendChild(recordingsTitle);
-
-        if (urlYearF in recordingURLs[course]) {
-            yearRecordingURLs = recordingURLs[course][urlYearF]
-
-            for (var r = 0; r < yearRecordingURLs.length; r++) {
-
-                var recordingsForm = document.createElement('form');
-                recordingsForm.setAttribute("action", yearRecordingURLs[r].url);
-                recordingsForm.setAttribute("method", "POST");
-                recordings.appendChild(recordingsForm);
-
-                var recordingsButton = document.createElement('input');
-                recordingsButton.setAttribute("type", "submit");
-                recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-                recordingsButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-                recordingsButton.setAttribute("value", "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures");
-                recordingsButton.className = "form-submit";
-                recordingsButton.style.width="100%";
-                recordingsButton.style.height="35px";
-                recordingsButton.style.margin="4px 0px";
-                if (isNewStyle) {
-                    recordingsButton.style.border = "1px solid #5B5B5A";
-                    recordingsButton.style.WebkitBoxShadow  = "none";
-                    recordingsButton.style.boxShadow = "none";
-                }
-                recordingsForm.appendChild(recordingsButton);    
-            }
-
-
-        }
-        else {
-            years = Object.keys(recordingURLs[course])
-            maxYear = Math.max.apply(Math, years);
-
-            maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
-
-            var recordingsForm = document.createElement('form');
-            recordingsForm.setAttribute("action", maxYearURL);
-            recordings.appendChild(recordingsForm);
-
-            var recordingsButton = document.createElement('input');
-            recordingsButton.setAttribute("type", "submit");
-            recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            recordingsButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-            recordingsButton.setAttribute("value", "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures");
-            recordingsButton.className = "form-submit";
-            recordingsButton.style.width="100%";
-            recordingsButton.style.height="35px";
-            recordingsButton.style.margin="4px 0px";
-            if (isNewStyle) {
-                recordingsButton.style.border = "1px solid #5B5B5A";
-                recordingsButton.style.WebkitBoxShadow  = "none";
-                recordingsButton.style.boxShadow = "none";
-            }
-            recordingsForm.appendChild(recordingsButton);
-        }
-
-    }  
 
 
     wikinotesURL = wikinotes[courseEvalParams.courseSubject + courseEvalParams.courseNumber]
