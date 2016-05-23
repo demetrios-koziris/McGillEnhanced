@@ -391,7 +391,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
 
     
-
+    courseName = courseEvalParams.courseSubject + courseEvalParams.courseNumber
 
     var formsBlock = document.createElement('div');
     formsBlock.id = "formsBlock";
@@ -404,7 +404,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     formsBlock.appendChild(courseEval);
 
     var courseEvalTitle = document.createElement(isNewStyle ? "h3" : "h4");
-    courseEvalTitle.innerHTML = "Mercury Evaluations";
+    courseEvalTitle.innerHTML = "Course Reviews";
     courseEvalTitle.style.margin = "0px";
     courseEval.appendChild(courseEvalTitle);
 
@@ -425,7 +425,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     courseEvalButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
     courseEvalButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
     courseEvalButton.setAttribute("name", "");
-    courseEvalButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " Evaluations");
+    courseEvalButton.setAttribute("value", "View Mercury Course Evaluations");
     courseEvalButton.className = "form-submit";
     courseEvalButton.style.width="100%";
     courseEvalButton.style.height="35px";
@@ -437,11 +437,34 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     }
     courseEvalForm.appendChild(courseEvalButton);
 
+    if (courseName in docuumURLs) {
 
-    
-    course = courseEvalParams.courseSubject + courseEvalParams.courseNumber
+        docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber]
 
-    if (course in recordingURLs) {
+        var docuumForm = document.createElement('form');
+        docuumForm.setAttribute("action", docuumURL);
+        docuumForm.setAttribute("method", "POST");
+        courseEval.appendChild(docuumForm);
+
+        var docuumButton = document.createElement('input');
+        docuumButton.setAttribute("type", "submit");
+        docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        docuumButton.setAttribute("value", "View Docuum Course Reviews");
+        docuumButton.className = "form-submit";
+        docuumButton.style.width="100%";
+        docuumButton.style.height="35px";
+        docuumButton.style.margin="4px 0px";
+        if (isNewStyle) {
+            docuumButton.style.border = "1px solid #5B5B5A";
+            docuumButton.style.WebkitBoxShadow  = "none";
+            docuumButton.style.boxShadow = "none";
+        }
+        docuumForm.appendChild(docuumButton);
+    }
+
+
+    if (courseName in recordingURLs) {
 
         var recordings = document.createElement('div');
         recordings.style.margin = "0px 0px 8px 0px";
@@ -452,8 +475,8 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         recordingsTitle.style.margin = "0px";
         recordings.appendChild(recordingsTitle);
 
-        if (urlYearF in recordingURLs[course]) {
-            yearRecordingURLs = recordingURLs[course][urlYearF]
+        if (urlYearF in recordingURLs[courseName]) {
+            yearRecordingURLs = recordingURLs[courseName][urlYearF]
 
             for (var r = 0; r < yearRecordingURLs.length; r++) {
 
@@ -482,7 +505,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         }
         else {
-            years = Object.keys(recordingURLs[course])
+            years = Object.keys(recordingURLs[courseName])
             maxYear = Math.max.apply(Math, years);
 
             maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
@@ -583,7 +606,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         }
     }
 
-    courseName = courseEvalParams.courseSubject + courseEvalParams.courseNumber
+    
 
     if (courseName in docuumURLs || courseName in wikinotesURLs) {
 
@@ -595,31 +618,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         otherTitle.innerHTML = "Other resources";
         otherTitle.style.margin = "0px";
         other.appendChild(otherTitle);
-    }
-
-    if (courseName in wikinotesURLs) {
-
-        wikinotesURL = "https://www.wikinotes.ca/" + wikinotes[courseEvalParams.courseSubject + courseEvalParams.courseNumber]
-
-        var wikinotesForm = document.createElement('form');
-        wikinotesForm.setAttribute("action", wikinotesURL);
-        other.appendChild(wikinotesForm);
-
-        var wikinotesButton = document.createElement('input');
-        wikinotesButton.setAttribute("type", "submit");
-        wikinotesButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        wikinotesButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-        wikinotesButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes");
-        wikinotesButton.className = "form-submit";
-        wikinotesButton.style.width="100%";
-        wikinotesButton.style.height="35px";
-        wikinotesButton.style.margin="4px 0px";
-        if (isNewStyle) {
-            wikinotesButton.style.border = "1px solid #5B5B5A";
-            wikinotesButton.style.WebkitBoxShadow  = "none";
-            wikinotesButton.style.boxShadow = "none";
-        }
-        wikinotesForm.appendChild(wikinotesButton);
     }
     
     if (courseName in docuumURLs) {
@@ -646,6 +644,31 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             docuumButton.style.boxShadow = "none";
         }
         docuumForm.appendChild(docuumButton);
+    }
+
+    if (courseName in wikinotesURLs) {
+
+        wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber]
+
+        var wikinotesForm = document.createElement('form');
+        wikinotesForm.setAttribute("action", wikinotesURL);
+        other.appendChild(wikinotesForm);
+
+        var wikinotesButton = document.createElement('input');
+        wikinotesButton.setAttribute("type", "submit");
+        wikinotesButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        wikinotesButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        wikinotesButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes");
+        wikinotesButton.className = "form-submit";
+        wikinotesButton.style.width="100%";
+        wikinotesButton.style.height="35px";
+        wikinotesButton.style.margin="4px 0px";
+        if (isNewStyle) {
+            wikinotesButton.style.border = "1px solid #5B5B5A";
+            wikinotesButton.style.WebkitBoxShadow  = "none";
+            wikinotesButton.style.boxShadow = "none";
+        }
+        wikinotesForm.appendChild(wikinotesButton);
     }
 
 
@@ -854,10 +877,6 @@ function addVerifiedLinks (sidebar) {
         }
     }
 
-
-
-
-        
 
 
     if (ME_data.docuum.valid) {
