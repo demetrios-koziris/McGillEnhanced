@@ -1,7 +1,7 @@
 {
   "name": "McGill Enhanced",
   "manifest_version": 2,
-  "version": "2.1.24",
+  "version": "2.1.25",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent"
@@ -25,7 +25,7 @@
   "content_scripts" : [
     {
       "matches" : ["*://www.mcgill.ca/study/*", "*://horizon.mcgill.ca/*", "*://www.ratemyprofessors.com/search*", "*://www.docuum.com/McGill*", "*://vsb.mcgill.ca/*"],
-      "js" : ["lib/jquery-1.11.2.min.js", "lib/tooltipsy.min.js", "js/yearMenu.js", "js/courseLinks.js", "js/vsbEnhanced.js"]
+      "js" : ["js/urlData.js", "lib/jquery-1.11.2.min.js", "lib/tooltipsy.min.js", "js/yearMenu.js", "js/courseLinks.js", "js/vsbEnhanced.js"]
     }
   ]
 }
