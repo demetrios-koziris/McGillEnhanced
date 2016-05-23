@@ -422,8 +422,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     var courseEvalButton = document.createElement('input');
     courseEvalButton.setAttribute("type", "submit");
-    courseEvalButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-    courseEvalButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+    courseEvalButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");
+    //courseEvalButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+    courseEvalButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
     courseEvalButton.setAttribute("name", "");
     courseEvalButton.setAttribute("value", "View Mercury Course Evaluations");
     courseEvalButton.className = "form-submit";
@@ -448,8 +449,11 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         var docuumButton = document.createElement('input');
         docuumButton.setAttribute("type", "submit");
-        docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        //docuumButton.setAttribute("onmouseover", "this.style.border=\"2px solid #5B5B5A\"");
+        //docuumButton.setAttribute("onmouseout", "this.style.border=\"1px solid #5B5B5A\"");
+        docuumButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #56afe5, #C5C5C5)" : "#ECF3FF") + "\"");
+        //docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        docuumButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
         docuumButton.setAttribute("value", "View Docuum Course Reviews");
         docuumButton.className = "form-submit";
         docuumButton.style.width="100%";
@@ -487,8 +491,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
                 var recordingsButton = document.createElement('input');
                 recordingsButton.setAttribute("type", "submit");
-                recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-                recordingsButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+                recordingsButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");
+                //recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+                recordingsButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
                 recordingsButton.setAttribute("value", "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures");
                 recordingsButton.className = "form-submit";
                 recordingsButton.style.width="100%";
@@ -516,8 +521,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
             var recordingsButton = document.createElement('input');
             recordingsButton.setAttribute("type", "submit");
-            recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            recordingsButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            recordingsButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");
+            //recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            recordingsButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
             recordingsButton.setAttribute("value", "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures");
             recordingsButton.className = "form-submit";
             recordingsButton.style.width="100%";
@@ -588,8 +594,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
             var courseRegButton = document.createElement('input');
             courseRegButton.setAttribute("type", "submit");
-            courseRegButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            courseRegButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            courseRegButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");            
+            //courseRegButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            courseRegButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
             courseRegButton.setAttribute("name", "SUB_BTN");
             courseRegButton.setAttribute("value", "View " + courseTermsCodes[i].name + " Registration");
             courseRegButton.className = "form-submit";
@@ -631,8 +638,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         var docuumButton = document.createElement('input');
         docuumButton.setAttribute("type", "submit");
-        docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        docuumButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #56afe5, #C5C5C5)" : "#ECF3FF") + "\"");
+        //docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        docuumButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
         docuumButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum");
         docuumButton.className = "form-submit";
         docuumButton.style.width="100%";
@@ -656,8 +664,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         var wikinotesButton = document.createElement('input');
         wikinotesButton.setAttribute("type", "submit");
-        wikinotesButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        wikinotesButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+        wikinotesButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #FFFFFF, #C5C5C5)" : "#ECF3FF") + "\"");
+        //wikinotesButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+        wikinotesButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
         wikinotesButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes");
         wikinotesButton.className = "form-submit";
         wikinotesButton.style.width="100%";
@@ -839,8 +848,9 @@ function addVerifiedLinks (sidebar) {
 
             var vsbFallButton = document.createElement('input');
             vsbFallButton.setAttribute("type", "submit");
-            vsbFallButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            vsbFallButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            vsbFallButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #7173f6, #C5C5C5)" : "#ECF3FF") + "\"");
+            //vsbFallButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            vsbFallButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
             vsbFallButton.setAttribute("value", "View on VSB Fall " + urlYearF);
             vsbFallButton.className = "form-submit";
             vsbFallButton.style.width="100%";
@@ -861,8 +871,9 @@ function addVerifiedLinks (sidebar) {
 
             var vsbWinterButton = document.createElement('input');
             vsbWinterButton.setAttribute("type", "submit");
-            vsbWinterButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            vsbWinterButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            vsbWinterButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #7173f6, #C5C5C5)" : "#ECF3FF") + "\"");
+            //vsbWinterButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
+            vsbWinterButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
             vsbWinterButton.setAttribute("value", "View on VSB Winter " + urlYearW);
             vsbWinterButton.className = "form-submit";
             vsbWinterButton.style.width="100%";
