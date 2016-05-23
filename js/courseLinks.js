@@ -196,6 +196,10 @@ regex = /([A-Za-z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
+    if (urlYearF == 2009) {
+        document.getElementById("inner-container").style.width = "100%";
+    }
+
 
 
     wikinotesURLs = generateWikinotesURLs();
