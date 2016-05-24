@@ -22,7 +22,7 @@ function getProfUrl(first, last, general, part) {
         url: profURL,
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-        //try {
+        try {
             var profURL = data.url;
             var profURLHTML = data.responseXML;
 
@@ -48,10 +48,10 @@ function getProfUrl(first, last, general, part) {
             else {
                 getProfContent(first, last, profURL, part, 2);
             }
-        //}
-        // catch(err) {
-        //     console.log(first + " " + last + " " + part + " " + err);
-        // }
+        }
+        catch(err) {
+            console.log(first + " " + last + " " + part + " " + err);
+        }
     });
 }
 
@@ -257,10 +257,11 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Replace Course names with links to course overview page
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    newContentElement = document.getElementsByClassName("catalog-notes")[0];
-    newContent = newContentElement.innerHTML;
-    newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-    newContentElement.innerHTML = newContent;
+    notesElement = document.getElementsByClassName("catalog-notes")[0];
+    if (notesElement != null) {
+        notesElement.innerHTML = notesElement.innerHTML.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+    }
+    
 
     
 
@@ -373,7 +374,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             depsDup.push(courses[c].split(" ")[0])
         }
     }
-    console.log(depsDup);
+    if(debugMode){console.log(depsDup);}
     var deps = depsDup.filter(function(elem, pos) {
         return depsDup.indexOf(elem) == pos;
     });
@@ -938,8 +939,8 @@ function addVerifiedLinks (sidebar) {
         docuumForm.appendChild(docuumButton);
     }
 
-
- console.log(Date.now() - start);
+    time = Date.now() - start;
+    console.log("McGill Enhanced took " + time + " ms to improve this page!");
     
 }
 
