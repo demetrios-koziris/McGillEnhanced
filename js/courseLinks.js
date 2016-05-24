@@ -267,90 +267,93 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     profsS = [];
 
     profsSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
-    profsSource = profsSource.split("Instructors:")[1];
-    newProfsHTML = ""
 
-    profsSourceF = profsSource.split("(Fall)");
-    if (profsSourceF.length > 1) {
-        profsF = profsSourceF[0].split(",");
-        newProfsHTML += "<p>Instructors (Fall): "
-        for (p=0; p<profsF.length; p++) {
-            profsF[p] = profsF[p].trim();
-            profs.push(profsF[p]);
-            search = "mcgill " + profsF[p].match(/([^\s]+)\s.+/)[1] + " " + profsF[p].match(/.+\s([^\s]+)/)[1];
-            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsF[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
-            if (p <= profsF.length-2) {
-                newProfsHTML += ", "
+    if (profsSource.match(/There are no professors/) == null) {
+
+        profsSource = profsSource.split("Instructors:")[1];
+        newProfsHTML = ""
+        profsSourceF = profsSource.split("(Fall)");
+        if (profsSourceF.length > 1) {
+            profsF = profsSourceF[0].split(",");
+            newProfsHTML += "<p>Instructors (Fall): "
+            for (p=0; p<profsF.length; p++) {
+                profsF[p] = profsF[p].trim();
+                profs.push(profsF[p]);
+                search = "mcgill " + profsF[p].match(/([^\s]+)\s.+/)[1] + " " + profsF[p].match(/.+\s([^\s]+)/)[1];
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsF[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
+                if (p <= profsF.length-2) {
+                    newProfsHTML += ", "
+                }
+                if (p == profsF.length-2) {
+                    newProfsHTML += "and "
+                }
             }
-            if (p == profsF.length-2) {
-                newProfsHTML += "and "
-            }
+            newProfsHTML += "</p>"
+            if(debugMode){console.log(profsF);}
+            profsSource = profsSourceF[1]
         }
-        newProfsHTML += "</p>"
-        if(debugMode){console.log(profsF);}
-        profsSource = profsSourceF[1]
-    }
 
-    profsSourceW = profsSource.split("(Winter)");
-    if (profsSourceW.length > 1) {
-        profsW = profsSourceW[0].split(",");
-        newProfsHTML += "<p>Instructors (Winter): "
-        for (p=0; p<profsW.length; p++) {
-            profsW[p] = profsW[p].trim();
-            profs.push(profsW[p]);
-            search = "mcgill " + profsW[p].match(/([^\s]+)\s.+/)[1] + " " + profsW[p].match(/.+\s([^\s]+)/)[1];
-            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsW[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
-            if (p <= profsW.length-2) {
-                newProfsHTML += ", "
+        profsSourceW = profsSource.split("(Winter)");
+        if (profsSourceW.length > 1) {
+            profsW = profsSourceW[0].split(",");
+            newProfsHTML += "<p>Instructors (Winter): "
+            for (p=0; p<profsW.length; p++) {
+                profsW[p] = profsW[p].trim();
+                profs.push(profsW[p]);
+                search = "mcgill " + profsW[p].match(/([^\s]+)\s.+/)[1] + " " + profsW[p].match(/.+\s([^\s]+)/)[1];
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsW[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
+                if (p <= profsW.length-2) {
+                    newProfsHTML += ", "
+                }
+                if (p == profsW.length-2) {
+                    newProfsHTML += "and "
+                }
             }
-            if (p == profsW.length-2) {
-                newProfsHTML += "and "
-            }
+            newProfsHTML += "</p>"
+            if(debugMode){console.log(profsW);}
+            profsSource = profsSourceW[1]
         }
-        newProfsHTML += "</p>"
-        if(debugMode){console.log(profsW);}
-        profsSource = profsSourceW[1]
-    }
 
-    profsSourceS = profsSource.split("(Summer)");
-    if (profsSourceS.length > 1) {
-        profsS = profsSourceS[0].split(",");
-        newProfsHTML += "<p>Instructors (Summer): "
-        for (p=0; p<profsS.length; p++) {
-            profsS[p] = profsS[p].trim();
-            profs.push(profsS[p]);
-            search = "mcgill " + profsS[p].match(/([^\s]+)\s.+/)[1] + " " + profsS[p].match(/.+\s([^\s]+)/)[1];
-            newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsS[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
-            if (p <= profsS.length-2) {
-                newProfsHTML += ", "
+        profsSourceS = profsSource.split("(Summer)");
+        if (profsSourceS.length > 1) {
+            profsS = profsSourceS[0].split(",");
+            newProfsHTML += "<p>Instructors (Summer): "
+            for (p=0; p<profsS.length; p++) {
+                profsS[p] = profsS[p].trim();
+                profs.push(profsS[p]);
+                search = "mcgill " + profsS[p].match(/([^\s]+)\s.+/)[1] + " " + profsS[p].match(/.+\s([^\s]+)/)[1];
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsS[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
+                if (p <= profsS.length-2) {
+                    newProfsHTML += ", "
+                }
+                if (p == profsS.length-2) {
+                    newProfsHTML += "and "
+                }
             }
-            if (p == profsS.length-2) {
-                newProfsHTML += "and "
-            }
+            newProfsHTML += "</p>"
+            if(debugMode){console.log(profsS);}
+            profsSource = profsSourceS[1]
         }
-        newProfsHTML += "</p>"
-        if(debugMode){console.log(profsS);}
-        profsSource = profsSourceS[1]
-    }
 
-    document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML
+        document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML
 
-    if (profs.length > 0) {
-        var profs = profs.filter(function(elem, pos) {
-            return profs.indexOf(elem) == pos;
-        });
-        if(debugMode){console.log(profs)}
+        if (profs.length > 0) {
+            var profs = profs.filter(function(elem, pos) {
+                return profs.indexOf(elem) == pos;
+            });
+            if(debugMode){console.log(profs)}
 
-        profStateObject = {
-            total: profs.length,
-            done: 0
-        };
-        profState = profStateObject;
-        if(debugMode){console.log(profState);}
+            profStateObject = {
+                total: profs.length,
+                done: 0
+            };
+            profState = profStateObject;
+            if(debugMode){console.log(profState);}
 
-        for (a=0; a< profs.length; a++) {
-            var profName = profs[a].split(" ");
-            getProfUrl(profName[0], profName[profName.length-1], false, -1);
+            for (a=0; a< profs.length; a++) {
+                var profName = profs[a].split(" ");
+                getProfUrl(profName[0], profName[profName.length-1], false, -1);
+            }
         }
     }
 
