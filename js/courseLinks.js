@@ -817,14 +817,29 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 else {
 
     //Replace Course names with links to course overview page
-    cns = document.getElementsByClassName("program-course-description-inner");
-    for (cn = 0; cn<cns.length; cn++)
-    {
-        newContent = document.getElementsByClassName("program-course-description-inner")[cn].innerHTML
-        newContent = newContent.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
-        newContent = newContent.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-        document.getElementsByClassName("program-course-description-inner")[cn].innerHTML = newContent;
+    courseSections = document.getElementsByClassName("program-course");
+    for (c = 0; c<courseSections.length; c++) {
+
+        notes = courseSections[c].getElementsByClassName("catalog-notes")[0];
+        title = courseSections[c].getElementsByClassName("program-course-title")[0];
+
+        courseURL = title.href
+        courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
+
+        link = document.createElement('h3');
+        link.style.padding = "0px";
+        link.style.margin = "0px";
+        link.innerHTML = "<a style=\"background: none; padding-left: 0px\" href=\"" + courseURL + "\">" + courseName + "</a>"
+        
+        contentElement = courseSections[c].getElementsByClassName("content")[0]
+        contentElement.insertBefore(link, contentElement.firstChild)
+
+        if (notes != null) {
+            notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
+            notes.innerHTML = notes.innerHTML.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
+        }
     }
+
 }
 
 
