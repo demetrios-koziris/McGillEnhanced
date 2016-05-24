@@ -232,10 +232,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
 
     ME_data = {
-        docuum: { 
-            url: "http://www.docuum.com/McGill/" + courseEvalParams.courseSubject + "/" + courseEvalParams.courseNumber, 
-            valid: false
-        },
         vsbFall: { 
             url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, 
             valid: false
@@ -245,7 +241,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             valid: false
         },
         done: 0,
-        total: (urlYearF >= sysYear-1 ? 3 : 1),
+        total: (urlYearF >= sysYear-1 ? 2 : 0),
         codeReady: false
     }
     if(debugMode){console.log(ME_data);}
@@ -843,7 +839,6 @@ else {
 
 function addVerifiedLinks (sidebar) {
 
-    
     if (ME_data.vsbFall.valid || ME_data.vsbWinter.valid) {
         //console.log(xmlRequestInfo);
         var vsb = document.createElement('div');
@@ -904,50 +899,12 @@ function addVerifiedLinks (sidebar) {
         }
     }
 
-
-
-    if (ME_data.docuum.valid) {
-
-        var other = document.createElement('div');
-        other.style.margin = "0px 0px 8px 0px";
-        formsBlock.appendChild(other);
-
-        var otherTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        otherTitle.innerHTML = "Docuum Validated";
-        otherTitle.style.margin = "0px";
-        other.appendChild(otherTitle);
-
-        var docuumForm = document.createElement('form');
-        docuumForm.setAttribute("action", ME_data.docuum.url);
-        docuumForm.setAttribute("method", "POST");
-        other.appendChild(docuumForm);
-
-        var docuumButton = document.createElement('input');
-        docuumButton.setAttribute("type", "submit");
-        docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        docuumButton.setAttribute("onmouseout", "this.style.backgroundColor=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-        docuumButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum");
-        docuumButton.className = "form-submit";
-        docuumButton.style.width="100%";
-        docuumButton.style.height="35px";
-        docuumButton.style.margin="4px 0px";
-        if (isNewStyle) {
-            docuumButton.style.border = "1px solid #5B5B5A";
-            docuumButton.style.WebkitBoxShadow  = "none";
-            docuumButton.style.boxShadow = "none";
-        }
-        docuumForm.appendChild(docuumButton);
-    }
-
     time = Date.now() - start;
     console.log("McGill Enhanced took " + time + " ms to improve this page!");
-    
 }
 
 
 function validateExternalLinks() {
-
-    validateDocuumLink(ME_data.docuum)
 
     if (urlYearF >= sysYear-1) {
         validateVSBLink(ME_data.vsbFall)
@@ -982,36 +939,6 @@ function validateVSBLink(linkData) {
     });
 
 }
-
-
-function validateDocuumLink(linkData) { 
-
-    var xmlRequestInfo = {
-        method: 'GET',
-        action: 'xhttp',
-        url: linkData.url
-    }
-    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-
-        ME_data.done++;
-        if(debugMode){console.log(ME_data);}
-
-        if (data.responseXML != "error") {
-
-            htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
-                linkData.valid = true
-            }
-        }
-        
-        if (ME_data.total == ME_data.done && ME_data.codeReady == true) {
-            addVerifiedLinks(sidebar);
-        }  
-    });
-
-}
-
-
 
 
 
