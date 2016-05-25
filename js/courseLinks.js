@@ -11,13 +11,14 @@ url = window.location.href;
 var loadMessage = "McGill Enhanced is loading ratings!";
 
 function encodeSymbolsWin1252(string) {
-    return encodeURI(string).replace("%C3%8", "%C").replace("%C3%9", "%D").replace("%C3%A", "%E").replace("%C3%B", "%F");
+    return encodeURI(string).replace("%C3%8", "%C").replace("%C3%9", "%D").replace("%C3%A", "%E").replace("%C3%B", "%F").replace("'", "%27");
 }
 
-function getProfUrl(first, last, general, part) {
-    var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + encodeSymbolsWin1252(first + " " + last + " ");
+function getProfUrl(profName, general) {
+
+    var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " " ;
     if (general) {
-        profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + encodeSymbolsWin1252(last + " ");
+        profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.lastName + " ";
     }
 
     var xmlRequestInfo = {
@@ -34,33 +35,31 @@ function getProfUrl(first, last, general, part) {
 
             listings = htmlDoc.getElementsByClassName("listing PROFESSOR")
 
-            //if (htmlDoc.getElementsByClassName("result-count")[1].innerHTML.match(/Your search didn't return any results/) != null) {
             if (listings.length == 0) { 
                 if (general) {
-                    getProfContent(first, last, profURL, part, 0);
+                    getProfContent(profName, profURL, 0);
                 }
                 else {
-                    profURL = getProfUrl(first, last, true, part);
+                    profURL = getProfUrl(profName, true);
                 }
             }
-            //else if (htmlDoc.getElementsByClassName("result-count")[1].innerHTML.match(/.*Showing 1-1 of 1 result.*/) != null) {
             else if (listings.length == 1) {               
                 var profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
                 profURL = "http://www.ratemyprofessors.com/" + profURLId;
-                getProfContent(first, last, profURL, part, 1);
+                getProfContent(profName, profURL, 1);
             }
             else {
-                getProfContent(first, last, profURL, part, 2);
+                getProfContent(profName, profURL, 2);
             }
         }
         catch(err) {
-            console.log(first + " " + last + " " + part + " " + err);
+            console.log("Error: " + profName.firstName + " " + profName.lastName + " " + err);
         }
     });
 }
 
 
-function getProfContent(first, last, profURL, part, res) {
+function getProfContent(profName, profURL, res) {
     var xmlRequestInfo = {
         method: 'GET',
         action: 'xhttp',
@@ -114,75 +113,48 @@ function getProfContent(first, last, profURL, part, res) {
                     firstName = htmlDoc.getElementsByClassName("pfname")[0].innerHTML.trim();
                     lastName = htmlDoc.getElementsByClassName("plname")[0].innerHTML.trim();
 
-                    
-
-
-                    //console.log(firstName + " " + rating.grade + " " + rating.hotness);
-
                     tooltipContent = "<b>" + firstName + " " + lastName + "</b>"
                     + "<br><b>" + rating.overall + "&nbsp Overall Quality</b>"
                     + "<br>" + rating.helpfulness + "&nbsp Helpfulness"
                     + "<br>" + rating.clarity + "&nbsp Clarity"
                     + "<br>" + rating.easiness + "&nbsp Easiness"
 
-
                     numOfRatings = htmlDoc.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
-                    //console.log(profURLHTML.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]);
                     tooltipContent += "<br><b>From " + numOfRatings + " student rating" + (numOfRatings > 1 ? "s" : "") + "</b>"
                                     + "<br>Rater Ave Grade: " + rating.grade + "&nbsp"
                                     + "<br>Prof Hotness: " + rating.hotness.toUpperCase() + "&nbsp"
                 }
             }
-            makeProfSection(first, last, profURL, part, tooltipContent);
+            makeProfSection(profName, profURL, tooltipContent);
         }
         catch(err) {
-            console.log(first + " " + last + " " + part)
-            console.log(err);
+            console.log("Error: " + profName.firstName + " " + profName.lastName + " " + err);
         }
     });
 }
 
 
-function makeProfSection(first, last, profURL, part, tooltipContent) {
-    profStateObject = profState;
-    profStateObject.done++
-    profState = profStateObject;
-    if(debugMode){console.log(profState);}
+function makeProfSection(profName, profURL, tooltipContent) {
 
-    if (part < 0) {
-        newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
-        var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
-        newContent = newContent.replace(instFilter, profURL.split("://")[1] + "\" class=\"hasProfTip\"  title=\"" + tooltipContent + "\"");
-
-        document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
-    }
-    else {
-        //used for program overview pages
-        catalogName = "catalog-instructorsMod" + part;
-        newCatalog = document.getElementsByClassName(catalogName)[0].innerHTML;
-        var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');
-        newCatalog = newCatalog.replace(instFilter, profURL.split("://")[1] + "\" title=\"" + tooltipContent + "\"");
-
-        document.getElementsByClassName(catalogName)[0].innerHTML = newCatalog;
+    profElements = document.getElementsByClassName(profName.fullNameKey);
+    for (var p = 0; p < profElements.length; p++) {
+        profElements[p].href = profURL;
+        profElements[p].title = tooltipContent;
     }
 
-    if (profStateObject.done == profStateObject.total) {
-        if(debugMode){console.log("Ready for tooltipsy");}
-        $(".hasProfTip").tooltipsy({
-            css: {
-                fontFamily: "CartoGothicStdBook",
-                padding: "10px",
-                //maxWidth: "140px",
-                color: (isNewStyle ? "#444444" : "#2C566D"),
-                fontSize: ".9em",
-                backgroundColor: (isNewStyle ? "#C5C5C5" : "#F4F5ED"),
-                borderRadius: "8px",
-                border: "2px solid "
-            }
-        });
-        profState = undefined;
-    }
-
+    if(debugMode){console.log("Ready for tooltipsy");}
+    $("." + profName.fullNameKey).tooltipsy({
+        css: {
+            fontFamily: "CartoGothicStdBook",
+            padding: "10px",
+            //maxWidth: "140px",
+            color: (isNewStyle ? "#444444" : "#2C566D"),
+            fontSize: ".9em",
+            backgroundColor: (isNewStyle ? "#C5C5C5" : "#F4F5ED"),
+            borderRadius: "8px",
+            border: "2px solid "
+        }
+    });
 }
 
 
@@ -207,10 +179,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     docuumURLs = generateDocuumURLs();
     recordingURLs = generateRecordingURLs();
 
-
-
-    profState = "";
-    if(debugMode){console.log(profState);}
 
 
     courseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
@@ -268,7 +236,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     
 
-    profs = [];
+    profs = {};
     profsF = [];
     profsW = [];
     profsS = [];
@@ -284,10 +252,19 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             profsF = profsSourceF[0].split(",");
             newProfsHTML += "<p>Instructors (Fall): "
             for (p=0; p<profsF.length; p++) {
-                profsF[p] = profsF[p].trim();
-                profs.push(profsF[p]);
-                search = "mcgill " + profsF[p].match(/([^\s]+)\s.+/)[1] + " " + profsF[p].match(/.+\s([^\s]+)/)[1];
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsF[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
+                
+                profsF[p] = profsF[p].trim()
+                splitName = profsF[p].split(" ");
+                
+                profName = {
+                    fullNameKey: profsF[p].replace(/\W/g, ''),
+                    fullName: profsF[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
+                    firstName: encodeSymbolsWin1252(splitName[0]),
+                    lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
+                }
+
+                profs[profName.firstName+profName.lastName] = profName;
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
                 if (p <= profsF.length-2) {
                     newProfsHTML += ", "
                 }
@@ -305,10 +282,19 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             profsW = profsSourceW[0].split(",");
             newProfsHTML += "<p>Instructors (Winter): "
             for (p=0; p<profsW.length; p++) {
-                profsW[p] = profsW[p].trim();
-                profs.push(profsW[p]);
-                search = "mcgill " + profsW[p].match(/([^\s]+)\s.+/)[1] + " " + profsW[p].match(/.+\s([^\s]+)/)[1];
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsW[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
+
+                profsW[p] = profsW[p].trim()
+                splitName = profsW[p].split(" ");
+                
+                profName = {
+                    fullNameKey: profsW[p].replace(/\W/g, ''),
+                    fullName: profsW[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
+                    firstName: encodeSymbolsWin1252(splitName[0]),
+                    lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
+                }
+
+                profs[profName.firstName+profName.lastName] = profName;
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
                 if (p <= profsW.length-2) {
                     newProfsHTML += ", "
                 }
@@ -326,10 +312,20 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             profsS = profsSourceS[0].split(",");
             newProfsHTML += "<p>Instructors (Summer): "
             for (p=0; p<profsS.length; p++) {
-                profsS[p] = profsS[p].trim();
-                profs.push(profsS[p]);
-                search = "mcgill " + profsS[p].match(/([^\s]+)\s.+/)[1] + " " + profsS[p].match(/.+\s([^\s]+)/)[1];
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=" + search + "' class=\"tooltip\"  title=\"" + loadMessage + "\">" + profsS[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209") +"</a>");
+                
+                profsS[p] = profsS[p].trim()
+                splitName = profsS[p].split(" ");
+                
+                profName = {
+                    fullNameKey: profsS[p].replace(/\W/g, ''),
+                    fullName: profsS[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
+                    firstName: encodeSymbolsWin1252(splitName[0]),
+                    lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
+                }
+
+                profs[profName.firstName+profName.lastName] = profName;
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
+
                 if (p <= profsS.length-2) {
                     newProfsHTML += ", "
                 }
@@ -344,22 +340,12 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML
 
-        if (profs.length > 0) {
-            var profs = profs.filter(function(elem, pos) {
-                return profs.indexOf(elem) == pos;
-            });
+
+        profsLength = Object.keys(profs).length
+        if (profsLength > 0) {
             if(debugMode){console.log(profs)}
-
-            profStateObject = {
-                total: profs.length,
-                done: 0
-            };
-            profState = profStateObject;
-            if(debugMode){console.log(profState);}
-
-            for (a=0; a< profs.length; a++) {
-                var profName = profs[a].split(" ");
-                getProfUrl(profName[0], profName[profName.length-1], false, -1);
+            for (var prof in profs) {
+                getProfUrl(profs[prof], false, -1);
             }
         }
     }
