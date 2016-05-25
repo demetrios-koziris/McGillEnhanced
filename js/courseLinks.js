@@ -14,6 +14,14 @@ function encodeSymbolsWin1252(string) {
     return encodeURI(string).replace("%C3%8", "%C").replace("%C3%9", "%D").replace("%C3%A", "%E").replace("%C3%B", "%F").replace("'", "%27");
 }
 
+function updateProfURL(profKey, profURL) {
+    profElements = document.getElementsByClassName(profKey);
+    for (var p = 0; p < profElements.length; p++) {
+        profElements[p].href = profURL;
+    }
+}
+
+
 function getProfUrl(profName, general) {
 
     var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " " ;
@@ -40,7 +48,7 @@ function getProfUrl(profName, general) {
                     getProfContent(profName, profURL, 0);
                 }
                 else {
-                    profURL = getProfUrl(profName, true);
+                    getProfUrl(profName, true);
                 }
             }
             else if (listings.length == 1) {               
@@ -60,6 +68,8 @@ function getProfUrl(profName, general) {
 
 
 function getProfContent(profName, profURL, res) {
+    updateProfURL(profName.fullNameKey, profURL)
+
     var xmlRequestInfo = {
         method: 'GET',
         action: 'xhttp',
@@ -74,10 +84,8 @@ function getProfContent(profName, profURL, res) {
 
             var rating = {
                 overall: -1,
-                helpfulness: -1,
-                clarity: -1,
-                easiness: -1,
-                grade: -1,
+                difficulty: -1,
+                takeagain: -1,
                 hotness: -1
             }
             
@@ -97,15 +105,11 @@ function getProfContent(profName, profURL, res) {
                 else {
 
                     gradeElements = htmlDoc.getElementsByClassName("grade");
-                    ratingElements = htmlDoc.getElementsByClassName("rating")
-
+                    
                     rating.overall = gradeElements[0].innerHTML
-                    rating.helpfulness = ratingElements[0].innerHTML
-                    rating.clarity = ratingElements[1].innerHTML
-                    rating.easiness = ratingElements[2].innerHTML
-                    rating.grade = gradeElements[1].innerHTML
-
-                    rating.hotness = gradeElements[2].innerHTML
+                    rating.takeagain = gradeElements[1].innerHTML
+                    rating.difficulty = gradeElements[2].innerHTML
+                    rating.hotness = gradeElements[3].innerHTML
                     if (rating.hotness != undefined) {
                         rating.hotness = rating.hotness.match(/chilis\/(.+)\-chili\.png/)[1];
                     }
@@ -114,15 +118,13 @@ function getProfContent(profName, profURL, res) {
                     lastName = htmlDoc.getElementsByClassName("plname")[0].innerHTML.trim();
 
                     tooltipContent = "<b>" + firstName + " " + lastName + "</b>"
-                    + "<br><b>" + rating.overall + "&nbsp Overall Quality</b>"
-                    + "<br>" + rating.helpfulness + "&nbsp Helpfulness"
-                    + "<br>" + rating.clarity + "&nbsp Clarity"
-                    + "<br>" + rating.easiness + "&nbsp Easiness"
+                    + "<br><b>" + rating.overall + "</b>&nbsp Overall Quality"
+                    + "<br><b>" + rating.difficulty + "</b>&nbsp Level Of Difficulty"
+                    + "<br><b>" + rating.takeagain + "</b>&nbsp Would Take Again"
 
                     numOfRatings = htmlDoc.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
-                    tooltipContent += "<br><b>From " + numOfRatings + " student rating" + (numOfRatings > 1 ? "s" : "") + "</b>"
-                                    + "<br>Rater Ave Grade: " + rating.grade + "&nbsp"
-                                    + "<br>Prof Hotness: " + rating.hotness.toUpperCase() + "&nbsp"
+                    tooltipContent += "<br>From <b>" + numOfRatings + " student rating" + (numOfRatings > 1 ? "s" : "") + "</b>"
+                                    + "<br>Prof Hotness: <b>" + rating.hotness.toUpperCase() + "</b>&nbsp"
                 }
             }
             makeProfSection(profName, profURL, tooltipContent);
@@ -138,7 +140,6 @@ function makeProfSection(profName, profURL, tooltipContent) {
 
     profElements = document.getElementsByClassName(profName.fullNameKey);
     for (var p = 0; p < profElements.length; p++) {
-        profElements[p].href = profURL;
         profElements[p].title = tooltipContent;
     }
 
@@ -264,7 +265,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
                 }
 
                 profs[profName.firstName+profName.lastName] = profName;
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
                 if (p <= profsF.length-2) {
                     newProfsHTML += ", "
                 }
@@ -294,7 +295,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
                 }
 
                 profs[profName.firstName+profName.lastName] = profName;
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
                 if (p <= profsW.length-2) {
                     newProfsHTML += ", "
                 }
@@ -324,7 +325,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
                 }
 
                 profs[profName.firstName+profName.lastName] = profName;
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
+                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
 
                 if (p <= profsS.length-2) {
                     newProfsHTML += ", "
