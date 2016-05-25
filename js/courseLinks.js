@@ -10,10 +10,14 @@ url = window.location.href;
 //var loadMessage = "McGill Enhanced is loading ratings for this professor&#13Please hover mouse off then back on to refresh this tooltip";
 var loadMessage = "McGill Enhanced is loading ratings!";
 
+function encodeSymbolsWin1252(string) {
+    return encodeURI(string).replace("%C3%8", "%C").replace("%C3%9", "%D").replace("%C3%A", "%E").replace("%C3%B", "%F");
+}
+
 function getProfUrl(first, last, general, part) {
-    var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + first + " " + last;
+    var profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + encodeSymbolsWin1252(first + " " + last + " ");
     if (general) {
-        profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + last;
+        profURL = "http://www.ratemyprofessors.com/search.jsp?query=mcgill " + encodeSymbolsWin1252(last + " ");
     }
 
     var xmlRequestInfo = {
@@ -40,7 +44,7 @@ function getProfUrl(first, last, general, part) {
                 }
             }
             //else if (htmlDoc.getElementsByClassName("result-count")[1].innerHTML.match(/.*Showing 1-1 of 1 result.*/) != null) {
-            else if (listings.length == 1) {
+            else if (listings.length == 1) {               
                 var profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
                 profURL = "http://www.ratemyprofessors.com/" + profURLId;
                 getProfContent(first, last, profURL, part, 1);
@@ -93,22 +97,24 @@ function getProfContent(first, last, profURL, part, res) {
                 }
                 else {
 
-                    grade = htmlDoc.getElementsByClassName("grade");
-                    rating = htmlDoc.getElementsByClassName("rating")
+                    gradeElements = htmlDoc.getElementsByClassName("grade");
+                    ratingElements = htmlDoc.getElementsByClassName("rating")
 
-                    rating.overall = grade[0].innerHTML
-                    rating.helpfulness = rating[0].innerHTML
-                    rating.clarity = rating[1].innerHTML
-                    rating.easiness = rating[2].innerHTML
-                    rating.grade = grade[1].innerHTML
+                    rating.overall = gradeElements[0].innerHTML
+                    rating.helpfulness = ratingElements[0].innerHTML
+                    rating.clarity = ratingElements[1].innerHTML
+                    rating.easiness = ratingElements[2].innerHTML
+                    rating.grade = gradeElements[1].innerHTML
 
-                    rating.hotness = grade[2].innerHTML
+                    rating.hotness = gradeElements[2].innerHTML
                     if (rating.hotness != undefined) {
                         rating.hotness = rating.hotness.match(/chilis\/(.+)\-chili\.png/)[1];
                     }
                     
                     firstName = htmlDoc.getElementsByClassName("pfname")[0].innerHTML.trim();
                     lastName = htmlDoc.getElementsByClassName("plname")[0].innerHTML.trim();
+
+                    
 
 
                     //console.log(firstName + " " + rating.grade + " " + rating.hotness);
@@ -151,6 +157,7 @@ function makeProfSection(first, last, profURL, part, tooltipContent) {
         document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML = newContent;
     }
     else {
+        //used for program overview pages
         catalogName = "catalog-instructorsMod" + part;
         newCatalog = document.getElementsByClassName(catalogName)[0].innerHTML;
         var instFilter = new RegExp("www.ratemyprofessors.com.search.jsp.query=mcgill " + first + " " + last + "\"", 'g');

@@ -155,6 +155,15 @@ function addYearMenu() {
                     if (i == urlYearF){
                         yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                         yearMenuItemA.style.color = "#5b5b5a";
+
+                        ////
+                        // yearMenuItemA.style.padding = "4px 12px 10px";
+                        // yearMenuItemA.style.borderColor = "#DC241F";
+                        // yearMenuItemA.style.borderStyle = "solid";
+                        // yearMenuItemA.style.borderWidth = "3px 0px 0px 0px";
+                        // yearMenuItemA.style.borderRadius = "6px 6px 0px 0px";
+                        ////
+
                         yearMenuItemLI.style.pointerEvents = "none";
                         yearMenuItemDIV.appendChild(yearMenuItemA)
                         yearMenuItemLI.appendChild(yearMenuItemDIV)
