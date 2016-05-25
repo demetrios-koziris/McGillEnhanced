@@ -11,7 +11,7 @@ url = window.location.href;
 var loadMessage = "McGill Enhanced is loading ratings!";
 
 function encodeSymbolsWin1252(string) {
-    return encodeURI(string).replace("%C3%8", "%C").replace("%C3%9", "%D").replace("%C3%A", "%E").replace("%C3%B", "%F").replace("'", "%27");
+    return encodeURI(string).replace(/\%C3\%8/g, "%C").replace(/\%C3\%9/g, "%D").replace(/\%C3\%A/g, "%E").replace(/\%C3\%B/g, "%F").replace(/\'/, "%27");
 }
 
 function updateProfURL(profKey, profURL) {
@@ -238,6 +238,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     
 
     profs = {};
+    profsLength = 0;
     profsF = [];
     profsW = [];
     profsS = [];
@@ -719,9 +720,8 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         }
     }
 
-        
-        
-    if (profs.length > 0) {
+    profKeys = Object.keys(profs)
+    if (profKeys.length > 0) {
 
         var profCourses = document.createElement('div');
         profCourses.className = "view-catalog-program";
@@ -733,19 +733,20 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         profCoursesTitle.innerHTML = "<i>View Related Courses by Professor</i>";
         profCourses.appendChild(profCoursesTitle);
 
-        for (p = 0; p < profs.length; p++) {
-            prof = profs[p].replace(/\s/g, "%20");
+        for (var p = 0; p < profKeys.length; p++) {
+            profName = profs[profKeys[p]].fullName
+            profURLName = profName.replace(/\&nbsp/g, "%20");
             //https://www.mcgill.ca/study/2016-2017/courses/search?search_api_views_fulltext=thomas&sort_by=field_subject_code
             //url = "https://www.mcgill.ca/study/" + urlYears + "/search/apachesolr_search/\"" + prof + "\"?filters=type%3Acatalog";
-            profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + prof;
+            profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
 
             var profCoursesLinkDiv = document.createElement('div');
-            profCoursesLinkDiv.className = p==profs.length-1 ? "views-row views-row-last" : "views-row";
+            profCoursesLinkDiv.className = (p==profKeys.length-1 ? "views-row views-row-last" : "views-row");
             profCourses.appendChild(profCoursesLinkDiv);
 
             var profCoursesLink = document.createElement('a');
             profCoursesLink.setAttribute("href", profCoursesURL);
-            profCoursesLink.innerHTML = profs[p];
+            profCoursesLink.innerHTML = profName
             profCoursesLinkDiv.appendChild(profCoursesLink);
         }
     }
