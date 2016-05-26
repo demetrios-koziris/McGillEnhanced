@@ -110,7 +110,7 @@ function getProfContent(profName, profURL, res) {
                     tooltipContent = "Multiple Instructors found<br>Please click to see results";
                 }
                 else if (res == 1) {
-                    if (htmlDoc.getElementsByClassName("rating-count")[0] === null) {
+                    if (htmlDoc.getElementsByClassName("rating-count")[0] == null) {
                         //check holly dressel in ENVR400(13-14) and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
                         tooltipContent = "This instructor has no ratings<br>Click to be the first to rate";
                     }
