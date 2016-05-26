@@ -117,13 +117,13 @@ function getProfContent(profName, profURL, res) {
                     else {
                         gradeElements = htmlDoc.getElementsByClassName("grade");
                         if (gradeElements[0] != null) {
-                            rating.overall = gradeElements[0].innerText
+                            rating.overall = gradeElements[0].innerText.trim()
                         }
                         if (gradeElements[1] != null) {
-                            rating.takeagain = gradeElements[1].innerText
+                            rating.takeagain = gradeElements[1].innerText.trim()
                         }
                         if (gradeElements[2] != null) {
-                            rating.difficulty = gradeElements[2].innerText
+                            rating.difficulty = gradeElements[2].innerText.trim()
                         }
                         if (gradeElements[3] != null) {
                             rating.hotness = gradeElements[3].innerHTML
@@ -142,11 +142,11 @@ function getProfContent(profName, profURL, res) {
                         }
 
                         tooltipContent = "<b>" + rating.firstName + " " + rating.lastName + "</b>"
-                                       + "<br><b>" + rating.overall + "</b>&nbsp Overall Quality"
-                                       + "<br><b>" + rating.difficulty + "</b>&nbsp Level Of Difficulty"
-                                       + "<br><b>" + rating.takeagain + "</b>&nbsp Would Take Again"
+                                       + "<br><b>" + rating.overall + "</b> Overall Quality"
+                                       + "<br><b>" + rating.difficulty + "</b> Level Of Difficulty"
+                                       + "<br><b>" + rating.takeagain + "</b> Would Take Again"
                                        + "<br>From <b>" + rating.numOfRatings + " student rating" + (rating.numOfRatings > 1 ? "s" : "") + "</b>"
-                                       + "<br>Prof Hotness: <b>" + rating.hotness.toUpperCase() + "</b>&nbsp"
+                                       + "<br>Prof Hotness: <b>" + rating.hotness.toUpperCase() + "</b>"
                     }
                    
                 }
