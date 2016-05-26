@@ -1,6 +1,6 @@
 start = Date.now();
 
-htmlParser = new DOMParser();
+
 
 debugMode = false;
 if(debugMode){console.log("McGill Enhanced Debug mode is ON");}
@@ -36,28 +36,34 @@ function getProfUrl(profName, general) {
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
         try {
-            var profURL = data.url;
-            var profURLHTML = data.responseXML;
-
-            htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-
-            listings = htmlDoc.getElementsByClassName("listing PROFESSOR")
-
-            if (listings.length == 0) { 
-                if (general) {
-                    getProfContent(profName, profURL, 0);
-                }
-                else {
-                    getProfUrl(profName, true);
-                }
-            }
-            else if (listings.length == 1) {               
-                var profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
-                profURL = "http://www.ratemyprofessors.com/" + profURLId;
-                getProfContent(profName, profURL, 1);
+            if (data.responseXML == "error") {
+                console.log(data)
             }
             else {
-                getProfContent(profName, profURL, 2);
+                var profURL = data.url;
+                var profURLHTML = data.responseXML;
+
+                htmlParser = new DOMParser();
+                htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
+
+                listings = htmlDoc.getElementsByClassName("listing PROFESSOR")
+
+                if (listings.length == 0) { 
+                    if (general) {
+                        getProfContent(profName, profURL, 0);
+                    }
+                    else {
+                        getProfUrl(profName, true);
+                    }
+                }
+                else if (listings.length == 1) {               
+                    var profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
+                    profURL = "http://www.ratemyprofessors.com/" + profURLId;
+                    getProfContent(profName, profURL, 1);
+                }
+                else {
+                    getProfContent(profName, profURL, 2);
+                }
             }
         }
         catch(err) {
@@ -77,57 +83,75 @@ function getProfContent(profName, profURL, res) {
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
         try {
-            var profURL = data.url;
-            var profURLHTML = data.responseXML;
-
-            htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-
-            var rating = {
-                overall: -1,
-                difficulty: -1,
-                takeagain: -1,
-                hotness: -1
+            if (data.responseXML == "error") {
+                console.log(data)
             }
-            
+            else {
+                var profURL = data.url;
+                var profURLHTML = data.responseXML;
 
-            if (res == 0) {
-                tooltipContent = "Instructor not found.";
-            }
-            else if (res == 2) {
-                tooltipContent = "Multiple Instructors found<br>Please click to see results";
-            }
-            else if (res == 1) {
-                //check holly dressel in ENVR400(13-14) and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
+                htmlParser = new DOMParser();
+                htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
 
-                if (htmlDoc.getElementsByClassName("rating-count")[0] === undefined) {
-                    tooltipContent = "This instructor has no ratings<br>Click to be the first to rate";
+                var rating = {
+                    firstName: "ERROR",
+                    lastName: "ERROR",
+                    overall: "ERROR",
+                    difficulty: "ERROR",
+                    takeagain: "ERROR",
+                    hotness: "ERROR",
+                    numOfRatings: "ERROR"
                 }
-                else {
-
-                    gradeElements = htmlDoc.getElementsByClassName("grade");
-                    
-                    rating.overall = gradeElements[0].innerHTML
-                    rating.takeagain = gradeElements[1].innerHTML
-                    rating.difficulty = gradeElements[2].innerHTML
-                    rating.hotness = gradeElements[3].innerHTML
-                    if (rating.hotness != undefined) {
-                        rating.hotness = rating.hotness.match(/chilis\/(.+)\-chili\.png/)[1];
+                
+                if (res == 0) {
+                    tooltipContent = "Instructor not found";
+                }
+                else if (res == 2) {
+                    tooltipContent = "Multiple Instructors found<br>Please click to see results";
+                }
+                else if (res == 1) {
+                    if (htmlDoc.getElementsByClassName("rating-count")[0] === null) {
+                        //check holly dressel in ENVR400(13-14) and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
+                        tooltipContent = "This instructor has no ratings<br>Click to be the first to rate";
                     }
-                    
-                    firstName = htmlDoc.getElementsByClassName("pfname")[0].innerHTML.trim();
-                    lastName = htmlDoc.getElementsByClassName("plname")[0].innerHTML.trim();
+                    else {
+                        gradeElements = htmlDoc.getElementsByClassName("grade");
+                        if (gradeElements[0] != null) {
+                            rating.overall = gradeElements[0].innerText
+                        }
+                        if (gradeElements[1] != null) {
+                            rating.takeagain = gradeElements[1].innerText
+                        }
+                        if (gradeElements[2] != null) {
+                            rating.difficulty = gradeElements[2].innerText
+                        }
+                        if (gradeElements[3] != null) {
+                            rating.hotness = gradeElements[3].innerHTML
+                            if (rating.hotness != null) {
+                                rating.hotness = rating.hotness.match(/chilis\/([A-Za-z]+)\-chili\.png/)[1];
+                            }
+                        }
+                        if (htmlDoc.getElementsByClassName("pfname")[0] != null) {
+                            rating.firstName = htmlDoc.getElementsByClassName("pfname")[0].innerText.trim();
+                        }
+                        if (htmlDoc.getElementsByClassName("plname")[0] != null) {
+                            rating.lastName = htmlDoc.getElementsByClassName("plname")[0].innerText.trim();
+                        }
+                        if (htmlDoc.getElementsByClassName("rating-count")[0] != null) {
+                            rating.numOfRatings = htmlDoc.getElementsByClassName("rating-count")[0].innerText.match(/([0-9]+) Student Ratings/)[1]
+                        }
 
-                    tooltipContent = "<b>" + firstName + " " + lastName + "</b>"
-                    + "<br><b>" + rating.overall + "</b>&nbsp Overall Quality"
-                    + "<br><b>" + rating.difficulty + "</b>&nbsp Level Of Difficulty"
-                    + "<br><b>" + rating.takeagain + "</b>&nbsp Would Take Again"
-
-                    numOfRatings = htmlDoc.getElementsByClassName("rating-count")[0].innerHTML.match(/([0-9]+) Student Ratings/)[1]
-                    tooltipContent += "<br>From <b>" + numOfRatings + " student rating" + (numOfRatings > 1 ? "s" : "") + "</b>"
-                                    + "<br>Prof Hotness: <b>" + rating.hotness.toUpperCase() + "</b>&nbsp"
+                        tooltipContent = "<b>" + rating.firstName + " " + rating.lastName + "</b>"
+                                       + "<br><b>" + rating.overall + "</b>&nbsp Overall Quality"
+                                       + "<br><b>" + rating.difficulty + "</b>&nbsp Level Of Difficulty"
+                                       + "<br><b>" + rating.takeagain + "</b>&nbsp Would Take Again"
+                                       + "<br>From <b>" + rating.numOfRatings + " student rating" + (rating.numOfRatings > 1 ? "s" : "") + "</b>"
+                                       + "<br>Prof Hotness: <b>" + rating.hotness.toUpperCase() + "</b>&nbsp"
+                    }
+                   
                 }
+                makeProfSection(profName, profURL, tooltipContent);
             }
-            makeProfSection(profName, profURL, tooltipContent);
         }
         catch(err) {
             console.log("Error: " + profName.firstName + " " + profName.lastName + " " + err);
@@ -170,7 +194,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     addYearMenu();
 
-    if (urlYearF == 2009) {
+    if (urlYearF <= 2010) {
         document.getElementById("inner-container").style.width = "100%";
     }
 
@@ -925,6 +949,7 @@ function validateVSBLink(linkData) {
 
         if (data.responseXML != "error") {
 
+            htmlParser = new DOMParser();
             htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
             if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
                 linkData.valid = true

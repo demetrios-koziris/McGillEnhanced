@@ -15,7 +15,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
             url: request.url
         };
 
-        xhttp.timeout = 800;
+        xhttp.timeout = 2000;
 
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4) {
