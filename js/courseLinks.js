@@ -38,6 +38,8 @@ function getProfUrl(profName, general) {
         try {
             if (data.responseXML == "error") {
                 console.log(data)
+                tooltipContent = "Ratemyprofessors data failed to load<br>Please refresh the page to try again"
+                makeProfSection(profName, profURL, tooltipContent);
             }
             else {
                 var profURL = data.url;
@@ -85,6 +87,8 @@ function getProfContent(profName, profURL, res) {
         try {
             if (data.responseXML == "error") {
                 console.log(data)
+                tooltipContent = "Ratemyprofessors data failed to load<br>Please refresh the page to try again"
+                makeProfSection(profName, profURL, tooltipContent);
             }
             else {
                 var profURL = data.url;
