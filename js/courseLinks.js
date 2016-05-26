@@ -186,6 +186,36 @@ function makeProfSection(profName, profURL, tooltipContent) {
     });
 }
 
+function generateProfNameObject(name) {
+    name = name.trim()
+    splitName = name.split(" ");
+    profName = {
+        fullNameKey: name.replace(/\W/g, ''),
+        fullName: name.replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
+        firstName: encodeSymbolsWin1252(splitName[0]),
+        lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
+    }
+    return profName;
+}
+
+function generateFormButton(onColor, buttonValue) {
+    var formButton = document.createElement('input');
+    formButton.setAttribute("type", "submit");
+    formButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, " + onColor + ", #C5C5C5)" : "#ECF3FF") + "\"");
+    formButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+    formButton.setAttribute("value", buttonValue);
+    formButton.className = "form-submit";
+    formButton.style.width="100%";
+    formButton.style.height="35px";
+    formButton.style.margin="4px 0px";
+    if (isNewStyle) {
+        formButton.style.border = "1px solid #5B5B5A";
+        formButton.style.WebkitBoxShadow  = "none";
+        formButton.style.boxShadow = "none";
+    }
+    return formButton
+}
+
 
 
 
@@ -235,7 +265,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     courseEvalParamsString = courseEvalParams;
 
 
-    ME_data = {
+    vsbData = {
         vsbFall: { 
             url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, 
             valid: false
@@ -248,7 +278,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         total: (urlYearF >= sysYear-1 ? 2 : 0),
         codeReady: false
     }
-    if(debugMode){console.log(ME_data);}
+    if(debugMode){console.log(vsbData);}
     validateExternalLinks();
 
 
@@ -267,109 +297,40 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     profs = {};
     profsLength = 0;
-    profsF = [];
-    profsW = [];
-    profsS = [];
+    profsByTerm = { Fall: [], Winter: [], Summer: [] }
 
-    profsSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
+    profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
+    if (profsFullSource.match(/There are no professors/) == null) {
 
-    if (profsSource.match(/There are no professors/) == null) {
-
-        profsSource = profsSource.split("Instructors:")[1];
+        profsFullSource = profsFullSource.split("Instructors:")[1];
         newProfsHTML = ""
-        profsSourceF = profsSource.split("(Fall)");
-        if (profsSourceF.length > 1) {
-            profsF = profsSourceF[0].split(",");
-            newProfsHTML += "<p>Instructors (Fall): "
-            for (p=0; p<profsF.length; p++) {
-                
-                profsF[p] = profsF[p].trim()
-                splitName = profsF[p].split(" ");
-                
-                profName = {
-                    fullNameKey: profsF[p].replace(/\W/g, ''),
-                    fullName: profsF[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
-                    firstName: encodeSymbolsWin1252(splitName[0]),
-                    lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
-                }
 
-                profs[profName.firstName+profName.lastName] = profName;
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
-                if (p <= profsF.length-2) {
-                    newProfsHTML += ", "
+        for (termKey in profsByTerm) {
+
+            profsTermSource = profsFullSource.split("(" + termKey + ")");
+            if (profsTermSource.length > 1) {
+                profsByTerm[termKey] = profsTermSource[0].split(",");
+                newProfsHTML += "<p>Instructors (" + termKey + "): "
+                for (p=0; p<profsByTerm[termKey].length; p++) {
+
+                    profName = generateProfNameObject(profsByTerm[termKey][p]);
+                    profs[profName.firstName+profName.lastName] = profName;
+                    newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName 
+                                 + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
+                    if (p <= profsByTerm[termKey].length-2) {
+                        newProfsHTML += ", "
+                    }
+                    if (p == profsByTerm[termKey].length-2) {
+                        newProfsHTML += "and "
+                    }
                 }
-                if (p == profsF.length-2) {
-                    newProfsHTML += "and "
-                }
+                newProfsHTML += "</p>"
+                if(debugMode){console.log(profsByTerm[termKey]);}
+                profsFullSource = profsTermSource[1]
             }
-            newProfsHTML += "</p>"
-            if(debugMode){console.log(profsF);}
-            profsSource = profsSourceF[1]
-        }
-
-        profsSourceW = profsSource.split("(Winter)");
-        if (profsSourceW.length > 1) {
-            profsW = profsSourceW[0].split(",");
-            newProfsHTML += "<p>Instructors (Winter): "
-            for (p=0; p<profsW.length; p++) {
-
-                profsW[p] = profsW[p].trim()
-                splitName = profsW[p].split(" ");
-                
-                profName = {
-                    fullNameKey: profsW[p].replace(/\W/g, ''),
-                    fullName: profsW[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
-                    firstName: encodeSymbolsWin1252(splitName[0]),
-                    lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
-                }
-
-                profs[profName.firstName+profName.lastName] = profName;
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
-                if (p <= profsW.length-2) {
-                    newProfsHTML += ", "
-                }
-                if (p == profsW.length-2) {
-                    newProfsHTML += "and "
-                }
-            }
-            newProfsHTML += "</p>"
-            if(debugMode){console.log(profsW);}
-            profsSource = profsSourceW[1]
-        }
-
-        profsSourceS = profsSource.split("(Summer)");
-        if (profsSourceS.length > 1) {
-            profsS = profsSourceS[0].split(",");
-            newProfsHTML += "<p>Instructors (Summer): "
-            for (p=0; p<profsS.length; p++) {
-                
-                profsS[p] = profsS[p].trim()
-                splitName = profsS[p].split(" ");
-                
-                profName = {
-                    fullNameKey: profsS[p].replace(/\W/g, ''),
-                    fullName: profsS[p].replace(/ /g, "&nbsp").replace(/-/g, "&#8209"),
-                    firstName: encodeSymbolsWin1252(splitName[0]),
-                    lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
-                }
-
-                profs[profName.firstName+profName.lastName] = profName;
-                newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
-
-                if (p <= profsS.length-2) {
-                    newProfsHTML += ", "
-                }
-                if (p == profsS.length-2) {
-                    newProfsHTML += "and "
-                }
-            }
-            newProfsHTML += "</p>"
-            if(debugMode){console.log(profsS);}
-            profsSource = profsSourceS[1]
         }
 
         document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML
-
 
         profsLength = Object.keys(profs).length
         if (profsLength > 0) {
@@ -429,35 +390,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     courseEvalTitle.style.margin = "0px";
     courseEval.appendChild(courseEvalTitle);
 
-    var courseEvalForm = document.createElement('form');
-    courseEvalForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
-    courseEvalForm.setAttribute("method", "POST");
-    courseEvalForm.setAttribute("name", "search_form");
-    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
-    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
-    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
-    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
-    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
-    courseEvalForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
-    courseEval.appendChild(courseEvalForm);
-
-    var courseEvalButton = document.createElement('input');
-    courseEvalButton.setAttribute("type", "submit");
-    courseEvalButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");
-    //courseEvalButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-    courseEvalButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-    courseEvalButton.setAttribute("name", "");
-    courseEvalButton.setAttribute("value", "View Mercury Course Evaluations");
-    courseEvalButton.className = "form-submit";
-    courseEvalButton.style.width="100%";
-    courseEvalButton.style.height="35px";
-    courseEvalButton.style.margin="4px 0px";
-    if (isNewStyle) {
-        courseEvalButton.style.border = "1px solid #5B5B5A";
-        courseEvalButton.style.WebkitBoxShadow  = "none";
-        courseEvalButton.style.boxShadow = "none";
-    }
-    courseEvalForm.appendChild(courseEvalButton);
 
     if (courseName in docuumURLs) {
 
@@ -465,28 +397,31 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         var docuumForm = document.createElement('form');
         docuumForm.setAttribute("action", docuumURL);
-        docuumForm.setAttribute("method", "POST");
         courseEval.appendChild(docuumForm);
 
-        var docuumButton = document.createElement('input');
-        docuumButton.setAttribute("type", "submit");
-        //docuumButton.setAttribute("onmouseover", "this.style.border=\"2px solid #5B5B5A\"");
-        //docuumButton.setAttribute("onmouseout", "this.style.border=\"1px solid #5B5B5A\"");
-        docuumButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #56afe5, #C5C5C5)" : "#ECF3FF") + "\"");
-        //docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        docuumButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-        docuumButton.setAttribute("value", "View Docuum Course Reviews");
-        docuumButton.className = "form-submit";
-        docuumButton.style.width="100%";
-        docuumButton.style.height="35px";
-        docuumButton.style.margin="4px 0px";
-        if (isNewStyle) {
-            docuumButton.style.border = "1px solid #5B5B5A";
-            docuumButton.style.WebkitBoxShadow  = "none";
-            docuumButton.style.boxShadow = "none";
-        }
+        var docuumButtonValue = "View Docuum Course Reviews"
+        var docuumButton = generateFormButton("#56AFE5", docuumButtonValue)
         docuumForm.appendChild(docuumButton);
     }
+
+
+    var mercuryForm = document.createElement('form');
+    mercuryForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
+    mercuryForm.setAttribute("method", "POST");
+    mercuryForm.setAttribute("name", "search_form");
+    mercuryForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
+    mercuryForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
+    mercuryForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
+    mercuryForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
+    mercuryForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
+    mercuryForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
+    courseEval.appendChild(mercuryForm);
+
+    var mercuryButtonValue = "View Mercury Course Evaluations";
+    var mercuryButton = generateFormButton("#E54944", mercuryButtonValue)
+    mercuryForm.appendChild(mercuryButton);
+
+    
 
 
     if (courseName in recordingURLs) {
@@ -507,54 +442,24 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
                 var recordingsForm = document.createElement('form');
                 recordingsForm.setAttribute("action", yearRecordingURLs[r].url);
-                recordingsForm.setAttribute("method", "POST");
                 recordings.appendChild(recordingsForm);
 
-                var recordingsButton = document.createElement('input');
-                recordingsButton.setAttribute("type", "submit");
-                recordingsButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");
-                //recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-                recordingsButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-                recordingsButton.setAttribute("value", "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures");
-                recordingsButton.className = "form-submit";
-                recordingsButton.style.width="100%";
-                recordingsButton.style.height="35px";
-                recordingsButton.style.margin="4px 0px";
-                if (isNewStyle) {
-                    recordingsButton.style.border = "1px solid #5B5B5A";
-                    recordingsButton.style.WebkitBoxShadow  = "none";
-                    recordingsButton.style.boxShadow = "none";
-                }
+                var recordingsButtonValue = "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures";
+                var recordingsButton = generateFormButton("#E54944", recordingsButtonValue)
                 recordingsForm.appendChild(recordingsButton);    
             }
-
-
         }
         else {
             years = Object.keys(recordingURLs[courseName])
             maxYear = Math.max.apply(Math, years);
-
             maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
 
             var recordingsForm = document.createElement('form');
             recordingsForm.setAttribute("action", maxYearURL);
             recordings.appendChild(recordingsForm);
 
-            var recordingsButton = document.createElement('input');
-            recordingsButton.setAttribute("type", "submit");
-            recordingsButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");
-            //recordingsButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            recordingsButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-            recordingsButton.setAttribute("value", "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures");
-            recordingsButton.className = "form-submit";
-            recordingsButton.style.width="100%";
-            recordingsButton.style.height="35px";
-            recordingsButton.style.margin="4px 0px";
-            if (isNewStyle) {
-                recordingsButton.style.border = "1px solid #5B5B5A";
-                recordingsButton.style.WebkitBoxShadow  = "none";
-                recordingsButton.style.boxShadow = "none";
-            }
+            var recordingsButtonValue = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
+            var recordingsButton = generateFormButton("#E54944", recordingsButtonValue)
             recordingsForm.appendChild(recordingsButton);
         }
 
@@ -562,8 +467,6 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
 
     if (courseTermsCodes.length > 0) {
-
-        //formsBlock.appendChild(document.createElement("br"));
 
         var courseReg = document.createElement('div');
         courseReg.style.margin = "0px 0px 8px 0px";
@@ -613,24 +516,10 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
             courseReg.appendChild(courseRegForm);
 
-            var courseRegButton = document.createElement('input');
-            courseRegButton.setAttribute("type", "submit");
-            courseRegButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #e54944, #C5C5C5)" : "#ECF3FF") + "\"");            
-            //courseRegButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            courseRegButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
+            var courseRegButtonValue = "View " + courseTermsCodes[i].name + " Registration";
+            var courseRegButton = generateFormButton("#E54944", courseRegButtonValue)
             courseRegButton.setAttribute("name", "SUB_BTN");
-            courseRegButton.setAttribute("value", "View " + courseTermsCodes[i].name + " Registration");
-            courseRegButton.className = "form-submit";
-            courseRegButton.style.width="100%";
-            courseRegButton.style.height="35px";
-            courseRegButton.style.margin="4px 0px";
-            if (isNewStyle) {
-                courseRegButton.style.border = "1px solid #5B5B5A";
-                courseRegButton.style.WebkitBoxShadow  = "none";
-                courseRegButton.style.boxShadow = "none";
-            }
             courseRegForm.appendChild(courseRegButton);
-
         }
     }
 
@@ -654,24 +543,10 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         var docuumForm = document.createElement('form');
         docuumForm.setAttribute("action", docuumURL);
-        docuumForm.setAttribute("method", "POST");
         other.appendChild(docuumForm);
 
-        var docuumButton = document.createElement('input');
-        docuumButton.setAttribute("type", "submit");
-        docuumButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #56afe5, #C5C5C5)" : "#ECF3FF") + "\"");
-        //docuumButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        docuumButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-        docuumButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum");
-        docuumButton.className = "form-submit";
-        docuumButton.style.width="100%";
-        docuumButton.style.height="35px";
-        docuumButton.style.margin="4px 0px";
-        if (isNewStyle) {
-            docuumButton.style.border = "1px solid #5B5B5A";
-            docuumButton.style.WebkitBoxShadow  = "none";
-            docuumButton.style.boxShadow = "none";
-        }
+        var docuumButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum";
+        var docuumButton = generateFormButton("#56AFE5", docuumButtonValue)
         docuumForm.appendChild(docuumButton);
     }
 
@@ -683,21 +558,8 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         wikinotesForm.setAttribute("action", wikinotesURL);
         other.appendChild(wikinotesForm);
 
-        var wikinotesButton = document.createElement('input');
-        wikinotesButton.setAttribute("type", "submit");
-        wikinotesButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #FFFFFF, #C5C5C5)" : "#ECF3FF") + "\"");
-        //wikinotesButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-        wikinotesButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-        wikinotesButton.setAttribute("value", "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes");
-        wikinotesButton.className = "form-submit";
-        wikinotesButton.style.width="100%";
-        wikinotesButton.style.height="35px";
-        wikinotesButton.style.margin="4px 0px";
-        if (isNewStyle) {
-            wikinotesButton.style.border = "1px solid #5B5B5A";
-            wikinotesButton.style.WebkitBoxShadow  = "none";
-            wikinotesButton.style.boxShadow = "none";
-        }
+        var wikinotesButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes"
+        var wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue)
         wikinotesForm.appendChild(wikinotesButton);
     }
 
@@ -805,7 +667,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         sidebarBlock.appendChild(relatedPrograms);
     }
 
-        //insert enhanced sidebar
+    //insert enhanced sidebar
     var container = document.getElementById(isNewStyle ? "inner-container" : "container");
     if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") != null) {
         document.createElement("div").appendChild(document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
@@ -820,9 +682,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
         container.insertBefore(sidebar, document.getElementById("footer"));
     }
 
-    ME_data.codeReady = true
+    vsbData.codeReady = true
 
-    if (ME_data.total == ME_data.done && ME_data.codeReady == true) {
+    if (vsbData.total == vsbData.done && vsbData.codeReady == true) {
         addVerifiedLinks(sidebar);
     }
     
@@ -865,7 +727,7 @@ else {
 
 function addVerifiedLinks (sidebar) {
 
-    if (ME_data.vsbFall.valid || ME_data.vsbWinter.valid) {
+    if (vsbData.vsbFall.valid || vsbData.vsbWinter.valid) {
         //console.log(xmlRequestInfo);
         var vsb = document.createElement('div');
         vsb.style.margin = "0px 0px 8px 0px";
@@ -877,50 +739,27 @@ function addVerifiedLinks (sidebar) {
         vsbTitle.style.margin = "0px";
         vsb.appendChild(vsbTitle);
 
-        if (ME_data.vsbFall.valid) {
+        if (vsbData.vsbFall.valid) {
+
             var vsbFallForm = document.createElement('form');
-            vsbFallForm.setAttribute("action", ME_data.vsbFall.url);
+            vsbFallForm.setAttribute("action", vsbData.vsbFall.url);
             vsbFallForm.setAttribute("method", "POST");
             vsb.appendChild(vsbFallForm);
 
-            var vsbFallButton = document.createElement('input');
-            vsbFallButton.setAttribute("type", "submit");
-            vsbFallButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #7173f6, #C5C5C5)" : "#ECF3FF") + "\"");
-            //vsbFallButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            vsbFallButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-            vsbFallButton.setAttribute("value", "View on VSB Fall " + urlYearF);
-            vsbFallButton.className = "form-submit";
-            vsbFallButton.style.width="100%";
-            vsbFallButton.style.height="35px";
-            vsbFallButton.style.margin="4px 0px";
-            if (isNewStyle) {
-                vsbFallButton.style.border = "1px solid #5B5B5A";
-                vsbFallButton.style.WebkitBoxShadow  = "none";
-                vsbFallButton.style.boxShadow = "none";
-            }
+            var vsbFallButtonValue = "View on VSB Fall " + urlYearF
+            var vsbFallButton = generateFormButton("#7173F6", vsbFallButtonValue)
             vsbFallForm.appendChild(vsbFallButton);
         }
-        if (ME_data.vsbWinter.valid) {
+        
+        if (vsbData.vsbWinter.valid) {
+
             var vsbWinterForm = document.createElement('form');
-            vsbWinterForm.setAttribute("action", ME_data.vsbWinter.url);
+            vsbWinterForm.setAttribute("action", vsbData.vsbWinter.url);
             vsbWinterForm.setAttribute("method", "POST");
             vsb.appendChild(vsbWinterForm);
 
-            var vsbWinterButton = document.createElement('input');
-            vsbWinterButton.setAttribute("type", "submit");
-            vsbWinterButton.setAttribute("onmouseover", "this.style.background=\"" + (isNewStyle ? "-webkit-linear-gradient(left, #7173f6, #C5C5C5)" : "#ECF3FF") + "\"");
-            //vsbWinterButton.setAttribute("onmouseover", "this.style.backgroundColor=\"" + (isNewStyle ? "#9A9A9A" : "#ECF3FF") + "\"");
-            vsbWinterButton.setAttribute("onmouseout", "this.style.background=\"" + (isNewStyle ? "#C5C5C5" : "#F4F5ED") + "\"");
-            vsbWinterButton.setAttribute("value", "View on VSB Winter " + urlYearW);
-            vsbWinterButton.className = "form-submit";
-            vsbWinterButton.style.width="100%";
-            vsbWinterButton.style.height="35px";
-            vsbWinterButton.style.margin="4px 0px";
-            if (isNewStyle) {
-                vsbWinterButton.style.border = "1px solid #5B5B5A";
-                vsbWinterButton.style.WebkitBoxShadow  = "none";
-                vsbWinterButton.style.boxShadow = "none";
-            }
+            var vsbWinterButtonValue = "View on VSB Winter " + urlYearF
+            var vsbWinterButton = generateFormButton("#7173F6", vsbWinterButtonValue)
             vsbWinterForm.appendChild(vsbWinterButton);
         }
     }
@@ -933,8 +772,8 @@ function addVerifiedLinks (sidebar) {
 function validateExternalLinks() {
 
     if (urlYearF >= sysYear-1) {
-        validateVSBLink(ME_data.vsbFall)
-        validateVSBLink(ME_data.vsbWinter)
+        validateVSBLink(vsbData.vsbFall)
+        validateVSBLink(vsbData.vsbWinter)
     }
 }
 
@@ -948,8 +787,8 @@ function validateVSBLink(linkData) {
     }
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
 
-        ME_data.done++;
-        if(debugMode){console.log(ME_data);}
+        vsbData.done++;
+        if(debugMode){console.log(vsbData);}
 
         if (data.responseXML != "error") {
 
@@ -960,7 +799,7 @@ function validateVSBLink(linkData) {
             }
         }
 
-        if (ME_data.total == ME_data.done && ME_data.codeReady == true) {
+        if (vsbData.total == vsbData.done && vsbData.codeReady == true) {
             addVerifiedLinks(sidebar);
         }  
     });
