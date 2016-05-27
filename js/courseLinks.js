@@ -1,7 +1,5 @@
 start = Date.now();
 
-
-
 debugMode = false;
 if(debugMode){console.log("McGill Enhanced Debug mode is ON");}
 
@@ -70,6 +68,8 @@ function getProfUrl(profName, general) {
         }
         catch(err) {
             console.log("Error: " + profName.firstName + " " + profName.lastName + " " + err);
+            tooltipContent = "Ratemyprofessors data failed to load<br>Please refresh the page to try again"
+            makeProfSection(profName, profURL, tooltipContent);
         }
     });
 }
@@ -159,6 +159,8 @@ function getProfContent(profName, profURL, res) {
         }
         catch(err) {
             console.log("Error: " + profName.firstName + " " + profName.lastName + " " + err);
+            tooltipContent = "Ratemyprofessors data failed to load<br>Please refresh the page to try again"
+            makeProfSection(profName, profURL, tooltipContent);
         }
     });
 }
@@ -442,6 +444,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
                 var recordingsForm = document.createElement('form');
                 recordingsForm.setAttribute("action", yearRecordingURLs[r].url);
+                recordingsForm.setAttribute("method", "POST");
                 recordings.appendChild(recordingsForm);
 
                 var recordingsButtonValue = "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures";
@@ -750,7 +753,7 @@ function addVerifiedLinks (sidebar) {
             var vsbFallButton = generateFormButton("#7173F6", vsbFallButtonValue)
             vsbFallForm.appendChild(vsbFallButton);
         }
-        
+
         if (vsbData.vsbWinter.valid) {
 
             var vsbWinterForm = document.createElement('form');
