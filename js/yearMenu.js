@@ -1,7 +1,50 @@
 
+
+function generateOldStyleSearchURL() {
+    console.log("generating oldStyleSearchURL")
+
+    urlParams = getURLParams();
+}
+
+function generateNewStyleSearchURL() {
+    console.log("generating newStyleSearchURL")
+
+    urlParams = getURLParams();
+    searchURL = "https://www.mcgill.ca/study/"+urlYears+"/courses/search"
+
+    if (url.match(/apachesolr\_search/) == null) {
+        urlParams["query"] = url.match(/search\/([^\?]*)/)[1]
+        searchURL += "?search_api_views_fulltext="
+    }
+    else {
+        urlParams["query"] = url.match(/search\/apachesolr_search\/([^\?]*)/)[1]
+        searchURL += "/all?search_api_views_fulltext="
+    }
+    console.log(urlParams)
+    searchURL += urlParams["query"]
+    return searchURL
+}
+
+function getURLParams() {
+    paramsJSON = {}
+    paramsString = decodeURI(window.location.search.substring(1)).replace(/\%3A/g, ":")
+    paramsArray = paramsString.split("&")
+    for (var p = 0; p < paramsArray.length; p++) {
+        param = paramsArray[p].split("=");
+        if (param[0] != "") {
+            paramsJSON[param[0]] = param[1]
+        }
+    }
+    return paramsJSON
+}
+
+
 function addYearMenu() {
 
     url = window.location.href;
+
+
+    
 
     if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
 
@@ -13,9 +56,14 @@ function addYearMenu() {
         currentYear = (sysMonth > 5 ? sysYear : sysYear-1)
         isNewStyle = document.getElementsByClassName("transition").length > 0;
         firstYear = Math.max(sysYear-10, 2010);
-
+        isSearchPage = (url.match(/search/) != null)
+    
 
         if (!isNewStyle) {
+
+            if (isSearchPage) {
+                newStyleSearchURL = generateNewStyleSearchURL()
+            }
 
             var yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
@@ -33,10 +81,14 @@ function addYearMenu() {
 
                 for (i = j; i < j+10; i++)
                 {
-                    yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));
-                    //convert filter url attributes from old to new style
-                    if (i <= 2009 || i >= 2016) {
-                        yearMenuItemURL = yearMenuItemURL.replace("filters=ss_subject%3A", "f[0]=field_subject_code%3A");
+                    yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));       
+                    if (isSearchPage && (i <= 2010 || i >= 2016)) {
+                        try {
+                            yearMenuItemURL = newStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
+                        }
+                        catch(err) {
+                            console.log(err);
+                        } 
                     }
 
                     var yearMenuItemTD = document.createElement('td');
@@ -115,6 +167,10 @@ function addYearMenu() {
         }
         else {
 
+            if (isSearchPage) {
+                oldStyleSearchURL = generateOldStyleSearchURL()
+            }
+
             for (j = firstYear; j <= sysYear; j += 10)
             {
                 var yearMenuBarDIV = document.createElement('div');
@@ -128,10 +184,15 @@ function addYearMenu() {
 
                 for (i = j; i < j+10; i++)
                 {
-                    yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));
-                    //convert filter url attributes from old to new style
-                    if (i > 2009 || i < 2016) {
-                        yearMenuItemURL = yearMenuItemURL.replace("f[0]=field_subject_code%3A", "filters=ss_subject%3A");
+                    yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
+                    if (isSearchPage && (i > 2010 || i < 2016)) {
+                        try {
+                            yearMenuItemURL = oldStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
+                        }
+                        catch(err) {
+                            console.log(err);
+                        }
+
                     }
 
                     var yearMenuItemLI = document.createElement('li');
