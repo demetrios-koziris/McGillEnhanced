@@ -13,30 +13,72 @@ function generateNewStyleSearchURL() {
     searchURL = "https://www.mcgill.ca/study/"+urlYears+"/courses/search"
 
     if (url.match(/apachesolr\_search/) == null) {
-        urlParams["query"] = url.match(/search\/([^\?]*)/)[1]
-        searchURL += "?search_api_views_fulltext="
+        if (url.match(/search\/([^\?]*)/) == null) {
+            urlParams["query"] = ""
+        }
+        else {
+            urlParams["query"] = url.match(/search\/([^\?]*)/)[1]
+        }
+        searchURL += "?search_api_views_fulltext=" + urlParams["query"] + "&"
     }
     else {
         urlParams["query"] = url.match(/search\/apachesolr_search\/([^\?]*)/)[1]
-        searchURL += "/all?search_api_views_fulltext="
+        searchURL += "/all?search_api_views_fulltext=" + urlParams["query"] + "&"
+    }
+
+    fIndex = 0
+    if ("ss_subject" in urlParams) {
+
+        paramArray = urlParams["ss_subject"].split(",")
+        for (var p = 0; p < paramArray.length; p++) {
+            searchURL += "f["+fIndex+"]=" + "field_subject_code%3A" + paramArray[p] + "&"
+            fIndex++
+        }
     }
     console.log(urlParams)
-    searchURL += urlParams["query"]
+    //console.log(searchURL)
     return searchURL
 }
 
 function getURLParams() {
     paramsJSON = {}
     paramsString = decodeURI(window.location.search.substring(1)).replace(/\%3A/g, ":")
+    paramsString = window.location.search.substring(1)
     paramsArray = paramsString.split("&")
     for (var p = 0; p < paramsArray.length; p++) {
         param = paramsArray[p].split("=");
         if (param[0] != "") {
-            paramsJSON[param[0]] = param[1]
+            if (!isNewStyle && param[0] == "filters") {
+                console.log(param[1])
+                filtersArray = param[1].replace(/\%22/g, "").split("%20")
+                //filtersArray = param[1].replace(/\%22([^\%]*)\%20([^\%]*)\%22/g, "$1" + "$2").split("%20").replace(/\%22/g, "");
+                console.log(filtersArray)
+                prevKey = ""
+                for (var f = 0; f < filtersArray.length; f++) {
+                    filterParam = filtersArray[f].split("%3A")
+                    console.log(filterParam)
+                    if (filterParam.length > 1) {
+                        if (filterParam[0] in paramsJSON) {
+                            paramsJSON[filterParam[0]] += "," + filterParam[1]
+                        }
+                        else {
+                            paramsJSON[filterParam[0]] = filterParam[1]   
+                            prevKey =  filterParam[0]                        
+                        }
+                    }
+                    else {
+                        paramsJSON[prevKey] += " " + filterParam[0]  
+                    }
+                }
+            } else {
+                paramsJSON[param[0]] = param[1]
+            }
         }
     }
+    console.log(paramsJSON )
     return paramsJSON
 }
+
 
 
 function addYearMenu() {

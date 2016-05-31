@@ -222,6 +222,8 @@ function generateFormButton(onColor, buttonValue) {
 
 
 
+
+
 //Course name regex
 //regex = /([A-Z]{4})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 regex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
@@ -628,10 +630,9 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
         for (var p = 0; p < profKeys.length; p++) {
             profName = profs[profKeys[p]].fullName
-            profURLName = profName.replace(/\&nbsp/g, "%20");
-            //https://www.mcgill.ca/study/2016-2017/courses/search?search_api_views_fulltext=thomas&sort_by=field_subject_code
-            //url = "https://www.mcgill.ca/study/" + urlYears + "/search/apachesolr_search/\"" + prof + "\"?filters=type%3Acatalog";
+            profURLName = profName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
             profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
+            //profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?f[0]=instructors%3A" : "/") + profURLName;
 
             var profCoursesLinkDiv = document.createElement('div');
             profCoursesLinkDiv.className = (p==profKeys.length-1 ? "views-row views-row-last" : "views-row");
