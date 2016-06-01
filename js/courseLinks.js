@@ -9,7 +9,7 @@ url = window.location.href;
 var loadMessage = "McGill Enhanced is loading ratings!";
 
 function encodeSymbolsWin1252(string) {
-    return encodeURI(string).replace(/\%C3\%8/g, "%C").replace(/\%C3\%9/g, "%D").replace(/\%C3\%A/g, "%E").replace(/\%C3\%B/g, "%F").replace(/\'/, "%27");
+    return encodeURI(string).replace(/\%C3\%8/g, "%C").replace(/\%C3\%9/g, "%D").replace(/\%C3\%A/g, "%E").replace(/\%C3\%B/g, "%F").replace(/\'/, "%27").replace(/\-/g, "%20");
 }
 
 function updateProfURL(profKey, profURL) {
@@ -62,7 +62,22 @@ function getProfUrl(profName, general) {
                     getProfContent(profName, profURL, 1);
                 }
                 else {
-                    getProfContent(profName, profURL, 2);
+                    profURLId = 0
+                    for (var l = 0; l < listings.length && profURLId == 0; l++) {
+                        listingName = listings[l].getElementsByClassName("main")[0].innerText;
+                        listingFirstName = listingName.split(",")[1].trim(" ")
+                        if (getEditDistance(listingFirstName, profName.firstName)<=2 || listingName.match(profName.firstName) != null || profName.firstName.match(listingFirstName) != null) {
+                            profURLId = listings[l].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
+                        }
+                    }
+                    if (profURLId == 0) {
+                        getProfContent(profName, profURL, 2);
+                    }
+                    else {
+                        profURL = "http://www.ratemyprofessors.com/" + profURLId;
+                        getProfContent(profName, profURL, 1);
+                    }
+                    
                 }
             }
         }
@@ -230,6 +245,7 @@ regex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 
 if (url.match(/.+study.+courses.+[-]+/) != null) {
 
+
     addYearMenu();
 
     if (urlYearF <= 2010) {
@@ -305,14 +321,15 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
 
-    profsFullSourceArray = profsFullSource.match(/(Fall|Winter|Summer)/g)
-    for (var a = 0; a < profsFullSourceArray.length; a++) {
-        if (!(profsFullSourceArray[a] in profsByTerm)) {
-            profsByTerm[profsFullSourceArray[a]] = []
-        }
-    }
 
     if (profsFullSource.match(/There are no professors/) == null) {
+
+        profsFullSourceArray = profsFullSource.match(/(Fall|Winter|Summer)/g)
+        for (var a = 0; a < profsFullSourceArray.length; a++) {
+            if (!(profsFullSourceArray[a] in profsByTerm)) {
+                profsByTerm[profsFullSourceArray[a]] = []
+            }
+        }
 
         profsFullSource = profsFullSource.split("Instructors:")[1];
         newProfsHTML = ""
@@ -326,7 +343,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
                 for (p=0; p<profsByTerm[termKey].length; p++) {
 
                     profName = generateProfNameObject(profsByTerm[termKey][p]);
-                    profs[profName.firstName+profName.lastName] = profName;
+                    profs[profName.fullNameKey] = profName;
                     newProfsHTML += ("<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName 
                                  + " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>");
                     if (p <= profsByTerm[termKey].length-2) {
