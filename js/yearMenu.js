@@ -1,29 +1,36 @@
 
-
 function generateOldStyleSearchURL() {
-    console.log("generating oldStyleSearchURL")
-
     urlParams = getURLParams();
+    searchURL = "https://www.mcgill.ca/study/" + urlYears
+
+    if (url.match(/search\/all/) == null) {
+        //if url is a search couses page
+        searchURL += "/courses/search/" + urlParams["query"] + "?"
+    }
+    else {
+        //if url is a search all page
+        searchURL += "/search/apachesolr_search/" + urlParams["query"] + "?"
+    }
+
+    if ("field_subject_code" in urlParams) {
+        searchURL += "filters=ss_subject%3A" + urlParams["field_subject_code"] + "%20"
+    }
+
+    return searchURL
+
 }
 
 function generateNewStyleSearchURL() {
-    console.log("generating newStyleSearchURL")
-
     urlParams = getURLParams();
-    searchURL = "https://www.mcgill.ca/study/"+urlYears+"/courses/search"
+    searchURL = "https://www.mcgill.ca/study/" + urlYears
 
     if (url.match(/apachesolr\_search/) == null) {
-        if (url.match(/search\/([^\?]*)/) == null) {
-            urlParams["query"] = ""
-        }
-        else {
-            urlParams["query"] = url.match(/search\/([^\?]*)/)[1]
-        }
-        searchURL += "?search_api_views_fulltext=" + urlParams["query"] + "&"
+        //if url is a search couses page
+        searchURL += "/courses/search?search_api_views_fulltext=" + urlParams["query"] + "&"
     }
     else {
-        urlParams["query"] = url.match(/search\/apachesolr_search\/([^\?]*)/)[1]
-        searchURL += "/all?search_api_views_fulltext=" + urlParams["query"] + "&"
+        //if url is a search all page
+        searchURL += "/search/all?search_api_views_fulltext=" + urlParams["query"] + "&"
     }
 
     fIndex = 0
@@ -35,13 +42,27 @@ function generateNewStyleSearchURL() {
             fIndex++
         }
     }
-    console.log(urlParams)
-    //console.log(searchURL)
+
     return searchURL
 }
 
 function getURLParams() {
     paramsJSON = {}
+    paramsJSON["query"] = ""
+
+    if (!isNewStyle) {
+        if (url.match(/apachesolr\_search/) == null) {
+            //if url is a search couses page
+            if (url.match(/search\/([^\?]*)/) != null) {
+                paramsJSON["query"] = url.match(/search\/([^\?]*)/)[1]
+            }
+        }
+        else {
+            //if url is a search all page
+            paramsJSON["query"] = url.match(/search\/apachesolr_search\/([^\?]*)/)[1]
+        }
+    }
+
     paramsString = decodeURI(window.location.search.substring(1)).replace(/\%3A/g, ":")
     paramsString = window.location.search.substring(1)
     paramsArray = paramsString.split("&")
@@ -49,14 +70,14 @@ function getURLParams() {
         param = paramsArray[p].split("=");
         if (param[0] != "") {
             if (!isNewStyle && param[0] == "filters") {
-                console.log(param[1])
+                //console.log(param[1])
                 filtersArray = param[1].replace(/\%22/g, "").split("%20")
                 //filtersArray = param[1].replace(/\%22([^\%]*)\%20([^\%]*)\%22/g, "$1" + "$2").split("%20").replace(/\%22/g, "");
-                console.log(filtersArray)
+                //console.log(filtersArray)
                 prevKey = ""
                 for (var f = 0; f < filtersArray.length; f++) {
                     filterParam = filtersArray[f].split("%3A")
-                    console.log(filterParam)
+                    //console.log(filterParam)
                     if (filterParam.length > 1) {
                         if (filterParam[0] in paramsJSON) {
                             paramsJSON[filterParam[0]] += "," + filterParam[1]
@@ -70,12 +91,22 @@ function getURLParams() {
                         paramsJSON[prevKey] += " " + filterParam[0]  
                     }
                 }
-            } else {
+            } 
+            else if (isNewStyle && param[0].match(/f\[[0-9]+\]/) != null) {
+                fparam = param[1].split("%3A")
+                if (fparam.length > 1) {
+                    paramsJSON[fparam[0]] = fparam[1]
+                }
+            }
+            else if (param[0] == "search_api_views_fulltext") {
+                paramsJSON["query"] = param[1]
+            }
+            else {
                 paramsJSON[param[0]] = param[1]
             }
         }
     }
-    console.log(paramsJSON )
+    console.log(paramsJSON)
     return paramsJSON
 }
 
@@ -227,7 +258,7 @@ function addYearMenu() {
                 for (i = j; i < j+10; i++)
                 {
                     yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
-                    if (isSearchPage && (i > 2010 || i < 2016)) {
+                    if (isSearchPage && (i > 2010 && i < 2016)) {
                         try {
                             yearMenuItemURL = oldStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
                         }
