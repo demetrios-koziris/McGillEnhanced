@@ -301,9 +301,17 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
 
     profs = {};
     profsLength = 0;
-    profsByTerm = { Fall: [], Winter: [], Summer: [] }
+    profsByTerm = {}
 
     profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
+
+    profsFullSourceArray = profsFullSource.match(/(Fall|Winter|Summer)/g)
+    for (var a = 0; a < profsFullSourceArray.length; a++) {
+        if (!(profsFullSourceArray[a] in profsByTerm)) {
+            profsByTerm[profsFullSourceArray[a]] = []
+        }
+    }
+
     if (profsFullSource.match(/There are no professors/) == null) {
 
         profsFullSource = profsFullSource.split("Instructors:")[1];
@@ -412,6 +420,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
     var mercuryForm = document.createElement('form');
     mercuryForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
     mercuryForm.setAttribute("method", "POST");
+    mercuryForm.setAttribute("title", "Must be already signed into Minerva!");
     mercuryForm.setAttribute("name", "search_form");
     mercuryForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
     mercuryForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
@@ -487,6 +496,7 @@ if (url.match(/.+study.+courses.+[-]+/) != null) {
             var courseRegForm = document.createElement('form');
             courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
             courseRegForm.setAttribute("method", "POST");
+            courseRegForm.setAttribute("title", "Must be already signed into Minerva!");
             courseRegForm.setAttribute("onsubmit", "return checkSubmit();");
             courseRegForm.innerHTML += "<input type=\"hidden\" name=\"rsts\" value=\"dummy\">";
             courseRegForm.innerHTML += "<input type=\"hidden\" name=\"crn\" value=\"dummy\">";
