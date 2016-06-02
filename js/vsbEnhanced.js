@@ -1,3 +1,12 @@
+// Copyright (c) 2016 by Demetrios Koziris
+// Date: 2016-06-01
+// The following code is written by Demetrios Koziris and is made available under the GNU General Public License v3.0
+// The full GNU GPLv3 can be found in the LICENSE.txt file or at http://www.gnu.org/licenses/gpl-3.0.txt
+// The paragraph below serves as a short summary of the GNU GPLv3 license:
+//     You may copy, distribute and modify the software as long as you track changes/dates in source files. 
+//     Any modifications to or software including (via compiler) GPL-licensed code must also be made available 
+//     under the GPL along with build & install instructions.
+
 url = window.location.href;
 
 if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
