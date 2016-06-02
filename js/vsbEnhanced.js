@@ -1,11 +1,16 @@
-// Copyright (c) 2016 by Demetrios Koziris
-// Date: 2016-06-01
-// The following code is written by Demetrios Koziris and is made available under the GNU General Public License v3.0
-// The full GNU GPLv3 can be found in the LICENSE.txt file or at http://www.gnu.org/licenses/gpl-3.0.txt
-// The paragraph below serves as a short summary of the GNU GPLv3 license:
-//     You may copy, distribute and modify the software as long as you track changes/dates in source files. 
-//     Any modifications to or software including (via compiler) GPL-licensed code must also be made available 
-//     under the GPL along with build & install instructions.
+/*
+McGill Enhanced is a chrome extension that improves the functionality and navigability of McGill.ca
+Copyright (C) 2016 Demetrios Koziris
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
+as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+A copy of the GNU General Public License is provided in the LICENSE.txt file along with this program.  
+The GNU GNU General Public License can also be found at <http://www.gnu.org/licenses/>.
+*/
 
 url = window.location.href;
 
