@@ -9,7 +9,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 A copy of the GNU General Public License is provided in the LICENSE.txt file along with this program.  
-The GNU GNU General Public License can also be found at <http://www.gnu.org/licenses/>.
+The GNU General Public License can also be found at <http://www.gnu.org/licenses/>.
 */
 
 
@@ -56,7 +56,6 @@ function getProfUrl(profName, general) {
             }
             else {
                 var profURL = data.url;
-                var profURLHTML = data.responseXML;
 
                 htmlParser = new DOMParser();
                 htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
