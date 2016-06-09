@@ -803,7 +803,7 @@ function addVerifiedLinks (sidebar) {
             vsbWinterForm.setAttribute("method", "POST");
             vsb.appendChild(vsbWinterForm);
 
-            var vsbWinterButtonValue = "View on VSB Winter " + urlYearF
+            var vsbWinterButtonValue = "View on VSB Winter " + urlYearW
             var vsbWinterButton = generateFormButton("#7173F6", vsbWinterButtonValue)
             vsbWinterForm.appendChild(vsbWinterButton);
         }
