@@ -66,6 +66,13 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
 	            if(window.debugMode){console.log(htmlDoc);}
 
 	            registrationForm = htmlDoc.getElementsByTagName('form');
+	            regsitrationFormOrig = []
+	            for (var t=0; t < registrationForm[1].length; t++) {
+	            	regsitrationFormOrig.push(registrationForm[1][t].name + "=" + registrationForm[1][t].value)
+	            }
+	            if(window.debugMode){console.log(regsitrationFormOrig)}
+
+
 	            title = htmlDoc.getElementsByTagName('title')[0].innerText
 	            if(window.debugMode){console.log(title);}
 
@@ -122,10 +129,11 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
 							regURL += '&end_date_in='
 						}
 
-						regURL += '&regs_row=7'
+						regURL += '&regs_row=' + 			registrationForm[1][i+50].value
 						regURL += '&wait_row=0'
 						regURL += '&add_row=10'
 						regURL += '&REG_BTN=Submit+Changes'
+						if(window.debugMode){console.log(regURL.split('&'))}
 
 						//window.location = regURL;
 						var win = window.open(regURL, '_blank');
