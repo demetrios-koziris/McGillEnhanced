@@ -1,0 +1,34 @@
+
+
+.meButton:hover {
+    color: #000;
+    border: 2px solid #000;
+}
+
+.docuumButton:hover {
+	background: -webkit-linear-gradient(left, #56AFE5, #fefefe);
+}
+
+.vsbButton:hover {
+	background: -webkit-linear-gradient(left, #7173F6, #fefefe);
+}
+
+.mcgillButton:hover {
+	background: -webkit-linear-gradient(left, #E54944, #fefefe);
+}
+
+.rmpButton:hover {
+	background: -webkit-linear-gradient(left, #B2CF36, #fefefe);
+}
+
+.meButton {
+    border-radius: 3px;
+    padding: 3px;
+    cursor: pointer;
+    text-align: center;
+    margin: 2px 0px;
+    border: 2px solid #707070;
+    width: 100%;
+    color: #707070;
+    background-color: #fefefe;
+}

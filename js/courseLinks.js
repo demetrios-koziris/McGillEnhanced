@@ -176,7 +176,7 @@ function getProfContent(profName, profURL, res) {
 
                         tooltipContent = "<b>" + rating.firstName + " " + rating.lastName + "</b>"
                                        + "<br><b>" + rating.overall + "</b> Overall Quality"
-                                       + "<br><b>" + rating.difficulty + "</b> Level Of Difficulty"
+                                       + "<br><b>" + rating.difficulty + "</b> Difficulty Level"
                                        + "<br><b>" + rating.takeagain + "</b> Would Take Again"
                                        + "<br>From <b>" + rating.numOfRatings + " student rating" + (rating.numOfRatings > 1 ? "s" : "") + "</b>"
                                        + "<br>Prof Hotness: <b>" + rating.hotness.toUpperCase() + "</b>"
