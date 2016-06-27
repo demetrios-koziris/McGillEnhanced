@@ -13,150 +13,131 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 */
 
 function generateOldStyleSearchURL() {
-    urlParams = getURLParams();
-    searchURL = "https://www.mcgill.ca/study/" + urlYears
+    const urlParams = getURLParams();
+    let searchURL = 'https://www.mcgill.ca/study/' + urlYears;
 
-    if (url.match(/search\/all/) == null) {
-        //if url is a search couses page
-        searchURL += "/courses/search/" + urlParams["query"] + "?"
-    }
-    else {
+    if (url.match(/search\/all/)) {
         //if url is a search all page
-        searchURL += "/search/apachesolr_search/" + urlParams["query"] + "?"
+        searchURL += '/search/apachesolr_search/' + urlParams['query'] + '?';
+    } else {
+        //if url is a search couses page
+        searchURL += '/courses/search/' + urlParams['query'] + '?';
     }
 
-    if ("field_subject_code" in urlParams) {
-        searchURL += "filters=ss_subject%3A" + urlParams["field_subject_code"] + "%20"
+    if ('field_subject_code' in urlParams) {
+        searchURL += 'filters=ss_subject%3A' + urlParams['field_subject_code'] + '%20';
     }
-
-    return searchURL
-
+    return searchURL;
 }
 
 function generateNewStyleSearchURL() {
-    urlParams = getURLParams();
-    searchURL = "https://www.mcgill.ca/study/" + urlYears
+    const urlParams = getURLParams();
+    let searchURL = "https://www.mcgill.ca/study/" + urlYears;
 
-    if (url.match(/apachesolr\_search/) == null) {
-        //if url is a search couses page
-        searchURL += "/courses/search?search_api_views_fulltext=" + urlParams["query"] + "&"
-    }
-    else {
+    if (url.match(/apachesolr\_search/)) {
         //if url is a search all page
-        searchURL += "/search/all?search_api_views_fulltext=" + urlParams["query"] + "&"
+        searchURL += "/search/all?search_api_views_fulltext=" + urlParams["query"] + "&";
+    } else {
+        //if url is a search couses page
+        searchURL += "/courses/search?search_api_views_fulltext=" + urlParams["query"] + "&";
     }
 
-    fIndex = 0
+    let fIndex = 0;
     if ("ss_subject" in urlParams) {
-
-        paramArray = urlParams["ss_subject"].split(",")
-        for (var p = 0; p < paramArray.length; p++) {
-            searchURL += "f["+fIndex+"]=" + "field_subject_code%3A" + paramArray[p] + "&"
-            fIndex++
+        let paramArray = urlParams["ss_subject"].split(",");
+        for (let p = 0; p < paramArray.length; p++) {
+            searchURL += "f["+fIndex+"]=" + "field_subject_code%3A" + paramArray[p] + "&";
+            fIndex++;
         }
     }
-
-    return searchURL
+    return searchURL;
 }
 
 function getURLParams() {
-    paramsJSON = {}
-    paramsJSON["query"] = ""
+    const paramsJSON = {};
+    paramsJSON['query'] = '';
 
     if (!isNewStyle) {
-        if (url.match(/apachesolr\_search/) == null) {
-            //if url is a search couses page
-            if (url.match(/search\/([^\?]*)/) != null) {
-                paramsJSON["query"] = url.match(/search\/([^\?]*)/)[1]
-            }
-        }
-        else {
+        if (url.match(/apachesolr\_search/)) {
             //if url is a search all page
-            paramsJSON["query"] = url.match(/search\/apachesolr_search\/([^\?]*)/)[1]
+            paramsJSON['query'] = url.match(/search\/apachesolr_search\/([^\?]*)/)[1];
+        } else {
+            //if url is a search couses page
+            if (url.match(/search\/([^\?]*)/)) {
+                paramsJSON['query'] = url.match(/search\/([^\?]*)/)[1];
+            }
         }
     }
 
-    paramsString = decodeURI(window.location.search.substring(1)).replace(/\%3A/g, ":")
-    paramsString = window.location.search.substring(1)
-    paramsArray = paramsString.split("&")
-    for (var p = 0; p < paramsArray.length; p++) {
-        param = paramsArray[p].split("=");
-        if (param[0] != "") {
-            if (!isNewStyle && param[0] == "filters") {
+    const paramsString = window.location.search.substring(1);
+    const paramsArray = paramsString.split('&');
+    for (let p = 0; p < paramsArray.length; p++) {
+        const param = paramsArray[p].split('=');
+        if (param[0] != '') {
+            if (!isNewStyle && param[0] == 'filters') {
                 //console.log(param[1])
-                filtersArray = param[1].replace(/\%22/g, "").split("%20")
-                //filtersArray = param[1].replace(/\%22([^\%]*)\%20([^\%]*)\%22/g, "$1" + "$2").split("%20").replace(/\%22/g, "");
+                const filtersArray = param[1].replace(/\%22/g, '').split('%20');
                 //console.log(filtersArray)
-                prevKey = ""
-                for (var f = 0; f < filtersArray.length; f++) {
-                    filterParam = filtersArray[f].split("%3A")
+                let prevKey = '';
+                for (let f = 0; f < filtersArray.length; f++) {
+                    const filterParam = filtersArray[f].split('%3A')
                     //console.log(filterParam)
                     if (filterParam.length > 1) {
                         if (filterParam[0] in paramsJSON) {
-                            paramsJSON[filterParam[0]] += "," + filterParam[1]
+                            paramsJSON[filterParam[0]] += ',' + filterParam[1];
+                        } else {
+                            paramsJSON[filterParam[0]] = filterParam[1];
+                            prevKey = filterParam[0];
                         }
-                        else {
-                            paramsJSON[filterParam[0]] = filterParam[1]   
-                            prevKey =  filterParam[0]                        
-                        }
-                    }
-                    else {
-                        paramsJSON[prevKey] += " " + filterParam[0]  
+                    } else {
+                        paramsJSON[prevKey] += ' ' + filterParam[0];
                     }
                 }
-            } 
-            else if (isNewStyle && param[0].match(/f\[[0-9]+\]/) != null) {
-                fparam = param[1].split("%3A")
+            } else if (isNewStyle && param[0].match(/f\[[0-9]+\]/)) {
+                const fparam = param[1].split('%3A');
                 if (fparam.length > 1) {
-                    paramsJSON[fparam[0]] = fparam[1]
+                    paramsJSON[fparam[0]] = fparam[1];
                 }
-            }
-            else if (param[0] == "search_api_views_fulltext") {
-                paramsJSON["query"] = param[1]
-            }
-            else {
-                paramsJSON[param[0]] = param[1]
+            } else if (param[0] == 'search_api_views_fulltext') {
+                paramsJSON['query'] = param[1];
+            } else {
+                paramsJSON[param[0]] = param[1];
             }
         }
     }
-    console.log(paramsJSON)
-    return paramsJSON
+    console.log(paramsJSON);
+    return paramsJSON;
 }
 
 
 
 function addYearMenu() {
-
     url = window.location.href;
 
-
-    
-
-    if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/) != null) {
+    if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 
         urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
         urlYearW = urlYearF+1;
         urlYears = urlYearF + "-" + urlYearW;
         sysYear = new Date().getFullYear();
         sysMonth = new Date().getMonth();
-        currentYear = (sysMonth > 5 ? sysYear : sysYear-1)
+        currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
         isNewStyle = document.getElementsByClassName("transition").length > 0;
         firstYear = Math.max(sysYear-10, 2010);
-        isSearchPage = (url.match(/search/) != null)
+        isSearchPage = (url.match(/search/) != null);
     
-
         if (!isNewStyle) {
 
             if (isSearchPage) {
                 newStyleSearchURL = generateNewStyleSearchURL()
             }
 
-            var yearMenuBarDIV = document.createElement('div');
+            const yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
             yearMenuBarDIV.style.padding = "0px";
             yearMenuBarDIV.style.margin = "0px";
 
-            var yearMenuBarTABLE = document.createElement('table');
+            const yearMenuBarTABLE = document.createElement('table');
             yearMenuBarTABLE.style.width = "100%";
             yearMenuBarDIV.appendChild(yearMenuBarTABLE)
 
@@ -259,11 +240,11 @@ function addYearMenu() {
 
             for (j = firstYear; j <= sysYear; j += 10)
             {
-                var yearMenuBarDIV = document.createElement('div');
+                const yearMenuBarDIV = document.createElement('div');
                 yearMenuBarDIV.id = "navigation";
                 yearMenuBarDIV.style.backgroundColor = "#FFFFFC";
 
-                var yearMenuBarUL = document.createElement('ul');
+                const yearMenuBarUL = document.createElement('ul');
                 yearMenuBarUL.className = "sf-menu sf-main-menu";
                 yearMenuBarUL.style.height = "33px";
                 yearMenuBarDIV.appendChild(yearMenuBarUL);
