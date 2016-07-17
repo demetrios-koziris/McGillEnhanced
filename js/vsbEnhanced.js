@@ -14,28 +14,28 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 url = window.location.href;
 
-if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
+if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) !== null) {
 
 	notloggedinMessage = "You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.";
-	notpermittedMessage = "Minerva indicates that you are not permitted to register at this time. Please check your account to verify this."
-	errorMessage = "McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time."
+	notpermittedMessage = "Minerva indicates that you are not permitted to register at this time. Please check your account to verify this.";
+	errorMessage = "McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time.";
 
 	window.debugMode = false;
 	if(window.debugMode){console.log("VSB Enhanced Debug mode is ON");}
 
 
 
-    var button = document.createElement('input')
+    var button = document.createElement('input');
     button.setAttribute("type", "button");
     button.setAttribute("value", "McGill Enhanced Registration Feature: Click to Automatically Register in Minerva! (Must be already signed in)");
     button.setAttribute("onclick", register.toString() +  " register();");
     button.style.width = "271px";
     button.style.height = "70px";
-    button.style.margin = "9px"
+    button.style.margin = "9px";
     button.style.whiteSpace = "normal";
-    button.style.borderRadius = "8px"
+    button.style.borderRadius = "8px";
     button.style.webkitAppearance = "button";
-    button.style.background = "#FBF7C9"
+    button.style.background = "#FBF7C9";
     button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
     button.setAttribute("onmouseout", "this.style.border=\"1px solid #5B5B5A\"");
     button.style.border = "1px solid #5B5B5A";
@@ -49,14 +49,14 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
 
      document.addEventListener("register", function(data) {
 
-     	var termCode = url.match(/.+session\_([0-9]{6})\=/)[1]
-	    if(window.debugMode){console.log(termCode)}
+     	var termCode = url.match(/.+session\_([0-9]{6})\=/)[1];
+	    if(window.debugMode){console.log(termCode);}
 
 	    var xmlRequestInfo = {
 	        method: 'GET',
 	        action: 'xhttp',
 	        url: 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode
-	    }
+	    };
 	    console.log(xmlRequestInfo);
 	    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
 	        try {
@@ -66,82 +66,82 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
 	            if(window.debugMode){console.log(htmlDoc);}
 
 	            registrationForm = htmlDoc.getElementsByTagName('form');
-	            regsitrationFormOrig = []
+	            regsitrationFormOrig = [];
 	            for (var t=0; t < registrationForm[1].length; t++) {
-	            	regsitrationFormOrig.push(registrationForm[1][t].name + "=" + registrationForm[1][t].value)
+	            	regsitrationFormOrig.push(registrationForm[1][t].name + "=" + registrationForm[1][t].value);
 	            }
-	            if(window.debugMode){console.log(regsitrationFormOrig)}
+	            if(window.debugMode){console.log(regsitrationFormOrig);}
 
 
-	            title = htmlDoc.getElementsByTagName('title')[0].innerText
+	            title = htmlDoc.getElementsByTagName('title')[0].innerText;
 	            if(window.debugMode){console.log(title);}
 
 	            if (title == "Quick Add or Drop Course Sections") {
 
-	            	infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ")
+	            	infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
 	            	if (infotext != "You are not permitted to register at this time.") {
 
-			            crns = document.getElementById('cartCrns').value.split(" ");;
+			            crns = document.getElementById('cartCrns').value.split(" ");
 						if(window.debugMode){console.log(crns);}
 
-						regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?term_in=' + termCode
-			            regURL += '&RSTS_IN=DUMMY'
-			            regURL += '&assoc_term_in=DUMMY'
-			            regURL += '&CRN_IN=DUMMY'
-			            regURL += '&start_date_in=DUMMY'
-			            regURL += '&end_date_in=DUMMY'
-			            regURL += '&SUBJ=DUMMY'
-			            regURL += '&CRSE=DUMMY'
-			            regURL += '&SEC=DUMMY'
-			            regURL += '&LEVL=DUMMY'
-			            regURL += '&CRED=DUMMY'
-			            regURL += '&GMOD=DUMMY'
-			            regURL += '&TITLE=DUMMY'
-			            regURL += '&MESG=DUMMY'
-			            regURL += '&REG_BTN=DUMMY'
+						regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?term_in=' + termCode;
+			            regURL += '&RSTS_IN=DUMMY';
+			            regURL += '&assoc_term_in=DUMMY';
+			            regURL += '&CRN_IN=DUMMY';
+			            regURL += '&start_date_in=DUMMY';
+			            regURL += '&end_date_in=DUMMY';
+			            regURL += '&SUBJ=DUMMY';
+			            regURL += '&CRSE=DUMMY';
+			            regURL += '&SEC=DUMMY';
+			            regURL += '&LEVL=DUMMY';
+			            regURL += '&CRED=DUMMY';
+			            regURL += '&GMOD=DUMMY';
+			            regURL += '&TITLE=DUMMY';
+			            regURL += '&MESG=DUMMY';
+			            regURL += '&REG_BTN=DUMMY';
 
 			            var i = 15;
 			            while(registrationForm[1][i].value == 'DUMMY') {
-			            	regURL += '&MESG=' + 			registrationForm[1][i].value
-							regURL += '&RSTS_IN='
-							regURL += '&assoc_term_in=' + 	registrationForm[1][i+2].value
-							regURL += '&CRN_IN=' + 			registrationForm[1][i+3].value
+			            	regURL += '&MESG=' + 			registrationForm[1][i].value;
+							regURL += '&RSTS_IN=';
+							regURL += '&assoc_term_in=' + 	registrationForm[1][i+2].value;
+							regURL += '&CRN_IN=' + 			registrationForm[1][i+3].value;
 							regURL += '&start_date_in=' + 	registrationForm[1][i+4].value.replace(/\//g, "%2F");
 							regURL += '&end_date_in=' + 	registrationForm[1][i+5].value.replace(/\//g, "%2F");
-							regURL += '&SUBJ=' + 			registrationForm[1][i+6].value
-							regURL += '&CRSE=' + 			registrationForm[1][i+7].value
-							regURL += '&SEC=' + 			registrationForm[1][i+8].value
-							regURL += '&LEVL=' + 			registrationForm[1][i+9].value
-							regURL += '&CRED=++++' + 		registrationForm[1][i+10].value.trim()
-							regURL += '&GMOD=' + 			registrationForm[1][i+11].value
+							regURL += '&SUBJ=' + 			registrationForm[1][i+6].value;
+							regURL += '&CRSE=' + 			registrationForm[1][i+7].value;
+							regURL += '&SEC=' + 			registrationForm[1][i+8].value;
+							regURL += '&LEVL=' + 			registrationForm[1][i+9].value;
+							regURL += '&CRED=++++' + 		registrationForm[1][i+10].value.trim();
+							regURL += '&GMOD=' + 			registrationForm[1][i+11].value;
 							regURL += '&TITLE=' + 			registrationForm[1][i+12].value.replace(/ /g, "+");
 							i += 13;
 			            }
 
 						for (c=0; c<10; c++) {
-							regURL += '&RSTS_IN=RW'
-							regURL += '&CRN_IN=' 
+							regURL += '&RSTS_IN=RW';
+							regURL += '&CRN_IN=';
 							if (c < crns.length) {
-								regURL += crns[c]
+								regURL += crns[c];
 							}
-							regURL += '&assoc_term_in='
-							regURL += '&start_date_in='
-							regURL += '&end_date_in='
+							regURL += '&assoc_term_in=';
+							regURL += '&start_date_in=';
+							regURL += '&end_date_in=';
 						}
 
-						regURL += '&regs_row=' + 			registrationForm[1][i+50].value
-						regURL += '&wait_row=0'
-						regURL += '&add_row=10'
-						regURL += '&REG_BTN=Submit+Changes'
-						if(window.debugMode){console.log(regURL.split('&'))}
+						regURL += '&regs_row=' + 			registrationForm[1][i+50].value;
+						regURL += '&wait_row=0';
+						regURL += '&add_row=10';
+						regURL += '&REG_BTN=Submit+Changes';
+						if(window.debugMode){console.log(regURL.split('&'));}
 
 						//window.location = regURL;
 						var win = window.open(regURL, '_blank');
 		  				win.focus();
-						if(window.debugMode){console.log(regURL)};
+						if(window.debugMode){console.log(regURL);}
 					}
 					else {
-						alert(notpermittedMessage)
+						alert(notpermittedMessage);
 					}
 				}
 				else {
@@ -161,7 +161,7 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) != null) {
 
 
 function loginRedirect(message) {
-	alert(message)
+	alert(message);
 	window.location = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 }
 
