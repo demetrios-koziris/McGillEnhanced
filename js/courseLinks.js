@@ -110,7 +110,7 @@ function getProfUrl(profName, general) {
             }
         } 
         catch(err) {
-            console.log('Error: ' + profName.firstName + ' ' + profName.lastName + ' ' + err);
+            console.log('Error: ' + profName.firstName + ' ' + profName.lastName + '\n' + err.stack);
             tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
             makeProfSection(profName, profURL, tooltipContent);
         }
@@ -202,7 +202,7 @@ function getProfContent(profName, profURL, res) {
             }
         } 
         catch(err) {
-            console.log('Error: ' + profName.firstName + ' ' + profName.lastName + ' ' + err);
+            console.log('Error: ' + profName.firstName + ' ' + profName.lastName + '\n' + err.stack);
             tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
             makeProfSection(profName, profURL, tooltipContent);
         }

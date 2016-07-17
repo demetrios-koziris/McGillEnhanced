@@ -150,7 +150,7 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) !== null) 
 
 	        }
 	        catch(err) {
-	            console.log(err);
+	            console.log(err.stack);
 	            loginRedirect(errorMessage);
 	        }
 	    });
