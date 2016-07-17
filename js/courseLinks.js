@@ -176,7 +176,7 @@ function getProfContent(profName, profURL, res) {
                         if (gradeElements[3]) {
                             rating.hotness = gradeElements[3].innerHTML
                             if (rating.hotness) {
-                                rating.hotness = rating.hotness.match(/chilis\/([A-Za-z]+)\-chili\.png/)[1];
+                                rating.hotness = rating.hotness.match(/chilis\/(?:new-)?([A-Za-z]+)\-chili\.png/)[1];
                             }
                         }
                         if (htmlDoc.getElementsByClassName('pfname')[0]) {
