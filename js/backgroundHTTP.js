@@ -10,6 +10,8 @@
  * The callback function is called upon completion of the request 
  */
 
+//jshint esversion: 6
+
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
     if (request.action == "xhttp") {
         var xhttp = new XMLHttpRequest();

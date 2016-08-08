@@ -12,6 +12,8 @@ A copy of the GNU General Public License is provided in the LICENSE.txt file alo
 The GNU General Public License can also be found at <http://www.gnu.org/licenses/>.
 */
 
+//jshint esversion: 6
+
 function generateRecordingURLs() {
     recordingURLs = {
         AECH111 : { 
