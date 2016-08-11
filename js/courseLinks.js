@@ -281,20 +281,16 @@ function enhancedMcGill() {
 
         
         const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-        courseEvalParams = {
-            courseSubject: urlCourseName.split("-")[0],
-            courseNumber: urlCourseName.split("-")[1],
-        };
-        const courseName = courseEvalParams.courseSubject + courseEvalParams.courseNumber;
+        const courseSubject = urlCourseName.split("-")[0];
+        const courseNumber = urlCourseName.split("-")[1];
+        const courseName = courseSubject + courseNumber;
+        const courseNameSpaced = courseSubject + " " + courseNumber;
 
-        const recordingURLs = generateRecordingURLs();
-        const recordingURLexists = courseName in recordingURLs
-        const wikinotesURLs = generateWikinotesURLs();
-        const wikinotesURLexists = courseName in wikinotesURLs
-        const docuumURLs = generateDocuumURLs();
-        const docuumURLexists = courseName in docuumURLs
-        const csusURLs = generateCSUSURLs();
-        const csusURLexists = courseName in csusURLs
+        const recordingURLdata = generateRecordingURLs()[courseName]
+        const wikinotesURLdata = generateWikinotesURLs()[courseName]
+        const docuumURLdata = generateDocuumURLs()[courseName]
+        const csusURLdata = generateCSUSURLs()[courseName]
+
 
         const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
         const courseTermsCodes = [];
@@ -315,11 +311,11 @@ function enhancedMcGill() {
 
         vsbData = {
             vsbFall: { 
-                url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, 
+                url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
                 valid: false
             },
             vsbWinter: { 
-                url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseEvalParams.courseSubject + "+" + courseEvalParams.courseNumber, 
+                url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
                 valid: false
             },
             done: 0,
@@ -408,7 +404,7 @@ function enhancedMcGill() {
 
 
         courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
-        const depsDup = [courseEvalParams.courseSubject];
+        const depsDup = [courseSubject];
         if (courses !== null)
         {
             for (let c=0; c<courses.length; c++)
@@ -448,9 +444,9 @@ function enhancedMcGill() {
         courseEval.appendChild(courseEvalTitle);
 
 
-        if (docuumURLexists) {
+        if (docuumURLdata) {
 
-            docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
+            docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLdata;
 
             const docuumForm = document.createElement('form');
             docuumForm.setAttribute("action", docuumURL);
@@ -468,8 +464,8 @@ function enhancedMcGill() {
         mercuryForm.setAttribute("title", "Must be already signed into Minerva!");
         mercuryForm.setAttribute("name", "search_form");
         mercuryForm.innerHTML += "<input type=\"hidden\" name=\"term_in\" value=\"\">";
-        mercuryForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseEvalParams.courseSubject + "\">";
-        mercuryForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseEvalParams.courseNumber + "\">";
+        mercuryForm.innerHTML += "<input type=\"hidden\" name=\"subj_tab_in\" value=\"" + courseSubject + "\">";
+        mercuryForm.innerHTML += "<input type=\"hidden\" name=\"crse_in\" value=\"" + courseNumber + "\">";
         mercuryForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
         mercuryForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
         mercuryForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
@@ -482,7 +478,7 @@ function enhancedMcGill() {
         
 
 
-        if (recordingURLexists) {
+        if (recordingURLdata) {
 
             const recordings = document.createElement('div');
             recordings.style.margin = "0px 0px 8px 0px";
@@ -493,8 +489,8 @@ function enhancedMcGill() {
             recordingsTitle.style.margin = "0px";
             recordings.appendChild(recordingsTitle);
 
-            if (urlYearF in recordingURLs[courseName]) {
-                yearRecordingURLs = recordingURLs[courseName][urlYearF];
+            if (urlYearF in recordingURLdata) {
+                yearRecordingURLs = recordingURLdata[urlYearF];
 
                 for (let r = 0; r < yearRecordingURLs.length; r++) {
 
@@ -509,7 +505,7 @@ function enhancedMcGill() {
                 }
             }
             else {
-                const years = Object.keys(recordingURLs[courseName]);
+                const years = Object.keys(recordingURLdata);
                 const maxYear = Math.max.apply(Math, years);
                 const maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
 
@@ -556,9 +552,9 @@ function enhancedMcGill() {
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_instr\" value=\"dummy\">";
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_ptrm\" value=\"dummy\">";
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_attr\" value=\"dummy\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseEvalParams.courseSubject + "\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_subj\" value=\"" + courseSubject + "\">";
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_coll\" value=\"\">";
-                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseEvalParams.courseNumber + "\">";
+                courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_crse\" value=\"" + courseNumber + "\">";
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_title\" value=\"\">";
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_schd\" value=\"\">";
                 courseRegForm.innerHTML += "<input type=\"hidden\" name=\"sel_from_cred\" value=\"\">";
@@ -586,7 +582,7 @@ function enhancedMcGill() {
 
         const other = document.createElement('div');
 
-        if (docuumURLexists || wikinotesURLexists) {
+        if (docuumURLdata || wikinotesURLdata) {
 
             other.style.margin = "0px 0px 8px 0px";
             formsBlock.appendChild(other);
@@ -596,28 +592,41 @@ function enhancedMcGill() {
             otherTitle.style.margin = "0px";
             other.appendChild(otherTitle);
         
-            if (docuumURLexists) {
+            if (csusURLdata) {
 
-                docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
+                csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
+
+                const csusForm = document.createElement('form');
+                csusForm.setAttribute("action", csusURL);
+                other.appendChild(csusForm);
+
+                const csusButtonValue = "View " + courseNameSpaced + " in the CSUS Guide";
+                const csusButton = generateFormButton("#FFFFFF", csusButtonValue);
+                csusForm.appendChild(csusButton);
+            }
+
+            if (docuumURLdata) {
+
+                docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
 
                 const docuumForm = document.createElement('form');
                 docuumForm.setAttribute("action", docuumURL);
                 other.appendChild(docuumForm);
 
-                const docuumButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum";
+                const docuumButtonValue = "View " + courseNameSpaced + " on Docuum";
                 const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
                 docuumForm.appendChild(docuumButton);
             }
 
-            if (wikinotesURLexists) {
+            if (wikinotesURLdata) {
 
-                wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
+                wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
 
                 const wikinotesForm = document.createElement('form');
                 wikinotesForm.setAttribute("action", wikinotesURL);
                 other.appendChild(wikinotesForm);
 
-                const wikinotesButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes";
+                const wikinotesButtonValue = "View " + courseNameSpaced + " on Wikinotes";
                 const wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue);
                 wikinotesForm.appendChild(wikinotesButton);
             }
