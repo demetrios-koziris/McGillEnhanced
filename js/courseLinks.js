@@ -279,10 +279,22 @@ function enhancedMcGill() {
             document.getElementById("inner-container").style.width = "100%";
         }
 
-        const wikinotesURLs = generateWikinotesURLs();
-        const docuumURLs = generateDocuumURLs();
+        
+        const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+        courseEvalParams = {
+            courseSubject: urlCourseName.split("-")[0],
+            courseNumber: urlCourseName.split("-")[1],
+        };
+        const courseName = courseEvalParams.courseSubject + courseEvalParams.courseNumber;
+
         const recordingURLs = generateRecordingURLs();
-        let courseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+        const recordingURLexists = courseName in recordingURLs
+        const wikinotesURLs = generateWikinotesURLs();
+        const wikinotesURLexists = courseName in wikinotesURLs
+        const docuumURLs = generateDocuumURLs();
+        const docuumURLexists = courseName in docuumURLs
+        const csusURLs = generateCSUSURLs();
+        const csusURLexists = courseName in csusURLs
 
         const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
         const courseTermsCodes = [];
@@ -298,12 +310,7 @@ function enhancedMcGill() {
         logForDebug(courseTermsCodes);
 
 
-        courseEvalParams = {
-            courseSubject: courseName.split("-")[0],
-            courseNumber: courseName.split("-")[1],
-            autoSubmit: true
-        };
-        courseEvalParamsString = courseEvalParams;
+        
 
 
         vsbData = {
@@ -424,8 +431,6 @@ function enhancedMcGill() {
         sidebar.style.border = "0px";
 
 
-        
-        courseName = courseEvalParams.courseSubject + courseEvalParams.courseNumber;
 
         const formsBlock = document.createElement('div');
         formsBlock.id = "formsBlock";
@@ -443,7 +448,7 @@ function enhancedMcGill() {
         courseEval.appendChild(courseEvalTitle);
 
 
-        if (courseName in docuumURLs) {
+        if (docuumURLexists) {
 
             docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
 
@@ -477,7 +482,7 @@ function enhancedMcGill() {
         
 
 
-        if (courseName in recordingURLs) {
+        if (recordingURLexists) {
 
             const recordings = document.createElement('div');
             recordings.style.margin = "0px 0px 8px 0px";
@@ -578,10 +583,11 @@ function enhancedMcGill() {
             }
         }
 
-        
+
         const other = document.createElement('div');
 
-        if (courseName in docuumURLs || courseName in wikinotesURLs) {
+        if (docuumURLexists || wikinotesURLexists) {
+
             other.style.margin = "0px 0px 8px 0px";
             formsBlock.appendChild(other);
 
@@ -589,32 +595,33 @@ function enhancedMcGill() {
             otherTitle.innerHTML = "Other resources";
             otherTitle.style.margin = "0px";
             other.appendChild(otherTitle);
-        }
         
-        if (courseName in docuumURLs) {
+            if (docuumURLexists) {
 
-            docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
+                docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
 
-            const docuumForm = document.createElement('form');
-            docuumForm.setAttribute("action", docuumURL);
-            other.appendChild(docuumForm);
+                const docuumForm = document.createElement('form');
+                docuumForm.setAttribute("action", docuumURL);
+                other.appendChild(docuumForm);
 
-            const docuumButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum";
-            const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
-            docuumForm.appendChild(docuumButton);
-        }
+                const docuumButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Docuum";
+                const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
+                docuumForm.appendChild(docuumButton);
+            }
 
-        if (courseName in wikinotesURLs) {
+            if (wikinotesURLexists) {
 
-            wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
+                wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLs[courseEvalParams.courseSubject + courseEvalParams.courseNumber];
 
-            const wikinotesForm = document.createElement('form');
-            wikinotesForm.setAttribute("action", wikinotesURL);
-            other.appendChild(wikinotesForm);
+                const wikinotesForm = document.createElement('form');
+                wikinotesForm.setAttribute("action", wikinotesURL);
+                other.appendChild(wikinotesForm);
 
-            const wikinotesButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes";
-            const wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue);
-            wikinotesForm.appendChild(wikinotesButton);
+                const wikinotesButtonValue = "View " + courseEvalParams.courseSubject + " " + courseEvalParams.courseNumber + " on Wikinotes";
+                const wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue);
+                wikinotesForm.appendChild(wikinotesButton);
+            }
+
         }
 
 
