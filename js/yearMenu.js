@@ -114,7 +114,6 @@ function getURLParams() {
 
 
 function addYearMenu() {
-    url = window.location.href;
 
     if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 

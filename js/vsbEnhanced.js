@@ -12,18 +12,14 @@ A copy of the GNU General Public License is provided in the LICENSE.txt file alo
 The GNU General Public License can also be found at <http://www.gnu.org/licenses/>.
 */
 
-url = window.location.href;
+//jshint esversion: 6
 
-if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) !== null) {
+
+function enhanceVSB() {
 
 	notloggedinMessage = "You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.";
 	notpermittedMessage = "Minerva indicates that you are not permitted to register at this time. Please check your account to verify this.";
 	errorMessage = "McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time.";
-
-	window.debugMode = false;
-	if(window.debugMode){console.log("VSB Enhanced Debug mode is ON");}
-
-
 
     var button = document.createElement('input');
     button.setAttribute("type", "button");
