@@ -1,6 +1,5 @@
 // Adapted from http://stackoverflow.com/questions/7699615/cross-domain-xmlhttprequest-using-background-pages
 
-
 /**
  *  Possible parameters for request:
  *  action: "xhttp" for a cross-origin HTTP request
@@ -11,6 +10,7 @@
  */
 
 //jshint esversion: 6
+
 
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
     if (request.action == "xhttp") {

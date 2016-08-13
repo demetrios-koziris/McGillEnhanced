@@ -48,4 +48,8 @@ if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) !== null) 
 
 
 
-
+function logForDebug(toLog) {
+    if (debugMode) {
+        console.log(toLog);
+    }
+}

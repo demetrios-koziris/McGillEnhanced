@@ -15,14 +15,6 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-
-
-function logForDebug(toLog) {
-    if (debugMode) {
-        console.log(toLog);
-    }
-}
-
 function encodeSymbolsWin1252(string) {
     return encodeURI(string).replace(/\'/g, '%27')
                             .replace(/\-/g, '%20')
@@ -32,6 +24,7 @@ function encodeSymbolsWin1252(string) {
                             .replace(/\%C3\%B/g, '%F');
 }
 
+
 function updateProfURL(profKey, profURL) {
     //update href with profURL for all elements whose class matches profKey
     const profElements = document.getElementsByClassName(profKey);
@@ -39,6 +32,7 @@ function updateProfURL(profKey, profURL) {
         profElements[p].href = profURL;
     }
 }
+
 
 function getProfUrl(profName, general) {
 
@@ -209,6 +203,7 @@ function getProfContent(profName, profURL, res) {
     });
 }
 
+
 function makeProfSection(profName, profURL, tooltipContent) {
 
     const profElements = document.getElementsByClassName(profName.fullNameKey);
@@ -230,6 +225,7 @@ function makeProfSection(profName, profURL, tooltipContent) {
     });
 }
 
+
 function generateProfNameObject(origName) {
     const name = origName.trim();
     const splitName = name.split(' ');
@@ -241,6 +237,7 @@ function generateProfNameObject(origName) {
     };
     return profName;
 }
+
 
 function generateFormButton(onColor, buttonValue) {
     const formButton = document.createElement('input');
@@ -263,14 +260,10 @@ function generateFormButton(onColor, buttonValue) {
 
 function courseOverview() {
 
-    //Course name regex
-    regex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
-
     if (urlYearF <= 2010) {
         document.getElementById("inner-container").style.width = "100%";
     }
 
-    
     const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
     const courseSubject = urlCourseName.split("-")[0];
     const courseNumber = urlCourseName.split("-")[1];
