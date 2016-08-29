@@ -37,17 +37,17 @@ function updateProfURL(profKey, profURL) {
 function getProfUrl(profName, general) {
 
     let tooltipContent = '';
-    let origProfURL = 'http://www.ratemyprofessors.com/search.jsp?query=mcgill ';
+    let profURL = 'http://www.ratemyprofessors.com/search.jsp?query=mcgill ';
     if (general) {
-        origProfURL += profName.lastName + ' ';
+        profURL += profName.lastName + ' ';
     } 
     else {
-        origProfURL += profName.firstName + ' ' + profName.lastName + ' ';
+        profURL += profName.firstName + ' ' + profName.lastName + ' ';
     }
     const xmlRequestInfo = {
         method: 'GET',
         action: 'xhttp',
-        url: origProfURL,
+        url: profURL,
     };
 
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
@@ -58,7 +58,7 @@ function getProfUrl(profName, general) {
                 makeProfSection(profName, profURL, tooltipContent);
             } 
             else {
-                let profURL = data.url;
+                // let profURL = data.url;
                 let profURLId = 0;
                 const htmlParser = new DOMParser();
                 const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
@@ -131,7 +131,7 @@ function getProfContent(profName, profURL, res) {
                 makeProfSection(profName, profURL, tooltipContent);
             } 
             else {
-                let profURL = data.url;
+                // let profURL = data.url;
 
                 const htmlParser = new DOMParser();
                 const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
