@@ -207,7 +207,10 @@ function getProfContent(profName, profURL, res) {
 function makeProfSection(profName, profURL, tooltipContent) {
 
     const profElements = document.getElementsByClassName(profName.fullNameKey);
+    console.log(profElements)
     for (let p = 0; p < profElements.length; p++) {
+        profElements[p].id = profName.fullNameKey + p;
+        $('#' + profName.fullNameKey + p).data('tooltipsy').destroy();
         profElements[p].title = tooltipContent;
     }
 
@@ -370,6 +373,18 @@ function courseOverview() {
         }
 
         document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML;
+
+        $('.tooltip').tooltipsy( {
+            css: {
+                fontFamily: 'CartoGothicStdBook',
+                padding: '10px',
+                color: (isNewStyle ? '#444444' : '#2C566D'),
+                fontSize: '.9em',
+                backgroundColor: (isNewStyle ? '#C5C5C5' : '#F4F5ED'),
+                borderRadius: '8px',
+                border: '2px solid'
+            }
+        });
 
         profsLength = Object.keys(profs).length;
         if (profsLength > 0) {
