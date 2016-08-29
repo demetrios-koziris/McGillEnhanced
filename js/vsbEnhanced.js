@@ -158,7 +158,7 @@ function enhanceVSB() {
 
 function loginRedirect(message) {
 	alert(message);
-	window.location = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
+	window.open('https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin', '_blank');
 }
 
 
