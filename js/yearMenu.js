@@ -14,7 +14,6 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
-
 function generateOldStyleSearchURL() {
     const urlParams = getURLParams();
     let searchURL = 'https://www.mcgill.ca/study/' + urlYears;
@@ -22,8 +21,7 @@ function generateOldStyleSearchURL() {
     if (url.match(/search\/all/)) {
         //if url is a search all page
         searchURL += '/search/apachesolr_search/' + urlParams.query + '?';
-    } 
-    else {
+    } else {
         //if url is a search couses page
         searchURL += '/courses/search/' + urlParams.query + '?';
     }
@@ -34,7 +32,6 @@ function generateOldStyleSearchURL() {
     return searchURL;
 }
 
-
 function generateNewStyleSearchURL() {
     const urlParams = getURLParams();
     let searchURL = "https://www.mcgill.ca/study/" + urlYears;
@@ -42,8 +39,7 @@ function generateNewStyleSearchURL() {
     if (url.match(/apachesolr\_search/)) {
         //if url is a search all page
         searchURL += "/search/all?search_api_views_fulltext=" + urlParams.query + "&";
-    } 
-    else {
+    } else {
         //if url is a search couses page
         searchURL += "/courses/search?search_api_views_fulltext=" + urlParams.query + "&";
     }
@@ -59,7 +55,6 @@ function generateNewStyleSearchURL() {
     return searchURL;
 }
 
-
 function getURLParams() {
     const paramsJSON = {};
     paramsJSON.query = '';
@@ -68,8 +63,7 @@ function getURLParams() {
         if (url.match(/apachesolr\_search/)) {
             //if url is a search all page
             paramsJSON.query = url.match(/search\/apachesolr_search\/([^\?]*)/)[1];
-        } 
-        else {
+        } else {
             //if url is a search couses page
             if (url.match(/search\/([^\?]*)/)) {
                 paramsJSON.query = url.match(/search\/([^\?]*)/)[1];
@@ -93,8 +87,7 @@ function getURLParams() {
                     if (filterParam.length > 1) {
                         if (filterParam[0] in paramsJSON) {
                             paramsJSON[filterParam[0]] += ',' + filterParam[1];
-                        } 
-                        else {
+                        } else {
                             paramsJSON[filterParam[0]] = filterParam[1];
                             prevKey = filterParam[0];
                         }
@@ -102,17 +95,14 @@ function getURLParams() {
                         paramsJSON[prevKey] += ' ' + filterParam[0];
                     }
                 }
-            } 
-            else if (isNewStyle && param[0].match(/f\[[0-9]+\]/)) {
+            } else if (isNewStyle && param[0].match(/f\[[0-9]+\]/)) {
                 const fparam = param[1].split('%3A');
                 if (fparam.length > 1) {
                     paramsJSON[fparam[0]] = fparam[1];
                 }
-            } 
-            else if (param[0] == 'search_api_views_fulltext') {
+            } else if (param[0] == 'search_api_views_fulltext') {
                 paramsJSON.query = param[1];
-            } 
-            else {
+            } else {
                 paramsJSON[param[0]] = param[1];
             }
         }
@@ -122,208 +112,204 @@ function getURLParams() {
 }
 
 
+
 function addYearMenu() {
+    url = window.location.href;
 
-    urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-    urlYearW = urlYearF+1;
-    urlYears = urlYearF + "-" + urlYearW;
-    sysYear = new Date().getFullYear();
-    sysMonth = new Date().getMonth();
-    currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
-    isNewStyle = document.getElementsByClassName("transition").length > 0;
-    firstYear = Math.max(sysYear-10, 2010);
-    isSearchPage = (url.match(/search/) !== null);
+    if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 
-    if (!isNewStyle) {
+        urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
+        urlYearW = urlYearF+1;
+        urlYears = urlYearF + "-" + urlYearW;
+        sysYear = new Date().getFullYear();
+        sysMonth = new Date().getMonth();
+        currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
+        isNewStyle = document.getElementsByClassName("transition").length > 0;
+        firstYear = Math.max(sysYear-10, 2010);
+        isSearchPage = (url.match(/search/) !== null);
+    
+        if (!isNewStyle) {
 
-        let newStyleSearchURL = '';
-        if (isSearchPage) {
-            newStyleSearchURL = generateNewStyleSearchURL();
-        }
-
-        const yearMenuBarDIV = document.createElement('div');
-        yearMenuBarDIV.id = "navigation";
-        yearMenuBarDIV.style.padding = "0px";
-        yearMenuBarDIV.style.margin = "0px";
-
-        const yearMenuBarTABLE = document.createElement('table');
-        yearMenuBarTABLE.style.width = "100%";
-        yearMenuBarDIV.appendChild(yearMenuBarTABLE);
-
-        for (let j = firstYear; j <= sysYear; j += 10)
-        {
-            const yearMenuBarTR = document.createElement('tr');
-            yearMenuBarTABLE.appendChild(yearMenuBarTR);
-
-            for (let i = j; i < j+10; i++)
-            {
-                yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));       
-                if (isSearchPage && (i <= 2010 || i >= 2016)) {
-                    try {
-                        yearMenuItemURL = newStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
-                    }
-                    catch(err) {
-                        console.log(err);
-                    } 
-                }
-
-                const yearMenuItemTD = document.createElement('td');
-                yearMenuItemTD.style.padding = "0px";
-                yearMenuItemTD.style.width = "10%";
-                yearMenuItemTD.style.height = "30px";
-                yearMenuItemTD.style.backgroundColor = "#2c566d";
-                yearMenuBarTABLE.appendChild(yearMenuItemTD);
-
-                const yearMenuItemDIV = document.createElement('div');
-                yearMenuItemDIV.style.width = "100%";
-                yearMenuItemDIV.style.height = "30px";
-                yearMenuItemDIV.style.backgroundColor = "#FFFFFF";
-                yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
-
-                const yearMenuItemA = document.createElement('a');
-                yearMenuItemA.innerHTML = i + "-" + (i + 1);
-                yearMenuItemA.style.margin = "4px 10px";
-                yearMenuItemA.style.borderRadius = "8px";
-                yearMenuItemA.style.color = "#FFFFFF";
-
-                if (i == currentYear) {
-                    //yearMenuItemA.innerHTML = "Current Year: " + yearMenuItemA.innerHTML;
-                    //yearMenuItemTD.style.width = "20%";
-                }
-                if (i == urlYearF){
-                    yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
-                    yearMenuItemA.style.color = "#5b5b5a";
-                    yearMenuItemA.style.padding = "4px 2px";
-                    yearMenuItemDIV.appendChild(yearMenuItemA);
-                    yearMenuItemTD.appendChild(yearMenuItemDIV);
-                }
-                else {
-                    yearMenuItemTD.appendChild(yearMenuItemA);
-                    if (i == urlYearF - 1) {
-                        yearMenuItemTD.style.borderRadius = "0px 0px 8px 0px";
-                    }
-                    else if (i == urlYearF + 1) {
-                        yearMenuItemTD.style.borderRadius = "0px 0px 0px 8px";
-                    }
-                    if (i > sysYear) {
-                        yearMenuItemA.style.color = "#396A84";
-                    }
-                    else {
-                        yearMenuItemA.setAttribute("href", yearMenuItemURL);
-                    }
-                }
-
-
-
-
+            if (isSearchPage) {
+                newStyleSearchURL = generateNewStyleSearchURL();
             }
-        }
 
-        const container = document.getElementById("container");
-        container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
-
-
-
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //remove alerts about wrong year
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        const noteBlocks = ["block-nodeblock", "block-block"];
-        for (b = 0; b < noteBlocks.length; b++) {
-            var noteBlock = document.getElementById('top-content').getElementsByClassName(noteBlocks[b]);
-            for (n = 0; n < noteBlock.length; n++) {
-                //console.log(noteBlock[n].innerHTML);
-                if (noteBlock[n].innerHTML.match(/the most recent/) !== null) {
-                    noteBlock[n].style.display = "none";
-                }
-            }
-        }
-
-    }
-    else {
-
-        let oldStyleSearchURL = '';
-        if (isSearchPage) {
-            oldStyleSearchURL = generateOldStyleSearchURL();
-        }
-
-        for (j = firstYear; j <= sysYear; j += 10)
-        {
             const yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
-            yearMenuBarDIV.style.backgroundColor = "#FFFFFC";
+            yearMenuBarDIV.style.padding = "0px";
+            yearMenuBarDIV.style.margin = "0px";
 
-            const yearMenuBarUL = document.createElement('ul');
-            yearMenuBarUL.className = "sf-menu sf-main-menu";
-            yearMenuBarUL.style.height = "33px";
-            yearMenuBarDIV.appendChild(yearMenuBarUL);
+            const yearMenuBarTABLE = document.createElement('table');
+            yearMenuBarTABLE.style.width = "100%";
+            yearMenuBarDIV.appendChild(yearMenuBarTABLE);
 
-            for (i = j; i < j+10; i++)
+            for (j = firstYear; j <= sysYear; j += 10)
             {
-                yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
-                if (isSearchPage && (i > 2010 && i < 2016)) {
-                    try {
-                        yearMenuItemURL = oldStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
+                var yearMenuBarTR = document.createElement('tr');
+                yearMenuBarTABLE.appendChild(yearMenuBarTR);
+
+                for (i = j; i < j+10; i++)
+                {
+                    yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));       
+                    if (isSearchPage && (i <= 2010 || i >= 2016)) {
+                        try {
+                            yearMenuItemURL = newStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
+                        }
+                        catch(err) {
+                            console.log(err);
+                        } 
                     }
-                    catch(err) {
-                        console.log(err);
+
+                    let yearMenuItemTD = document.createElement('td');
+                    yearMenuItemTD.style.padding = "0px";
+                    yearMenuItemTD.style.width = "10%";
+                    yearMenuItemTD.style.height = "30px";
+                    yearMenuItemTD.style.backgroundColor = "#2c566d";
+                    yearMenuBarTABLE.appendChild(yearMenuItemTD);
+
+                    let yearMenuItemDIV = document.createElement('div');
+                    yearMenuItemDIV.style.width = "100%";
+                    yearMenuItemDIV.style.height = "30px";
+                    yearMenuItemDIV.style.backgroundColor = "#FFFFFF";
+                    yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
+
+                    let yearMenuItemA = document.createElement('a');
+                    yearMenuItemA.innerHTML = i + "-" + (i + 1);
+                    yearMenuItemA.style.margin = "4px 10px";
+                    yearMenuItemA.style.borderRadius = "8px";
+                    yearMenuItemA.style.color = "#FFFFFF";
+
+                    if (i == currentYear) {
+                        //yearMenuItemA.innerHTML = "Current Year: " + yearMenuItemA.innerHTML;
+                        //yearMenuItemTD.style.width = "20%";
                     }
-
-                }
-
-                const yearMenuItemLI = document.createElement('li');
-                yearMenuItemLI.style.backgroundColor = "#444844";
-                yearMenuItemLI.style.textAlign = "center";
-                yearMenuBarUL.appendChild(yearMenuItemLI);
-
-                const yearMenuItemDIV = document.createElement('div');
-                yearMenuItemDIV.style.backgroundColor = "#FFFFFC";
-                yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
-                yearMenuItemDIV.style.width = "100%";
-                yearMenuItemDIV.style.height = "33px";
-
-                const yearMenuItemA = document.createElement('a');
-                yearMenuItemA.setAttribute("href", yearMenuItemURL);
-                yearMenuItemA.innerHTML = i + "-" + (i + 1);
-                yearMenuItemA.style.width = "70px";
-                yearMenuItemA.style.height = "17px";
-                yearMenuItemA.style.padding = "6px 12px 10px";
-
-                if (i == urlYearF){
-                    yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
-                    yearMenuItemA.style.color = "#5b5b5a";
-
-                    ////
-                    // yearMenuItemA.style.padding = "4px 12px 10px";
-                    // yearMenuItemA.style.borderColor = "#DC241F";
-                    // yearMenuItemA.style.borderStyle = "solid";
-                    // yearMenuItemA.style.borderWidth = "3px 0px 0px 0px";
-                    // yearMenuItemA.style.borderRadius = "6px 6px 0px 0px";
-                    ////
-
-                    yearMenuItemLI.style.pointerEvents = "none";
-                    yearMenuItemDIV.appendChild(yearMenuItemA);
-                    yearMenuItemLI.appendChild(yearMenuItemDIV);
-                }
-                else {
-                    yearMenuItemLI.appendChild(yearMenuItemA);
-                    if (i == urlYearF - 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 8px 0px";
-                    }
-                    else if (i == urlYearF + 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 0px 8px";
-                    }
-                    if (i > sysYear) {
+                    if (i == urlYearF){
+                        yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                         yearMenuItemA.style.color = "#5b5b5a";
-                        yearMenuItemLI.style.pointerEvents = "none";
+                        yearMenuItemA.style.padding = "4px 2px";
+                        yearMenuItemDIV.appendChild(yearMenuItemA);
+                        yearMenuItemTD.appendChild(yearMenuItemDIV);
+                    }
+                    else {
+                        yearMenuItemTD.appendChild(yearMenuItemA);
+                        if (i == urlYearF - 1) {
+                            yearMenuItemTD.style.borderRadius = "0px 0px 8px 0px";
+                        }
+                        else if (i == urlYearF + 1) {
+                            yearMenuItemTD.style.borderRadius = "0px 0px 0px 8px";
+                        }
+                        if (i > sysYear) {
+                            yearMenuItemA.style.color = "#396A84";
+                        }
+                        else {
+                            yearMenuItemA.setAttribute("href", yearMenuItemURL);
+                        }
+                    }
+
+
+
+
+                }
+            }
+
+            var container = document.getElementById("container");
+            container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
+
+
+
+
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //remove alerts about wrong year
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            noteBlocks = ["block-nodeblock", "block-block"];
+            for (b = 0; b < noteBlocks.length; b++) {
+                var noteBlock = document.getElementById('top-content').getElementsByClassName(noteBlocks[b]);
+                for (n = 0; n < noteBlock.length; n++) {
+                    //console.log(noteBlock[n].innerHTML);
+                    if (noteBlock[n].innerHTML.match(/the most recent/) !== null) {
+                        noteBlock[n].style.display = "none";
                     }
                 }
             }
 
-            const container = document.getElementById("container");
-            container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
         }
+        else {
+
+            if (isSearchPage) {
+                oldStyleSearchURL = generateOldStyleSearchURL();
+            }
+
+            for (j = firstYear; j <= sysYear; j += 10)
+            {
+                const yearMenuBarDIV = document.createElement('div');
+                yearMenuBarDIV.id = "navigation";
+                yearMenuBarDIV.style.backgroundColor = "#FFFFFC";
+
+                const yearMenuBarUL = document.createElement('ul');
+                yearMenuBarUL.className = "sf-menu sf-main-menu";
+                yearMenuBarUL.style.height = "33px";
+                yearMenuBarDIV.appendChild(yearMenuBarUL);
+
+                for (i = j; i < j+10; i++)
+                {
+                    yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
+                    if (isSearchPage && (i > 2010 && i < 2016)) {
+                        try {
+                            yearMenuItemURL = oldStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
+                        }
+                        catch(err) {
+                            console.log(err);
+                        }
+
+                    }
+
+                    let yearMenuItemLI = document.createElement('li');
+                    yearMenuItemLI.style.backgroundColor = "#444844";
+                    yearMenuItemLI.style.textAlign = "center";
+                    yearMenuBarUL.appendChild(yearMenuItemLI);
+
+                    let yearMenuItemDIV = document.createElement('div');
+                    yearMenuItemDIV.style.backgroundColor = "#FFFFFC";
+                    yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
+                    yearMenuItemDIV.style.width = "100%";
+                    yearMenuItemDIV.style.height = "33px";
+
+                    let yearMenuItemA = document.createElement('a');
+                    yearMenuItemA.setAttribute("href", yearMenuItemURL);
+                    yearMenuItemA.innerHTML = i + "-" + (i + 1);
+                    yearMenuItemA.style.width = "70px";
+                    yearMenuItemA.style.height = "17px";
+                    yearMenuItemA.style.padding = "6px 12px 10px";
+
+                    if (i == urlYearF){
+                        yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
+                        yearMenuItemA.style.color = "#5b5b5a";
+                        yearMenuItemLI.style.pointerEvents = "none";
+                        yearMenuItemDIV.appendChild(yearMenuItemA);
+                        yearMenuItemLI.appendChild(yearMenuItemDIV);
+                    }
+                    else {
+                        yearMenuItemLI.appendChild(yearMenuItemA);
+                        if (i == urlYearF - 1) {
+                            yearMenuItemLI.style.borderRadius = "0px 0px 8px 0px";
+                        }
+                        else if (i == urlYearF + 1) {
+                            yearMenuItemLI.style.borderRadius = "0px 0px 0px 8px";
+                        }
+                        if (i > sysYear) {
+                            yearMenuItemA.style.color = "#5b5b5a";
+                            yearMenuItemLI.style.pointerEvents = "none";
+                        }
+                    }
+                }
+
+                let container = document.getElementById("container");
+                container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
+            }
+
+        }
+
     }
 }
 
