@@ -207,7 +207,7 @@ function getProfContent(profName, profURL, res) {
 function makeProfSection(profName, profURL, tooltipContent) {
 
     const profElements = document.getElementsByClassName(profName.fullNameKey);
-    console.log(profElements)
+
     for (let p = 0; p < profElements.length; p++) {
         profElements[p].id = profName.fullNameKey + p;
         $('#' + profName.fullNameKey + p).data('tooltipsy').destroy();
@@ -404,10 +404,8 @@ function courseOverview() {
 
     courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
-    if (courses !== null)
-    {
-        for (let c=0; c<courses.length; c++)
-        {
+    if (courses !== null) {
+        for (let c=0; c<courses.length; c++) {
             depsDup.push(courses[c].split(" ")[0]);
         }
     }
@@ -748,6 +746,11 @@ function courseOverview() {
     else {
         document.getElementById("center-column").style.width = "620px";
         container.insertBefore(sidebar, document.getElementById("footer"));
+    }
+
+    //fix layout bug on mcgill site for some newStyle pages (2009-2010 & 2011-2012)
+    if (isNewStyle) {
+        document.getElementById("inner-container").style.width = '100%';
     }
 
     vsbData.codeReady = true;

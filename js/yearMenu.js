@@ -131,7 +131,7 @@ function addYearMenu() {
     sysMonth = new Date().getMonth();
     currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
     isNewStyle = document.getElementsByClassName("transition").length > 0;
-    firstYear = Math.max(sysYear-10, 2010);
+    firstYear = Math.max(sysYear-10, 2009);
     isSearchPage = (url.match(/search/) !== null);
 
     if (!isNewStyle) {
