@@ -42,10 +42,13 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	console.log("McGill Enhanced took " + time + " ms to improve this page!");
 }
 
-if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) !== null) {
+if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/)) {
 	enhanceVSB();
 }
 
+if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.match(/mymcgill\.mcgill\.ca\/portal\/page\/portal\/myMcGill\/MINERVA_TAB/)) {
+	injectScheduleDownloader();
+}
 
 
 function logForDebug(toLog) {
