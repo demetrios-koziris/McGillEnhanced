@@ -28,9 +28,7 @@
         "*://horizon.mcgill.ca/*", 
         "*://www.ratemyprofessors.com/search*", 
         "*://www.docuum.com/McGill*", 
-        "*://vsb.mcgill.ca/*",
-        "http://*/*P_CrseSchdDetl*", 
-        "https://*/*P_CrseSchdDetl*"
+        "*://vsb.mcgill.ca/*"
       ],
       "js" : [
         "lib/jquery-1.11.2.min.js", 
@@ -41,15 +39,15 @@
         "js/courseLinks.js", 
         "js/vsbEnhanced.js", 
         "js/init.js",
-        "scriptInjector.js"
-      ],
-      "run_at": "document_end"
+        "js/scriptInjector.js"
+      ]
+      // "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [
-    "icsLib.js", 
-    "script.js", 
-    "icons/calendar_icon_mcgill_128.png"]
+    "lib/icsLib.js", 
+    "js/script.js"
+  ]
 }
 
 
