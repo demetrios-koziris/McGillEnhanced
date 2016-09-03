@@ -158,9 +158,9 @@ function addYearMenu() {
             for (let i = j; i < j+10; i++)
             {
                 yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));       
-                if (isSearchPage && (i <= 2010 || i >= 2016)) {
+                if (isSearchPage && i != 2015) {
                     try {
-                        yearMenuItemURL = newStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
+                        yearMenuItemURL = newStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));
                     }
                     catch(err) {
                         console.log(err);
@@ -262,7 +262,7 @@ function addYearMenu() {
             for (i = j; i < j+10; i++)
             {
                 yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
-                if (isSearchPage && (i > 2010 && i < 2016)) {
+                if (isSearchPage && i == 2015) {
                     try {
                         yearMenuItemURL = oldStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
                     }
