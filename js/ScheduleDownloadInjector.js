@@ -17,7 +17,7 @@ function injectScheduleDownloader() {
       (document.head || document.documentElement).appendChild(s);
 
       var t = document.createElement('script');
-      t.src = chrome.extension.getURL('js/script.js');
+      t.src = chrome.extension.getURL('js/scheduleDownload.js');
       t.onload = function() {
           this.parentNode.removeChild(this);
       };

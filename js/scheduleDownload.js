@@ -1,21 +1,14 @@
-//alert("Running MinervaScheduleExtension");
-
-//inject script2.js into page
-//alert("testing script");
-
-
-
 
 
 var calCourseSchedule = ics();
 
 //console.log(document.getElementsByClassName("datadisplaytable"));
-courseTables = document.getElementsByClassName("datadisplaytable")
+courseTables = document.getElementsByClassName("datadisplaytable");
 
 for (i = 0; i < courseTables.length; i+=2) {
 
-  courseInfoTable = courseTables[i].getElementsByClassName("dddefault")
-  courseSchedTable = courseTables[i+1].getElementsByClassName("dddefault")
+  courseInfoTable = courseTables[i].getElementsByClassName("dddefault");
+  courseSchedTable = courseTables[i+1].getElementsByClassName("dddefault");
   //console.log(courseSchedTable);
 
   for (j = 0; j < courseSchedTable.length; j+=6) {
@@ -33,7 +26,7 @@ for (i = 0; i < courseTables.length; i+=2) {
     //courseLocationValueArray = courseSchedTable[j+2].innerText.split(" ");
     //courseLocation = "McGill " + courseLocationValueArray[0] + " " + courseLocationValueArray[courseLocationValueArray.length-1];
 
-    courseType = courseSchedTable[j+4].innerText
+    courseType = courseSchedTable[j+4].innerText;
 
     days = ["U","M","T","W","R","F","S"];
     startDate = new Date(startDay);
@@ -51,7 +44,7 @@ for (i = 0; i < courseTables.length; i+=2) {
       }
       if (!startDateHasCourse) {
         startDate.setDate(startDate.getDate() + 1);
-        count++
+        count++;
       }
     }
     startDayValues = startDate.toUTCString().split(" ");
@@ -119,13 +112,13 @@ for (i = 0; i < courseTables.length; i+=2) {
       courseDays:courseDays,
       courseLocation:courseLocation,
       courseType:courseType
-    }
+    };
     console.log(courseData);
   }
 }
-console.log(courseTables)
+console.log(courseTables);
 
 //calCourseSchedule.download("test","ics");
-schedDownload = "<div><b>Download Course Schedule as a .ICS file:</b><form method=\"get\" action=\"javascript:calCourseSchedule.download('CourseSchedule"+courseSemester+"')\"><button type=\"submit\"> <img src=\"http://i.imgur.com/mdbdu92.png height=\"80\" width=\"240\"\"></button></form></div>"
+schedDownload = "<div><b>Download Course Schedule as a .ICS file:</b><form method=\"get\" action=\"javascript:calCourseSchedule.download('CourseSchedule"+courseSemester+"')\"><button type=\"submit\"> <img src=\"http://i.imgur.com/mdbdu92.png height=\"80\" width=\"240\"\"></button></form></div>";
 document.getElementsByClassName("pagebodydiv")[0].innerHTML = schedDownload + document.getElementsByClassName("pagebodydiv")[0].innerHTML;
 // $(".pagebodydiv")[0].innerHTML = schedDownload + $(".pagebodydiv")[0].innerHTML;
