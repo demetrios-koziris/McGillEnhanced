@@ -52,7 +52,7 @@ function getProfUrl(profName, general) {
 
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
         try {
-            if (data.responseXML == 'error') {
+            if (data.responseXML === 'error') {
                 console.log(data);
                 tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
                 makeProfSection(profName, profURL, tooltipContent);
@@ -74,7 +74,7 @@ function getProfUrl(profName, general) {
                         getProfUrl(profName, true);
                     }
                 } 
-                else if (listings.length == 1) { 
+                else if (listings.length === 1) { 
                     // 1 prof listing so create url with listing id
                     profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
                     profURL = 'http://www.ratemyprofessors.com/' + profURLId;
@@ -410,7 +410,7 @@ function courseOverview() {
     }
     logForDebug(depsDup);
     const deps = depsDup.filter(function(elem, pos) {
-        return depsDup.indexOf(elem) == pos;
+        return depsDup.indexOf(elem) === pos;
     });
 
 
@@ -671,7 +671,7 @@ function courseOverview() {
             deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
 
             const deptCoursesLinkDiv = document.createElement('div');
-            deptCoursesLinkDiv.className = d==deps.length-1 ? "views-row views-row-last" : "views-row";
+            deptCoursesLinkDiv.className = (d === deps.length-1 ? "views-row views-row-last" : "views-row");
             deptCourses.appendChild(deptCoursesLinkDiv);
 
             const deptCoursesLink = document.createElement('a');
@@ -701,7 +701,7 @@ function courseOverview() {
             //profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?f[0]=instructors%3A" : "/") + profURLName;
 
             const profCoursesLinkDiv = document.createElement('div');
-            profCoursesLinkDiv.className = (p==profKeys.length-1 ? "views-row views-row-last" : "views-row");
+            profCoursesLinkDiv.className = (p === profKeys.length-1 ? "views-row views-row-last" : "views-row");
             profCourses.appendChild(profCoursesLinkDiv);
 
             const profCoursesLink = document.createElement('a');
@@ -760,7 +760,7 @@ function courseOverview() {
 
     vsbData.codeReady = true;
 
-    if (vsbData.total == vsbData.done && vsbData.codeReady === true) {
+    if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
         addVerifiedLinks();
     }
 
@@ -868,7 +868,7 @@ function validateVSBLink(linkData, sidebar) {
             }
         }
 
-        if (vsbData.total == vsbData.done && vsbData.codeReady === true) {
+        if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
             addVerifiedLinks();
         }  
     });

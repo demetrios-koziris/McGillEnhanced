@@ -82,7 +82,7 @@ function getURLParams() {
     for (let p = 0; p < paramsArray.length; p++) {
         const param = paramsArray[p].split('=');
         if (param[0] !== '') {
-            if (!isNewStyle && param[0] == 'filters') {
+            if (!isNewStyle && param[0] === 'filters') {
                 //console.log(param[1])
                 const filtersArray = param[1].replace(/\%22/g, '').split('%20');
                 //console.log(filtersArray)
@@ -109,7 +109,7 @@ function getURLParams() {
                     paramsJSON[fparam[0]] = fparam[1];
                 }
             } 
-            else if (param[0] == 'search_api_views_fulltext') {
+            else if (param[0] === 'search_api_views_fulltext') {
                 paramsJSON.query = param[1];
             } 
             else {
@@ -186,11 +186,11 @@ function addYearMenu() {
                 yearMenuItemA.style.borderRadius = "8px";
                 yearMenuItemA.style.color = "#FFFFFF";
 
-                if (i == currentYear) {
+                if (i === currentYear) {
                     //yearMenuItemA.innerHTML = "Current Year: " + yearMenuItemA.innerHTML;
                     //yearMenuItemTD.style.width = "20%";
                 }
-                if (i == urlYearF){
+                if (i === urlYearF){
                     yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                     yearMenuItemA.style.color = "#5b5b5a";
                     yearMenuItemA.style.padding = "4px 2px";
@@ -199,10 +199,10 @@ function addYearMenu() {
                 }
                 else {
                     yearMenuItemTD.appendChild(yearMenuItemA);
-                    if (i == urlYearF - 1) {
+                    if (i === urlYearF - 1) {
                         yearMenuItemTD.style.borderRadius = "0px 0px 8px 0px";
                     }
-                    else if (i == urlYearF + 1) {
+                    else if (i === urlYearF + 1) {
                         yearMenuItemTD.style.borderRadius = "0px 0px 0px 8px";
                     }
                     if (i > sysYear) {
@@ -290,7 +290,7 @@ function addYearMenu() {
                 yearMenuItemA.style.height = "17px";
                 yearMenuItemA.style.padding = "6px 12px 10px";
 
-                if (i == urlYearF){
+                if (i === urlYearF){
                     yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                     yearMenuItemA.style.color = "#5b5b5a";
 
@@ -308,10 +308,10 @@ function addYearMenu() {
                 }
                 else {
                     yearMenuItemLI.appendChild(yearMenuItemA);
-                    if (i == urlYearF - 1) {
+                    if (i === urlYearF - 1) {
                         yearMenuItemLI.style.borderRadius = "0px 0px 8px 0px";
                     }
-                    else if (i == urlYearF + 1) {
+                    else if (i === urlYearF + 1) {
                         yearMenuItemLI.style.borderRadius = "0px 0px 0px 8px";
                     }
                     if (i > sysYear) {
