@@ -76,7 +76,7 @@ function generateCSUSURLs() {
         COMP560: "comp-560-graph-algorithms-and-applications",
         COMP561: "comp-561-computational-biology-methods-and-research",
         COMP564: "comp-564-computational-gene-regulation"
-    }
+    };
     return csusURLs;
 }
 
@@ -95,6 +95,9 @@ function generateRecordingURLs() {
         ANAT214 : { 
             2015 : [ 
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12204" }
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14135" }
             ] 
         },
         ANAT321 : { 
@@ -176,6 +179,16 @@ function generateRecordingURLs() {
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12197" }
             ] 
         },
+        CACC521 : { 
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "781", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13488" }
+            ] 
+        },
+        CFIN512 : { 
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13571" }
+            ] 
+        },
         CHEM110 : { 
             2010 : [ 
                 { year: 2010, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1420" },
@@ -244,7 +257,7 @@ function generateRecordingURLs() {
             ],
             2015 : [ 
                 { year: 2016, month: 01, semester: "Winter", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13124" }
-            ] 
+            ]
         },
         CHEM182 : { 
             2010 : [ 
@@ -280,6 +293,14 @@ function generateRecordingURLs() {
             2015 : [ 
                 { year: 2015, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1607" },
                 { year: 2015, month: 09, semester: "Fall", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11556" }
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13440" }
+            ] 
+        },
+        CHEM203: {
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13988" }
             ] 
         },
         CHEM204 : { 
@@ -388,7 +409,10 @@ function generateRecordingURLs() {
             ],
             2014 : [ 
                 { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1569" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13966" }
+            ]  
         },
         CHEM281 : { 
             2010 : [ 
@@ -449,7 +473,15 @@ function generateRecordingURLs() {
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12243" },
                 { year: 2015, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11806" },
                 { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13068" }
-            ]
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14171" }
+            ]  
+        },
+        COMP251 : {
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14172" }
+            ]  
         },
         COMP273 : { 
             2015 : [ 
@@ -594,6 +626,9 @@ function generateRecordingURLs() {
         EPSC201 : { 
             2015 : [ 
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12270" }
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14200" }
             ] 
         },
         FACC100 : { 
@@ -614,10 +649,23 @@ function generateRecordingURLs() {
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12145" }
             ] 
         },
+        INDS111 : {
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13640" }
+            ]  
+        },
+        INDS211 : {
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13688" }
+            ]  
+        },
         LAWG210 : { 
             2015 : [ 
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11964" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13779" }
+            ]  
         },
         LAWG273 : { 
             2015 : [ 
@@ -746,6 +794,9 @@ function generateRecordingURLs() {
             2015 : [ 
                 { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12213" },
                 { year: 2015, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12080" }
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14144" }
             ] 
         },
         PHGY210 : { 
@@ -838,6 +889,14 @@ function generateRecordingURLs() {
         PSYC337 : { 
             2014 : [ 
                 { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10483" }
+            ],
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14190" }
+            ] 
+        },
+        PSYC406 : {
+            2016 : [ 
+                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13830" }
             ] 
         },
         PSYC410 : { 
