@@ -153,7 +153,7 @@ function getProfContent(profName, profURL, res) {
                     tooltipContent = 'Multiple Instructors found<br>Please click to see results';
                 } 
                 else if (res == 1) {
-                    if (htmlDoc.getElementsByClassName('rating-count')[0] === null) {
+                    if (!htmlDoc.getElementsByClassName('rating-count')[0]) {
                         //check holly dressel in ENVR400(13-14) and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
                         tooltipContent = 'This instructor has no ratings<br>Click to be the first to rate';
                     } 
@@ -281,13 +281,13 @@ function courseOverview() {
 
     const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
     const courseTermsCodes = [];
-    if (courseTerms.match(/Fall/) !== null) {
+    if (courseTerms.match(/Fall/)) {
         courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
     }
-    if (courseTerms.match(/Winter/) !== null) {
+    if (courseTerms.match(/Winter/)) {
         courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
     }
-    if (courseTerms.match(/Summer/) !== null) {
+    if (courseTerms.match(/Summer/)) {
         courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
     }
     logForDebug(courseTermsCodes);
@@ -319,7 +319,7 @@ function courseOverview() {
     //Replace Course names with links to course overview page
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     notesElement = document.getElementsByClassName("catalog-notes")[0];
-    if (notesElement !== null) {
+    if (notesElement) {
         notesElement.innerHTML = notesElement.innerHTML.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
     }
     
@@ -335,7 +335,7 @@ function courseOverview() {
     const loadMessage = "McGill Enhanced is loading ratings!";
 
 
-    if (profsFullSource.match(/There are no professors/) === null) {
+    if (!profsFullSource.match(/There are no professors/)) {
 
         const profsFullSourceArray = profsFullSource.match(/(Fall|Winter|Summer)/g);
         for (let a = 0; a < profsFullSourceArray.length; a++) {
@@ -404,7 +404,7 @@ function courseOverview() {
 
     courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
-    if (courses !== null) {
+    if (courses) {
         for (let c=0; c<courses.length; c++) {
             depsDup.push(courses[c].split(" ")[0]);
         }
@@ -741,7 +741,7 @@ function courseOverview() {
 
     //insert enhanced sidebar
     const container = document.getElementById(isNewStyle ? "inner-container" : "container");
-    if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar") !== null) {
+    if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar")) {
         document.createElement("div").appendChild(document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
     }
     if (isNewStyle) {
@@ -788,7 +788,7 @@ function programOverview(){
         const contentElement = courseSections[c].getElementsByClassName("content")[0];
         contentElement.insertBefore(link, contentElement.firstChild);
 
-        if (notes !== null) {
+        if (notes) {
             notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
             notes.innerHTML = notes.innerHTML.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
         }

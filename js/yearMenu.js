@@ -132,7 +132,7 @@ function addYearMenu() {
     currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
     isNewStyle = document.getElementsByClassName("transition").length > 0;
     firstYear = Math.max(sysYear-10, 2009);
-    isSearchPage = (url.match(/search/) !== null);
+    isSearchPage = (url.match(/search/));
 
     if (!isNewStyle) {
 
@@ -234,7 +234,7 @@ function addYearMenu() {
             var noteBlock = document.getElementById('top-content').getElementsByClassName(noteBlocks[b]);
             for (n = 0; n < noteBlock.length; n++) {
                 //console.log(noteBlock[n].innerHTML);
-                if (noteBlock[n].innerHTML.match(/the most recent/) !== null) {
+                if (noteBlock[n].innerHTML.match(/the most recent/)) {
                     noteBlock[n].style.display = "none";
                 }
             }
