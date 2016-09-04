@@ -125,7 +125,7 @@ function getProfContent(profName, profURL, res) {
     chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
         try {
 
-            if (data.responseXML == 'error') {
+            if (data.responseXML === 'error') {
                 console.log(data);
                 tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
                 makeProfSection(profName, profURL, tooltipContent);
@@ -149,41 +149,40 @@ function getProfContent(profName, profURL, res) {
                 if (res === 0) {
                     tooltipContent = 'Instructor not found';
                 } 
-                else if (res == 2) {
+                else if (res === 2) {
                     tooltipContent = 'Multiple Instructors found<br>Please click to see results';
                 } 
-                else if (res == 1) {
-                    if (!htmlDoc.getElementsByClassName('rating-count')[0]) {
-                        //check holly dressel in ENVR400(13-14) and Sung Chul Noh in MGCR 222 at https://www.mcgill.ca/study/2012-2013/faculties/engineering/undergraduate/programs/bachelor-engineering-beng-civil-engineering
-                        tooltipContent = 'This instructor has no ratings<br>Click to be the first to rate';
-                    } 
-                    else {
-                        gradeElements = htmlDoc.getElementsByClassName('grade');
-                        if (gradeElements[0]) {
-                            rating.overall = gradeElements[0].innerText.trim();
+                else if (res === 1) {
+                    gradeElements = htmlDoc.getElementsByClassName('grade');
+                    if (gradeElements[0]) {
+                        rating.overall = gradeElements[0].innerText.trim();
+                    }
+                    if (gradeElements[1]) {
+                        rating.takeagain = gradeElements[1].innerText.trim();
+                    }
+                    if (gradeElements[2]) {
+                        rating.difficulty = gradeElements[2].innerText.trim();
+                    }
+                    if (gradeElements[3]) {
+                        rating.hotness = gradeElements[3].innerHTML;
+                        if (rating.hotness) {
+                            rating.hotness = rating.hotness.match(/chilis\/(?:new-)?([A-Za-z]+)\-chili\.png/)[1];
                         }
-                        if (gradeElements[1]) {
-                            rating.takeagain = gradeElements[1].innerText.trim();
-                        }
-                        if (gradeElements[2]) {
-                            rating.difficulty = gradeElements[2].innerText.trim();
-                        }
-                        if (gradeElements[3]) {
-                            rating.hotness = gradeElements[3].innerHTML;
-                            if (rating.hotness) {
-                                rating.hotness = rating.hotness.match(/chilis\/(?:new-)?([A-Za-z]+)\-chili\.png/)[1];
-                            }
-                        }
-                        if (htmlDoc.getElementsByClassName('pfname')[0]) {
-                            rating.firstName = htmlDoc.getElementsByClassName('pfname')[0].innerText.trim();
-                        }
-                        if (htmlDoc.getElementsByClassName('plname')[0]) {
-                            rating.lastName = htmlDoc.getElementsByClassName('plname')[0].innerText.trim();
-                        }
-                        if (htmlDoc.getElementsByClassName('rating-count')[0]) {
-                            rating.numOfRatings = htmlDoc.getElementsByClassName('rating-count')[0].innerText.match(/([0-9]+) Student Ratings/)[1];
-                        }
+                    }
+                    if (htmlDoc.getElementsByClassName('pfname')[0]) {
+                        rating.firstName = htmlDoc.getElementsByClassName('pfname')[0].innerText.trim();
+                    }
+                    if (htmlDoc.getElementsByClassName('plname')[0]) {
+                        rating.lastName = htmlDoc.getElementsByClassName('plname')[0].innerText.trim();
+                    }
+                    if (htmlDoc.getElementsByClassName('rating-count')[0]) {
+                        rating.numOfRatings = htmlDoc.getElementsByClassName('rating-count')[0].innerText.match(/([0-9]+) Student Ratings/)[1];
+                    }
 
+                    if (rating.numOfRatings === '0') {
+                        tooltipContent = 'This instructor has no ratings<br>Click to be the first to rate';
+                    }
+                    else {
                         tooltipContent = '<b>' + rating.firstName + ' ' + rating.lastName + '</b>' +
                                          '<br><b>' + rating.overall + '</b> Overall Quality' +
                                          '<br><b>' + rating.difficulty + '</b> Difficulty Level' +
