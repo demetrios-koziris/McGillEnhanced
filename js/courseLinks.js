@@ -250,7 +250,7 @@ function generateFormButton(onColor, buttonValue) {
     formButton.setAttribute('value', buttonValue);
     formButton.className = 'form-submit';
     formButton.style.width = '100%';
-    formButton.style.height = '35px';
+    formButton.style.height = '32px';
     formButton.style.margin = '4px 0px';
     if (isNewStyle) {
         formButton.style.border = '1px solid #5B5B5A';
@@ -438,6 +438,7 @@ function courseOverview() {
     const courseEvalTitle = document.createElement(isNewStyle ? "h3" : "h4");
     courseEvalTitle.innerHTML = "Course Reviews";
     courseEvalTitle.style.margin = "0px";
+    courseEvalTitle.style.fontSize = "1.1em";
     courseEval.appendChild(courseEvalTitle);
 
 
@@ -484,6 +485,7 @@ function courseOverview() {
         const recordingsTitle = document.createElement(isNewStyle ? "h3" : "h4");
         recordingsTitle.innerHTML = "Lecture Recordings";
         recordingsTitle.style.margin = "0px";
+        recordingsTitle.style.fontSize = "1.1em";
         recordings.appendChild(recordingsTitle);
 
         if (urlYearF in recordingURLdata) {
@@ -527,6 +529,7 @@ function courseOverview() {
         const courseRegTitle = document.createElement(isNewStyle ? "h3" : "h4");
         courseRegTitle.innerHTML = "Minerva Registration";
         courseRegTitle.style.margin = "0px";
+        courseRegTitle.style.fontSize = "1.1em";
         courseReg.appendChild(courseRegTitle);
 
         for (let i = 0; i < courseTermsCodes.length; i++) {
@@ -587,6 +590,7 @@ function courseOverview() {
         const otherTitle = document.createElement(isNewStyle ? "h3" : "h4");
         otherTitle.innerHTML = "Other resources";
         otherTitle.style.margin = "0px";
+        otherTitle.style.fontSize = "1.1em";
         other.appendChild(otherTitle);
     
         if (csusURLdata) {
@@ -633,7 +637,7 @@ function courseOverview() {
 
     const sidebarBlock = document.createElement('div');
     sidebarBlock.className = "block";
-    sidebarBlock.style.padding = "16px 10px";
+    // sidebarBlock.style.padding = "12px 10px";
     sidebarBlock.style.minWidth = "260px";
     if (isNewStyle) {
         sidebarBlock.style.border = "1px solid #eee";
@@ -644,6 +648,7 @@ function courseOverview() {
     const sidebarBlockTitle = document.createElement('h3');
     sidebarBlockTitle.innerHTML = "Related Courses";
     sidebarBlockTitle.style.maxWidth = "100%";
+    sidebarBlockTitle.style.padding = "12px 10px";
     if (isNewStyle) {
         sidebarBlockTitle.style.background = "#DBDBDB";
     }
@@ -712,7 +717,7 @@ function courseOverview() {
 
         const sidebarBlock = document.createElement('div');
         sidebarBlock.className = "block";
-        sidebarBlock.style.padding = "16px 10px";
+        // sidebarBlock.style.padding = "12px 10px";
         sidebarBlock.style.minWidth = "260px";
         if (isNewStyle) {
             sidebarBlock.style.border = "1px solid #eee";
@@ -723,6 +728,7 @@ function courseOverview() {
         const sidebarBlockTitle = document.createElement('h3');
         sidebarBlockTitle.innerHTML = "Related Programs";
         sidebarBlockTitle.style.maxWidth = "100%";
+        sidebarBlockTitle.style.padding = "12px 10px";
         if (isNewStyle) {
             sidebarBlockTitle.style.background = "#DBDBDB";
         }
@@ -803,6 +809,7 @@ function addVerifiedLinks() {
         const vsbTitle = document.createElement(isNewStyle ? "h3" : "h4");
         vsbTitle.innerHTML = "Visual Schedule Builder";
         vsbTitle.style.margin = "0px";
+        vsbTitle.style.fontSize = "1.1em";
         vsb.appendChild(vsbTitle);
 
         if (vsbData.vsbFall.valid) {
