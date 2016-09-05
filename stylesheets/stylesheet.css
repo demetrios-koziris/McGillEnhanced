@@ -102,9 +102,10 @@ header h2 {
   margin-bottom: 40px;
 }
 
+
 a.button {
-  display: block;
-  float: left;
+  display: inline-block;
+  /*float: left;*/
   width: 179px;
   padding: 12px 8px 12px 8px;
   margin-right: 14px;
@@ -158,11 +159,20 @@ a.button span {
 #download-tar-gz span {
   background: transparent url(../images/tar-gz-icon.png) 12px 50% no-repeat;
 }
+#view-on-chrome span {
+  background: transparent url(../images/chrome-web-store-icon.png) 12px 50% no-repeat;
+}
 #view-on-github span {
   background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
 }
 #view-on-github {
   margin-right: 0;
+}
+#support-me span {
+  background: transparent url(../images/support-me-icon.png) 12px 50% no-repeat;
+}
+#mcgill-enhanced span {
+  background: transparent url(../images/mcgill-enhanced-icon.png) 12px 50% no-repeat;
 }
 
 code, pre {
@@ -277,6 +287,7 @@ h6 {
 p {
   margin-bottom: 20px;
   font-weight: 300;
+  text-align: justify;
 }
 
 a {
