@@ -159,20 +159,34 @@ a.button span {
 #download-tar-gz span {
   background: transparent url(../images/tar-gz-icon.png) 12px 50% no-repeat;
 }
-#view-on-chrome span {
-  background: transparent url(../images/chrome-web-store-icon.png) 12px 50% no-repeat;
-}
 #view-on-github span {
   background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
 }
 #view-on-github {
   margin-right: 0;
 }
+
+#view-on-chrome span {
+  background: transparent url(../images/chrome-web-store-icon.png) 12px 50% no-repeat;
+}
+#view-on-chrome {
+  margin-right: 10px;
+}
 #support-me span {
   background: transparent url(../images/support-me-icon.png) 12px 50% no-repeat;
 }
+#support-me {
+  margin-right: 10px;
+}
 #mcgill-enhanced span {
   background: transparent url(../images/mcgill-enhanced-icon.png) 12px 50% no-repeat;
+}
+#mcgill-enhanced {
+  margin-right: 10px;
+}
+
+.breadcrumb {
+  background-color: #E7E7E7;
 }
 
 code, pre {
