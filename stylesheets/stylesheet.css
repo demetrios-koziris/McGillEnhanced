@@ -186,7 +186,8 @@ a.button span {
 }
 
 .orange-key {
-  }
+
+}
 
 #refer-link {
   width: 300px;
@@ -282,7 +283,7 @@ em {
 
 table {
   width: 100%;
-  border: 1px solid #ebebeb;
+  border: 0px solid #ebebeb;
 }
 
 th {
@@ -292,7 +293,7 @@ th {
 td {
   font-weight: 300;
   text-align: center;
-  border: 1px solid #ebebeb;
+  border: 0px solid #ebebeb;
 }
 
 form {
