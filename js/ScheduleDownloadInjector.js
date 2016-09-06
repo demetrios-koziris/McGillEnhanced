@@ -18,9 +18,11 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 function injectScheduleDownloader() {
   try {
     logForDebug(document.getElementsByClassName("pagetitlediv"));
+    schedulePage = document.getElementsByClassName("pagetitlediv")[0].innerText.search("Student Schedule by Course Section");
+    logForDebug(schedulePage);
 
     //inject script.js into page
-    if (document.getElementsByClassName("pagetitlediv")[0].innerText.search("Student Schedule by Course Section")) {
+    if (schedulePage != -1) {
 
       var s = document.createElement('script');
       s.src = chrome.extension.getURL('lib/icsLib.js');
