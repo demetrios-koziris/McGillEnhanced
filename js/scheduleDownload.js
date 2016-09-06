@@ -134,6 +134,6 @@ for (i = 0; i < courseTables.length; i+=2) {
 console.log(courseTables);
 
 //calCourseSchedule.download("test","ics");
-schedDownload = "<div><b>Download Course Schedule as a .ICS file:</b><form method=\"get\" action=\"javascript:calCourseSchedule.download('CourseSchedule"+courseSemester+"')\"><button type=\"submit\"> <img src=\"http://i.imgur.com/mdbdu92.png height=\"80\" width=\"240\"\"></button></form></div>";
+schedDownload = "<div><b>McGill Enhanced Feature: Download Course Schedule as a .ICS file <br>(for importing to Google Calendar, Apple iCal, or Microsoft Outlook):</b><form method=\"get\" action=\"javascript:calCourseSchedule.download('CourseSchedule"+courseSemester+"')\"><button type=\"submit\"> <img src=\"http://i.imgur.com/HEGWp4Z.png height=\"80\" width=\"240\"\"></button></form></div>";
 document.getElementsByClassName("pagebodydiv")[0].innerHTML = schedDownload + document.getElementsByClassName("pagebodydiv")[0].innerHTML;
 // $(".pagebodydiv")[0].innerHTML = schedDownload + $(".pagebodydiv")[0].innerHTML;
