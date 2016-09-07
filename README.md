@@ -1,5 +1,5 @@
 # McGillEnhanced
-McGill Enhanced Chrome Extension
+A Chrome Extension Improving the McGill.ca Website Experience
 
 <a href="https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en">Download from the Google Chrome store</a>
 
