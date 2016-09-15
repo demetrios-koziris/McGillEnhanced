@@ -30,4 +30,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
 		console.log("Updated McGill Enhanced from v" + previousVersion + " to v" + currentVersion);
 	}
 	
+	chrome.runtime.onUpdateAvailable.addListener(function(details) {
+	  console.log("Ready to update to version " + details.version);
+	  chrome.runtime.reload();
+	});
 });
