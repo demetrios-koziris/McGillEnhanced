@@ -21,13 +21,13 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 	if (details.reason === "install") {
 		chrome.tabs.create({url: "https://demetrios-koziris.github.io/McGillEnhanced/supportme"}, function (tab) {
-			console.log("Installed McGill Enhanced v" + currentVersion);
+			console.log("Installed McGill Enhanced version " + currentVersion);
 	        console.log("New tab launched with https://demetrios-koziris.github.io/McGillEnhanced/supportme");
 	    });
 	}
 	else if (details.reason === "update") {
 		let previousVersion = details.previousVersion;
-		console.log("Updated McGill Enhanced from v" + previousVersion + " to v" + currentVersion);
+		console.log("Updated McGill Enhanced from version " + previousVersion + " to version " + currentVersion);
 	}
 	
 	chrome.runtime.onUpdateAvailable.addListener(function(details) {
