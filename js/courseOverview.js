@@ -136,7 +136,7 @@ function generateGetProfContentCallback(profURL, profName, res) {
                     tooltipContent = 'Instructor not found';
                 } 
                 else if (res === 1) {
-                    gradeElements = htmlDoc.getElementsByClassName('grade');
+                    const gradeElements = htmlDoc.getElementsByClassName('grade');
                     if (gradeElements[0]) {
                         rating.overall = gradeElements[0].innerText.trim();
                     }
@@ -190,6 +190,7 @@ function generateGetProfContentCallback(profURL, profName, res) {
 
 
 function makeProfSection(profURL, profName, tooltipContent) {
+    console.log(this)
 
     const profElements = document.getElementsByClassName(profName.fullNameKey);
 
@@ -248,6 +249,8 @@ function generateFormButton(onColor, buttonValue) {
 
 function courseOverview() {
 
+    const regex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
+
     if (urlYearF <= 2010) {
         document.getElementById("inner-container").style.width = "100%";
     }
@@ -281,7 +284,7 @@ function courseOverview() {
     
 
 
-    vsbData = {
+    const vsbData = {
         vsbFall: { 
             url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
             valid: false
@@ -295,9 +298,6 @@ function courseOverview() {
         codeReady: false
     };
     logForDebug(vsbData);
-    validateExternalLinks();
-
-
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -334,7 +334,7 @@ function courseOverview() {
 
         for (let termKey in profsByTerm) {
 
-            profsTermSource = profsFullSource.split("(" + termKey + ")");
+            const profsTermSource = profsFullSource.split("(" + termKey + ")");
             if (profsTermSource.length > 1) {
                 profsByTerm[termKey] = profsTermSource[0].split(",");
                 newProfsHTML += "<p>Instructors (" + termKey + "): ";
@@ -383,11 +383,8 @@ function courseOverview() {
 
 
 
-    newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
-
-
-
-    courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
+    const newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
+    const courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
     if (courses) {
         for (let c=0; c<courses.length; c++) {
@@ -408,14 +405,13 @@ function courseOverview() {
     sidebar.style.minWidth = "280px";
     sidebar.style.border = "0px";
 
-
-
-    const formsBlock = document.createElement('div');
-    formsBlock.id = "formsBlock";
+    const formsBlock = document.createElement('div');    
     formsBlock.style.marginBottom = (isNewStyle ? "10px" : "0px");
     formsBlock.style.padding = "10px 0px";
     sidebar.appendChild(formsBlock);
 
+    validateExternalLinks(vsbData, formsBlock);
+    
     const courseEval = document.createElement('div');
     courseEval.style.margin = "0px 0px 8px 0px";
     formsBlock.appendChild(courseEval);
@@ -429,7 +425,7 @@ function courseOverview() {
 
     if (docuumURLdata) {
 
-        docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLdata;
+        const docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLdata;
 
         const docuumForm = document.createElement('form');
         docuumForm.setAttribute("action", docuumURL);
@@ -474,7 +470,7 @@ function courseOverview() {
         recordings.appendChild(recordingsTitle);
 
         if (urlYearF in recordingURLdata) {
-            yearRecordingURLs = recordingURLdata[urlYearF];
+            const yearRecordingURLs = recordingURLdata[urlYearF];
 
             for (let r = 0; r < yearRecordingURLs.length; r++) {
 
@@ -580,7 +576,7 @@ function courseOverview() {
     
         if (csusURLdata) {
 
-            csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
+            const csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
 
             const csusForm = document.createElement('form');
             csusForm.setAttribute("action", csusURL);
@@ -593,7 +589,7 @@ function courseOverview() {
 
         if (docuumURLdata) {
 
-            docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
+            const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
 
             const docuumForm = document.createElement('form');
             docuumForm.setAttribute("action", docuumURL);
@@ -606,7 +602,7 @@ function courseOverview() {
 
         if (wikinotesURLdata) {
 
-            wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
+            const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
 
             const wikinotesForm = document.createElement('form');
             wikinotesForm.setAttribute("action", wikinotesURL);
@@ -654,7 +650,7 @@ function courseOverview() {
 
         for (let d = 0; d<deps.length; d++)
         {
-            deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
+            const deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
 
             const deptCoursesLinkDiv = document.createElement('div');
             deptCoursesLinkDiv.className = (d === deps.length-1 ? "views-row views-row-last" : "views-row");
@@ -667,7 +663,7 @@ function courseOverview() {
         }
     }
 
-    profKeys = Object.keys(profs);
+    const profKeys = Object.keys(profs);
     if (profKeys.length > 0) {
 
         const profCourses = document.createElement('div');
@@ -719,7 +715,7 @@ function courseOverview() {
         }
         sidebarBlock.appendChild(sidebarBlockTitle);
 
-        relatedPrograms = document.getElementsByClassName("view-catalog-program")[0];
+        const relatedPrograms = document.getElementsByClassName("view-catalog-program")[0];
         sidebarBlock.appendChild(document.createElement('br'));
         sidebarBlock.appendChild(relatedPrograms);
     }
@@ -747,7 +743,7 @@ function courseOverview() {
     vsbData.codeReady = true;
 
     if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
-        addVerifiedLinks();
+        addVerifiedLinks(vsbData, formsBlock);
     }
 
 }
@@ -782,13 +778,49 @@ function programOverview(){
 }
 
 
-function addVerifiedLinks() {
+function validateExternalLinks(vsbData, formsBlock) {
+
+    if (urlYearF >= sysYear-1) {
+        validateVSBLink(vsbData, vsbData.vsbFall, formsBlock);
+        validateVSBLink(vsbData, vsbData.vsbWinter, formsBlock);
+    }
+}
+
+
+function validateVSBLink(vsbData, linkData, formsBlock) { 
+
+    const xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: linkData.url
+    };
+    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+        vsbData.done++;
+        logForDebug(vsbData);
+
+        if (data.responseXML != "error") {
+
+            const htmlParser = new DOMParser();
+            const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
+            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
+                linkData.valid = true;
+            }
+        }
+
+        if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
+            addVerifiedLinks(vsbData, formsBlock);
+        }  
+    });
+
+}
+
+
+function addVerifiedLinks(vsbData, formsBlock) {
 
     if (vsbData.vsbFall.valid || vsbData.vsbWinter.valid) {
-        //console.log(xmlRequestInfo);
         const vsb = document.createElement('div');
         vsb.style.margin = "0px 0px 8px 0px";
-        //vsb.id = "vsb";
         formsBlock.appendChild(vsb);
 
         const vsbTitle = document.createElement(isNewStyle ? "h3" : "h4");
@@ -821,44 +853,6 @@ function addVerifiedLinks() {
             vsbWinterForm.appendChild(vsbWinterButton);
         }
     }
-}
-
-
-function validateExternalLinks(sidebar) {
-
-    if (urlYearF >= sysYear-1) {
-        validateVSBLink(vsbData.vsbFall, sidebar);
-        validateVSBLink(vsbData.vsbWinter, sidebar);
-    }
-}
-
-
-function validateVSBLink(linkData, sidebar) { 
-
-    const xmlRequestInfo = {
-        method: 'GET',
-        action: 'xhttp',
-        url: linkData.url
-    };
-    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-
-        vsbData.done++;
-        logForDebug(vsbData);
-
-        if (data.responseXML != "error") {
-
-            const htmlParser = new DOMParser();
-            const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
-                linkData.valid = true;
-            }
-        }
-
-        if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
-            addVerifiedLinks();
-        }  
-    });
-
 }
 
 

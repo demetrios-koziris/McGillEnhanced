@@ -17,7 +17,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 
 function generateCSUSURLs() {
-    csusURLs = {
+    let csusURLs = {
         COMP102: "comp-102-computers-and-computing",
         COMP189: "comp-189-computers-and-society",
         COMP199: "comp-199-excursions-in-computer-science",
@@ -83,7 +83,7 @@ function generateCSUSURLs() {
 
 
 function generateRecordingURLs() {
-    recordingURLs = {
+    let recordingURLs = {
         AECH111 : { 
             2014 : [ 
                 { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11256" }
@@ -931,7 +931,7 @@ function generateRecordingURLs() {
 
 
 function generateWikinotesURLs() {
-    wikinotesURLs = {
+    let wikinotesURLs = {
         ANAT322 : "ANAT_322",
         ANTH335 : "ANTH_335",
         ANTH360 : "ANTH_360",
@@ -996,7 +996,7 @@ function generateWikinotesURLs() {
     
     
 function generateDocuumURLs() {
-    docuumURLs = {
+    let docuumURLs = {
         "CACC520": "00001",
         "CACC523": "00002",
         "CACC540": "00003",

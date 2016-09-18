@@ -124,15 +124,10 @@ function getURLParams() {
 
 function addYearMenu() {
 
-    urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-    urlYearW = urlYearF+1;
-    urlYears = urlYearF + "-" + urlYearW;
-    sysYear = new Date().getFullYear();
-    sysMonth = new Date().getMonth();
-    currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
-    isNewStyle = document.getElementsByClassName("transition").length > 0;
-    firstYear = Math.max(sysYear-10, 2009);
-    isSearchPage = (url.match(/search/));
+    const sysMonth = new Date().getMonth();
+    const currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
+    const firstYear = Math.max(sysYear-10, 2009);
+    const isSearchPage = (url.match(/search/));
 
     if (!isNewStyle) {
 
@@ -157,7 +152,7 @@ function addYearMenu() {
 
             for (let i = j; i < j+10; i++)
             {
-                yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));       
+                let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));       
                 if (isSearchPage && i != 2015) {
                     try {
                         yearMenuItemURL = newStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));
@@ -248,7 +243,7 @@ function addYearMenu() {
             oldStyleSearchURL = generateOldStyleSearchURL();
         }
 
-        for (j = firstYear; j <= sysYear; j += 10)
+        for (let j = firstYear; j <= sysYear; j += 10)
         {
             const yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
@@ -259,9 +254,9 @@ function addYearMenu() {
             yearMenuBarUL.style.height = "33px";
             yearMenuBarDIV.appendChild(yearMenuBarUL);
 
-            for (i = j; i < j+10; i++)
+            for (let i = j; i < j+10; i++)
             {
-                yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
+                let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
                 if (isSearchPage && i == 2015) {
                     try {
                         yearMenuItemURL = oldStyleSearchURL.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1)); 
