@@ -227,24 +227,6 @@ function generateProfNameObject(origName) {
 }
 
 
-function generateFormButton(onColor, buttonValue) {
-    const formButton = document.createElement('input');
-    formButton.setAttribute('type', 'submit');
-    formButton.setAttribute('onmouseover', 'this.style.background="' + (isNewStyle ? '-webkit-linear-gradient(left, ' + onColor + ', #C5C5C5)' : '#ECF3FF') + '"');
-    formButton.setAttribute('onmouseout', 'this.style.background="' + (isNewStyle ? '#C5C5C5' : '#F4F5ED') + '"');
-    formButton.setAttribute('value', buttonValue);
-    formButton.className = 'form-submit';
-    formButton.style.width = '100%';
-    formButton.style.height = '32px';
-    formButton.style.margin = '4px 0px';
-    if (isNewStyle) {
-        formButton.style.border = '1px solid #5B5B5A';
-        formButton.style.WebkitBoxShadow  = 'none';
-        formButton.style.boxShadow = 'none';
-    }   
-    return formButton;
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Add Ratings tooltips to prof names
@@ -333,6 +315,42 @@ function makeCourseLinks(courseNameRegex) {
 }
 
 
+function programOverview(courseNameRegex){    
+    //Replace Course names with links to course overview page
+    const courseSections = document.getElementsByClassName("program-course");
+    for (let c = 0; c<courseSections.length; c++) {
+
+        const notes = courseSections[c].getElementsByClassName("catalog-notes")[0];
+        const title = courseSections[c].getElementsByClassName("program-course-title")[0];
+
+        const courseURL = title.href;
+        const courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
+
+        const link = document.createElement('h3');
+        link.style.padding = "0px";
+        link.style.margin = "0px";
+        link.innerHTML = "<a style=\"background: none; padding-left: 0px\" href=\"" + courseURL + "\">" + courseName + "</a>";
+        
+        const contentElement = courseSections[c].getElementsByClassName("content")[0];
+        contentElement.insertBefore(link, contentElement.firstChild);
+
+        if (notes) {
+            notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
+            notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
+        }
+    }
+
+}
+
+
+function generateSidebarSectionTitle(titleString) {
+    sidebarSectionTitle = document.createElement(isNewStyle ? "h3" : "h4");
+    sidebarSectionTitle.innerHTML = titleString;
+    sidebarSectionTitle.style.margin = "0px";
+    sidebarSectionTitle.style.fontSize = "1.1em";
+    return sidebarSectionTitle
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Add sidebar content
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -409,13 +427,10 @@ function makeSidebarContent() {
     
     const courseEval = document.createElement('div');
     courseEval.style.margin = "0px 0px 8px 0px";
+    courseEval.appendChild(generateSidebarSectionTitle("Course Reviews"));
     formsBlock.appendChild(courseEval);
 
-    const courseEvalTitle = document.createElement(isNewStyle ? "h3" : "h4");
-    courseEvalTitle.innerHTML = "Course Reviews";
-    courseEvalTitle.style.margin = "0px";
-    courseEvalTitle.style.fontSize = "1.1em";
-    courseEval.appendChild(courseEvalTitle);
+    
 
 
     if (docuumURLdata) {
@@ -456,13 +471,8 @@ function makeSidebarContent() {
 
         const recordings = document.createElement('div');
         recordings.style.margin = "0px 0px 8px 0px";
+        recordings.appendChild(generateSidebarSectionTitle("Lecture Recordings"));
         formsBlock.appendChild(recordings);
-
-        const recordingsTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        recordingsTitle.innerHTML = "Lecture Recordings";
-        recordingsTitle.style.margin = "0px";
-        recordingsTitle.style.fontSize = "1.1em";
-        recordings.appendChild(recordingsTitle);
 
         if (urlYearF in recordingURLdata) {
             const yearRecordingURLs = recordingURLdata[urlYearF];
@@ -500,13 +510,8 @@ function makeSidebarContent() {
 
         const courseReg = document.createElement('div');
         courseReg.style.margin = "0px 0px 8px 0px";
+        courseReg.appendChild(generateSidebarSectionTitle("Minerva Registration"));
         formsBlock.appendChild(courseReg);
-
-        const courseRegTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        courseRegTitle.innerHTML = "Minerva Registration";
-        courseRegTitle.style.margin = "0px";
-        courseRegTitle.style.fontSize = "1.1em";
-        courseReg.appendChild(courseRegTitle);
 
         for (let i = 0; i < courseTermsCodes.length; i++) {
 
@@ -557,57 +562,49 @@ function makeSidebarContent() {
 
 
     const other = document.createElement('div');
-
-    if (docuumURLdata || wikinotesURLdata) {
-
-        other.style.margin = "0px 0px 8px 0px";
+    other.style.margin = "0px 0px 8px 0px";
+    other.appendChild(generateSidebarSectionTitle("Other resources"));
+    if (csusURLdata || docuumURLdata || wikinotesURLdata) {
         formsBlock.appendChild(other);
-
-        const otherTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        otherTitle.innerHTML = "Other resources";
-        otherTitle.style.margin = "0px";
-        otherTitle.style.fontSize = "1.1em";
-        other.appendChild(otherTitle);
+    }
     
-        if (csusURLdata) {
+    if (csusURLdata) {
 
-            const csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
+        const csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
 
-            const csusForm = document.createElement('form');
-            csusForm.setAttribute("action", csusURL);
-            other.appendChild(csusForm);
+        const csusForm = document.createElement('form');
+        csusForm.setAttribute("action", csusURL);
+        other.appendChild(csusForm);
 
-            const csusButtonValue = "View " + courseNameSpaced + " in the CSUS Guide";
-            const csusButton = generateFormButton("#FFFFFF", csusButtonValue);
-            csusForm.appendChild(csusButton);
-        }
+        const csusButtonValue = "View " + courseNameSpaced + " in the CSUS Guide";
+        const csusButton = generateFormButton("#FFFFFF", csusButtonValue);
+        csusForm.appendChild(csusButton);
+    }
 
-        if (docuumURLdata) {
+    if (docuumURLdata) {
 
-            const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
+        const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
 
-            const docuumForm = document.createElement('form');
-            docuumForm.setAttribute("action", docuumURL);
-            other.appendChild(docuumForm);
+        const docuumForm = document.createElement('form');
+        docuumForm.setAttribute("action", docuumURL);
+        other.appendChild(docuumForm);
 
-            const docuumButtonValue = "View " + courseNameSpaced + " on Docuum";
-            const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
-            docuumForm.appendChild(docuumButton);
-        }
+        const docuumButtonValue = "View " + courseNameSpaced + " on Docuum";
+        const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
+        docuumForm.appendChild(docuumButton);
+    }
 
-        if (wikinotesURLdata) {
+    if (wikinotesURLdata) {
 
-            const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
+        const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
 
-            const wikinotesForm = document.createElement('form');
-            wikinotesForm.setAttribute("action", wikinotesURL);
-            other.appendChild(wikinotesForm);
+        const wikinotesForm = document.createElement('form');
+        wikinotesForm.setAttribute("action", wikinotesURL);
+        other.appendChild(wikinotesForm);
 
-            const wikinotesButtonValue = "View " + courseNameSpaced + " on Wikinotes";
-            const wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue);
-            wikinotesForm.appendChild(wikinotesButton);
-        }
-
+        const wikinotesButtonValue = "View " + courseNameSpaced + " on Wikinotes";
+        const wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue);
+        wikinotesForm.appendChild(wikinotesButton);
     }
 
 
@@ -744,34 +741,6 @@ function makeSidebarContent() {
 }
 
 
-function programOverview(courseNameRegex){    
-    //Replace Course names with links to course overview page
-    const courseSections = document.getElementsByClassName("program-course");
-    for (let c = 0; c<courseSections.length; c++) {
-
-        const notes = courseSections[c].getElementsByClassName("catalog-notes")[0];
-        const title = courseSections[c].getElementsByClassName("program-course-title")[0];
-
-        const courseURL = title.href;
-        const courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
-
-        const link = document.createElement('h3');
-        link.style.padding = "0px";
-        link.style.margin = "0px";
-        link.innerHTML = "<a style=\"background: none; padding-left: 0px\" href=\"" + courseURL + "\">" + courseName + "</a>";
-        
-        const contentElement = courseSections[c].getElementsByClassName("content")[0];
-        contentElement.insertBefore(link, contentElement.firstChild);
-
-        if (notes) {
-            notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
-            notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
-        }
-    }
-
-}
-
-
 function validateExternalLinks(vsbData, formsBlock) {
 
     if (urlYearF >= sysYear-1) {
@@ -818,13 +787,8 @@ function addVerifiedLinks(vsbData, formsBlock) {
     if (vsbData.vsbFall.valid || vsbData.vsbWinter.valid) {
         const vsb = document.createElement('div');
         vsb.style.margin = "0px 0px 8px 0px";
+        vsb.appendChild(generateSidebarSectionTitle("Visual Schedule Builder"));
         formsBlock.appendChild(vsb);
-
-        const vsbTitle = document.createElement(isNewStyle ? "h3" : "h4");
-        vsbTitle.innerHTML = "Visual Schedule Builder";
-        vsbTitle.style.margin = "0px";
-        vsbTitle.style.fontSize = "1.1em";
-        vsb.appendChild(vsbTitle);
 
         if (vsbData.vsbFall.valid) {
 
@@ -853,7 +817,20 @@ function addVerifiedLinks(vsbData, formsBlock) {
 }
 
 
-
-
-
-
+function generateFormButton(onColor, buttonValue) {
+    const formButton = document.createElement('input');
+    formButton.setAttribute('type', 'submit');
+    formButton.setAttribute('onmouseover', 'this.style.background="' + (isNewStyle ? '-webkit-linear-gradient(left, ' + onColor + ', #C5C5C5)' : '#ECF3FF') + '"');
+    formButton.setAttribute('onmouseout', 'this.style.background="' + (isNewStyle ? '#C5C5C5' : '#F4F5ED') + '"');
+    formButton.setAttribute('value', buttonValue);
+    formButton.className = 'form-submit';
+    formButton.style.width = '100%';
+    formButton.style.height = '32px';
+    formButton.style.margin = '4px 0px';
+    if (isNewStyle) {
+        formButton.style.border = '1px solid #5B5B5A';
+        formButton.style.WebkitBoxShadow  = 'none';
+        formButton.style.boxShadow = 'none';
+    }   
+    return formButton;
+}
