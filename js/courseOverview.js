@@ -190,7 +190,6 @@ function generateGetProfContentCallback(profURL, profName, res) {
 
 
 function makeProfSection(profURL, profName, tooltipContent) {
-    console.log(this)
 
     const profElements = document.getElementsByClassName(profName.fullNameKey);
 
@@ -284,20 +283,7 @@ function courseOverview() {
     
 
 
-    const vsbData = {
-        vsbFall: { 
-            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
-            valid: false
-        },
-        vsbWinter: { 
-            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
-            valid: false
-        },
-        done: 0,
-        total: (urlYearF >= sysYear-1 ? 2 : 0),
-        codeReady: false
-    };
-    logForDebug(vsbData);
+    
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -311,6 +297,9 @@ function courseOverview() {
 
     
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Add Ratings tooltips to prof names
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const profs = {};
     const profsByTerm = {};
     let profsLength = 0;
@@ -380,9 +369,6 @@ function courseOverview() {
         }
     }
 
-
-
-
     const newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
     const courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
@@ -398,7 +384,24 @@ function courseOverview() {
 
 
 
-    document.getElementsByTagName("body")[0].style.lineHeight = "1.125em";
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Replace Course names with links to course overview page
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    const vsbData = {
+        vsbFall: { 
+            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
+            valid: false
+        },
+        vsbWinter: { 
+            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
+            valid: false
+        },
+        done: 0,
+        total: (urlYearF >= sysYear-1 ? 2 : 0),
+        codeReady: false
+    };
+    logForDebug(vsbData);
 
     const sidebar = document.createElement('div');
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
