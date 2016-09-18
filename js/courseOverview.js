@@ -356,8 +356,9 @@ function generateSidebarSectionTitle(titleString) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function makeSidebarContent() {
 
-    if (urlYearF <= 2010) {
-        document.getElementById("inner-container").style.width = "100%";
+    // fix layout bug on mcgill site for some newStyle pages (2009-2010 & 2011-2012)
+    if (isNewStyle) {
+        document.getElementById("inner-container").style.width = '100%';
     }
 
     const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
@@ -370,7 +371,6 @@ function makeSidebarContent() {
     const wikinotesURLdata = generateWikinotesURLs()[courseName];
     const docuumURLdata = generateDocuumURLs()[courseName];
     const csusURLdata = generateCSUSURLs()[courseName];
-
 
     const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
     const courseTermsCodes = [];
@@ -413,6 +413,8 @@ function makeSidebarContent() {
     };
     logForDebug(vsbData);
 
+
+
     const sidebar = document.createElement('div');
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
     sidebar.style.minWidth = "280px";
@@ -425,28 +427,23 @@ function makeSidebarContent() {
 
     validateExternalLinks(vsbData, formsBlock);
     
+
+    //SIDEBAR SECTION: COURSE REVIEWS
     const courseEval = document.createElement('div');
     courseEval.style.margin = "0px 0px 8px 0px";
     courseEval.appendChild(generateSidebarSectionTitle("Course Reviews"));
     formsBlock.appendChild(courseEval);
 
-    
-
-
-    if (docuumURLdata) {
-
+    if (docuumURLdata) { 
         const docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLdata;
-
+        const docuumButtonString = "View Docuum Course Reviews";
         const docuumForm = document.createElement('form');
         docuumForm.setAttribute("action", docuumURL);
-        courseEval.appendChild(docuumForm);
-
-        const docuumButtonValue = "View Docuum Course Reviews";
-        const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
-        docuumForm.appendChild(docuumButton);
+        docuumForm.appendChild(generateFormButton("#56AFE5", docuumButtonString));
+        courseEval.appendChild(docuumForm); 
     }
 
-
+    const mercuryButtonString = "View Mercury Course Evaluations";
     const mercuryForm = document.createElement('form');
     mercuryForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form");
     mercuryForm.setAttribute("method", "POST");
@@ -458,17 +455,13 @@ function makeSidebarContent() {
     mercuryForm.innerHTML += "<input type=\"hidden\" name=\"title_in\" value=\"\">";
     mercuryForm.innerHTML += "<input type=\"hidden\" name=\"inst_tab_in\" value=\"\">";
     mercuryForm.innerHTML += "<input type=\"hidden\" name=\"form_mode\" value=\"ar\">";
+    mercuryForm.appendChild(generateFormButton("#E54944", mercuryButtonString));
     courseEval.appendChild(mercuryForm);
 
-    const mercuryButtonValue = "View Mercury Course Evaluations";
-    const mercuryButton = generateFormButton("#E54944", mercuryButtonValue);
-    mercuryForm.appendChild(mercuryButton);
-
     
-
-
     if (recordingURLdata) {
 
+        //SIDEBAR SECTION: LECTURE RECORDINGS
         const recordings = document.createElement('div');
         recordings.style.margin = "0px 0px 8px 0px";
         recordings.appendChild(generateSidebarSectionTitle("Lecture Recordings"));
@@ -478,29 +471,23 @@ function makeSidebarContent() {
             const yearRecordingURLs = recordingURLdata[urlYearF];
 
             for (let r = 0; r < yearRecordingURLs.length; r++) {
-
+                const recordingsButtonString = "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures";
                 const recordingsForm = document.createElement('form');
                 recordingsForm.setAttribute("action", yearRecordingURLs[r].url);
                 recordingsForm.setAttribute("method", "POST");
+                recordingsForm.appendChild(generateFormButton("#E54944", recordingsButtonString));    
                 recordings.appendChild(recordingsForm);
-
-                const recordingsButtonValue = "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures";
-                const recordingsButton = generateFormButton("#E54944", recordingsButtonValue);
-                recordingsForm.appendChild(recordingsButton);    
             }
         }
         else {
             const years = Object.keys(recordingURLdata);
             const maxYear = Math.max.apply(Math, years);
             const maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
-
+            const recordingsButtonString = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
             const recordingsForm = document.createElement('form');
             recordingsForm.setAttribute("action", maxYearURL);
+            recordingsForm.appendChild(generateFormButton("#E54944", recordingsButtonString));
             recordings.appendChild(recordingsForm);
-
-            const recordingsButtonValue = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
-            const recordingsButton = generateFormButton("#E54944", recordingsButtonValue);
-            recordingsForm.appendChild(recordingsButton);
         }
 
     }  
@@ -508,6 +495,7 @@ function makeSidebarContent() {
 
     if (courseTermsCodes.length > 0) {
 
+        //SIDEBAR SECTION: MINERVA REGISTRATION
         const courseReg = document.createElement('div');
         courseReg.style.margin = "0px 0px 8px 0px";
         courseReg.appendChild(generateSidebarSectionTitle("Minerva Registration"));
@@ -515,6 +503,7 @@ function makeSidebarContent() {
 
         for (let i = 0; i < courseTermsCodes.length; i++) {
 
+            const courseRegButtonString = "View " + courseTermsCodes[i].name + " Registration";
             const courseRegForm = document.createElement('form');
             courseRegForm.setAttribute("action", "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced");
             courseRegForm.setAttribute("method", "POST");
@@ -551,60 +540,48 @@ function makeSidebarContent() {
             courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_mi\" value=\"0\">";
             courseRegForm.innerHTML += "<input type=\"hidden\" name=\"end_ap\" value=\"a\">";
             courseRegForm.innerHTML += "<input type=\"hidden\" name=\"path\" value=\"1\">";
-            courseReg.appendChild(courseRegForm);
-
-            const courseRegButtonValue = "View " + courseTermsCodes[i].name + " Registration";
-            const courseRegButton = generateFormButton("#E54944", courseRegButtonValue);
+            const courseRegButton = generateFormButton("#E54944", courseRegButtonString);
             courseRegButton.setAttribute("name", "SUB_BTN");
             courseRegForm.appendChild(courseRegButton);
+            courseReg.appendChild(courseRegForm);           
         }
     }
 
 
-    const other = document.createElement('div');
-    other.style.margin = "0px 0px 8px 0px";
-    other.appendChild(generateSidebarSectionTitle("Other resources"));
     if (csusURLdata || docuumURLdata || wikinotesURLdata) {
+
+        //SIDEBAR SECTION: OTHER RESOURCES
+        const other = document.createElement('div');
+        other.style.margin = "0px 0px 8px 0px";
+        other.appendChild(generateSidebarSectionTitle("Other resources"));
         formsBlock.appendChild(other);
-    }
     
-    if (csusURLdata) {
+        if (csusURLdata) {
+            const csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
+            const csusButtonString = "View " + courseNameSpaced + " in the CSUS Guide";
+            const csusForm = document.createElement('form');
+            csusForm.setAttribute("action", csusURL);
+            csusForm.appendChild(generateFormButton("#FFFFFF", csusButtonString));
+            other.appendChild(csusForm);
+        }
 
-        const csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
+        if (docuumURLdata) {
+            const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
+            const docuumButtonString = "View " + courseNameSpaced + " on Docuum";
+            const docuumForm = document.createElement('form');
+            docuumForm.setAttribute("action", docuumURL);
+            docuumForm.appendChild(generateFormButton("#56AFE5", docuumButtonString));
+            other.appendChild(docuumForm);
+        }
 
-        const csusForm = document.createElement('form');
-        csusForm.setAttribute("action", csusURL);
-        other.appendChild(csusForm);
-
-        const csusButtonValue = "View " + courseNameSpaced + " in the CSUS Guide";
-        const csusButton = generateFormButton("#FFFFFF", csusButtonValue);
-        csusForm.appendChild(csusButton);
-    }
-
-    if (docuumURLdata) {
-
-        const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
-
-        const docuumForm = document.createElement('form');
-        docuumForm.setAttribute("action", docuumURL);
-        other.appendChild(docuumForm);
-
-        const docuumButtonValue = "View " + courseNameSpaced + " on Docuum";
-        const docuumButton = generateFormButton("#56AFE5", docuumButtonValue);
-        docuumForm.appendChild(docuumButton);
-    }
-
-    if (wikinotesURLdata) {
-
-        const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
-
-        const wikinotesForm = document.createElement('form');
-        wikinotesForm.setAttribute("action", wikinotesURL);
-        other.appendChild(wikinotesForm);
-
-        const wikinotesButtonValue = "View " + courseNameSpaced + " on Wikinotes";
-        const wikinotesButton = generateFormButton("#FFFFFF", wikinotesButtonValue);
-        wikinotesForm.appendChild(wikinotesButton);
+        if (wikinotesURLdata) {
+            const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
+            const wikinotesButtonString = "View " + courseNameSpaced + " on Wikinotes";
+            const wikinotesForm = document.createElement('form');
+            wikinotesForm.setAttribute("action", wikinotesURL);
+            wikinotesForm.appendChild(generateFormButton("#FFFFFF", wikinotesButtonString));
+            other.appendChild(wikinotesForm);
+        }
     }
 
 
@@ -727,10 +704,6 @@ function makeSidebarContent() {
         container.insertBefore(sidebar, document.getElementById("footer"));
     }
 
-    //fix layout bug on mcgill site for some newStyle pages (2009-2010 & 2011-2012)
-    if (isNewStyle) {
-        document.getElementById("inner-container").style.width = '100%';
-    }
 
     vsbData.codeReady = true;
 
