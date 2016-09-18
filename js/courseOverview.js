@@ -36,7 +36,6 @@ function updateProfURL(profKey, profURL) {
 
 function getProfUrl(profName, general) {
 
-    let tooltipContent = '';
     let profURL = 'http://www.ratemyprofessors.com/search.jsp?query=mcgill ';
     if (general) {
         profURL += profName.lastName + ' ';
@@ -44,13 +43,18 @@ function getProfUrl(profName, general) {
     else {
         profURL += profName.firstName + ' ' + profName.lastName + ' ';
     }
+
     const xmlRequestInfo = {
         method: 'GET',
         action: 'xhttp',
         url: profURL,
     };
+    chrome.runtime.sendMessage(xmlRequestInfo, generateGetProfURLCallback(profURL, profName, general));
+}
 
-    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+function generateGetProfURLCallback(profURL, profName, general) {
+    return function(data) {
         try {
             if (data.responseXML === 'error') {
                 console.log(data);
@@ -63,24 +67,18 @@ function getProfUrl(profName, general) {
                 const htmlParser = new DOMParser();
                 const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
                 const listings = htmlDoc.getElementsByClassName('listing PROFESSOR');
+                let resultCode = listings.length;
 
-                if (listings.length === 0) { 
-                    if (general) {
-                        // 0 prof listing from general search
-                        getProfContent(profName, profURL, 0);
-                    } 
-                    else {
-                        // 0 prof listings from specific search so try general search
-                        getProfUrl(profName, true);
-                    }
+                if (resultCode === 0 && !general) { 
+                    // 0 prof listings from specific search so try general search
+                    getProfUrl(profName, true);
                 } 
-                else if (listings.length === 1) { 
+                else if (resultCode === 1) { 
                     // 1 prof listing so create url with listing id
                     profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
                     profURL = 'http://www.ratemyprofessors.com/' + profURLId;
-                    getProfContent(profName, profURL, 1);
                 } 
-                else {
+                else if (resultCode > 1) {
                     //multiple profs so search for exact or close match
                     for (let l = 0; l < listings.length && profURLId === 0; l++) {
                         const listingName = listings[l].getElementsByClassName('main')[0].innerText;
@@ -90,17 +88,12 @@ function getProfUrl(profName, general) {
                                              profName.firstName.match(listingFirstName));
                         if (nameMatches){
                             profURLId = listings[l].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
+                            profURL = 'http://www.ratemyprofessors.com/' + profURLId;
+                            resultCode = 1;
                         }
                     }
-                    // proceed based on whether profURLId was set or is still 0
-                    if (profURLId === 0) {
-                        getProfContent(profName, profURL, 2);
-                    } 
-                    else {
-                        profURL = 'http://www.ratemyprofessors.com/' + profURLId;
-                        getProfContent(profName, profURL, 1);
-                    }
                 }
+                getProfContent(profName, profURL, resultCode);
             }
         } 
         catch(err) {
@@ -108,7 +101,7 @@ function getProfUrl(profName, general) {
             tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
             makeProfSection(profName, profURL, tooltipContent);
         }
-    });
+    };
 }
 
 
@@ -149,9 +142,6 @@ function getProfContent(profName, profURL, res) {
                 if (res === 0) {
                     tooltipContent = 'Instructor not found';
                 } 
-                else if (res === 2) {
-                    tooltipContent = 'Multiple Instructors found<br>Please click to see results';
-                } 
                 else if (res === 1) {
                     gradeElements = htmlDoc.getElementsByClassName('grade');
                     if (gradeElements[0]) {
@@ -191,6 +181,9 @@ function getProfContent(profName, profURL, res) {
                                          '<br>Prof Hotness: <b>' + rating.hotness.toUpperCase() + '</b>';
                     }
                 }
+                else if (res > 1) {
+                    tooltipContent = 'Multiple Instructors found<br>Please click to see results';
+                } 
                 makeProfSection(profName, profURL, tooltipContent);
             }
         } 
@@ -354,7 +347,7 @@ function courseOverview() {
                 newProfsHTML += "<p>Instructors (" + termKey + "): ";
                 for (let p=0; p<profsByTerm[termKey].length; p++) {
 
-                    profName = generateProfNameObject(profsByTerm[termKey][p]);
+                    let profName = generateProfNameObject(profsByTerm[termKey][p]);
                     profs[profName.fullNameKey] = profName;
                     newProfsHTML += "<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName;
                     newProfsHTML += " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + loadMessage + "\">" + profName.fullName + "</a>";
@@ -695,8 +688,8 @@ function courseOverview() {
         profCourses.appendChild(profCoursesTitle);
 
         for (let p = 0; p < profKeys.length; p++) {
-            profName = profs[profKeys[p]].fullName;
-            profURLName = profName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
+            profFullName = profs[profKeys[p]].fullName;
+            profURLName = profFullName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
             profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
             //profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?f[0]=instructors%3A" : "/") + profURLName;
 
@@ -706,7 +699,7 @@ function courseOverview() {
 
             const profCoursesLink = document.createElement('a');
             profCoursesLink.setAttribute("href", profCoursesURL);
-            profCoursesLink.innerHTML = profName;
+            profCoursesLink.innerHTML = profFullName;
             profCoursesLinkDiv.appendChild(profCoursesLink);
         }
     }
