@@ -246,61 +246,11 @@ function generateFormButton(onColor, buttonValue) {
 }
 
 
-function courseOverview() {
-
-    const regex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
-
-    if (urlYearF <= 2010) {
-        document.getElementById("inner-container").style.width = "100%";
-    }
-
-    const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-    const courseSubject = urlCourseName.split("-")[0];
-    const courseNumber = urlCourseName.split("-")[1];
-    const courseName = courseSubject + courseNumber;
-    const courseNameSpaced = courseSubject + " " + courseNumber;
-
-    const recordingURLdata = generateRecordingURLs()[courseName];
-    const wikinotesURLdata = generateWikinotesURLs()[courseName];
-    const docuumURLdata = generateDocuumURLs()[courseName];
-    const csusURLdata = generateCSUSURLs()[courseName];
-
-
-    const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
-    const courseTermsCodes = [];
-    if (courseTerms.match(/Fall/)) {
-        courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
-    }
-    if (courseTerms.match(/Winter/)) {
-        courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
-    }
-    if (courseTerms.match(/Summer/)) {
-        courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
-    }
-    logForDebug(courseTermsCodes);
-
-
-    
-
-
-    
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Replace Course names with links to course overview page
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    notesElement = document.getElementsByClassName("catalog-notes")[0];
-    if (notesElement) {
-        notesElement.innerHTML = notesElement.innerHTML.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-    }
-    
-
-    
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Add Ratings tooltips to prof names
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    const profs = {};
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Add Ratings tooltips to prof names
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function makeProfRatingsTooltips() {
+    profs = {};
     const profsByTerm = {};
     let profsLength = 0;
 
@@ -368,16 +318,55 @@ function courseOverview() {
             }
         }
     }
+}
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Replace Course names with links to course overview page
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function makeCourseLinks(courseNameRegex) {
     
+    notesElement = document.getElementsByClassName("catalog-notes")[0];
+    if (notesElement) {
+        notesElement.innerHTML = notesElement.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+    }
+}
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Add sidebar content
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function makeSidebarContent() {
+
+    if (urlYearF <= 2010) {
+        document.getElementById("inner-container").style.width = "100%";
+    }
+
+    const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+    const courseSubject = urlCourseName.split("-")[0];
+    const courseNumber = urlCourseName.split("-")[1];
+    const courseName = courseSubject + courseNumber;
+    const courseNameSpaced = courseSubject + " " + courseNumber;
+
+    const recordingURLdata = generateRecordingURLs()[courseName];
+    const wikinotesURLdata = generateWikinotesURLs()[courseName];
+    const docuumURLdata = generateDocuumURLs()[courseName];
+    const csusURLdata = generateCSUSURLs()[courseName];
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Add sidebar content
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
+    const courseTermsCodes = [];
+    if (courseTerms.match(/Fall/)) {
+        courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
+    }
+    if (courseTerms.match(/Winter/)) {
+        courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
+    }
+    if (courseTerms.match(/Summer/)) {
+        courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
+    }
+    logForDebug(courseTermsCodes);
+
     const newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
     const courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
@@ -755,8 +744,7 @@ function courseOverview() {
 }
 
 
-function programOverview(){    
-
+function programOverview(courseNameRegex){    
     //Replace Course names with links to course overview page
     const courseSections = document.getElementsByClassName("program-course");
     for (let c = 0; c<courseSections.length; c++) {
@@ -777,7 +765,7 @@ function programOverview(){
 
         if (notes) {
             notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
-            notes.innerHTML = notes.innerHTML.replace(regex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
+            notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
         }
     }
 

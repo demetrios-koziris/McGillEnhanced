@@ -24,6 +24,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	const start = Date.now();
 
+	const courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
     isNewStyle = document.getElementsByClassName("transition").length > 0;
     urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
     urlYearW = urlYearF+1;
@@ -35,10 +36,13 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	}
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
-		courseOverview();
+		
+	    makeProfRatingsTooltips();
+	    makeCourseLinks(courseNameRegex);
+		makeSidebarContent();
 	}
 	else {
-		programOverview();
+		programOverview(courseNameRegex);
 	}
 
 	const time = Date.now() - start;
