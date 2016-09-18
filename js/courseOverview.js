@@ -56,10 +56,11 @@ function getProfUrl(profName, general) {
 function generateGetProfURLCallback(profURL, profName, general) {
     return function(data) {
         try {
+            let tooltipContent = '';
             if (data.responseXML === 'error') {
                 console.log(data);
                 tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
-                makeProfSection(profName, profURL, tooltipContent);
+                makeProfSection(profURL, profName, tooltipContent);
             } 
             else {
                 // let profURL = data.url;
@@ -93,19 +94,19 @@ function generateGetProfURLCallback(profURL, profName, general) {
                         }
                     }
                 }
-                getProfContent(profName, profURL, resultCode);
+                getProfContent(profURL, profName, resultCode);
             }
         } 
         catch(err) {
             console.log('Error: ' + profName.firstName + ' ' + profName.lastName + '\n' + err.stack);
             tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
-            makeProfSection(profName, profURL, tooltipContent);
+            makeProfSection(profURL, profName, tooltipContent);
         }
     };
 }
 
 
-function getProfContent(profName, profURL, res) {
+function getProfContent(profURL, profName, res) {
 
     updateProfURL(profName.fullNameKey, profURL);
     const xmlRequestInfo = {
@@ -113,31 +114,23 @@ function getProfContent(profName, profURL, res) {
         action: 'xhttp',
         url: profURL,
     };
-    let tooltipContent = '';
+    chrome.runtime.sendMessage(xmlRequestInfo, generateGetProfContentCallback(profURL, profName, res));
+}
 
-    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+
+function generateGetProfContentCallback(profURL, profName, res) {
+    return function(data) {
         try {
-
+            let tooltipContent = '';
             if (data.responseXML === 'error') {
                 console.log(data);
                 tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
-                makeProfSection(profName, profURL, tooltipContent);
+                makeProfSection(profURL, profName, tooltipContent);
             } 
             else {
-                // let profURL = data.url;
-
                 const htmlParser = new DOMParser();
                 const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
-
-                const rating = {
-                    firstName: 'ERROR',
-                    lastName: 'ERROR',
-                    overall: 'ERROR',
-                    difficulty: 'ERROR',
-                    takeagain: 'ERROR',
-                    hotness: 'ERROR',
-                    numOfRatings: 'ERROR'
-                };
+                const rating = { firstName: 'ERROR', lastName: 'ERROR', overall: 'ERROR', difficulty: 'ERROR', takeagain: 'ERROR', hotness: 'ERROR', numOfRatings: 'ERROR' };
                 
                 if (res === 0) {
                     tooltipContent = 'Instructor not found';
@@ -184,19 +177,19 @@ function getProfContent(profName, profURL, res) {
                 else if (res > 1) {
                     tooltipContent = 'Multiple Instructors found<br>Please click to see results';
                 } 
-                makeProfSection(profName, profURL, tooltipContent);
+                makeProfSection(profURL, profName, tooltipContent);
             }
         } 
         catch(err) {
             console.log('Error: ' + profName.firstName + ' ' + profName.lastName + '\n' + err.stack);
             tooltipContent = 'Ratemyprofessors data failed to load<br>Please refresh the page to try again';
-            makeProfSection(profName, profURL, tooltipContent);
+            makeProfSection(profURL, profName, tooltipContent);
         }
-    });
+    };
 }
 
 
-function makeProfSection(profName, profURL, tooltipContent) {
+function makeProfSection(profURL, profName, tooltipContent) {
 
     const profElements = document.getElementsByClassName(profName.fullNameKey);
 
@@ -688,9 +681,9 @@ function courseOverview() {
         profCourses.appendChild(profCoursesTitle);
 
         for (let p = 0; p < profKeys.length; p++) {
-            profFullName = profs[profKeys[p]].fullName;
-            profURLName = profFullName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
-            profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
+            let profFullName = profs[profKeys[p]].fullName;
+            let profURLName = profFullName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
+            let profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
             //profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?f[0]=instructors%3A" : "/") + profURLName;
 
             const profCoursesLinkDiv = document.createElement('div');
