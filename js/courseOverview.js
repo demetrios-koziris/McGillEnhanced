@@ -369,6 +369,15 @@ function courseOverview() {
         }
     }
 
+    
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Add sidebar content
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     const newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
     const courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
@@ -382,12 +391,6 @@ function courseOverview() {
         return depsDup.indexOf(elem) === pos;
     });
 
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Add sidebar content
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const vsbData = {
         vsbFall: { 
             url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
