@@ -794,8 +794,12 @@ function validateVSBLink(vsbData, linkData, formsBlock) {
         action: 'xhttp',
         url: linkData.url
     };
-    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+    chrome.runtime.sendMessage(xmlRequestInfo, generateValidateVSBLinkCallback(vsbData, linkData, formsBlock));
+}
 
+
+function generateValidateVSBLinkCallback(vsbData, linkData, formsBlock) {
+    return function(data) {
         vsbData.done++;
         logForDebug(vsbData);
 
@@ -811,8 +815,7 @@ function validateVSBLink(vsbData, linkData, formsBlock) {
         if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
             addVerifiedLinks(vsbData, formsBlock);
         }  
-    });
-
+    };
 }
 
 
