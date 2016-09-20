@@ -80,7 +80,7 @@ function makeProfRatingsTooltips() {
         if (profsLength > 0) {
             logForDebug(profs);
             for (var prof in profs) {
-                getProfUrl(profs[prof], false, -1);
+                getProfUrl(profs[prof], false);
             }
         }
     }
@@ -146,27 +146,29 @@ function generateGetProfURLCallback(profURL, profName, general) {
                     // 0 prof listings from specific search so try general search
                     getProfUrl(profName, true);
                 } 
-                else if (resultCode === 1) { 
+                else {
+                    if (resultCode === 1) { 
                     // 1 prof listing so create url with listing id
                     profURLId = listings[0].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
                     profURL = 'http://www.ratemyprofessors.com/' + profURLId;
-                } 
-                else if (resultCode > 1) {
-                    //multiple profs so search for exact or close match
-                    for (let l = 0; l < listings.length && profURLId === 0; l++) {
-                        const listingName = listings[l].getElementsByClassName('main')[0].innerText;
-                        const listingFirstName = listingName.split(',')[1].trim(' ');
-                        const nameMatches = (getEditDistance(listingFirstName, profName.firstName)<=2 || 
-                                             listingName.match(profName.firstName) || 
-                                             profName.firstName.match(listingFirstName));
-                        if (nameMatches){
-                            profURLId = listings[l].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
-                            profURL = 'http://www.ratemyprofessors.com/' + profURLId;
-                            resultCode = 1;
+                    } 
+                    else if (resultCode > 1) {
+                        //multiple profs so search for exact or close match
+                        for (let l = 0; l < listings.length && profURLId === 0; l++) {
+                            const listingName = listings[l].getElementsByClassName('main')[0].innerText;
+                            const listingFirstName = listingName.split(',')[1].trim(' ');
+                            const nameMatches = (getEditDistance(listingFirstName, profName.firstName)<=2 || 
+                                                 listingName.match(profName.firstName) || 
+                                                 profName.firstName.match(listingFirstName));
+                            if (nameMatches){
+                                profURLId = listings[l].innerHTML.match(/(ShowRatings.jsp.tid.[0-9]+)"/)[1];
+                                profURL = 'http://www.ratemyprofessors.com/' + profURLId;
+                                resultCode = 1;
+                            }
                         }
                     }
+                    getProfContent(profURL, profName, resultCode);
                 }
-                getProfContent(profURL, profName, resultCode);
             }
         } 
         catch(err) {
