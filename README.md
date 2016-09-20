@@ -30,6 +30,10 @@ McGill Enhanced makes looking up courses and registration easier by providing di
   McGill.ca Course Overview Pages
 </h3>
 
+  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-mcgill.png" alt="" style="width:100%;">
+
+<br>
+
   <h4>
     A) Year Menu Bar
   </h4>
@@ -43,9 +47,6 @@ McGill Enhanced makes looking up courses and registration easier by providing di
   <p>
     Instead of manually searching for professor ratings, McGill enhanced will fetch professor ratings and show them in a tooltip when you hover over a professor name. Clicking the name will bring you to their RateMyProfessors page.
   </p>
-
-  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-mcgill.png" alt="" style="width:100%;">
-
 
   <h4>
     C) Sidebar: Course Reviews
