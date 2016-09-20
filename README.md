@@ -4,11 +4,11 @@
 
 A Chrome Extension Improving the McGill.ca Website Experience
 
-<h3 align="center">
+<h3>
   <a href="https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en">Download from the Google Chrome Store</a>
 </h3>
 
-<h3 align="center">
+<h3>
   <a href="http://demetrios-koziris.github.io/McGillEnhanced/">View the McGill Enhanced landing page</a>
 </h3>
 
@@ -26,13 +26,11 @@ McGill Enhanced makes looking up courses and registration easier by providing di
   Feature Details
 </h2>
 
-<h3 style="text-align:center;">
+<h3>
   McGill.ca Course Overview Pages
 </h3>
 
   <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-mcgill.png" alt="" style="width:100%;">
-
-<br>
 
   <h4>
     A) Year Menu Bar
@@ -92,7 +90,7 @@ McGill Enhanced makes looking up courses and registration easier by providing di
 
 <br>
 
-<h3 style="text-align:center;">
+<h3>
   Extension Menu
 </h3>
 
@@ -112,7 +110,7 @@ McGill Enhanced makes looking up courses and registration easier by providing di
 
 <br>
 
-<h3 style="text-align:center;">
+<h3>
   Visual Schedule Builder
 </h3>
 
@@ -127,7 +125,7 @@ McGill Enhanced makes looking up courses and registration easier by providing di
 
 <br>
 
-<h3 style="text-align:center;">
+<h3>
   Minerva
 </h3>
 
