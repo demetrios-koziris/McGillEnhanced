@@ -34,7 +34,7 @@ function generateCSUSURLs() {
         COMP307: "comp-307-principles-of-web-development",
         COMP308: "comp-308-computer-systems-lab",
         COMP310: "comp-310-operating-systems",
-        COMP321: "comp-321-programming-challenges",
+        COMP321: "comp-321-programming-languages", //typo from CSUS guide ('languages' instead of 'challenges')
         COMP322: "comp-322-introduction-to-c",
         COMP330: "comp-330-theory-of-computation",
         COMP350: "comp-350-numerical-computing",
@@ -46,9 +46,9 @@ function generateCSUSURLs() {
         COMP400: "comp-400-honours-project-in-computer-science",
         COMP401: "comp-401-project-in-biology-and-computer-science",
         COMP409: "comp-409-concurrent-programming",
-        COMP417: "comp-417-introduction-robotics-and-intelligent-systems",
+        COMP417: "comp-417-introduction-to-robotics-and-intelligent-systems", //typo from CSUS guide (added 'to')
         COMP421: "comp-421-database-systems",
-        COMP424: "comp-424-artificial-intelligence",
+        COMP424: "comp-424-artificial=intelligence", //typo from CSUS guide ('=' instead of '-')
         COMP462: "comp-462-computational-biology-methods",
         COMP499: "comp-499-undergraduate-bioinformatics-seminar",
         COMP512: "comp-512-distributed-systems",
@@ -56,17 +56,17 @@ function generateCSUSURLs() {
         COMP521: "comp-521-modern-computer-games",
         COMP522: "comp-522-modeling-and-simulation",
         COMP523: "comp-523-language-based-security",
-        COMP524: "comp-524-theoretical-foundations-of-programming-languages",
+        COMP524: "comp-524-theoretical-foudnations-of-programming-languages", //typo from CSUS guide ('foudnations' instead of foundations)
         COMP525: "comp-525-formal-verification",
         COMP526: "comp-526-probabilistic-reasoning-and-ai",
         COMP527: "comp-527-logic-and-computation",
         COMP529: "comp-529-software-architecture",
         COMP531: "comp-531-advanced-theory-of-computation",
-        COMP533: "comp-533-model-driven-software-development",
+        COMP533: "comp-533-model-drive-software-development", //typo from CSUS guide ('drive' instead of 'driven')
         COMP535: "comp-535-computer-networks-1",
-        COMP540: "comp-540-matrix-computations",
+        COMP540: "comp-540-matrix-computation", //typo from CSUS guide ('computation' instead of 'computations')
         COMP546: "comp-546-computational-perception",
-        COMP547: "comp-547-cryptography-and-data-security",
+        COMP547: "comp547-cryptography-and-data-security", //typo from CSUS guide ('comp547' instead of 'comp-547')
         COMP552: "comp-552-combinatorial-optimization",
         COMP553: "comp-553-algorithmic-game-theory",
         COMP554: "comp-554-approximation-algorithms",
