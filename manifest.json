@@ -1,7 +1,7 @@
 {
   "name": "McGill Enhanced",
   "manifest_version": 2,
-  "version": "2.3.32",
+  "version": "2.3.33",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent"
@@ -38,7 +38,8 @@
         "lib/tooltipsy.min.js", 
         "lib/levenshtein.js", 
         "js/urlData.js", 
-        "js/yearMenu.js", 
+        "js/addYearMenu.js", 
+        "js/addProfRatings.js", 
         "js/courseOverview.js", 
         "js/vsbEnhanced.js",
         "js/scheduleDownloadInserter.js",
