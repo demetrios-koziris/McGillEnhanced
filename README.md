@@ -41,7 +41,7 @@ McGill Enhanced makes looking up courses and registration easier by providing di
     Instead of manually searching for professor ratings, McGill enhanced will fetch professor ratings and show them in a tooltip when you hover over a professor name. Clicking the name will bring you to their RateMyProfessors page.
   </p>
 
-  <img src="images/features-mcgill.png" alt="" style="width:100%;">
+  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-mcgill.png" alt="" style="width:100%;">
 
   <br><br>
 
@@ -121,7 +121,7 @@ McGill Enhanced makes looking up courses and registration easier by providing di
     Instead of having to copy the CRN codes from VSB and paste them into Minerva to register, simply click the McGill Enhanced button to register for your courses (must already be logged into Minerva).
   </p>
 
-  <img src="images/features-vsb.png" alt="" style="width:100%;">
+  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-vsb.png" alt="" style="width:100%;">
 
 <br>
 <br>
@@ -138,6 +138,6 @@ McGill Enhanced makes looking up courses and registration easier by providing di
     From Minerva > Student Menu > Registration Menu > View Student Schedule by Course Section, you can click the McGill Enhanced button to download your course schedule as a .ICS file which can then be imported into Google Calendar, Apple iCal, or Microsoft Outlook.
   </p>
 
-  <img src="images/features-minerva.png" alt="" style="width:100%;">
+  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-minerva.png" alt="" style="width:100%;">
 
 
