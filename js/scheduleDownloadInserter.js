@@ -15,7 +15,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-function injectScheduleDownloader() {
+function insertScheduleDownloader() {
   try {
     logForDebug(document.getElementsByClassName("pagetitlediv"));
     schedulePage = document.getElementsByClassName("pagetitlediv")[0].innerText.search("Student Schedule by Course Section");
