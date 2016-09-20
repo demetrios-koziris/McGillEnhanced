@@ -1,4 +1,7 @@
-# McGill Enhanced
+<h1>
+  McGill Enhanced
+</h1>
+
 A Chrome Extension Improving the McGill.ca Website Experience
 
 <h3 align="center">
@@ -42,8 +45,6 @@ McGill Enhanced makes looking up courses and registration easier by providing di
   </p>
 
   <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-mcgill.png" alt="" style="width:100%;">
-
-  <br><br>
 
 
   <h4>
@@ -123,8 +124,6 @@ McGill Enhanced makes looking up courses and registration easier by providing di
 
   <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-vsb.png" alt="" style="width:100%;">
 
-<br>
-<br>
 <br>
 
 <h3 style="text-align:center;">
