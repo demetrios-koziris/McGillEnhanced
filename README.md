@@ -1,13 +1,9 @@
 # McGill Enhanced
 A Chrome Extension Improving the McGill.ca Website Experience
 
-<br>
-
 <h3 align="center">
   <a href="https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en">Download from the Google Chrome Store</a>
 </h3>
-
-<br>
 
 <h3 align="center">
   <a href="http://demetrios-koziris.github.io/McGillEnhanced/">View the McGill Enhanced landing page</a>
