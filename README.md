@@ -11,11 +11,16 @@ A Chrome Extension Improving the McGill.ca Website Experience
 
 <br>
 
+<h2>
+  Feature Summary
+</h2>
+
 McGill Enhanced makes looking up courses and registration easier by providing direct access to professor ratings (just hover over a prof name), Mercury course evaluations, archived lecture recordings, Docuum, Minerva Registration, Visual Schedule Builder and more for a given course all from the course overview page. It also adds a menu bar that lets you quickly jump to a different year's version of the given page as well as a quick links menu that you can access by clicking the McGill Enhanced icon in the chrome menu bar.
 
+<br>
 
 <h2>
-  McGill Enhanced Features
+  Feature Details
 </h2>
 
 <h3 style="text-align:center;">
