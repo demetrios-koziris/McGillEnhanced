@@ -218,7 +218,7 @@ function makeSidebarContent() {
         formsBlock.appendChild(other);
     
         if (csusURLdata) {
-            const csusURL = "https://mcgill-csus.github.io/content/compmajorguide.html#" + csusURLdata;
+            const csusURL = "https://mcgill-csus.github.io/compmajorguide.html#" + csusURLdata;
             const csusButtonString = "View " + courseNameSpaced + " in the CSUS Guide";
             const csusForm = document.createElement('form');
             csusForm.setAttribute("action", csusURL);
