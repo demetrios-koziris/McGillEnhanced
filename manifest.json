@@ -1,7 +1,7 @@
 {
   "name": "McGill Enhanced",
   "manifest_version": 2,
-  "version": "2.3.39",
+  "version": "2.3.40",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent"
@@ -17,7 +17,7 @@
     "default_icon": {
       "128": "icons/mcgill-128.png"
     },
-    "default_popup": "popup/quicklinksMenu.html",
+    "default_popup": "menu/quicklinksMenu.html",
     "default_title": "Click to view Quick Links Menu!"
   },
   "icons": {
