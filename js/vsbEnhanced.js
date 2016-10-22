@@ -164,6 +164,6 @@ function loginRedirect(message) {
 
 function register() {
     var event = document.createEvent('Event');
-    event.initEvent('register');
+    event = new Event('register');
     document.dispatchEvent(event);
 }
