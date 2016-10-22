@@ -1,7 +1,8 @@
 {
   "name": "McGill Enhanced",
+  "author": "Demetrios Koziris",
   "manifest_version": 2,
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent"
