@@ -458,6 +458,7 @@ function generateFormButton(onColor, buttonValue) {
     formButton.setAttribute('onmouseout', 'this.style.background="' + (isNewStyle ? '#C5C5C5' : '#F4F5ED') + '"');
     formButton.setAttribute('value', buttonValue);
     formButton.className = 'form-submit';
+    formButton.style.background = (isNewStyle ? '#C5C5C5' : '#F4F5ED');
     formButton.style.width = '100%';
     formButton.style.height = '32px';
     formButton.style.margin = '4px 0px';
