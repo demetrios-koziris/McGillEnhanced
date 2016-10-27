@@ -35,3 +35,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	  chrome.runtime.reload();
 	});
 });
+
+
+// If default popup not set in manifest, clicking the extension icon will load the following page
+chrome.browserAction.onClicked.addListener(function(tab) {
+    chrome.tabs.create({'url': "https://demetrios-koziris.github.io/McGillEnhanced/", 'selected': true});
+});
