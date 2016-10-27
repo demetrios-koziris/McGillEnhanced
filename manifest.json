@@ -2,10 +2,15 @@
   "name": "McGill Enhanced",
   "author": "Demetrios Koziris",
   "manifest_version": 2,
-  "version": "2.4.3",
+  "version": "2.4.6",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
-    "declarativeContent"
+    "declarativeContent",
+    "*://www.mcgill.ca/study/*", 
+    "*://horizon.mcgill.ca/*", 
+    "*://www.ratemyprofessors.com/search*", 
+    "*://www.docuum.com/McGill*", 
+    "*://vsb.mcgill.ca/*"
   ],
   "background": {
     "scripts": [
