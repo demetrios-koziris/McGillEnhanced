@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "Demetrios Koziris",
   "manifest_version": 2,
-  "version": "2.4.8",
+  "version": "2.4.9",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
@@ -21,6 +21,7 @@
   },
   "browser_action": {
     "default_icon": {
+      "38": "icons/mcgill-128.png",
       "128": "icons/mcgill-128.png"
     },
     "default_popup": "menu/quicklinksMenu.html",
