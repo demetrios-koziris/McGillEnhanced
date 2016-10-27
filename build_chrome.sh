@@ -5,3 +5,4 @@ today=`date '+%Y_%m_%d__%H_%M_%S'`;
 filename="../build/McGillEnhanced__"$today"__chrome.zip"
 cd src
 zip -r $filename icons js lib menu manifest.json
+cd ..
