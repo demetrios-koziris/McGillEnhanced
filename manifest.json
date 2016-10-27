@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "Demetrios Koziris",
   "manifest_version": 2,
-  "version": "2.4.6",
+  "version": "2.4.7",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
@@ -59,5 +59,6 @@
     "js/scheduleDownload.js"
   ]
 }
+
 
 
