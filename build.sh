@@ -1,11 +1,28 @@
 #!/bin/bash
 
+#  Usage: 
+#    command [option] <parameter>...
+#
+#  Options:
+#    -c       Clean the /build directory before building
+#  Parameters:
+#    edge     Create an edge extension in /build 
+#    chrome   Create a chrome extension in /build
+#    firefox  Create a firefox add-on in /build 
+#
+#  Examples :
+#    ./build.sh chrome
+#    ./build.sh -c edge
+#    ./build.sh chrome firefox
+#    ./build.sh -c edge chrome firefox
+
+
 minArgs=1
 while getopts "c" opt; do
   case $opt in
     c)
       minArgs=2
-      echo "$0: Flag -clean was triggered"
+      echo "$0: Option -clean was triggered"
       ;;
   esac
 done
