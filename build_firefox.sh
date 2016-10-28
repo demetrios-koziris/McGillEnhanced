@@ -1,7 +1,7 @@
 #!/bin/bash
 
 match='"author": "Demetrios Koziris",'
-insert='"  applications":{"gecko":{"id":"extension@example.org"}},'
+insert='  "applications":{"gecko":{"id":"extension@example.org"}},'
 file='src/manifest.json'
 sed -i "s/$match/$match\n$insert/" $file
 
@@ -12,4 +12,4 @@ cd src
 zip -r $filename icons js lib menu manifest.json
 cd ..
 
-sed -i '/gecko/d' $file   
+sed -i '/"gecko"/d' $file   
