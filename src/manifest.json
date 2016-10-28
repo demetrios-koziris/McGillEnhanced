@@ -13,10 +13,7 @@
     "*://vsb.mcgill.ca/*"
   ],
   "background": {
-    "scripts": [
-      "js/backgroundHTTP.js",
-      "js/background.js"
-    ],
+    "scripts": [ "js/backgroundHTTP.js", "js/background.js" ],
     "persistent": false
   },
   "browser_action": {
