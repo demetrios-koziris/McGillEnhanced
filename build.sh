@@ -17,32 +17,30 @@
 #    ./build.sh -c edge chrome firefox
 
 
-minArgs=1
+# handle -c (clean) option flag
 while getopts "c" opt; do
   case $opt in
     c)
-      minArgs=2
       echo "$0: Option -clean was triggered"
+      echo "$0: Cleaning /build directory"
+      rm -r build
+      mkdir -p build
+      set -- ${@:2}
       ;;
   esac
 done
 
-if [ $# -lt $minArgs ] ; then
+# if no arguments passed, default to building all browser versions of extension
+if [ $# -lt 1 ] ; then
   echo
-  echo "$0: Build script requires at least 1 argument specifying browser"
-  exit 2
+  echo "$0: Building all browser extensions since no arguments specifying browsers received"
+  set -- "edge" "firefox" "chrome"
 fi
 
+# build extension for each browser specified in arguments (builds all if no browser specified)
 for browser in "$@"; do
 
 	echo 
-
-	if [ $minArgs -eq 2 ]; then
-		echo "$0: Cleaning /build directory"
-		rm -r build
-		minArgs=1
-		continue
-	fi
 
 	if [ $browser != edge ] && [ $browser != firefox ] && [ $browser != chrome ]; then
 		echo "$0: Invalid argument: $browser"
@@ -55,6 +53,7 @@ for browser in "$@"; do
 	echo "$0: Creating $browser version in build/$buildname"
 	mkdir -p build
 
+	# build edge extension
 	if [ $browser == edge ]; then
 
 		mkdir -p build/$buildname
@@ -87,6 +86,7 @@ for browser in "$@"; do
 
 	fi
 
+	# build firefox add-on
 	if [ $browser == firefox ]; then
 
 		match='"author": "Demetrios Koziris",'
@@ -95,17 +95,18 @@ for browser in "$@"; do
 		sed -i "s/$match/$match\n$insert/" $file
 
 		cd src
-		zip -r ../build/$buildname.xpi icons js lib menu manifest.json
+		zip -rq ../build/$buildname.xpi icons js lib menu manifest.json
 		cd ..
 
 		sed -i '/"gecko"/d' $file   
 
 	fi
 
+	# build chrome extension
 	if [ $browser == chrome ]; then
 
 		cd src
-		zip -r ../build/$buildname.zip icons js lib menu manifest.json
+		zip -rq ../build/$buildname.zip icons js lib menu manifest.json
 		cd ..
 
 	fi
