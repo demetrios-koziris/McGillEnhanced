@@ -9,8 +9,11 @@
 #    edge     Create an edge extension in /build 
 #    chrome   Create a chrome extension in /build
 #    firefox  Create a firefox add-on in /build 
+#    *If no parameters are passed, script will default to building the extension for every browser
 #
 #  Examples :
+#    ./build.sh 
+#    ./build.sh -c
 #    ./build.sh chrome
 #    ./build.sh -c edge
 #    ./build.sh chrome firefox
