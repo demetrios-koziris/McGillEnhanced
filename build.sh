@@ -1,6 +1,17 @@
 #!/bin/bash
 
-if [ $# -lt 1 ] ; then
+minArgs=1
+while getopts "c" opt; do
+  case $opt in
+    c)
+      minArgs=2
+      echo "$0: Flag -clean was triggered"
+      ;;
+  esac
+done
+
+if [ $# -lt $minArgs ] ; then
+  echo
   echo "$0: Build script requires at least 1 argument specifying browser"
   exit 2
 fi
@@ -8,8 +19,17 @@ fi
 for browser in "$@"; do
 
 	echo 
+
+	if [ $minArgs -eq 2 ]; then
+		echo "$0: Cleaning /build directory"
+		rm -r build
+		minArgs=1
+		continue
+	fi
+
 	if [ $browser != edge ] && [ $browser != firefox ] && [ $browser != chrome ]; then
-		echo "$0: Argument $browser is incorrect, must be edge, firefox, or chrome"
+		echo "$0: Invalid argument: $browser"
+		echo "$0: Browser argument specified must be edge, firefox, or chrome"
 		continue
 	fi 
 
