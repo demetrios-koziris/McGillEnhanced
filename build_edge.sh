@@ -20,3 +20,14 @@ insertA='    "persistent": true'
 insertB='    "page": "background.html",'  
 sed -i "s/$match/$match\n$insertA/" $file
 sed -i "s/$match/$match\n$insertB/" $file
+
+sed -i '/"default_title"/d' $file  
+match='"default_popup": "menu\/quicklinksMenu.html",'
+insertC='    "default_title": "Click to visit the McGill Enhanced site!"'   
+sed -i "s/$match/$match\n$insertC/" $file
+sed -i '/"default_popup"/d' $file  
+
+sed -i '/"default_popup"/d' $file 
+sed -i '/"js\/vsbEnhanced.js"/d' $file 
+sed -i '/"js\/scheduleDownloadInserter.js"/d' $file 
+
