@@ -107,7 +107,7 @@ function makeSidebarContent() {
     if (recordingURLdata) {
 
         //SIDEBAR SECTION: LECTURE RECORDINGS
-        const recordings = generateSidebarSectionTitle("Lecture Recordings");
+        const recordings = generateSidebarSection("Lecture Recordings");
         formsBlock.appendChild(recordings);
 
         if (urlYearF in recordingURLdata) {
