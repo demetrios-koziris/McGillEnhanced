@@ -166,102 +166,47 @@ function makeSidebarContent() {
 
     //SIDEBAR RELATED COURSES AND RELATED PROGRAMS BLOCKS
 
-    const sidebarBlock = document.createElement('div');
-    sidebarBlock.className = "block";
-    sidebarBlock.style.minWidth = "260px";
-    if (isNewStyle) {
-        sidebarBlock.style.border = "1px solid #eee";
-        sidebarBlock.style.marginBottom = "16px";
-    }
+    const sidebarBlock = generateSidebarBlock("Related Courses");
     sidebar.appendChild(sidebarBlock);
-
-    const sidebarBlockTitle = document.createElement('h3');
-    sidebarBlockTitle.innerHTML = "Related Courses";
-    sidebarBlockTitle.style.maxWidth = "100%";
-    sidebarBlockTitle.style.padding = "12px 10px";
-    if (isNewStyle) {
-        sidebarBlockTitle.style.background = "#DBDBDB";
-    }
-    sidebarBlock.appendChild(sidebarBlockTitle);
-
 
     if (deps.length > 0) {
 
-        const deptCourses = document.createElement('div');
-        deptCourses.className = "view-catalog-program";
-        sidebarBlock.appendChild(document.createElement('br'));
+        const deptCourses = generateRelatedCoursesSection("View Related Courses by Subject");
         sidebarBlock.appendChild(deptCourses);
-
-        const deptCoursesTitle = document.createElement('div');
-        deptCoursesTitle.className = "view-header";
-        deptCoursesTitle.innerHTML = "<i>View Related Courses by Subject</i>";
-        deptCourses.appendChild(deptCoursesTitle);
 
         for (let d = 0; d<deps.length; d++)
         {
             const deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
-
             const deptCoursesLinkDiv = document.createElement('div');
             deptCoursesLinkDiv.className = (d === deps.length-1 ? "views-row views-row-last" : "views-row");
+            deptCoursesLinkDiv.appendChild(generateRelatedCoursesLink(deptCoursesURL, deps[d]+" Courses"));
             deptCourses.appendChild(deptCoursesLinkDiv);
-
-            const deptCoursesLink = document.createElement('a');
-            deptCoursesLink.setAttribute("href", deptCoursesURL);
-            deptCoursesLink.innerHTML = deps[d] + " Courses";
-            deptCoursesLinkDiv.appendChild(deptCoursesLink);
         }
     }
 
     const profKeys = Object.keys(profs);
     if (profKeys.length > 0) {
 
-        const profCourses = document.createElement('div');
-        profCourses.className = "view-catalog-program";
-        sidebarBlock.appendChild(document.createElement('br'));
+        const profCourses = generateRelatedCoursesSection("View Related Courses by Professor");
         sidebarBlock.appendChild(profCourses);
-
-        const profCoursesTitle = document.createElement('div');
-        profCoursesTitle.className = "view-header";
-        profCoursesTitle.innerHTML = "<i>View Related Courses by Professor</i>";
-        profCourses.appendChild(profCoursesTitle);
 
         for (let p = 0; p < profKeys.length; p++) {
             const profFullName = profs[profKeys[p]].fullName;
             const profURLName = profFullName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
 
             const profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
-
             const profCoursesLinkDiv = document.createElement('div');
             profCoursesLinkDiv.className = (p === profKeys.length-1 ? "views-row views-row-last" : "views-row");
+            profCoursesLinkDiv.appendChild(generateRelatedCoursesLink(profCoursesURL, profFullName));
             profCourses.appendChild(profCoursesLinkDiv);
-
-            const profCoursesLink = document.createElement('a');
-            profCoursesLink.setAttribute("href", profCoursesURL);
-            profCoursesLink.innerHTML = profFullName;
-            profCoursesLinkDiv.appendChild(profCoursesLink);
         }
     }
 
 
     if (document.getElementsByClassName("view-catalog-program").length > 0) {
 
-        const sidebarBlock = document.createElement('div');
-        sidebarBlock.className = "block";
-        sidebarBlock.style.minWidth = "260px";
-        if (isNewStyle) {
-            sidebarBlock.style.border = "1px solid #eee";
-            sidebarBlock.style.marginBottom = "16px";
-        }
+        const sidebarBlock = generateSidebarBlock("Related Programs");
         sidebar.appendChild(sidebarBlock);
-
-        const sidebarBlockTitle = document.createElement('h3');
-        sidebarBlockTitle.innerHTML = "Related Programs";
-        sidebarBlockTitle.style.maxWidth = "100%";
-        sidebarBlockTitle.style.padding = "12px 10px";
-        if (isNewStyle) {
-            sidebarBlockTitle.style.background = "#DBDBDB";
-        }
-        sidebarBlock.appendChild(sidebarBlockTitle);
 
         const relatedPrograms = document.getElementsByClassName("view-catalog-program")[0];
         sidebarBlock.appendChild(document.createElement('br'));
@@ -378,12 +323,12 @@ function generateSidebarLink(url, onColor, buttonValue, title) {
     if (title) {
         sidebarLink.setAttribute("title", title);
     }        
-    sidebarLink.appendChild(generateLinkButton(onColor, buttonValue));
+    sidebarLink.appendChild(generateSidebarLinkButton(onColor, buttonValue));
     return sidebarLink;
 }
 
 
-function generateLinkButton(onColor, buttonValue) {
+function generateSidebarLinkButton(onColor, buttonValue) {
     const linkButton = document.createElement('button');
     linkButton.setAttribute('onmouseover', 'this.style.background="' + (isNewStyle ? '-webkit-linear-gradient(left, ' + onColor + ', #C5C5C5)' : '#ECF3FF') + '"');
     linkButton.setAttribute('onmouseout', 'this.style.background="' + (isNewStyle ? '#C5C5C5' : '#F4F5ED') + '"');
@@ -404,3 +349,49 @@ function generateLinkButton(onColor, buttonValue) {
 }
 
 
+function generateSidebarBlock(titleString) {
+    const sidebarBlock = document.createElement('div');
+    sidebarBlock.className = "block";
+    sidebarBlock.style.minWidth = "260px";
+    if (isNewStyle) {
+        sidebarBlock.style.border = "1px solid #eee";
+        sidebarBlock.style.marginBottom = "16px";
+    }
+    sidebarBlock.appendChild(generateSidebarBlockTitle(titleString));
+    return sidebarBlock;   
+}
+
+function generateSidebarBlockTitle(titleString) {
+    const sidebarBlockTitle = document.createElement('h3');
+    sidebarBlockTitle.innerHTML = titleString;
+    sidebarBlockTitle.style.maxWidth = "100%";
+    sidebarBlockTitle.style.padding = "12px 10px";
+    if (isNewStyle) {
+        sidebarBlockTitle.style.background = "#DBDBDB";
+    }
+    return sidebarBlockTitle;
+}
+
+
+function generateRelatedCoursesSection(titleString) {
+    const relatedCoursesSection = document.createElement('div');
+    relatedCoursesSection.className = "view-catalog-program";
+    relatedCoursesSection.appendChild(document.createElement('br'));
+    relatedCoursesSection.appendChild(generateRelatedCoursesSectionTitle(titleString));
+    return relatedCoursesSection;
+}
+
+
+function generateRelatedCoursesSectionTitle(titleString) {
+    const relatedCoursesSectionTitle = document.createElement('div');
+    relatedCoursesSectionTitle.className = "view-header";
+    relatedCoursesSectionTitle.innerHTML = "<i>" + titleString + "</i>";
+    return relatedCoursesSectionTitle;
+}
+
+function generateRelatedCoursesLink(url, titleString) {
+    const relatedCoursesLink = document.createElement('a');
+    relatedCoursesLink.setAttribute("href", url);
+    relatedCoursesLink.innerHTML = titleString;
+    return relatedCoursesLink;    
+}
