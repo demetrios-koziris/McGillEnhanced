@@ -361,12 +361,13 @@ function generateSidebarBlock(titleString) {
     return sidebarBlock;   
 }
 
+
 function generateSidebarBlockTitle(titleString) {
     const sidebarBlockTitle = document.createElement('h3');
     sidebarBlockTitle.innerHTML = titleString;
     sidebarBlockTitle.style.maxWidth = "100%";
-    sidebarBlockTitle.style.padding = "12px 10px";
     if (isNewStyle) {
+        sidebarBlockTitle.style.padding = "12px 10px";
         sidebarBlockTitle.style.background = "#DBDBDB";
     }
     return sidebarBlockTitle;
@@ -388,6 +389,7 @@ function generateRelatedCoursesSectionTitle(titleString) {
     relatedCoursesSectionTitle.innerHTML = "<i>" + titleString + "</i>";
     return relatedCoursesSectionTitle;
 }
+
 
 function generateRelatedCoursesLink(url, titleString) {
     const relatedCoursesLink = document.createElement('a');
