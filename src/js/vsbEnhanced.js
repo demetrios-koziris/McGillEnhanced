@@ -43,7 +43,7 @@ function enhanceVSB() {
 	var button = document.createElement('button');
 	button.setAttribute("type", "button");
 	button.setAttribute("onclick", register.toString() +  " register();");
-	button.innerHTML = "McGill Enhanced:<br>1-Click Minerva Registration!"
+	button.innerHTML = "McGill Enhanced:<br>One-Click Minerva Registration!"
 	button.title = "Click to register for the above CRN codes.\nMust be already signed into Minerva!";
 	button.style.width = "273px";
 	button.style.padding = "10px 2px 10px 60px";
