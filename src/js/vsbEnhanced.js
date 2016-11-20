@@ -54,7 +54,7 @@ function enhanceVSB() {
     button.style.background = "#FBF7C9";
     button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
     button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
-    button.style.border = "1px solid #5B5B5A";
+    button.style.border = "2px solid #5B5B5A";
     button.style.WebkitBoxShadow  = "none";
     button.style.boxShadow = "none";
 
