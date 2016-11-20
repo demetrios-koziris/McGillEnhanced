@@ -45,9 +45,9 @@ function enhanceVSB() {
     button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Auto-Register for the above CRNs!");
     button.setAttribute("onclick", register.toString() +  " register();");
     button.title = "Must be already signed into Minerva!";
-    button.style.width = "271px";
+    button.style.width = "273px";
     button.style.padding = "10px 2px";
-    button.style.margin = "9px";
+    button.style.margin = "8.4px";
     button.style.whiteSpace = "normal";
     button.style.borderRadius = "8px";
     button.style.webkitAppearance = "button";
