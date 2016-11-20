@@ -23,7 +23,7 @@ function enhanceVSB() {
 
     var button = document.createElement('input');
     button.setAttribute("type", "button");
-    button.setAttribute("value", "McGill Enhanced Registration Feature: Click to Automatically Register in Minerva! (Must be already signed in)");
+    button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Automatically Register in Minerva! (Must be already signed in)");
     button.setAttribute("onclick", register.toString() +  " register();");
     button.style.width = "271px";
     button.style.height = "70px";
