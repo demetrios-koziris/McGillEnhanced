@@ -21,22 +21,28 @@ function enhanceVSB() {
 	notpermittedMessage = "Minerva indicates that you are not permitted to register at this time. Please check your account to verify this.";
 	errorMessage = "McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time.";
 
-	// console.log(document.getElementById('flip_area').style = "position: relative; display: block; width: 800px; text-align: left;");
 
 	var head = document.getElementsByTagName('head')[0];
-    var s = document.createElement('style');
-    s.setAttribute('type', 'text/css');
-    s.innerText = ".flip_area_no_minHeight { min-Height:0px !important }";
-    head.appendChild(s);
-    document.getElementById('flip_area').className += 'flip_area_no_minHeight';
-    document.getElementById('flip_area')
+	var s = document.createElement('style');
+	s.setAttribute('type', 'text/css');
+	s.innerText = ".flip_area_no_minHeight { min-Height:0px !important } .bubble { background-color: #fffeef !important; }";
+	head.appendChild(s);
+	document.getElementById('flip_area').className += 'flip_area_no_minHeight';
+
+	wrapPrintable = document.createElement('div');
+	wrapPrintable.style.minHeight = '510px';
+	printable = document.getElementById('printable');
+	footer = document.getElementsByClassName("footer")[0];
+
+	printable.parentElement.appendChild(wrapPrintable);
+	printable.parentElement.appendChild(footer);
+	wrapPrintable.appendChild(printable);
 
 
-    document.getElementsByClassName("footer")[0].style.display = 'none';
 
     var button = document.createElement('input');
     button.setAttribute("type", "button");
-    button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Automatically Register in Minerva!");
+    button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Auto-Register for the above CRNs!");
     button.setAttribute("onclick", register.toString() +  " register();");
     button.title = "Must be already signed into Minerva!";
     button.style.width = "271px";
