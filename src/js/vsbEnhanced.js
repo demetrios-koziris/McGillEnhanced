@@ -40,23 +40,26 @@ function enhanceVSB() {
 
 
 
-    var button = document.createElement('input');
-    button.setAttribute("type", "button");
-    button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Auto-Register for the above CRNs!");
-    button.setAttribute("onclick", register.toString() +  " register();");
-    button.title = "Must be already signed into Minerva!";
-    button.style.width = "273px";
-    button.style.padding = "10px 2px";
-    button.style.margin = "8.4px";
-    button.style.whiteSpace = "normal";
-    button.style.borderRadius = "8px";
-    button.style.webkitAppearance = "button";
-    button.style.background = "#FBF7C9";
-    button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
-    button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
-    button.style.border = "2px solid #5B5B5A";
-    button.style.WebkitBoxShadow  = "none";
-    button.style.boxShadow = "none";
+	var button = document.createElement('button');
+	button.setAttribute("type", "button");
+	button.setAttribute("onclick", register.toString() +  " register();");
+	button.innerHTML = "McGill Enhanced:<br>1-Click Minerva Registration!"
+	button.title = "Click to register for the above CRN codes.\nMust be already signed into Minerva!";
+	button.style.width = "273px";
+	button.style.padding = "10px 2px 10px 60px";
+	button.style.margin = "8.4px";
+	button.style.whiteSpace = "normal";
+	button.style.borderRadius = "8px";
+	button.style.webkitAppearance = "button";
+	button.style.background = "#FBF7C9 url(http://i.imgur.com/N0P89lL.png) no-repeat 8% 44%";
+	button.style.backgroundSize = '40px 40px';
+	button.style.WebkitBoxShadow  = "none";
+	button.style.boxShadow = "none";
+	button.style.border = "2px solid #5B5B5A";
+	button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
+	button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
+    
+    
 
 
     box = document.getElementById("printable");
