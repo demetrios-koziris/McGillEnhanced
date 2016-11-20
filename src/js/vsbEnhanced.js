@@ -46,12 +46,12 @@ function enhanceVSB() {
 	button.innerHTML = "McGill Enhanced:<br>One-Click Minerva Registration!"
 	button.title = "Click to register for the above CRN codes.\nMust be already signed into Minerva!";
 	button.style.width = "273px";
-	button.style.padding = "10px 2px 10px 60px";
+	button.style.padding = "10px 4px 10px 60px";
 	button.style.margin = "8.4px";
 	button.style.whiteSpace = "normal";
 	button.style.borderRadius = "8px";
 	button.style.webkitAppearance = "button";
-	button.style.background = "#FBF7C9 url(http://i.imgur.com/N0P89lL.png) no-repeat 8% 44%";
+	button.style.background = "#FBF7C9 url(http://i.imgur.com/N0P89lL.png) no-repeat 6% 44%";
 	button.style.backgroundSize = '40px 40px';
 	button.style.WebkitBoxShadow  = "none";
 	button.style.boxShadow = "none";
