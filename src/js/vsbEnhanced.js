@@ -29,22 +29,25 @@ function enhanceVSB() {
     s.innerText = ".flip_area_no_minHeight { min-Height:0px !important }";
     head.appendChild(s);
     document.getElementById('flip_area').className += 'flip_area_no_minHeight';
-    document.getElementById('flip_area').title="Must be already signed into Minerva!";
+    document.getElementById('flip_area')
+
+
     document.getElementsByClassName("footer")[0].style.display = 'none';
 
     var button = document.createElement('input');
     button.setAttribute("type", "button");
-    button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Automatically Register in Minerva! (Must be already signed in)");
+    button.setAttribute("value", "McGill Enhanced Single-Click Registration:  Click to Automatically Register in Minerva!");
     button.setAttribute("onclick", register.toString() +  " register();");
+    button.title = "Must be already signed into Minerva!";
     button.style.width = "271px";
-    button.style.height = "70px";
+    button.style.padding = "10px 2px";
     button.style.margin = "9px";
     button.style.whiteSpace = "normal";
     button.style.borderRadius = "8px";
     button.style.webkitAppearance = "button";
     button.style.background = "#FBF7C9";
     button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
-    button.setAttribute("onmouseout", "this.style.border=\"1px solid #5B5B5A\"");
+    button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
     button.style.border = "1px solid #5B5B5A";
     button.style.WebkitBoxShadow  = "none";
     button.style.boxShadow = "none";
