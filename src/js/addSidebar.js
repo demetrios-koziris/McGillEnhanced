@@ -62,11 +62,13 @@ function makeSidebarContent() {
     const vsbData = {
         vsbFall: { 
             url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
-            valid: false
+            valid: false,
+            down: false
         },
         vsbWinter: { 
             url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
-            valid: false
+            valid: false,
+            down: false
         },
         done: 0,
         total: (urlYearF >= sysYear-1 ? 2 : 0),
@@ -267,9 +269,11 @@ function generateValidateVSBLinkCallback(vsbData, linkData, formsBlock) {
 
             const htmlParser = new DOMParser();
             const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0 ||
-                htmlDoc.getElementsByTagName("BODY")[0].innerText.match("Visual Schedule Builder Unavailable")) {
+            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
                 linkData.valid = true;
+            }
+            if (htmlDoc.getElementsByTagName("BODY")[0].innerText.match("Visual Schedule Builder Unavailable")) {
+                linkData.down = true;
             }
         }
 
@@ -297,6 +301,15 @@ function addVerifiedLinks(vsbData, formsBlock) {
             const vsbWinterLink = generateSidebarLink(vsbData.vsbWinter.url, "#7173F6", vsbWinterButtonValue);
             vsb.appendChild(vsbWinterLink);
         }
+    }
+
+    if (vsbData.vsbFall.down || vsbData.vsbWinter.down) {
+        const vsb = generateSidebarSection("Visual Schedule Builder");
+        formsBlock.appendChild(vsb);
+
+        const vsbDownButtonValue = "View on Visual Schedule Builder";
+        const vsbDownLink = generateSidebarLink("https://vsb.mcgill.ca", "#7173F6", vsbDownButtonValue);
+        vsb.appendChild(vsbDownLink);
     }
 }
 
