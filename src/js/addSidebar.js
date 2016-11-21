@@ -267,7 +267,8 @@ function generateValidateVSBLinkCallback(vsbData, linkData, formsBlock) {
 
             const htmlParser = new DOMParser();
             const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
+            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0 ||
+                htmlDoc.getElementsByTagName("BODY")[0].innerText.match("Visual Schedule Builder Unavailable")) {
                 linkData.valid = true;
             }
         }
