@@ -61,12 +61,14 @@ function makeSidebarContent() {
 
     const vsbData = {
         vsbFall: { 
-            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
+            url: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearF + "09&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs=",
+            // url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
             valid: false,
             down: false
         },
         vsbWinter: { 
-            url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
+            url: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearW + "01&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs=",
+            // url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
             valid: false,
             down: false
         },
@@ -263,13 +265,15 @@ function validateVSBLink(vsbData, linkData, formsBlock) {
 function generateValidateVSBLinkCallback(vsbData, linkData, formsBlock) {
     return function(data) {
         vsbData.done++;
-        logForDebug(vsbData);
+        console.log(vsbData);
+        console.log(data.responseXML)
 
         if (data.responseXML != "error") {
 
             const htmlParser = new DOMParser();
             const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-            if (htmlDoc.getElementsByClassName("warningNoteGood").length > 0) {
+            console.log(htmlDoc);
+            if (htmlDoc.getElementsByClassName("empty_warning").length === 0) {
                 linkData.valid = true;
             }
             if (htmlDoc.getElementsByTagName("BODY")[0].innerText.match("Visual Schedule Builder Unavailable")) {
