@@ -173,7 +173,7 @@ function addYearMenu() {
                 yearMenuItemDIV.style.width = "100%";
                 yearMenuItemDIV.style.height = "30px";
                 yearMenuItemDIV.style.backgroundColor = "#FFFFFF";
-                yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
+                yearMenuItemDIV.style.borderRadius = "6px 6px 0px 0px";
 
                 const yearMenuItemA = document.createElement('a');
                 yearMenuItemA.innerHTML = i + "-" + (i + 1);
@@ -195,10 +195,10 @@ function addYearMenu() {
                 else {
                     yearMenuItemTD.appendChild(yearMenuItemA);
                     if (i === urlYearF - 1) {
-                        yearMenuItemTD.style.borderRadius = "0px 0px 8px 0px";
+                        yearMenuItemTD.style.borderRadius = "0px 0px 6px 0px";
                     }
                     else if (i === urlYearF + 1) {
-                        yearMenuItemTD.style.borderRadius = "0px 0px 0px 8px";
+                        yearMenuItemTD.style.borderRadius = "0px 0px 0px 6px";
                     }
                     if (i > sysYear) {
                         yearMenuItemA.style.color = "#396A84";
@@ -254,10 +254,17 @@ function addYearMenu() {
             inner.className = "inner";
             yearMenuBarDIV.appendChild(inner);
 
+            const innerContainer = document.createElement('div');
+            innerContainer.style.backgroundColor = "#FFFFFC";
+            innerContainer.style.height = '33px';
+            inner.appendChild(innerContainer);
+
+            
+
             const yearMenuBarUL = document.createElement('ul');
             yearMenuBarUL.className = "sf-menu sf-main-menu";
             yearMenuBarUL.style.height = "33px";
-            inner.appendChild(yearMenuBarUL);
+            innerContainer.appendChild(yearMenuBarUL);
 
             for (let i = j; i < j+10; i++)
             {
@@ -279,7 +286,7 @@ function addYearMenu() {
 
                 const yearMenuItemDIV = document.createElement('div');
                 yearMenuItemDIV.style.backgroundColor = "#FFFFFC";
-                yearMenuItemDIV.style.borderRadius = "8px 8px 0px 0px";
+                yearMenuItemDIV.style.borderRadius = "6px 6px 0px 0px";
                 yearMenuItemDIV.style.width = "100%";
                 yearMenuItemDIV.style.height = "33px";
 
@@ -301,10 +308,10 @@ function addYearMenu() {
                 else {
                     yearMenuItemLI.appendChild(yearMenuItemA);
                     if (i === urlYearF - 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 8px 0px";
+                        yearMenuItemLI.style.borderRadius = "0px 0px 6px 0px";
                     }
                     else if (i === urlYearF + 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 0px 8px";
+                        yearMenuItemLI.style.borderRadius = "0px 0px 0px 6px";
                     }
                     if (i > sysYear) {
                         yearMenuItemA.style.color = "#5b5b5a";
