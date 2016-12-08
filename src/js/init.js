@@ -49,8 +49,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	console.log("McGill Enhanced took " + time + " ms to improve this page!");
 }
 
-if (url.match(/.+vsb\.mcgill\.ca\/results\.jsp\?session\_[0-9]{6}.+/) ||
-	url.match(/.+vsb\.mcgill\.ca\/vsb\/results\.jsp\?session\_[0-9]{6}.+/)) {
+if (url.match(/.+vsb\.mcgill\.ca/)) {
 	enhanceVSB();
 }
 

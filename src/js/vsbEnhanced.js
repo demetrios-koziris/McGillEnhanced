@@ -25,18 +25,8 @@ function enhanceVSB() {
 	var head = document.getElementsByTagName('head')[0];
 	var s = document.createElement('style');
 	s.setAttribute('type', 'text/css');
-	s.innerText = ".flip_area_no_minHeight { min-Height:0px !important } .bubble { background-color: #fffeef !important; }";
+	s.innerText = ".reg_legend { text-align:center } .bubble { background-color: #fffeef !important; }";
 	head.appendChild(s);
-	document.getElementById('flip_area').className += 'flip_area_no_minHeight';
-
-	wrapPrintable = document.createElement('div');
-	wrapPrintable.style.minHeight = '510px';
-	printable = document.getElementById('printable');
-	footer = document.getElementsByClassName("footer")[0];
-
-	printable.parentElement.appendChild(wrapPrintable);
-	printable.parentElement.appendChild(footer);
-	wrapPrintable.appendChild(printable);
 
 
 
@@ -62,13 +52,13 @@ function enhanceVSB() {
     
 
 
-    box = document.getElementById("printable");
+    box = document.getElementsByClassName("reg_legend")[0];
     box.appendChild(button);
 
 
      document.addEventListener("register", function(data) {
 
-     	var termCode = url.match(/.+session\_([0-9]{6})\=/)[1];
+     	var termCode = url.match(/.+term\=([0-9]{6})/)[1];
 	    if(window.debugMode){console.log(termCode);}
 
 	    var xmlRequestInfo = {
@@ -141,6 +131,7 @@ function enhanceVSB() {
 							regURL += '&RSTS_IN=RW';
 							regURL += '&CRN_IN=';
 							if (c < crns.length) {
+								crns[c] = crns[c].replace(/[{()}]/g, ''); //remove parentheses
 								regURL += crns[c];
 							}
 							regURL += '&assoc_term_in=';
