@@ -247,12 +247,17 @@ function addYearMenu() {
         {
             const yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
-            yearMenuBarDIV.style.backgroundColor = "#FFFFFC";
+            yearMenuBarDIV.style.backgroundColor = "#444844";
+            yearMenuBarDIV.style.height = '33px';
+
+            const inner = document.createElement('div');
+            inner.className = "inner";
+            yearMenuBarDIV.appendChild(inner);
 
             const yearMenuBarUL = document.createElement('ul');
             yearMenuBarUL.className = "sf-menu sf-main-menu";
             yearMenuBarUL.style.height = "33px";
-            yearMenuBarDIV.appendChild(yearMenuBarUL);
+            inner.appendChild(yearMenuBarUL);
 
             for (let i = j; i < j+10; i++)
             {
@@ -289,14 +294,6 @@ function addYearMenu() {
                     yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                     yearMenuItemA.style.color = "#5b5b5a";
 
-                    ////
-                    // yearMenuItemA.style.padding = "4px 12px 10px";
-                    // yearMenuItemA.style.borderColor = "#DC241F";
-                    // yearMenuItemA.style.borderStyle = "solid";
-                    // yearMenuItemA.style.borderWidth = "3px 0px 0px 0px";
-                    // yearMenuItemA.style.borderRadius = "6px 6px 0px 0px";
-                    ////
-
                     yearMenuItemLI.style.pointerEvents = "none";
                     yearMenuItemDIV.appendChild(yearMenuItemA);
                     yearMenuItemLI.appendChild(yearMenuItemDIV);
@@ -314,10 +311,9 @@ function addYearMenu() {
                         yearMenuItemLI.style.pointerEvents = "none";
                     }
                 }
-            }
+            }        
 
-            const container = document.getElementById("container");
-            container.insertBefore(yearMenuBarDIV, container.getElementsByClassName("breadcrumb")[0]);
+            document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
         }
     }
 }
