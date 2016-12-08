@@ -36,13 +36,24 @@ function makeSidebarContent() {
     const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
     const courseTermsCodes = [];
     if (courseTerms.match(/Fall/)) {
-        courseTermsCodes.push( {name: "Fall " + urlYearF,  code: urlYearF + "09"} );
+        courseTermsCodes.push( {
+            name: "Fall " + urlYearF,  
+            code: urlYearF + "09",
+            vsbURL: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearF + "09&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs="
+        } );
     }
     if (courseTerms.match(/Winter/)) {
-        courseTermsCodes.push( {name: "Winter " + urlYearW,  code: urlYearW + "01"} );
+        courseTermsCodes.push( {
+            name: "Winter " + urlYearW,  
+            code: urlYearW + "01",
+            vsbURL: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearW + "01&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs="
+        } );
     }
     if (courseTerms.match(/Summer/)) {
-        courseTermsCodes.push( {name: "Summer " + urlYearW,  code: urlYearW + "05"} );
+        courseTermsCodes.push( {
+            name: "Summer " + urlYearW,  
+            code: urlYearW + "05"
+        } );
     }
     logForDebug(courseTermsCodes);
 
@@ -59,24 +70,24 @@ function makeSidebarContent() {
         return depsDup.indexOf(elem) === pos;
     });
 
-    const vsbData = {
-        vsbFall: { 
-            url: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearF + "09&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs=",
-            // url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
-            valid: false,
-            down: false
-        },
-        vsbWinter: { 
-            url: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearW + "01&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs=",
-            // url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
-            valid: false,
-            down: false
-        },
-        done: 0,
-        total: (urlYearF >= sysYear-1 ? 2 : 0),
-        codeReady: false
-    };
-    logForDebug(vsbData);
+    // const vsbData = {
+    //     vsbFall: { 
+    //         url: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearF + "09&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs=",
+    //         // url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearF + "09=1&code_number=" + courseSubject + "+" + courseNumber, 
+    //         valid: false,
+    //         down: false
+    //     },
+    //     vsbWinter: { 
+    //         url: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearW + "01&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs=",
+    //         // url: "https://vsb.mcgill.ca/criteria.jsp?session_" + urlYearW + "01=1&code_number=" + courseSubject + "+" + courseNumber, 
+    //         valid: false,
+    //         down: false
+    //     },
+    //     done: 0,
+    //     total: (urlYearF >= sysYear-1 ? 2 : 0),
+    //     codeReady: false
+    // };
+    // logForDebug(vsbData);
 
 
 
@@ -90,7 +101,7 @@ function makeSidebarContent() {
     formsBlock.style.padding = "10px 0px";
     sidebar.appendChild(formsBlock);
 
-    validateExternalLinks(vsbData, formsBlock);
+    // validateExternalLinks(vsbData, formsBlock);
     
 
     //SIDEBAR SECTION: COURSE REVIEWS
@@ -168,6 +179,46 @@ function makeSidebarContent() {
     }
 
 
+    if (courseTermsCodes.length > 0) {
+
+        //SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
+        const vsb = generateSidebarSection("Visual Schedule Builder");
+        formsBlock.appendChild(vsb);
+
+        for (let i = 0; i < courseTermsCodes.length; i++) {
+            const term = courseTermsCodes[i];
+            if (term.vsbURL) {
+                const vsbButtonValue = "View on VSB " + term.name;
+                const vsbLink = generateSidebarLink(term.vsbURL, "#7173F6", vsbButtonValue);
+                vsb.appendChild(vsbLink);
+            }
+            
+        }
+
+        // if (vsbData.vsbFall.valid) {
+        //     const vsbFallButtonValue = "View on VSB Fall " + urlYearF;
+        //     const vsbFallLink = generateSidebarLink(vsbData.vsbFall.url, "#7173F6", vsbFallButtonValue);
+        //     vsb.appendChild(vsbFallLink);
+        // }
+
+        // if (vsbData.vsbWinter.valid) {
+        //     const vsbWinterButtonValue = "View on VSB Winter " + urlYearW;
+        //     const vsbWinterLink = generateSidebarLink(vsbData.vsbWinter.url, "#7173F6", vsbWinterButtonValue);
+        //     vsb.appendChild(vsbWinterLink);
+        // }
+    }
+
+    // if (vsbData.vsbFall.down || vsbData.vsbWinter.down) {
+    //     const vsb = generateSidebarSection("Visual Schedule Builder");
+    //     formsBlock.appendChild(vsb);
+
+    //     const vsbDownButtonValue = "View on Visual Schedule Builder";
+    //     const vsbDownLink = generateSidebarLink("https://vsb.mcgill.ca", "#7173F6", vsbDownButtonValue);
+    //     vsb.appendChild(vsbDownLink);
+    // }
+    // }
+
+
     //SIDEBAR RELATED COURSES AND RELATED PROGRAMS BLOCKS
 
     const sidebarBlock = generateSidebarBlock("Related Courses");
@@ -233,89 +284,89 @@ function makeSidebarContent() {
     }
 
 
-    vsbData.codeReady = true;
+    // vsbData.codeReady = true;
 
-    if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
-        addVerifiedLinks(vsbData, formsBlock);
-    }
+    // if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
+    //     addVerifiedLinks(vsbData, formsBlock);
+    // }
 
 }
 
 
-function validateExternalLinks(vsbData, formsBlock) {
+// function validateExternalLinks(vsbData, formsBlock) {
 
-    if (urlYearF >= sysYear-1) {
-        validateVSBLink(vsbData, vsbData.vsbFall, formsBlock);
-        validateVSBLink(vsbData, vsbData.vsbWinter, formsBlock);
-    }
-}
-
-
-function validateVSBLink(vsbData, linkData, formsBlock) { 
-
-    const xmlRequestInfo = {
-        method: 'GET',
-        action: 'xhttp',
-        url: linkData.url
-    };
-    chrome.runtime.sendMessage(xmlRequestInfo, generateValidateVSBLinkCallback(vsbData, linkData, formsBlock));
-}
+//     if (urlYearF >= sysYear-1) {
+//         validateVSBLink(vsbData, vsbData.vsbFall, formsBlock);
+//         validateVSBLink(vsbData, vsbData.vsbWinter, formsBlock);
+//     }
+// }
 
 
-function generateValidateVSBLinkCallback(vsbData, linkData, formsBlock) {
-    return function(data) {
-        vsbData.done++;
-        console.log(vsbData);
-        console.log(data.responseXML)
+// function validateVSBLink(vsbData, linkData, formsBlock) { 
 
-        if (data.responseXML != "error") {
-
-            const htmlParser = new DOMParser();
-            const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-            console.log(htmlDoc);
-            if (htmlDoc.getElementsByClassName("empty_warning").length === 0) {
-                linkData.valid = true;
-            }
-            if (htmlDoc.getElementsByTagName("BODY")[0].innerText.match("Visual Schedule Builder Unavailable")) {
-                linkData.down = true;
-            }
-        }
-
-        if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
-            addVerifiedLinks(vsbData, formsBlock);
-        }  
-    };
-}
+//     const xmlRequestInfo = {
+//         method: 'GET',
+//         action: 'xhttp',
+//         url: linkData.url
+//     };
+//     chrome.runtime.sendMessage(xmlRequestInfo, generateValidateVSBLinkCallback(vsbData, linkData, formsBlock));
+// }
 
 
-function addVerifiedLinks(vsbData, formsBlock) {
+// function generateValidateVSBLinkCallback(vsbData, linkData, formsBlock) {
+//     return function(data) {
+//         vsbData.done++;
+//         console.log(vsbData);
+//         console.log(data.responseXML)
 
-    if (vsbData.vsbFall.valid || vsbData.vsbWinter.valid) {
-        const vsb = generateSidebarSection("Visual Schedule Builder");
-        formsBlock.appendChild(vsb);
+//         if (data.responseXML != "error") {
 
-        if (vsbData.vsbFall.valid) {
-            const vsbFallButtonValue = "View on VSB Fall " + urlYearF;
-            const vsbFallLink = generateSidebarLink(vsbData.vsbFall.url, "#7173F6", vsbFallButtonValue);
-            vsb.appendChild(vsbFallLink);
-        }
+//             const htmlParser = new DOMParser();
+//             const htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
+//             console.log(htmlDoc);
+//             if (htmlDoc.getElementsByClassName("empty_warning").length === 0) {
+//                 linkData.valid = true;
+//             }
+//             if (htmlDoc.getElementsByTagName("BODY")[0].innerText.match("Visual Schedule Builder Unavailable")) {
+//                 linkData.down = true;
+//             }
+//         }
 
-        if (vsbData.vsbWinter.valid) {
-            const vsbWinterButtonValue = "View on VSB Winter " + urlYearW;
-            const vsbWinterLink = generateSidebarLink(vsbData.vsbWinter.url, "#7173F6", vsbWinterButtonValue);
-            vsb.appendChild(vsbWinterLink);
-        }
-    }
+//         if (vsbData.total === vsbData.done && vsbData.codeReady === true) {
+//             addVerifiedLinks(vsbData, formsBlock);
+//         }  
+//     };
+// }
 
-    if (vsbData.vsbFall.down || vsbData.vsbWinter.down) {
-        const vsb = generateSidebarSection("Visual Schedule Builder");
-        formsBlock.appendChild(vsb);
 
-        const vsbDownButtonValue = "View on Visual Schedule Builder";
-        const vsbDownLink = generateSidebarLink("https://vsb.mcgill.ca", "#7173F6", vsbDownButtonValue);
-        vsb.appendChild(vsbDownLink);
-    }
-}
+// function addVerifiedLinks(vsbData, formsBlock) {
+
+//     if (vsbData.vsbFall.valid || vsbData.vsbWinter.valid) {
+//         const vsb = generateSidebarSection("Visual Schedule Builder");
+//         formsBlock.appendChild(vsb);
+
+//         if (vsbData.vsbFall.valid) {
+//             const vsbFallButtonValue = "View on VSB Fall " + urlYearF;
+//             const vsbFallLink = generateSidebarLink(vsbData.vsbFall.url, "#7173F6", vsbFallButtonValue);
+//             vsb.appendChild(vsbFallLink);
+//         }
+
+//         if (vsbData.vsbWinter.valid) {
+//             const vsbWinterButtonValue = "View on VSB Winter " + urlYearW;
+//             const vsbWinterLink = generateSidebarLink(vsbData.vsbWinter.url, "#7173F6", vsbWinterButtonValue);
+//             vsb.appendChild(vsbWinterLink);
+//         }
+//     }
+
+//     if (vsbData.vsbFall.down || vsbData.vsbWinter.down) {
+//         const vsb = generateSidebarSection("Visual Schedule Builder");
+//         formsBlock.appendChild(vsb);
+
+//         const vsbDownButtonValue = "View on Visual Schedule Builder";
+//         const vsbDownLink = generateSidebarLink("https://vsb.mcgill.ca", "#7173F6", vsbDownButtonValue);
+//         vsb.appendChild(vsbDownLink);
+//     }
+// }
 
 
 function generateSidebarSection(titleString) {
