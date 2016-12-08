@@ -257,6 +257,7 @@ function generateSidebarSectionTitle(titleString) {
     const sidebarSectionTitle = document.createElement(isNewStyle ? "h3" : "h4");
     sidebarSectionTitle.innerHTML = titleString;
     sidebarSectionTitle.style.margin = "0px";
+    sidebarSectionTitle.style.padding = "5px";
     sidebarSectionTitle.style.fontSize = "1.1em";
     return sidebarSectionTitle;
 }
