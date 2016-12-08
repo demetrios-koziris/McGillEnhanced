@@ -159,21 +159,21 @@ function makeSidebarContent() {
     }
 
 
-    if (urlYearF >= sysYear-1 && courseTermsCodes.length > 0) {
+    // if (urlYearF >= sysYear-1 && courseTermsCodes.length > 0) {
 
-        //SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
-        const vsb = generateSidebarSection("Visual Schedule Builder");
-        formsBlock.appendChild(vsb);
+    //     //SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
+    //     const vsb = generateSidebarSection("Visual Schedule Builder");
+    //     formsBlock.appendChild(vsb);
 
-        for (let i = 0; i < courseTermsCodes.length; i++) {
-            const term = courseTermsCodes[i];
-            if (term.vsbURL) {
-                const vsbButtonValue = "View on VSB " + term.name;
-                const vsbLink = generateSidebarLink(term.vsbURL, "#7173F6", vsbButtonValue);
-                vsb.appendChild(vsbLink);
-            } 
-        }
-    }
+    //     for (let i = 0; i < courseTermsCodes.length; i++) {
+    //         const term = courseTermsCodes[i];
+    //         if (term.vsbURL) {
+    //             const vsbButtonValue = "View on VSB " + term.name;
+    //             const vsbLink = generateSidebarLink(term.vsbURL, "#7173F6", vsbButtonValue);
+    //             vsb.appendChild(vsbLink);
+    //         } 
+    //     }
+    // }
 
 
 
