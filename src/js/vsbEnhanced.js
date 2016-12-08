@@ -25,7 +25,7 @@ function enhanceVSB() {
 	var head = document.getElementsByTagName('head')[0];
 	var s = document.createElement('style');
 	s.setAttribute('type', 'text/css');
-	s.innerText = ".reg_legend { text-align:center } .bubble { background-color: #fffeef !important; }";
+	s.innerText = ".bubble { background-color: #fffeef !important; }";
 	head.appendChild(s);
 
 
@@ -35,9 +35,9 @@ function enhanceVSB() {
 	button.setAttribute("onclick", register.toString() +  " register();");
 	button.innerHTML = "McGill Enhanced:<br>One-Click Minerva Registration!"
 	button.title = "Click to register for the above CRN codes.\nMust be already signed into Minerva!";
-	button.style.width = "273px";
+	button.style.width = "100%";
 	button.style.padding = "10px 4px 10px 60px";
-	button.style.margin = "8.4px";
+	button.style.margin = "10px 0px";
 	button.style.whiteSpace = "normal";
 	button.style.borderRadius = "8px";
 	button.style.webkitAppearance = "button";
@@ -53,7 +53,12 @@ function enhanceVSB() {
 
 
     box = document.getElementsByClassName("reg_legend")[0];
-    box.appendChild(button);
+
+    const wrap = document.createElement('div');
+    wrap.style.width = 'calc(88% + 16px)';
+    wrap.style.margin = 'auto';
+    wrap.appendChild(button);
+    box.appendChild(wrap);
 
 
      document.addEventListener("register", function(data) {
