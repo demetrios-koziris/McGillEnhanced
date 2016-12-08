@@ -159,7 +159,7 @@ function makeSidebarContent() {
     }
 
 
-    if (courseTermsCodes.length > 0) {
+    if (urlYearF >= sysYear-1 && courseTermsCodes.length > 0) {
 
         //SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
         const vsb = generateSidebarSection("Visual Schedule Builder");
