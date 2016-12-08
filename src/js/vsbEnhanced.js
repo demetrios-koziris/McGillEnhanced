@@ -52,7 +52,7 @@ function enhanceVSB() {
     
 
 
-    box = document.getElementsByClassName("reg_legend")[0];
+    const box = document.getElementsByClassName("reg_legend")[0];
 
     const wrap = document.createElement('div');
     wrap.style.width = 'calc(88% + 16px)';
@@ -63,7 +63,7 @@ function enhanceVSB() {
 
      document.addEventListener("register", function(data) {
 
-     	var termCode = url.match(/.+term\=([0-9]{6})/)[1];
+     	var termCode = window.location.search.match(/.+term\=([0-9]{6})/)[1];
 	    if(window.debugMode){console.log(termCode);}
 
 	    var xmlRequestInfo = {
