@@ -308,10 +308,10 @@ function addYearMenu() {
                 else {
                     yearMenuItemLI.appendChild(yearMenuItemA);
                     if (i === urlYearF - 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 6px 0px";
+                        yearMenuItemLI.style.borderRadius = "0px 0px 8px 0px";
                     }
                     else if (i === urlYearF + 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 0px 6px";
+                        yearMenuItemLI.style.borderRadius = "0px 0px 0px 8px";
                     }
                     if (i > sysYear) {
                         yearMenuItemA.style.color = "#5b5b5a";
