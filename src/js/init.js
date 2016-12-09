@@ -30,6 +30,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
     urlYearW = urlYearF+1;
     urlYears = urlYearF + "-" + urlYearW;
     sysYear = new Date().getFullYear();
+    sysMonth = new Date().getMonth();
 
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		addYearMenu();
