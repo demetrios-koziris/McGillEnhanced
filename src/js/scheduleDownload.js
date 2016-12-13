@@ -134,8 +134,29 @@ for (i = 0; i < courseTables.length; i+=2) {
 console.log(courseTables);
 
 //calCourseSchedule.download("test","ics");
-schedDownload = "<div><b>McGill Enhanced Feature: Download Course Schedule as a .ICS file <br>for importing to Google Calendar, Apple iCal, or Microsoft Outlook:</b>";
-schedDownload += "<br><br><form method=\"get\" action=\"javascript:calCourseSchedule.download('CourseSchedule"+courseSemester+"');location.reload()\">;"
-schedDownload += "<button type=\"submit\"><img src=\"https://i.imgur.com/HEGWp4Z.png height=\"80\" width=\"240\"\"></button></form></div>";
-document.getElementsByClassName("pagebodydiv")[0].innerHTML = schedDownload + document.getElementsByClassName("pagebodydiv")[0].innerHTML;
-// $(".pagebodydiv")[0].innerHTML = schedDownload + $(".pagebodydiv")[0].innerHTML;
+const schedDownload = document.createElement('div');
+
+var button = document.createElement('button');
+button.setAttribute("type", "button");
+button.setAttribute("onclick", "javascript:calCourseSchedule.download('CourseSchedule" + courseSemester + "');location.reload();");
+button.innerHTML = "McGill Enhanced:<br>Download Course Schedule as ICS file!";
+button.title = "ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!";
+button.style.width = "100%";
+button.style.maxWidth = "500px";
+button.style.padding = "10px 4px 10px 200px";
+button.style.margin = "10px 0px";
+button.style.whiteSpace = "normal";
+button.style.borderRadius = "8px";
+button.style.webkitAppearance = "button";
+button.style.background = "#C5C5C5 url(https://i.imgur.com/HEGWp4Z.png) no-repeat 6% 44%";
+button.style.backgroundSize = '180px 60px';
+button.style.WebkitBoxShadow  = "none";
+button.style.boxShadow = "3px 3px 5px #dddddd";
+button.style.border = "2px solid #5B5B5A";
+button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
+button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
+
+schedDownload.appendChild(button);
+
+pagebodydiv = document.getElementsByClassName("pagebodydiv")[0];
+pagebodydiv.insertBefore(schedDownload, pagebodydiv.firstChild);
