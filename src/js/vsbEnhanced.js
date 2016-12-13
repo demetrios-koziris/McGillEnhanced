@@ -41,7 +41,7 @@ function enhanceVSB() {
 	button.style.whiteSpace = "normal";
 	button.style.borderRadius = "8px";
 	button.style.webkitAppearance = "button";
-	button.style.background = "#FBF7C9 url(http://i.imgur.com/N0P89lL.png) no-repeat 6% 44%";
+	button.style.background = "#FBF7C9 url(https://i.imgur.com/N0P89lL.png) no-repeat 6% 44%";
 	button.style.backgroundSize = '40px 40px';
 	button.style.WebkitBoxShadow  = "none";
 	button.style.boxShadow = "none";
