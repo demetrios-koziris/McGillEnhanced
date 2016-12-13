@@ -254,17 +254,18 @@ function addYearMenu() {
             inner.className = "inner";
             yearMenuBarDIV.appendChild(inner);
 
-            const innerContainer = document.createElement('div');
-            innerContainer.style.backgroundColor = "#FFFFFC";
-            innerContainer.style.height = '33px';
-            inner.appendChild(innerContainer);
+            // const innerContainer = document.createElement('div');
+            // innerContainer.style.backgroundColor = "#FFFFFC";
+            // innerContainer.style.width = "calc(100% - 1px)";
+            // innerContainer.style.height = '33px';
+            // inner.appendChild(innerContainer);
 
             
 
             const yearMenuBarUL = document.createElement('ul');
             yearMenuBarUL.className = "sf-menu sf-main-menu";
             yearMenuBarUL.style.height = "33px";
-            innerContainer.appendChild(yearMenuBarUL);
+            inner.appendChild(yearMenuBarUL);
 
             for (let i = j; i < j+10; i++)
             {
@@ -297,27 +298,44 @@ function addYearMenu() {
                 yearMenuItemA.style.height = "17px";
                 yearMenuItemA.style.padding = "6px 12px 10px";
 
+                
+
+
                 if (i === urlYearF){
                     yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
                     yearMenuItemA.style.color = "#5b5b5a";
-
                     yearMenuItemLI.style.pointerEvents = "none";
-                    yearMenuItemDIV.appendChild(yearMenuItemA);
-                    yearMenuItemLI.appendChild(yearMenuItemDIV);
+                }
+                if (i === urlYearF - 1) {
+                    yearMenuItemLI.style.backgroundColor = "#FFFFFC";
+                    yearMenuItemDIV.style.backgroundColor = "#444844";
+                    yearMenuItemDIV.style.borderRadius = "0px 0px 8px 0px";
+                }
+                if (i === urlYearF + 1) {
+                    yearMenuItemLI.style.backgroundColor = "#FFFFFC";
+                    yearMenuItemDIV.style.backgroundColor = "#444844";
+                    yearMenuItemDIV.style.borderRadius = "0px 0px 0px 8px";
+                }
+                if (i > sysYear) {
+                    yearMenuItemA.style.color = "#5b5b5a";
+                    yearMenuItemLI.style.pointerEvents = "none";
+                }
+
+                if (i >= urlYearF - 1 && i <= urlYearF + 1){
+                    if (i === urlYearF) {
+                        yearMenuItemLI.appendChild(yearMenuItemDIV);
+                        yearMenuItemDIV.appendChild(yearMenuItemA);
+                    }
+                    else {
+                        yearMenuItemLI.appendChild(yearMenuItemDIV);
+                        yearMenuItemDIV.appendChild(yearMenuItemA);
+                    }
                 }
                 else {
                     yearMenuItemLI.appendChild(yearMenuItemA);
-                    if (i === urlYearF - 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 8px 0px";
-                    }
-                    else if (i === urlYearF + 1) {
-                        yearMenuItemLI.style.borderRadius = "0px 0px 0px 8px";
-                    }
-                    if (i > sysYear) {
-                        yearMenuItemA.style.color = "#5b5b5a";
-                        yearMenuItemLI.style.pointerEvents = "none";
-                    }
                 }
+
+                
             }        
 
             document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
