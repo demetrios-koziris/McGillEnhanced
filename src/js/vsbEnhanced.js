@@ -44,7 +44,7 @@ function enhanceVSB() {
 	button.style.background = "#FBF7C9 url(https://i.imgur.com/N0P89lL.png) no-repeat 6% 44%";
 	button.style.backgroundSize = '40px 40px';
 	button.style.WebkitBoxShadow  = "none";
-	button.style.boxShadow = "none";
+	button.style.boxShadow = "3px 3px 5px #dddddd";
 	button.style.border = "2px solid #5B5B5A";
 	button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
 	button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
