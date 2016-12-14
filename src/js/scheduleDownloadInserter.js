@@ -26,16 +26,16 @@ function insertScheduleDownloader() {
 
       var s = document.createElement('script');
       s.src = chrome.extension.getURL('lib/icsLib.js');
-      s.onload = function() {
-          this.parentNode.removeChild(this);
-      };
+      // s.onload = function() {
+      //     this.parentNode.removeChild(this);
+      // };
       (document.head || document.documentElement).appendChild(s);
 
       var t = document.createElement('script');
       t.src = chrome.extension.getURL('js/scheduleDownload.js');
-      t.onload = function() {
-          this.parentNode.removeChild(this);
-      };
+      // t.onload = function() {
+      //     this.parentNode.removeChild(this);
+      // };
       (document.head || document.documentElement).appendChild(t);
 
     }
