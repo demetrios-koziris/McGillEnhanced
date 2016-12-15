@@ -18,9 +18,10 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 function makeSidebarContent() {
 
     // fix layout bug on mcgill site for some newStyle pages (2009-2010 & 2011-2012)
-    if (isNewStyle) {
-        document.getElementById("inner-container").style.width = '100%';
-    }
+    // if (isNewStyle) {
+    //     document.getElementById("inner-container").className += " mcen-inner-container";
+    // }
+    // document.getElementById((isNewStyle ? "main-column" : "center-column")).className += " mcen-main-column";
 
     const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
     const courseSubject = urlCourseName.split("-")[0];
@@ -72,51 +73,47 @@ function makeSidebarContent() {
 
 
     const sidebar = document.createElement('div');
+    sidebar.className += " mcen-sidebar";
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
-    sidebar.style.minWidth = "280px";
-    sidebar.style.border = "0px";
 
-    const formsBlock = document.createElement('div');    
-    formsBlock.style.marginBottom = (isNewStyle ? "10px" : "0px");
-    formsBlock.style.padding = "10px 0px";
-    sidebar.appendChild(formsBlock);
-
-    // validateExternalLinks(vsbData, formsBlock);
-    
+    const sidebarLinksBlock = document.createElement('div');  
+    sidebarLinksBlock.className += " mcen-sidebarLinksBlock " + (isNewStyle ? "mcen-newStyle" : "mcen-oldStyle");  
+    sidebar.appendChild(sidebarLinksBlock);
+  
 
     //SIDEBAR SECTION: COURSE REVIEWS
     const courseEval = generateSidebarSection("Course Reviews");
-    formsBlock.appendChild(courseEval);
+    sidebarLinksBlock.appendChild(courseEval);
 
     if (docuumURLdata) { 
         const docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLdata;
         const docuumButtonString = "View Docuum Course Reviews";
-        courseEval.appendChild(generateSidebarLink(docuumURL, "#56AFE5", docuumButtonString));
+        courseEval.appendChild(generateSidebarLink(docuumURL, "mcen-blue", docuumButtonString));
     }
 
     const mercuryURL = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&subj_tab_in='+courseSubject+'&crse_in='+courseNumber;
     const mercuryButtonString = "View Mercury Course Evaluations";
-    courseEval.appendChild(generateSidebarLink(mercuryURL, "#E54944", mercuryButtonString, "Must be already signed into Minerva!"));
+    courseEval.appendChild(generateSidebarLink(mercuryURL, "mcen-red", mercuryButtonString, "Must be already signed into Minerva!"));
 
     
     if (recordingURLdata) {
 
         //SIDEBAR SECTION: LECTURE RECORDINGS
         const recordings = generateSidebarSection("Lecture Recordings");
-        formsBlock.appendChild(recordings);
+        sidebarLinksBlock.appendChild(recordings);
 
         if (urlYearF in recordingURLdata) {
             const yearRecordingURLs = recordingURLdata[urlYearF];
             for (let r = 0; r < yearRecordingURLs.length; r++) {
                 const recordingsButtonString = "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures";
-                recordings.appendChild(generateSidebarLink(yearRecordingURLs[r].url, "#E54944", recordingsButtonString));
+                recordings.appendChild(generateSidebarLink(yearRecordingURLs[r].url, "mcen-red", recordingsButtonString));
             }
         }
         else {
             const maxYear = Math.max.apply(Math, Object.keys(recordingURLdata));
             const maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
             const recordingsButtonString = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
-            recordings.appendChild(generateSidebarLink(maxYearURL, "#E54944", recordingsButtonString));
+            recordings.appendChild(generateSidebarLink(maxYearURL, "mcen-red", recordingsButtonString));
         }
     }  
 
@@ -125,12 +122,12 @@ function makeSidebarContent() {
 
         //SIDEBAR SECTION: MINERVA REGISTRATION
         const courseReg = generateSidebarSection("Minerva Registration");
-        formsBlock.appendChild(courseReg);
+        sidebarLinksBlock.appendChild(courseReg);
 
         for (let i = 0; i < courseTermsCodes.length; i++) {
             const courseRegURL = "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced?rsts=dummy&crn=dummy&term_in=" + courseTermsCodes[i].code + "&sel_subj=dummy&sel_day=dummy&sel_schd=dummy&sel_insm=dummy&sel_camp=dummy&sel_levl=dummy&sel_sess=dummy&sel_instr=dummy&sel_ptrm=dummy&sel_attr=dummy&sel_subj=" + courseSubject + "&sel_coll=&sel_crse=" + courseNumber + "&sel_title=&sel_schd=&sel_from_cred=&sel_to_cred=&sel_levl=&sel_ptrm=%25&sel_instr=%25&sel_attr=%25&begin_hh=0&begin_mi=0&begin_ap=a&end_hh=0&end_mi=0&end_ap=a&path=1&SUB_BTN=&";
             const courseRegButtonString = "View " + courseTermsCodes[i].name + " Registration";
-            courseReg.appendChild(generateSidebarLink(courseRegURL, "#E54944", courseRegButtonString, 'Must be already signed into Minerva!'));       
+            courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-red", courseRegButtonString, 'Must be already signed into Minerva!'));       
         }
     }
 
@@ -139,22 +136,22 @@ function makeSidebarContent() {
 
         //SIDEBAR SECTION: OTHER RESOURCES
         const other = generateSidebarSection("Other Resources");
-        formsBlock.appendChild(other);
+        sidebarLinksBlock.appendChild(other);
     
         if (csusURLdata) {
             const csusURL = "https://mcgill-csus.github.io/compmajorguide.html#" + csusURLdata;
             const csusButtonString = "View " + courseNameSpaced + " in the CSUS Guide";
-            other.appendChild(generateSidebarLink(csusURL, "#FFFFFF", csusButtonString));
+            other.appendChild(generateSidebarLink(csusURL, "mcen-white", csusButtonString));
         }
         if (docuumURLdata) {
             const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
             const docuumButtonString = "View " + courseNameSpaced + " on Docuum";
-            other.appendChild(generateSidebarLink(docuumURL, "#56AFE5", docuumButtonString));
+            other.appendChild(generateSidebarLink(docuumURL, "mcen-blue", docuumButtonString));
         }
         if (wikinotesURLdata) {
             const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
             const wikinotesButtonString = "View " + courseNameSpaced + " on Wikinotes";
-            other.appendChild(generateSidebarLink(wikinotesURL, "#FFFFFF", wikinotesButtonString));
+            other.appendChild(generateSidebarLink(wikinotesURL, "mcen-white", wikinotesButtonString));
         }
     }
 
@@ -164,13 +161,13 @@ function makeSidebarContent() {
 
         //SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
         const vsb = generateSidebarSection("Visual Schedule Builder");
-        formsBlock.appendChild(vsb);
+        sidebarLinksBlock.appendChild(vsb);
 
         for (let i = 0; i < courseTermsCodes.length; i++) {
             const term = courseTermsCodes[i];
             if (term.vsbURL) {
                 const vsbButtonValue = "View on VSB " + term.name;
-                const vsbLink = generateSidebarLink(term.vsbURL, "#7173F6", vsbButtonValue);
+                const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple", vsbButtonValue);
                 vsb.appendChild(vsbLink);
             } 
         }
@@ -181,13 +178,13 @@ function makeSidebarContent() {
 
     //SIDEBAR RELATED COURSES AND RELATED PROGRAMS BLOCKS
 
-    const sidebarBlock = generateSidebarBlock("Related Courses");
-    sidebar.appendChild(sidebarBlock);
+    const sidebarRelatedBlock = generateSidebarBlock("Related Courses");
+    sidebar.appendChild(sidebarRelatedBlock);
 
     if (deps.length > 0) {
 
         const deptCourses = generateRelatedCoursesSection("View Related Courses by Subject");
-        sidebarBlock.appendChild(deptCourses);
+        sidebarRelatedBlock.appendChild(deptCourses);
 
         for (let d = 0; d<deps.length; d++)
         {
@@ -203,7 +200,7 @@ function makeSidebarContent() {
     if (profKeys.length > 0) {
 
         const profCourses = generateRelatedCoursesSection("View Related Courses by Professor");
-        sidebarBlock.appendChild(profCourses);
+        sidebarRelatedBlock.appendChild(profCourses);
 
         for (let p = 0; p < profKeys.length; p++) {
             const profFullName = profs[profKeys[p]].fullName;
@@ -220,12 +217,12 @@ function makeSidebarContent() {
 
     if (document.getElementsByClassName("view-catalog-program").length > 0) {
 
-        const sidebarBlock = generateSidebarBlock("Related Programs");
-        sidebar.appendChild(sidebarBlock);
+        const sidebarRelatedBlock = generateSidebarBlock("Related Programs");
+        sidebar.appendChild(sidebarRelatedBlock);
 
         const relatedPrograms = document.getElementsByClassName("view-catalog-program")[0];
-        sidebarBlock.appendChild(document.createElement('br'));
-        sidebarBlock.appendChild(relatedPrograms);
+        sidebarRelatedBlock.appendChild(document.createElement('br'));
+        sidebarRelatedBlock.appendChild(relatedPrograms);
     }
 
     //insert enhanced sidebar
@@ -234,12 +231,9 @@ function makeSidebarContent() {
         document.createElement("div").appendChild(document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
     }
     if (isNewStyle) {
-        document.getElementById("main-column").style.maxWidth = "620px";
-        document.getElementById("main-column").style.float = "left"; //check comp 553
         container.appendChild(sidebar);
     }
     else {
-        document.getElementById("center-column").style.width = "620px";
         container.insertBefore(sidebar, document.getElementById("footer"));
     }
 
@@ -248,7 +242,7 @@ function makeSidebarContent() {
 
 function generateSidebarSection(titleString) {
     const sidebarSection = document.createElement('div');
-    sidebarSection.style.margin = "0px 0px 8px 0px";
+    sidebarSection.className = "mcen-sidebarSection";
     sidebarSection.appendChild(generateSidebarSectionTitle(titleString));
     return sidebarSection;
 }
@@ -256,68 +250,44 @@ function generateSidebarSection(titleString) {
 
 function generateSidebarSectionTitle(titleString) {
     const sidebarSectionTitle = document.createElement(isNewStyle ? "h3" : "h4");
+    sidebarSectionTitle.className = "mcen-sidebarSectionTitle";
     sidebarSectionTitle.innerHTML = titleString;
-    sidebarSectionTitle.style.margin = "0px";
-    sidebarSectionTitle.style.padding = "5px 0px";
-    sidebarSectionTitle.style.fontSize = "1.1em";
     return sidebarSectionTitle;
 }
 
 
-function generateSidebarLink(url, onColor, buttonValue, title) {
+function generateSidebarLink(url, colorClass, buttonValue, title) {
     const sidebarLink = document.createElement('a');
     sidebarLink.setAttribute("href", url);
     if (title) {
         sidebarLink.setAttribute("title", title);
     }        
-    sidebarLink.appendChild(generateSidebarLinkButton(onColor, buttonValue));
+    sidebarLink.appendChild(generateSidebarLinkButton(colorClass, buttonValue));
     return sidebarLink;
 }
 
 
-function generateSidebarLinkButton(onColor, buttonValue) {
+function generateSidebarLinkButton(colorClass, buttonValue) {
     const linkButton = document.createElement('button');
-    linkButton.setAttribute('onmouseover', 'this.style.background="' + (isNewStyle ? '-webkit-linear-gradient(left, ' + onColor + ', #C5C5C5)' : '#ECF3FF') + '"');
-    linkButton.setAttribute('onmouseout', 'this.style.background="' + (isNewStyle ? '#C5C5C5' : '#F4F5ED') + '"');
-    linkButton.className = 'form-submit';
-    linkButton.style.background = (isNewStyle ? '#C5C5C5' : '#F4F5ED');
-    linkButton.style.width = '100%';
-    linkButton.style.height = '32px';
-    linkButton.style.margin = '4px 0px';
-    linkButton.style.fontFamily = 'CartoGothicStdBook, Helvetica, "Helvetica Neue", Arial, "sans serif"';
+    linkButton.className = 'form-submit mcen-linkButton' + (isNewStyle ? " mcen-newStyle " + colorClass : "");
     linkButton.innerHTML = buttonValue;
-    if (isNewStyle) {
-        linkButton.style.fontSize = '14.4px';
-        linkButton.style.border = '1px solid #5B5B5A';
-        linkButton.style.WebkitBoxShadow  = 'none';
-        linkButton.style.boxShadow = 'none';
-    }   
     return linkButton;
 }
 
 
 function generateSidebarBlock(titleString) {
-    const sidebarBlock = document.createElement('div');
-    sidebarBlock.className = "block";
-    sidebarBlock.style.minWidth = "260px";
-    if (isNewStyle) {
-        sidebarBlock.style.border = "1px solid #eee";
-        sidebarBlock.style.marginBottom = "16px";
-    }
-    sidebarBlock.appendChild(generateSidebarBlockTitle(titleString));
-    return sidebarBlock;   
+    const sidebarRelatedBlock = document.createElement('div');
+    sidebarRelatedBlock.className = "block mcen-sidebarRelatedBlock" + (isNewStyle ? " mcen-newStyle" : "");
+    sidebarRelatedBlock.appendChild(generateSidebarBlockTitle(titleString));
+    return sidebarRelatedBlock;   
 }
 
 
 function generateSidebarBlockTitle(titleString) {
-    const sidebarBlockTitle = document.createElement('h3');
-    sidebarBlockTitle.innerHTML = titleString;
-    sidebarBlockTitle.style.maxWidth = "100%";
-    if (isNewStyle) {
-        sidebarBlockTitle.style.padding = "12px 10px";
-        sidebarBlockTitle.style.background = "#DBDBDB";
-    }
-    return sidebarBlockTitle;
+    const sidebarRelatedBlockTitle = document.createElement('h3');
+    sidebarRelatedBlockTitle.className = "mcen-sidebarRelatedBlockTitle" + (isNewStyle ? " mcen-newStyle" : "");
+    sidebarRelatedBlockTitle.innerHTML = titleString;
+    return sidebarRelatedBlockTitle;
 }
 
 

@@ -23,14 +23,15 @@ logForDebug("McGill Enhanced Debug mode is ON");
 if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	const start = Date.now();
+	injectCSS("css/mcgill.css");
 
 	const courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
-    isNewStyle = document.getElementsByClassName("transition").length > 0;
-    urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-    urlYearW = urlYearF+1;
-    urlYears = urlYearF + "-" + urlYearW;
-    sysYear = new Date().getFullYear();
-    sysMonth = new Date().getMonth();
+	isNewStyle = document.getElementsByClassName("transition").length > 0;
+	urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
+	urlYearW = urlYearF+1;
+	urlYears = urlYearF + "-" + urlYearW;
+	sysYear = new Date().getFullYear();
+	sysMonth = new Date().getMonth();
 
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		addYearMenu();
@@ -38,8 +39,8 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
 		
-	    makeProfRatingsTooltips();
-	    makeCourseLinks(courseNameRegex);
+		makeProfRatingsTooltips();
+		makeCourseLinks(courseNameRegex);
 		makeSidebarContent();
 	}
 	else {
@@ -60,7 +61,18 @@ if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.m
 
 
 function logForDebug(toLog) {
-    if (debugMode) {
-        console.log(toLog);
-    }
+	if (debugMode) {
+		console.log(toLog);
+	}
+}
+
+function injectCSS(srcName) {
+	var css = document.createElement('link');
+	css.rel = "stylesheet";
+	css.type = "text/css"
+	css.href = chrome.extension.getURL(srcName);
+	// s.onload = function() {
+	//	 this.parentNode.removeChild(this);
+	// };
+	(document.head || document.documentElement).appendChild(css);
 }

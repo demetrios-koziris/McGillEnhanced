@@ -282,12 +282,14 @@ function addYearMenu() {
 
                 const yearMenuItemLI = document.createElement('li');
                 yearMenuItemLI.style.backgroundColor = "#444844";
+
                 yearMenuItemLI.style.textAlign = "center";
                 yearMenuBarUL.appendChild(yearMenuItemLI);
 
                 const yearMenuItemDIV = document.createElement('div');
-                yearMenuItemDIV.style.backgroundColor = "#FFFFFC";
-                yearMenuItemDIV.style.borderRadius = "6px 6px 0px 0px";
+                yearMenuItemDIV.style.backgroundColor = "#444844";
+                yearMenuItemDIV.setAttribute('onmouseover', 'this.style.backgroundColor="#0C0C0C"; this.style.borderRadius="6px 6px 0px 0px";');
+                yearMenuItemDIV.setAttribute('onmouseout', 'this.style.backgroundColor="#444844"; this.style.borderRadius="0px";');
                 yearMenuItemDIV.style.width = "100%";
                 yearMenuItemDIV.style.height = "33px";
 
@@ -297,43 +299,50 @@ function addYearMenu() {
                 yearMenuItemA.style.width = "70px";
                 yearMenuItemA.style.height = "17px";
                 yearMenuItemA.style.padding = "6px 12px 10px";
+                yearMenuItemA.style.color = "#FFFFFF";
+
+                
+                
 
                 
 
 
                 if (i === urlYearF){
                     yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
+                    yearMenuItemLI.style.backgroundColor = "#444844";
+                    yearMenuItemDIV.style.backgroundColor = "#FFFFFF";
+                    yearMenuItemDIV.style.borderRadius = "6px 6px 0px 0px";
                     yearMenuItemA.style.color = "#5b5b5a";
                     yearMenuItemLI.style.pointerEvents = "none";
                 }
                 if (i === urlYearF - 1) {
-                    yearMenuItemLI.style.backgroundColor = "#FFFFFC";
-                    yearMenuItemDIV.style.backgroundColor = "#444844";
+                    yearMenuItemLI.style.backgroundColor = "#FFFFFF";
+                    yearMenuItemLI.setAttribute('onmouseover', 'this.style.backgroundColor="#444844";');
+                    yearMenuItemLI.setAttribute('onmouseout', 'this.style.backgroundColor="#FFFFFF";');
                     yearMenuItemDIV.style.borderRadius = "0px 0px 8px 0px";
+                    // yearMenuItemDIV.setAttribute('onmouseover', 'this.style.backgroundColor="#0C0C0C"; this.style.borderRadius="0px 0px 8px 0px";');
+                    yearMenuItemDIV.setAttribute('onmouseout', 'this.style.backgroundColor="#444844"; this.style.borderRadius="0px 0px 8px 0px";');
+
                 }
                 if (i === urlYearF + 1) {
-                    yearMenuItemLI.style.backgroundColor = "#FFFFFC";
-                    yearMenuItemDIV.style.backgroundColor = "#444844";
+                    yearMenuItemLI.style.backgroundColor = "#FFFFFF";
+                    yearMenuItemLI.setAttribute('onmouseover', 'this.style.backgroundColor="#444844";');
+                    yearMenuItemLI.setAttribute('onmouseout', 'this.style.backgroundColor="#FFFFFF";');
                     yearMenuItemDIV.style.borderRadius = "0px 0px 0px 8px";
+                    // yearMenuItemDIV.setAttribute('onmouseover', 'this.style.backgroundColor="#0C0C0C"; this.style.borderRadius="0px 0px 0px 8px";');
+                    yearMenuItemDIV.setAttribute('onmouseout', 'this.style.backgroundColor="#444844"; this.style.borderRadius="0px 0px 0px 8px";');
                 }
                 if (i > sysYear) {
                     yearMenuItemA.style.color = "#5b5b5a";
                     yearMenuItemLI.style.pointerEvents = "none";
                 }
 
-                if (i >= urlYearF - 1 && i <= urlYearF + 1){
-                    if (i === urlYearF) {
-                        yearMenuItemLI.appendChild(yearMenuItemDIV);
-                        yearMenuItemDIV.appendChild(yearMenuItemA);
-                    }
-                    else {
-                        yearMenuItemLI.appendChild(yearMenuItemDIV);
-                        yearMenuItemDIV.appendChild(yearMenuItemA);
-                    }
-                }
-                else {
-                    yearMenuItemLI.appendChild(yearMenuItemA);
-                }
+
+                yearMenuItemLI.appendChild(yearMenuItemDIV);
+                yearMenuItemDIV.appendChild(yearMenuItemA);
+
+
+
 
                 
             }        
