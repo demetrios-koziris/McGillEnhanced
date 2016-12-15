@@ -1,5 +1,5 @@
 
-#main-column, #center-column {
+.mcen-main-column{
 	max-width: 620px !important;
 	float: left !important;
 }
@@ -8,19 +8,16 @@
 	width: 100% !important;
 }
 
-.mcen-sidebar {
+.mcen-sidebar{
 	min-width: 280px;
 	border: 0px !important;
 }
 
 .mcen-sidebarLinksBlock {
-	padding: 10px 0px !important;
+	margin-bottom: 22px !important;
 }
 .mcen-sidebarLinksBlock.mcen-newStyle {
-	margin-bottom: 10px !important;
-}
-.mcen-sidebarLinksBlock.mcen-oldStyle {
-	margin-bottom: 0px !important;
+	/*margin-bottom: 26px !important;*/
 }
 
 .mcen-sidebarSection {

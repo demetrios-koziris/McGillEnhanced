@@ -17,11 +17,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function makeSidebarContent() {
 
-    // fix layout bug on mcgill site for some newStyle pages (2009-2010 & 2011-2012)
-    // if (isNewStyle) {
-    //     document.getElementById("inner-container").className += " mcen-inner-container";
-    // }
-    // document.getElementById((isNewStyle ? "main-column" : "center-column")).className += " mcen-main-column";
+    document.getElementById((isNewStyle ? "main-column" : "center-column")).className += " mcen-main-column";
 
     const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
     const courseSubject = urlCourseName.split("-")[0];
@@ -77,7 +73,7 @@ function makeSidebarContent() {
     sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
 
     const sidebarLinksBlock = document.createElement('div');  
-    sidebarLinksBlock.className += " mcen-sidebarLinksBlock " + (isNewStyle ? "mcen-newStyle" : "mcen-oldStyle");  
+    sidebarLinksBlock.className += " mcen-sidebarLinksBlock";  
     sidebar.appendChild(sidebarLinksBlock);
   
 
@@ -172,7 +168,6 @@ function makeSidebarContent() {
             } 
         }
     }
-
 
 
 
