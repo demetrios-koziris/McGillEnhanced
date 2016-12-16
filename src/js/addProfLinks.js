@@ -23,7 +23,7 @@ function makeProfLinks() {
     let profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
 
     const loadMessage = "McGill Enhanced is loading ratings!";
-    const rmpMessage = "McGill Enhanced is no longer allowed to display RMP ratings here.<br>In order to find and view professor ratings, please click to visit RMP.";
+    const rmpMessage = "McGill Enhanced is no longer<br>able to integrate with RMP.";
 
 
     if (!profsFullSource.match(/There are no professors/)) {
@@ -48,8 +48,7 @@ function makeProfLinks() {
 
                     let profName = generateProfNameObject(profsByTerm[termKey][p]);
                     profs[profName.fullNameKey] = profName;
-                    newProfsHTML += "<a href='http://www.ratemyprofessors.com/search.jsp?query=mcgill " + profName.firstName + " " + profName.lastName;
-                    newProfsHTML += " ' class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + rmpMessage + "\" rel=\"noopener noreferrer\">" + profName.fullName + "</a>";
+                    newProfsHTML += "<span class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + rmpMessage + "\">" + profName.fullName + "</span>";
                     if (p <= profsByTerm[termKey].length-2) {
                         newProfsHTML += ", ";
                     }
