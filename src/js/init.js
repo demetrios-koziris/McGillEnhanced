@@ -14,8 +14,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
-
-const url = window.location.href;
+var url = window.location.href;
 
 window.debugMode = false;
 logForDebug("McGill Enhanced Debug mode is ON");
@@ -33,12 +32,10 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	sysMonth = new Date().getMonth();
 
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
-		injectCSS("css/yearMenu.css");
 		addYearMenu();
 	}
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
-		injectCSS("css/sidebar.css");
 		makeProfRatingsTooltips();
 		makeCourseLinks(courseNameRegex);
 		makeSidebarContent();
@@ -64,12 +61,4 @@ function logForDebug(toLog) {
 	if (debugMode) {
 		console.log(toLog);
 	}
-}
-
-function injectCSS(srcName) {
-	var css = document.createElement('link');
-	css.rel = "stylesheet";
-	css.type = "text/css"
-	css.href = chrome.extension.getURL(srcName);
-	(document.head || document.documentElement).appendChild(css);
 }

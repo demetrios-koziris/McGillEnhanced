@@ -61,7 +61,7 @@ for browser in "$@"; do
 
 		mkdir -p build/$buildname
 		cp -r src/edge/background.html src/edge/backgroundScriptsAPIBridge.js src/edge/contentScriptsAPIBridge.js build/$buildname
-		cp -r src/icons src/js src/lib src/manifest.json build/$buildname
+		cp -r src/css src/icons src/js src/lib src/manifest.json build/$buildname
 
 		file=build/$buildname/manifest.json
 
@@ -98,7 +98,7 @@ for browser in "$@"; do
 		sed -i "s/$match/$match\n$insert/" $file
 
 		cd src
-		zip -rq ../build/$buildname.xpi icons js lib menu manifest.json
+		zip -rq ../build/$buildname.xpi css icons js lib menu manifest.json
 		cd ..
 
 		sed -i '/"gecko"/d' $file   
@@ -109,7 +109,7 @@ for browser in "$@"; do
 	if [ $browser == chrome ]; then
 
 		cd src
-		zip -rq ../build/$buildname.zip icons js lib menu manifest.json
+		zip -rq ../build/$buildname.zip css icons js lib menu manifest.json
 		cd ..
 
 	fi

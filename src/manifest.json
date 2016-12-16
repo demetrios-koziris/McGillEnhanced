@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "Demetrios Koziris",
   "manifest_version": 2,
-  "version": "2.5.27",
+  "version": "2.5.28",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
@@ -50,6 +50,20 @@
         "js/scheduleDownloadInserter.js",
         "js/init.js"
       ]
+    },
+    {
+      "all_frames": true,
+      "matches" : [
+        "*://www.mcgill.ca/study/*", 
+        "*://horizon.mcgill.ca/*", 
+        "*://www.ratemyprofessors.com/search*", 
+        "*://www.docuum.com/McGill*", 
+        "*://vsb.mcgill.ca/*"
+      ],
+      "js" : [
+          "js/initAtStart.js"
+      ],
+      "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
