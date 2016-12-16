@@ -1,0 +1,75 @@
+
+.mcen-yearMenuBarDIV {
+	background-color: #444844 !important;
+	height: 33px !important;
+}
+
+.mcen-yearMenuBarUL {
+	height: 33px !important;
+}
+
+
+.mcen-yearMenuItemLI {
+	background-color: #444844 !important;
+	text-align: center !important;
+}
+.mcen-yearMenuItemDIV {
+	background-color: #444844 !important;
+	width: 100% !important;
+	height: 33px !important;
+}
+.mcen-yearMenuItemDIV:hover {
+	background-color: #0C0C0C !important;
+	border-radius: 6px 6px 0px 0px !important;
+}
+.mcen-yearMenuItemA {
+	width: 70px !important;
+	height: 17px !important;
+	padding: 6px 12px 10px !important;
+	color: #FFFFFF !important;
+}
+
+
+.mcen-yearMenuItemDIV.mcen-yearSelected {
+	background-color: #FFFFFF !important;
+	border-radius: 6px 6px 0px 0px !important;
+}
+.mcen-yearMenuItemA.mcen-yearSelected {
+	font-weight: bold !important;
+}
+
+
+.mcen-yearMenuItemLI.mcen-yearLeft {
+	background-color: #FFFFFF !important;
+}
+.mcen-yearMenuItemLI.mcen-yearLeft:hover {
+	background-color: #444844 !important;
+}
+.mcen-yearMenuItemDIV.mcen-yearLeft {
+	border-radius: 0px 0px 8px 0px !important;
+}
+.mcen-yearMenuItemDIV.mcen-yearLeft:hover {
+	border-radius: 6px 6px 0px 0px !important;
+}
+
+
+.mcen-yearMenuItemLI.mcen-yearRight {
+	background-color: #FFFFFF !important;
+}
+.mcen-yearMenuItemLI.mcen-yearRight:hover {
+	background-color: #444844 !important;
+}
+.mcen-yearMenuItemDIV.mcen-yearRight {
+	border-radius: 0px 0px 0px 8px !important;
+}
+.mcen-yearMenuItemDIV.mcen-yearRight:hover {
+	border-radius: 6px 6px 0px 0px !important;
+}
+
+
+.mcen-yearMenuItemLI.mcen-yearClosed {
+	pointer-events: none !important;
+}
+.mcen-yearMenuItemA.mcen-yearClosed {
+	color: #5b5b5a !important;
+}

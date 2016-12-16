@@ -247,24 +247,17 @@ function addYearMenu() {
         {
             const yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
-            yearMenuBarDIV.style.backgroundColor = "#444844";
-            yearMenuBarDIV.style.height = '33px';
+            yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
+            // yearMenuBarDIV.style.backgroundColor = "#444844";
+            // yearMenuBarDIV.style.height = '33px';
 
             const inner = document.createElement('div');
             inner.className = "inner";
             yearMenuBarDIV.appendChild(inner);
 
-            // const innerContainer = document.createElement('div');
-            // innerContainer.style.backgroundColor = "#FFFFFC";
-            // innerContainer.style.width = "calc(100% - 1px)";
-            // innerContainer.style.height = '33px';
-            // inner.appendChild(innerContainer);
-
-            
-
             const yearMenuBarUL = document.createElement('ul');
-            yearMenuBarUL.className = "sf-menu sf-main-menu";
-            yearMenuBarUL.style.height = "33px";
+            yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
+            // yearMenuBarUL.style.height = "33px";
             inner.appendChild(yearMenuBarUL);
 
             for (let i = j; i < j+10; i++)
@@ -281,70 +274,38 @@ function addYearMenu() {
                 }
 
                 const yearMenuItemLI = document.createElement('li');
-                yearMenuItemLI.style.backgroundColor = "#444844";
-
-                yearMenuItemLI.style.textAlign = "center";
+                yearMenuItemLI.className = "mcen-yearMenuItemLI";
                 yearMenuBarUL.appendChild(yearMenuItemLI);
 
                 const yearMenuItemDIV = document.createElement('div');
-                yearMenuItemDIV.style.backgroundColor = "#444844";
-                yearMenuItemDIV.setAttribute('onmouseover', 'this.style.backgroundColor="#0C0C0C"; this.style.borderRadius="6px 6px 0px 0px";');
-                yearMenuItemDIV.setAttribute('onmouseout', 'this.style.backgroundColor="#444844"; this.style.borderRadius="0px";');
-                yearMenuItemDIV.style.width = "100%";
-                yearMenuItemDIV.style.height = "33px";
+                yearMenuItemDIV.className = "mcen-yearMenuItemDIV";
+                yearMenuItemLI.appendChild(yearMenuItemDIV);
 
                 const yearMenuItemA = document.createElement('a');
-                yearMenuItemA.setAttribute("href", yearMenuItemURL);
+                yearMenuItemA.className = "mcen-yearMenuItemA";
+                yearMenuItemA.href = yearMenuItemURL;
                 yearMenuItemA.innerHTML = i + "-" + (i + 1);
-                yearMenuItemA.style.width = "70px";
-                yearMenuItemA.style.height = "17px";
-                yearMenuItemA.style.padding = "6px 12px 10px";
-                yearMenuItemA.style.color = "#FFFFFF";
-
-                
-                
-
-                
-
-
-                if (i === urlYearF){
-                    yearMenuItemA.innerHTML = "<b>" + yearMenuItemA.innerHTML + "</b>";
-                    yearMenuItemLI.style.backgroundColor = "#444844";
-                    yearMenuItemDIV.style.backgroundColor = "#FFFFFF";
-                    yearMenuItemDIV.style.borderRadius = "6px 6px 0px 0px";
-                    yearMenuItemA.style.color = "#5b5b5a";
-                    yearMenuItemLI.style.pointerEvents = "none";
-                }
-                if (i === urlYearF - 1) {
-                    yearMenuItemLI.style.backgroundColor = "#FFFFFF";
-                    yearMenuItemLI.setAttribute('onmouseover', 'this.style.backgroundColor="#444844";');
-                    yearMenuItemLI.setAttribute('onmouseout', 'this.style.backgroundColor="#FFFFFF";');
-                    yearMenuItemDIV.style.borderRadius = "0px 0px 8px 0px";
-                    // yearMenuItemDIV.setAttribute('onmouseover', 'this.style.backgroundColor="#0C0C0C"; this.style.borderRadius="0px 0px 8px 0px";');
-                    yearMenuItemDIV.setAttribute('onmouseout', 'this.style.backgroundColor="#444844"; this.style.borderRadius="0px 0px 8px 0px";');
-
-                }
-                if (i === urlYearF + 1) {
-                    yearMenuItemLI.style.backgroundColor = "#FFFFFF";
-                    yearMenuItemLI.setAttribute('onmouseover', 'this.style.backgroundColor="#444844";');
-                    yearMenuItemLI.setAttribute('onmouseout', 'this.style.backgroundColor="#FFFFFF";');
-                    yearMenuItemDIV.style.borderRadius = "0px 0px 0px 8px";
-                    // yearMenuItemDIV.setAttribute('onmouseover', 'this.style.backgroundColor="#0C0C0C"; this.style.borderRadius="0px 0px 0px 8px";');
-                    yearMenuItemDIV.setAttribute('onmouseout', 'this.style.backgroundColor="#444844"; this.style.borderRadius="0px 0px 0px 8px";');
-                }
-                if (i > sysYear) {
-                    yearMenuItemA.style.color = "#5b5b5a";
-                    yearMenuItemLI.style.pointerEvents = "none";
-                }
-
-
-                yearMenuItemLI.appendChild(yearMenuItemDIV);
                 yearMenuItemDIV.appendChild(yearMenuItemA);
 
 
+                if (i === urlYearF){
+                    yearMenuItemA.className += " mcen-yearSelected";
+                    yearMenuItemDIV.className += " mcen-yearSelected";
+                    yearMenuItemLI.className += " mcen-yearSelected";
+                }
+                if (i === urlYearF - 1) {
+                    yearMenuItemDIV.className += " mcen-yearLeft";
+                    yearMenuItemLI.className += " mcen-yearLeft";
+                }
+                if (i === urlYearF + 1) {
+                    yearMenuItemDIV.className += " mcen-yearRight";
+                    yearMenuItemLI.className += " mcen-yearRight";
+                }
+                if (i > sysYear || i === urlYearF) {
+                    yearMenuItemA.className += " mcen-yearClosed";
+                    yearMenuItemLI.className += " mcen-yearClosed";
+                }
 
-
-                
             }        
 
             document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
