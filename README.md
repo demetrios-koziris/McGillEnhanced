@@ -29,15 +29,15 @@ McGill Enhanced makes looking up courses and registration easier by providing di
 
 
 ## Building the extension using the `build.sh` script
-###Usage:  
+####Usage:  
 ```
 command [option] [parameter]... 
 ```
-###Options:  
+####Options:  
 ```
 -c       Clean the /build directory before building  
 ```
-###Parameters:  
+####Parameters:  
 ```
 edge     Create an edge extension in /build  
 chrome   Create a chrome extension in /build  
@@ -46,7 +46,7 @@ firefox  Create a firefox add-on in /build
 ```
 *If no parameters are passed, script will default to building the extension for every browser
 ```
-###Examples:
+####Examples:
 ```
 ./build.sh
 ./build.sh -c
