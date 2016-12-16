@@ -248,8 +248,6 @@ function addYearMenu() {
             const yearMenuBarDIV = document.createElement('div');
             yearMenuBarDIV.id = "navigation";
             yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
-            // yearMenuBarDIV.style.backgroundColor = "#444844";
-            // yearMenuBarDIV.style.height = '33px';
 
             const inner = document.createElement('div');
             inner.className = "inner";
@@ -257,7 +255,6 @@ function addYearMenu() {
 
             const yearMenuBarUL = document.createElement('ul');
             yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
-            // yearMenuBarUL.style.height = "33px";
             inner.appendChild(yearMenuBarUL);
 
             for (let i = j; i < j+10; i++)
