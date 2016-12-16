@@ -15,10 +15,15 @@ A Chrome Extension Improving the McGill.ca Website Experience
 <br>
 
 <h2>
-  Feature Summary
+  Features
 </h2>
 
-McGill Enhanced makes looking up courses and registration easier by providing direct access to professor ratings (just hover over a prof name), Mercury course evaluations, archived lecture recordings, Docuum, Minerva Registration, Visual Schedule Builder and more for a given course all from the course overview page. It also adds a menu bar that lets you quickly jump to a different year's version of the given page as well as a quick links menu that you can access by clicking the McGill Enhanced icon in the chrome menu bar.
+McGill Enhanced makes looking up courses and registration easier by providing direct access to professor ratings (just hover over a prof name), Mercury course evaluations, archived lecture recordings, Docuum, Minerva Registration, Visual Schedule Builder and more for a given course all from the course overview page. It also adds a menu bar that lets you quickly jump to a different year's version of the given page as well as a quick links menu that you can access by clicking the McGill Enhanced icon in the chrome menu bar. For a full list of features, please see the following link
+
+
+<h3>
+  <a href="http://demetrios-koziris.github.io/McGillEnhanced/features">View Detailed Feature List</a>
+</h3>
 
 <br>
 
@@ -55,31 +60,6 @@ firefox  Create a firefox add-on in /build
 
 <br>
 
-<h2>
-  Feature Details
-</h2>
-
-<h3>
-  McGill.ca Course Overview Pages
-</h3>
-
-  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-mcgill.png" alt="" style="width:100%;">
-
-  <h4>
-    A) Year Menu Bar
-  </h4>
-  <p>
-    If you end up on another year's version of a given McGill.ca page, quickly jump to the current year's version or any other year by using the year menu bar.
-  </p>
-
-  <h4>
-    B) RateMyProfessors Integration
-  </h4>
-  <p>
-    Instead of manually searching for professor ratings, McGill enhanced will fetch professor ratings and show them in a tooltip when you hover over a professor name. Clicking the name will bring you to their RateMyProfessors page.
-  </p>
-
-  <h4>
     C) Sidebar: Course Reviews
   </h4>
   <p>
@@ -126,50 +106,6 @@ firefox  Create a firefox add-on in /build
 <h3>
   Extension Menu
 </h3>
-
-  <h4>
-    I) McGill Quick Links
-  </h4>
-  <p>
-    Click on the McGill Enhanced icon in the chrome menu bar to access the extension menu and various McGill quick links such as email, Minerva, MyCourses, etc.
-  </p>
-
-  <h4>
-    J) Other Resources
-  </h4>
-  <p>
-    In addition to the McGill quick links, you can also access other useful resources from the McGill Enhanced menu.
-  </p>
-
-<br>
-
-<h3>
-  Visual Schedule Builder
-</h3>
-
-  <h4>
-    K) One-Click Registration
-  </h4>
-  <p>
-    Instead of having to copy the CRN codes from VSB and paste them into Minerva to register, simply click the McGill Enhanced button to register for your courses (must already be logged into Minerva).
-  </p>
-
-  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-vsb.png" alt="" style="width:100%;">
-
-<br>
-
-<h3>
-  Minerva
-</h3>
-
-  <h4>
-    L) Schedule Downloader
-  </h4>
-  <p>
-    From Minerva > Student Menu > Registration Menu > View Student Schedule by Course Section, you can click the McGill Enhanced button to download your course schedule as a .ICS file which can then be imported into Google Calendar, Apple iCal, or Microsoft Outlook.
-  </p>
-
-  <img src="https://demetrios-koziris.github.io/McGillEnhanced/images/features-minerva.png" alt="" style="width:100%;">
 
 <br>
 
