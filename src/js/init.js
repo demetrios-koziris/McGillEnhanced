@@ -36,7 +36,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	}
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
-		makeProfRatingsTooltips();
+		makeProfLinks();
 		makeCourseLinks(courseNameRegex);
 		makeSidebarContent();
 	}

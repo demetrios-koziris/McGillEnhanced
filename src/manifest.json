@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "Demetrios Koziris",
   "manifest_version": 2,
-  "version": "2.5.28",
+  "version": "3.0.1",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
@@ -44,7 +44,7 @@
         "js/urlData.js",
         "js/addSidebar.js", 
         "js/addYearMenu.js", 
-        "js/addProfRatings.js", 
+        "js/addProfLinks.js", 
         "js/addCourseLinks.js",
         "js/vsbEnhanced.js",
         "js/scheduleDownloadInserter.js",
