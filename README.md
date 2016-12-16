@@ -57,56 +57,6 @@ firefox  Create a firefox add-on in /build
 ```
 
 
-
-<br>
-
-    C) Sidebar: Course Reviews
-  </h4>
-  <p>
-    Access Docuum course reviews and Mercury course evaluations (must already be logged into the Minerva system) directly from the sidebar of a course overview page.
-  </p>
-
-  <h4>
-    D) Sidebar: Lecture Recordings
-  </h4>
-  <p>
-    Access archived lecture recordings for certain courses (these archives are hosted at <a href="https://lrs.mcgill.ca/">lrs.mcgill.ca</a>) from the sidebar of a course overview page.
-  </p>
-
-  <h4>
-    E) Sidebar: Minerva Registration
-  </h4>
-  <p>
-    Access the Minerva registration page for a course directly from the sidebar (must already be logged into the Minerva system).
-  </p>
-
-  <h4>
-    F) Sidebar: Other Resources
-  </h4>
-  <p>
-    Access course documents in Docuum or other resources for a given course (such as the CSUS guide for COMP courses) from the sidebar.
-  </p>
-
-  <h4>
-    G) Sidebar: Visual Schedule Builder 
-  </h4>
-  <p>
-    Access the Visual Schedule Builder course listing for a course directly from the sidebar.
-  </p>
-
-  <h4>
-    H) Sidebar: Related Courses
-  </h4>
-  <p>
-    View all courses taught by the professors mentioned in the current course overview page or other courses in the programs mentioned in the current course overview page.
-  </p>
-
-<br>
-
-<h3>
-  Extension Menu
-</h3>
-
 <br>
 
 <h2>
