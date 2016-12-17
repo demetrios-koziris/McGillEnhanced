@@ -23,7 +23,7 @@ function makeProfLinks() {
     let profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
 
     const loadMessage = "McGill Enhanced is loading ratings!";
-    const profHoverMessage = "McGill Enhanced is no longer<br>able to display ratings here.";
+    const profHoverMessage = "McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.";
 
 
     if (!profsFullSource.match(/There are no professors/)) {
@@ -47,8 +47,9 @@ function makeProfLinks() {
                 for (let p=0; p<profsByTerm[termKey].length; p++) {
 
                     let profName = generateProfNameObject(profsByTerm[termKey][p]);
+                    const profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profName.fullName;
                     profs[profName.fullNameKey] = profName;
-                    newProfsHTML += "<span class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + profHoverMessage + "\">" + profName.fullName + "</span>";
+                    newProfsHTML += '<a href="' + profCoursesURL + '" class="tooltip ' + profName.fullNameKey + '"  title="' + profHoverMessage + '">' + profName.fullName + '</a>';
                     if (p <= profsByTerm[termKey].length-2) {
                         newProfsHTML += ", ";
                     }
@@ -96,11 +97,19 @@ function generateProfNameObject(origName) {
     const name = origName.trim();
     const splitName = name.split(' ');
     const profName = {
+        fullName: name,
         fullNameKey: name.replace(/\W/g, ''),
-        fullName: name.replace(/ /g, '&nbsp').replace(/-/g, '&#8209'),
-        firstName: encodeSymbolsWin1252(splitName[0]),
-        lastName: encodeSymbolsWin1252(splitName[splitName.length-1])
+        firstName: splitName[0],
+        lastName: splitName[splitName.length-1],
+        
     };
+    const forURL = {
+        fullName: profName.fullName.replace(/ /g, '&nbsp').replace(/-/g, '&#8209'),
+        firstName: encodeSymbolsWin1252(profName.firstName),
+        lastName: encodeSymbolsWin1252(profName.lastName)
+    };
+    profName.forURL = forURL;
+
     return profName;
 }
 
