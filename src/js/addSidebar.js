@@ -184,46 +184,7 @@ function makeSidebarContent() {
     }
 
 
-
-    //SIDEBAR RELATED COURSES AND RELATED PROGRAMS BLOCKS
-
-    const sidebarRelatedBlock = generateSidebarBlock("Related Courses");
-    sidebar.appendChild(sidebarRelatedBlock);
-
-    if (deps.length > 0) {
-
-        const deptCourses = generateRelatedCoursesSection("View Related Courses by Subject");
-        sidebarRelatedBlock.appendChild(deptCourses);
-
-        for (let d = 0; d<deps.length; d++)
-        {
-            const deptCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[d];
-            const deptCoursesLinkDiv = document.createElement('div');
-            deptCoursesLinkDiv.className = (d === deps.length-1 ? "views-row views-row-last" : "views-row");
-            deptCoursesLinkDiv.appendChild(generateRelatedCoursesLink(deptCoursesURL, deps[d]+" Courses"));
-            deptCourses.appendChild(deptCoursesLinkDiv);
-        }
-    }
-
-    const profKeys = Object.keys(profs);
-    if (profKeys.length > 0) {
-
-        const profCourses = generateRelatedCoursesSection("View Related Courses by Professor");
-        sidebarRelatedBlock.appendChild(profCourses);
-
-        for (let p = 0; p < profKeys.length; p++) {
-            const profFullName = profs[profKeys[p]].fullName;
-            const profURLName = profFullName.replace(/\&nbsp/g, " ").replace(/\&\#8209/g, "-");
-
-            const profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profURLName;
-            const profCoursesLinkDiv = document.createElement('div');
-            profCoursesLinkDiv.className = (p === profKeys.length-1 ? "views-row views-row-last" : "views-row");
-            profCoursesLinkDiv.appendChild(generateRelatedCoursesLink(profCoursesURL, profFullName));
-            profCourses.appendChild(profCoursesLinkDiv);
-        }
-    }
-
-
+    // related programs section
     if (document.getElementsByClassName("view-catalog-program").length > 0) {
 
         const sidebarRelatedBlock = generateSidebarBlock("Related Programs");
@@ -234,7 +195,7 @@ function makeSidebarContent() {
         sidebarRelatedBlock.appendChild(relatedPrograms);
     }
 
-    //insert enhanced sidebar
+    // insert enhanced sidebar
     const container = document.getElementById(isNewStyle ? "inner-container" : "container");
     if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar")) {
         document.createElement("div").appendChild(document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
