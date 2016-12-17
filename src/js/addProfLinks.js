@@ -18,6 +18,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 function makeProfLinks() {
     profs = {};
     const profsByTerm = {};
+    const minervaProfs = getProfData();
     let profsLength = 0;
 
     let profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
@@ -46,7 +47,7 @@ function makeProfLinks() {
                 newProfsHTML += "<p>Instructors (" + termKey + "): ";
                 for (let p=0; p<profsByTerm[termKey].length; p++) {
 
-                    let profName = generateProfNameObject(profsByTerm[termKey][p]);
+                    let profName = generateProfNameObject(minervaProfs, profsByTerm[termKey][p]);
                     const profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profName.fullName;
                     profs[profName.fullNameKey] = profName;
                     newProfsHTML += '<a href="' + profCoursesURL + '" class="tooltip ' + profName.fullNameKey + '"  title="' + profHoverMessage + '">' + profName.fullName + '</a>';
@@ -93,7 +94,7 @@ function encodeSymbolsWin1252(string) {
 }
 
 
-function generateProfNameObject(origName) {
+function generateProfNameObject(minervaProfs, origName) {
     const name = origName.trim();
     const splitName = name.split(' ');
     const profName = {
@@ -101,7 +102,7 @@ function generateProfNameObject(origName) {
         fullNameKey: name.replace(/\W/g, ''),
         firstName: splitName[0],
         lastName: splitName[splitName.length-1],
-        
+        minerva: minervaProfs[name]
     };
     const forURL = {
         fullName: profName.fullName.replace(/ /g, '&nbsp').replace(/-/g, '&#8209'),
