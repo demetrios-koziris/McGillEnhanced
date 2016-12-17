@@ -23,7 +23,7 @@ function makeProfLinks() {
     let profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
 
     const loadMessage = "McGill Enhanced is loading ratings!";
-    const rmpMessage = "McGill Enhanced is no longer<br>able to integrate with RMP.";
+    const rmpMessage = "McGill Enhanced is no longer<br>able to display RMP ratings.";
 
 
     if (!profsFullSource.match(/There are no professors/)) {
