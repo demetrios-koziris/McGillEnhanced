@@ -23,7 +23,7 @@ function makeProfLinks() {
     let profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
 
     const loadMessage = "McGill Enhanced is loading ratings!";
-    const rmpMessage = "McGill Enhanced is no longer<br>able to display RMP ratings.";
+    const profHoverMessage = "McGill Enhanced is no longer<br>able to display ratings here.";
 
 
     if (!profsFullSource.match(/There are no professors/)) {
@@ -48,7 +48,7 @@ function makeProfLinks() {
 
                     let profName = generateProfNameObject(profsByTerm[termKey][p]);
                     profs[profName.fullNameKey] = profName;
-                    newProfsHTML += "<span class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + rmpMessage + "\">" + profName.fullName + "</span>";
+                    newProfsHTML += "<span class=\"tooltip " + profName.fullNameKey + "\"  title=\"" + profHoverMessage + "\">" + profName.fullName + "</span>";
                     if (p <= profsByTerm[termKey].length-2) {
                         newProfsHTML += ", ";
                     }
