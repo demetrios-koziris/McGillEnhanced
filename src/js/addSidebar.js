@@ -162,11 +162,25 @@ function makeSidebarContent() {
         for (let i = 0; i < courseTermsCodes.length; i++) {
             const term = courseTermsCodes[i];
             if (term.vsbURL) {
-                const vsbButtonValue = "View on VSB " + term.name;
-                const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple", vsbButtonValue);
+                const vsbButtonString = "View on VSB " + term.name;
+                const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple", vsbButtonString);
                 vsb.appendChild(vsbLink);
             } 
         }
+    }
+
+
+    if (deps.length > 0) {
+
+        //SIDEBAR SECTION: RELATED COURSES
+        const related = generateSidebarSection("Related Courses");
+        sidebarLinksBlock.appendChild(related);
+
+        for (let i = 0; i < deps.length; i++) {
+            const relatedURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[i];
+            const relatedButtonString = "View all " +  deps[i] + " Courses";
+            related.appendChild(generateSidebarLink(relatedURL, "mcen-red", relatedButtonString, 'Must be already signed into Minerva!')); 
+        }      
     }
 
 
