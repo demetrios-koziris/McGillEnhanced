@@ -65,6 +65,9 @@ function makeProfLinks() {
         document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML;
 
         $('.tooltip').tooltipsy( {
+            hide: function (e, $el) {
+                $el.slideUp(160);
+            },
             css: {
                 fontFamily: 'CartoGothicStdBook',
                 padding: '10px',

@@ -333,7 +333,7 @@ function yearMenuTooltipsy(className, offset) {
         delay: 0,
         offset: offset,
         hide: function (e, $el) {
-            $el.slideUp(100);
+            $el.slideUp(200);
         },
         css: {
             fontFamily: 'CartoGothicStdBook',
