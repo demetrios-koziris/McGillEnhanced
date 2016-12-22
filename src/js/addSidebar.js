@@ -98,18 +98,19 @@ function makeSidebarContent() {
         const recordings = generateSidebarSection("Lecture Recordings");
         sidebarLinksBlock.appendChild(recordings);
 
+        const maxYear = Math.max.apply(Math, Object.keys(recordingURLdata));
+        if (urlYearF != maxYear) {
+            const maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
+            const recordingsButtonString = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
+            recordings.appendChild(generateSidebarLink(maxYearURL, "mcen-red", recordingsButtonString, false));
+        }
+
         if (urlYearF in recordingURLdata) {
             const yearRecordingURLs = recordingURLdata[urlYearF];
             for (let r = 0; r < yearRecordingURLs.length; r++) {
                 const recordingsButtonString = "View " + yearRecordingURLs[r].semester + " " + yearRecordingURLs[r].year + " Sec " + yearRecordingURLs[r].section + " Lectures";
                 recordings.appendChild(generateSidebarLink(yearRecordingURLs[r].url, "mcen-red", recordingsButtonString, false));
             }
-        }
-        else {
-            const maxYear = Math.max.apply(Math, Object.keys(recordingURLdata));
-            const maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
-            const recordingsButtonString = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
-            recordings.appendChild(generateSidebarLink(maxYearURL, "mcen-red", recordingsButtonString, false));
         }
     }  
 
