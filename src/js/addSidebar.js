@@ -25,11 +25,11 @@ function makeSidebarContent() {
     const courseName = courseSubject + courseNumber;
     const courseNameSpaced = courseSubject + " " + courseNumber;
 
-    const recordingURLdata = generateRecordingURLs()[courseName];
-    const recordingsBaseURLs = generateRecordingsBaseURLs();
-    const wikinotesURLdata = generateWikinotesURLs()[courseName];
-    const docuumURLdata = generateDocuumURLs()[courseName];
-    const csusURLdata = generateCSUSURLs()[courseName];
+    const recordingURLdata = getRecordingData()[courseName];
+    const recordingsBaseURLs = getRecordingsBaseURLs();
+    const wikinotesURLdata = getWikinotesData()[courseName];
+    const docuumURLdata = getDocuumData()[courseName];
+    const csusURLdata = getCSUSdata()[courseName];
 
     const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
     const courseTermsCodes = [];

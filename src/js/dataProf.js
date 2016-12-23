@@ -15,7 +15,6 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-
 function getProfData() {
 	let profData = {
 		"Kariann Aarup": "150614644",
