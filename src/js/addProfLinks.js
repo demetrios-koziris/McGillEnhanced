@@ -21,13 +21,16 @@ function makeProfLinks() {
     const minervaProfs = getProfData();
     let profsLength = 0;
 
-    let profsFullSource = document.getElementsByClassName("catalog-instructors")[0].innerHTML;
+    const profsFullSourceElem = document.getElementsByClassName("catalog-instructors")[0];
+    let profsFullSource = profsFullSourceElem.innerHTML;
 
     const loadMessage = "McGill Enhanced is loading ratings!";
     const profHoverMessage = "McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.";
-
+    const allInstructorCoursesMessage = 'View all courses<br>by this instructor';
 
     if (!profsFullSource.match(/There are no professors/)) {
+
+        const profSection = document.createElement('div');
 
         const profsFullSourceArray = profsFullSource.match(/(Fall|Winter|Summer)/g);
         for (let a = 0; a < profsFullSourceArray.length; a++) {
@@ -37,47 +40,63 @@ function makeProfLinks() {
         }
 
         profsFullSource = profsFullSource.split("Instructors:")[1];
-        let newProfsHTML = "";
 
         for (let termKey in profsByTerm) {
+
+            const termSection = document.createElement('div');
+            termSection.className = 'mcen-termSection';
+            profSection.appendChild(termSection);
 
             const profsTermSource = profsFullSource.split("(" + termKey + ")");
             if (profsTermSource.length > 1) {
                 profsByTerm[termKey] = profsTermSource[0].split(",");
-                newProfsHTML += "<p>Instructors (" + termKey + "): ";
+
+                const termTitle = document.createElement('div');
+                termTitle.innerText = termKey + ':';
+                termSection.appendChild(termTitle);
+
                 for (let p=0; p<profsByTerm[termKey].length; p++) {
+                    const profDiv = document.createElement('div');
+                    profDiv.className = 'mcen-profDiv';
+                    termSection.appendChild(profDiv);
 
                     let profName = generateProfNameObject(minervaProfs, profsByTerm[termKey][p]);
                     const profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profName.fullName;
                     profs[profName.fullNameKey] = profName;
-                    newProfsHTML += '<a href="' + profCoursesURL + '" class="tooltip ' + profName.fullNameKey + '"  title="' + profHoverMessage + '">' + profName.fullName + '</a>';
-                    if (p <= profsByTerm[termKey].length-2) {
-                        newProfsHTML += ", ";
-                    }
-                    if (p == profsByTerm[termKey].length-2) {
-                        newProfsHTML += "and ";
-                    }
+
+                    const profLink = document.createElement('a');
+                    profLink.href = profCoursesURL;
+                    profLink.className = 'tooltip mcen-profLink ' + profName.fullNameKey;
+                    profLink.title = allInstructorCoursesMessage;
+                    profLink.innerText = profName.fullName;
+                    profDiv.appendChild(profLink);
+
                 }
-                newProfsHTML += "</p>";
                 logForDebug(profsByTerm[termKey]);
                 profsFullSource = profsTermSource[1];
             }
         }
 
-        document.getElementsByClassName("catalog-instructors")[0].innerHTML = newProfsHTML;
+        document.getElementsByClassName("catalog-instructors")[0].innerHTML = "";
+        profsFullSourceElem.appendChild(profSection);
+
 
         $('.tooltip').tooltipsy( {
             hide: function (e, $el) {
-                $el.slideUp(160);
+                $el.slideUp(50);
             },
+            delay: 400,
+            offset: [0, -8],
             css: {
                 fontFamily: 'CartoGothicStdBook',
-                padding: '10px',
+                padding: '6px 12px',
                 color: (isNewStyle ? '#444444' : '#2C566D'),
                 fontSize: '.9em',
                 backgroundColor: (isNewStyle ? '#C5C5C5' : '#F4F5ED'),
                 borderRadius: '8px',
-                border: '2px solid'
+                // border: '1px solid'
+                boxShadow: '4px 4px 10px #888888',
+                textAlign: 'center'
             }
         });
     }

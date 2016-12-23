@@ -297,7 +297,7 @@ function addYearMenu() {
                 }
                 else if (i == sysYear && sysMonth < 3) {
                     yearMenuItemLI.className +=  " " + mneClassName;
-                    yearMenuItemLI.title = "&nbsp;&nbsp;This page may not exist yet!&nbsp;&nbsp;";
+                    yearMenuItemLI.title = "This page may not exist yet!";
                 }
 
                 if (i === urlYearF - 1) {
@@ -330,19 +330,20 @@ function yearMenuTooltipsy(className, offset) {
         offset = [0, 10];
     }
     $('.' + className).tooltipsy( {
-        delay: 0,
+        delay: 400,
         offset: offset,
         hide: function (e, $el) {
-            $el.slideUp(200);
+            $el.slideUp(50);
         },
         css: {
             fontFamily: 'CartoGothicStdBook',
-            padding: '4px',
+            padding: '6px 12px',
             color: '#444444',
             fontSize: '.8em',
             backgroundColor: '#FFF0F0',
             borderRadius: '6px',
-            border: '1px #E54944 solid'
+            // border: '1px #E54944 solid',
+            boxShadow: '2px 2px 10px #E54944'
         }
     });
 }

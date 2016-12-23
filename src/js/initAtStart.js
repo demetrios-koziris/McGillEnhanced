@@ -25,6 +25,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
 		injectCSS("css/sidebar.css");
+		injectCSS("css/profLinks.css");
 	}
 }
 

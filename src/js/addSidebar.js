@@ -296,7 +296,8 @@ function generateRelatedCoursesLink(url, titleString) {
 
 function sidebarTooltipsy(className, offset) {
     if (offset === undefined) {
-        offset = [0, -10];
+        // offset = [0, -16];
+        offset = [0, -14];
     }
     $('.' + className).tooltipsy( {
         delay: 400,
@@ -306,12 +307,13 @@ function sidebarTooltipsy(className, offset) {
         },
         css: {
             fontFamily: 'CartoGothicStdBook',
-            padding: '4px',
+            padding: '6px 12px',
             color: '#444444',
             fontSize: '.8em',
             backgroundColor: '#FFF0F0',
             borderRadius: '6px',
-            border: '1px #E54944 solid'
+            // border: '1px #E54944 solid',
+            boxShadow: '2px 2px 10px #E54944'
         }
     });
 }
