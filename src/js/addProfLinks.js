@@ -26,7 +26,10 @@ function makeProfLinks() {
 
     const loadMessage = "McGill Enhanced is loading ratings!";
     const profHoverMessage = "McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.";
-    const allInstructorCoursesMessage = 'View all courses<br>by this instructor';
+    const profLinkMessage = 'View other courses<br>taught by this instructor';
+    const googleLinkMessage = 'View Google query<br>for instructor reviews';
+    const mercuryLinkMessage = 'View Mercury query for this instructor name<br>Must already be signed into Minerva!';
+    const mercuryLinkMessageError = 'No instructor found in<br>Mercury with this name';
 
     if (!profsFullSource.match(/There are no professors/)) {
 
@@ -52,7 +55,7 @@ function makeProfLinks() {
                 profsByTerm[termKey] = profsTermSource[0].split(",");
 
                 const termTitle = document.createElement('div');
-                termTitle.innerText = termKey + ':';
+                termTitle.innerHTML = 'Instructors (<b>' + termKey + '</b>) :';
                 termSection.appendChild(termTitle);
 
                 for (let p=0; p<profsByTerm[termKey].length; p++) {
@@ -64,14 +67,41 @@ function makeProfLinks() {
                     const profCoursesURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search" + (isNewStyle ? "?search_api_views_fulltext=" : "/") + profName.fullName;
                     profs[profName.fullNameKey] = profName;
 
+                    const googleLink = document.createElement('a');
+                    googleLink.href = "https://www.google.ca/search?q=rate+mcgill+" + profName.firstName + '+' + profName.lastName;
+                    profDiv.appendChild(googleLink);
+
+                    const googleLinkButton = document.createElement('button');
+                    googleLinkButton.className = 'tooltip mcen-profLinkButton mcen-googleLinkButton';
+                    googleLinkButton.title = googleLinkMessage;
+                    googleLinkButton.innerText = 'Google';
+                    googleLink.appendChild(googleLinkButton);
+
+                    const mercuryLink = document.createElement('a');
+                    mercuryLink.href = "https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&inst_tab_in=" + minervaProfs[profName.fullName];
+                    profDiv.appendChild(mercuryLink);
+
+                    const mercuryLinkButton = document.createElement('button');
+                    mercuryLinkButton.className = 'tooltip mcen-profLinkButton mcen-mercuryLinkButton';
+                    mercuryLinkButton.title = mercuryLinkMessage;
+                    mercuryLinkButton.innerText = 'Mercury';
+                    mercuryLink.appendChild(mercuryLinkButton);
+                    
+                    if (!(profName.fullName in minervaProfs)) {
+                        mercuryLinkButton.className = 'tooltipError mcen-profLinkButton mcen-mercuryLinkButton not-active';
+                        mercuryLinkButton.title = mercuryLinkMessageError;
+                        mercuryLink.href = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form=';
+                    }
+
                     const profLink = document.createElement('a');
                     profLink.href = profCoursesURL;
                     profLink.className = 'tooltip mcen-profLink ' + profName.fullNameKey;
-                    profLink.title = allInstructorCoursesMessage;
+                    profLink.title = profLinkMessage;
                     profLink.innerText = profName.fullName;
                     profDiv.appendChild(profLink);
 
                 }
+
                 logForDebug(profsByTerm[termKey]);
                 profsFullSource = profsTermSource[1];
             }
@@ -92,12 +122,29 @@ function makeProfLinks() {
                 padding: '6px 12px',
                 color: (isNewStyle ? '#444444' : '#2C566D'),
                 fontSize: '.9em',
-                backgroundColor: (isNewStyle ? '#C5C5C5' : '#F4F5ED'),
+                backgroundColor: (isNewStyle ? '#eceff1' : '#F4F5ED'),
                 borderRadius: '8px',
-                // border: '1px solid'
-                boxShadow: '4px 4px 10px #888888',
-                textAlign: 'center'
+                textAlign: 'center',
+                boxShadow: '4px 4px 10px #888888'
             }
+        });
+
+        $('.tooltipError').tooltipsy( {
+            hide: function (e, $el) {
+                $el.slideUp(50);
+            },
+            delay: 400,
+            offset: [0, -8],
+            css: {
+            fontFamily: 'CartoGothicStdBook',
+            padding: '6px 12px',
+            color: (isNewStyle ? '#444444' : '#2C566D'),
+            fontSize: '.9em',
+            backgroundColor: '#FFF0F0',
+            borderRadius: '8px',
+            textAlign: 'center',
+            boxShadow: '2px 2px 10px #E54944'
+        }
         });
     }
 }

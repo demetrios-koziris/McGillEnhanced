@@ -228,7 +228,7 @@ function generateSidebarSection(titleString) {
 function generateSidebarSectionTitle(titleString) {
     const sidebarSectionTitle = document.createElement(isNewStyle ? "h3" : "h4");
     sidebarSectionTitle.className = "mcen-sidebarSectionTitle";
-    sidebarSectionTitle.innerHTML = titleString;
+    sidebarSectionTitle.innerText = titleString;
     return sidebarSectionTitle;
 }
 
@@ -248,7 +248,7 @@ function generateSidebarLink(url, colorClass, buttonValue, minervaWarning) {
 function generateSidebarLinkButton(colorClass, buttonValue, minervaWarning ) {
     const linkButton = document.createElement('button');
     linkButton.className = 'form-submit mcen-linkButton' + (isNewStyle ? " mcen-newStyle " + colorClass : "");
-    linkButton.innerHTML = buttonValue;
+    linkButton.innerText = buttonValue;
     return linkButton;
 }
 
@@ -264,7 +264,7 @@ function generateSidebarBlock(titleString) {
 function generateSidebarBlockTitle(titleString) {
     const sidebarRelatedBlockTitle = document.createElement('h3');
     sidebarRelatedBlockTitle.className = "mcen-sidebarRelatedBlockTitle" + (isNewStyle ? " mcen-newStyle" : "");
-    sidebarRelatedBlockTitle.innerHTML = titleString;
+    sidebarRelatedBlockTitle.innerText = titleString;
     return sidebarRelatedBlockTitle;
 }
 
@@ -281,7 +281,7 @@ function generateRelatedCoursesSection(titleString) {
 function generateRelatedCoursesSectionTitle(titleString) {
     const relatedCoursesSectionTitle = document.createElement('div');
     relatedCoursesSectionTitle.className = "view-header";
-    relatedCoursesSectionTitle.innerHTML = "<i>" + titleString + "</i>";
+    relatedCoursesSectionTitle.innerText = "<i>" + titleString + "</i>";
     return relatedCoursesSectionTitle;
 }
 
@@ -289,7 +289,7 @@ function generateRelatedCoursesSectionTitle(titleString) {
 function generateRelatedCoursesLink(url, titleString) {
     const relatedCoursesLink = document.createElement('a');
     relatedCoursesLink.setAttribute("href", url);
-    relatedCoursesLink.innerHTML = titleString;
+    relatedCoursesLink.innerText = titleString;
     return relatedCoursesLink;    
 }
 
