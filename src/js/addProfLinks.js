@@ -27,7 +27,7 @@ function makeProfLinks() {
     const loadMessage = "McGill Enhanced is loading ratings!";
     const profHoverMessage = "McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.";
     const profLinkMessage = 'View other courses<br>taught by this instructor';
-    const googleLinkMessage = 'View Google query<br>for instructor reviews';
+    const googleLinkMessage = 'View Google query for<br>instructor reviews';
     const mercuryLinkMessage = 'View Mercury query for this instructor name<br>Must already be signed into Minerva!';
     const mercuryLinkMessageError = 'No instructor found in<br>Mercury with this name';
 
@@ -68,7 +68,7 @@ function makeProfLinks() {
                     profs[profName.fullNameKey] = profName;
 
                     const googleLink = document.createElement('a');
-                    googleLink.href = "https://www.google.ca/search?q=rate+mcgill+" + profName.firstName + '+' + profName.lastName;
+                    googleLink.href = 'https://www.google.ca/search?q="rate"+"mcgill"+' + profName.firstName + '+' + profName.lastName;
                     profDiv.appendChild(googleLink);
 
                     const googleLinkButton = document.createElement('button');
