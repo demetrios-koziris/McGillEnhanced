@@ -81,903 +81,911 @@ function generateCSUSURLs() {
 }
 
 
+function generateRecordingsBaseURLs() {
+    const recordingsBaseURLs = {
+        lrs: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=",
+        cool: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID="
+    };
+    return recordingsBaseURLs;
+}
+
 
 function generateRecordingURLs() {
     let recordingURLs = {
         AECH111 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11256" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11256" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13093" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13093" }
             ] 
         },
         ANAT214 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12204" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12204" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14135" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14135" }
             ] 
         },
         ANAT321 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10435" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10435" }
             ] 
         },
         ANAT416 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11265" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11265" }
             ] 
         },
         ANSC234 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12551" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12551" }
             ] 
         },
         ATOC184 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11293" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11293" }
             ] 
         },
         ATOC185 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9858" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "9858" }
             ] 
         },
         BIOC300D2 : { 
             2014 : [
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11297" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11297" }
             ]
         },
         BIOC311 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10451" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10451" }
             ] 
         },
         BIOC312 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11264" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11264" }
             ] 
         },
         BIOC450 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10452" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10452" }
             ] 
         },
         BIOL115 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12042" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12042" }
             ] 
         },
         BIOL200 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13768" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13768" }
             ] 
         },
         BIOL201 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12958" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12958" }
             ] 
         },
         BIOL202 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11132" },
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11425" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11132" },
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "lrs", id: "11425" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12959" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12959" }
             ] 
         },
         BIOL215 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13967" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13967" }
             ] 
         },
         BIOL309 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10255" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10255" }
             ] 
         },
         BIOL313 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12828" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12828" }
             ] 
         },
         BUS2365 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12197" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12197" }
             ] 
         },
         CACC521 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "781", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13488" }
+                { year: 2016, month: 09, semester: "Fall", section: "781", type: "lrs", id: "13488" }
             ] 
         },
         CFIN512 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13571" }
+                { year: 2016, month: 09, semester: "Fall", section: "751", type: "lrs", id: "13571" }
             ] 
         },
         CHEE453 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13537" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13537" }
             ] 
         },
         CHEM110 : { 
             2010 : [ 
-                { year: 2010, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1420" },
-                { year: 2010, month: 09, semester: "Fall", section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1421" },
-                { year: 2010, month: 09, semester: "Fall", section: "003", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1430" }
+                { year: 2010, month: 09, semester: "Fall", section: "001", type: "cool", id: "1420" },
+                { year: 2010, month: 09, semester: "Fall", section: "002", type: "cool", id: "1421" },
+                { year: 2010, month: 09, semester: "Fall", section: "003", type: "cool", id: "1430" }
             ],
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1460" },
-                { year: 2011, month: 09, semester: "Fall", section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1461" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1460" },
+                { year: 2011, month: 09, semester: "Fall", section: "002", type: "cool", id: "1461" }
             ],
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1514" },
-                { year: 2012, month: 09, semester: "Fall", section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1515" }
+                { year: 2012, month: 09, semester: "Fall", section: "001", type: "cool", id: "1514" },
+                { year: 2012, month: 09, semester: "Fall", section: "002", type: "cool", id: "1515" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1571" },
-                { year: 2014, month: 09, semester: "Fall", section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1572" },
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10258" }        
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1571" },
+                { year: 2014, month: 09, semester: "Fall", section: "002", type: "cool", id: "1572" },
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10258" }        
             ], 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12039" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12039" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13961" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13961" }
             ]
         },
         CHEM120 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1432" },
-                { year: 2011, month: 01, semester: "Winter", section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1433" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1432" },
+                { year: 2011, month: 01, semester: "Winter", section: "002", type: "cool", id: "1433" }
             ],
             2011 : [ 
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1477" },
-                { year: 2012, month: 01, semester: "Winter", section: "002", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1478" }
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1477" },
+                { year: 2012, month: 01, semester: "Winter", section: "002", type: "cool", id: "1478" }
             ],
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1588" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "cool", id: "1588" }
             ]
         },
         CHEM180 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1435" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1435" }
             ],
             2011 : [ 
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1480" }
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1480" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1516" }
+                { year: 2013, month: 01, semester: "Winter", section: "761", type: "cool", id: "1516" }
             ],
             2013 : [ 
-                { year: 2014, month: 01, semester: "Winter", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1545" }
+                { year: 2014, month: 01, semester: "Winter", section: "761", type: "cool", id: "1545" }
             ] 
         },
         CHEM181 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1434" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1434" }
             ],
             2011 : [ 
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1479" }
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1479" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1517" }
+                { year: 2013, month: 01, semester: "Winter", section: "761", type: "cool", id: "1517" }
             ],
             2013 : [ 
-                { year: 2014, month: 01, semester: "Winter", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1546" }
+                { year: 2014, month: 01, semester: "Winter", section: "761", type: "cool", id: "1546" }
             ],
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11287" }
+                { year: 2015, month: 01, semester: "Winter", section: "761", type: "lrs", id: "11287" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13124" }
+                { year: 2016, month: 01, semester: "Winter", section: "761", type: "lrs", id: "13124" }
             ]
         },
         CHEM182 : { 
             2010 : [ 
-                { year: 2010, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1417" }
+                { year: 2010, month: 09, semester: "Fall", section: "001", type: "cool", id: "1417" }
             ],
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1463" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1463" }
             ],
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1504" }
+                { year: 2012, month: 09, semester: "Fall", section: "761", type: "cool", id: "1504" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1535" }
+                { year: 2013, month: 09, semester: "Fall", section: "761", type: "cool", id: "1535" }
             ] 
         },
         CHEM183 : { 
             2010 : [ 
-                { year: 2010, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1418" }
+                { year: 2010, month: 09, semester: "Fall", section: "761", type: "cool", id: "1418" }
             ],
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1464" }
+                { year: 2011, month: 09, semester: "Fall", section: "761", type: "cool", id: "1464" }
             ],
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1505" }
+                { year: 2012, month: 09, semester: "Fall", section: "761", type: "cool", id: "1505" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1536" }
+                { year: 2013, month: 09, semester: "Fall", section: "761", type: "cool", id: "1536" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1574" },
-                { year: 2014, month: 09, semester: "Fall", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9852" }
+                { year: 2014, month: 09, semester: "Fall", section: "761", type: "cool", id: "1574" },
+                { year: 2014, month: 09, semester: "Fall", section: "761", type: "lrs", id: "9852" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "761", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1607" },
-                { year: 2015, month: 09, semester: "Fall", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11556" }
+                { year: 2015, month: 09, semester: "Fall", section: "761", type: "cool", id: "1607" },
+                { year: 2015, month: 09, semester: "Fall", section: "761", type: "lrs", id: "11556" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "761", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13440" }
+                { year: 2016, month: 09, semester: "Fall", section: "761", type: "lrs", id: "13440" }
             ] 
         },
         CHEM203: {
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13988" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13988" }
             ] 
         },
         CHEM204 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1437" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1437" }
             ],
             2011 : [ 
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1482" }
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1482" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1522" }
+                { year: 2013, month: 01, semester: "Winter", section: "001", type: "cool", id: "1522" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1576" },
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10286" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1576" },
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10286" }
             ] 
         },
         CHEM211 : { 
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1506" }
+                { year: 2012, month: 09, semester: "Fall", section: "001", type: "cool", id: "1506" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1531" }
+                { year: 2013, month: 09, semester: "Fall", section: "001", type: "cool", id: "1531" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1570" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1570" }
             ] 
         },
         CHEM212 : { 
             2010 : [ 
-                { year: 2010, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1429" },
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1440" },
-                { year: 2011, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1455" }
+                { year: 2010, month: 09, semester: "Fall", section: "001", type: "cool", id: "1429" },
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1440" },
+                { year: 2011, month: 05, semester: "Summer", section: "001", type: "cool", id: "1455" }
             ],
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1465" },
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1485" },
-                { year: 2012, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1500" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1465" },
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1485" },
+                { year: 2012, month: 05, semester: "Summer", section: "001", type: "cool", id: "1500" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1524" },
-                { year: 2013, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1525" }
+                { year: 2013, month: 01, semester: "Winter", section: "001", type: "cool", id: "1524" },
+                { year: 2013, month: 05, semester: "Summer", section: "001", type: "cool", id: "1525" }
             ],
             2013 : [ 
-                { year: 2014, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1553" },
-                { year: 2014, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1560" }
+                { year: 2014, month: 01, semester: "Winter", section: "001", type: "cool", id: "1553" },
+                { year: 2014, month: 05, semester: "Summer", section: "001", type: "cool", id: "1560" }
             ],
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1590" },
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1593" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "cool", id: "1590" },
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "cool", id: "1593" }
             ] 
         },
         CHEM214 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1439" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1439" }
             ],
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11146" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11146" }
             ] 
         },
         CHEM222 : { 
             2010 : [ 
-                { year: 2010, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1422" },
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1438" },
-                { year: 2011, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1458" }
+                { year: 2010, month: 09, semester: "Fall", section: "001", type: "cool", id: "1422" },
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1438" },
+                { year: 2011, month: 05, semester: "Summer", section: "001", type: "cool", id: "1458" }
             ],
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1466" },
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1483" },
-                { year: 2012, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1502" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1466" },
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1483" },
+                { year: 2012, month: 05, semester: "Summer", section: "001", type: "cool", id: "1502" }
             ],
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1507" },
-                { year: 2013, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1523" },
-                { year: 2013, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1526" }
+                { year: 2012, month: 09, semester: "Fall", section: "001", type: "cool", id: "1507" },
+                { year: 2013, month: 01, semester: "Winter", section: "001", type: "cool", id: "1523" },
+                { year: 2013, month: 05, semester: "Summer", section: "001", type: "cool", id: "1526" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1529" },
-                { year: 2014, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1552" },
-                { year: 2014, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1561" }
+                { year: 2013, month: 09, semester: "Fall", section: "001", type: "cool", id: "1529" },
+                { year: 2014, month: 01, semester: "Winter", section: "001", type: "cool", id: "1552" },
+                { year: 2014, month: 05, semester: "Summer", section: "001", type: "cool", id: "1561" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1568" },
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10323" },
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1584" },
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1594" },
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11423" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1568" },
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10323" },
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "cool", id: "1584" },
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "cool", id: "1594" },
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "lrs", id: "11423" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1601" },
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1616" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "cool", id: "1601" },
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "cool", id: "1616" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14025" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14025" }
             ]   
         },
         CHEM232 : { 
             2010 : [ 
-                { year: 2010, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1419" }
+                { year: 2010, month: 09, semester: "Fall", section: "001", type: "cool", id: "1419" }
             ],
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1467" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1467" }
             ],
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1511" }
+                { year: 2012, month: 09, semester: "Fall", section: "001", type: "cool", id: "1511" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1530" }
+                { year: 2013, month: 09, semester: "Fall", section: "001", type: "cool", id: "1530" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1569" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1569" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13966" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13966" }
             ]  
         },
         CHEM281 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1436" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1436" }
             ],
             2011 : [ 
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1481" }
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1481" }
             ] 
         },
         CHEM302 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1441" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1441" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1521" }
+                { year: 2013, month: 01, semester: "Winter", section: "001", type: "cool", id: "1521" }
             ] 
         },
         CHEM462 : { 
             2012 : [ 
-                { year: 2012, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1512" }
+                { year: 2012, month: 09, semester: "Fall", section: "001", type: "cool", id: "1512" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1537" }
+                { year: 2013, month: 09, semester: "Fall", section: "001", type: "cool", id: "1537" }
             ] 
         },
         CHEM502 : { 
             2013 : [ 
-                { year: 2014, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1556" }
+                { year: 2014, month: 01, semester: "Winter", section: "001", type: "cool", id: "1556" }
             ] 
         },
         CIVE320 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10225" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10225" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11999" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11999" }
             ] 
         },
         CLAS203 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10001" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10001" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11700" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11700" }
             ] 
         },
         COMP202 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12237" },
-                { year: 2016, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13267" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12237" },
+                { year: 2016, month: 05, semester: "Summer", section: "001", type: "lrs", id: "13267" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14166" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14166" }
             ] 
         },
         COMP208 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13909" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13909" }
             ] 
         },
         COMP250 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10464" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10464" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12243" },
-                { year: 2015, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11806" },
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13068" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12243" },
+                { year: 2015, month: 09, semester: "Fall", section: "002", type: "lrs", id: "11806" },
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13068" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14171" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14171" }
             ]  
         },
         COMP251 : {
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14172" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14172" }
             ]  
         },
         COMP273 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13075" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13075" }
             ] 
         },
         COMP302 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13118" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13118" }
             ] 
         },
         COMP310 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13081" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13081" }
             ] 
         },
         COMP557 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10865" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10865" }
             ] 
         },
         DENT220D1 : { 
             2015 : [
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12642" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12642" }
             ]
         },
         DENT318J1 : { 
             2015 : [
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12324DE" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12324DE" }
             ]
         },
         DENT320J3 : { 
             2015 : [
-                { year: 2016, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13322" }
+                { year: 2016, month: 05, semester: "Summer", section: "001", type: "lrs", id: "13322" }
             ]
         },
         DENT323J1 : { 
             2015 : [
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12328" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12328" }
             ]
         },
         DENT411 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12339" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12339" }
             ] 
         },
         DENT412D2 : { 
             2015 : [
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12646" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12646" }
             ]
         },
         DENT413 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12341" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12341" }
             ] 
         },
         ECON208 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "004", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11009" }
+                { year: 2015, month: 01, semester: "Winter", section: "004", type: "lrs", id: "11009" }
             ] 
         },
         ECON209 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "003", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11010" }
+                { year: 2015, month: 01, semester: "Winter", section: "003", type: "lrs", id: "11010" }
             ] 
         },
         ECON230D1 : { 
             2014 : [
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10016" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10016" }
             ],
             2015 : [
-                { year: 2015, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11716" }
+                { year: 2015, month: 09, semester: "Fall", section: "002", type: "lrs", id: "11716" }
             ]
         },
         ECON257D1 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13591" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13591" }
             ] 
         },
         ECON313 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10192" },
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11450" }
+                { year: 2014, month: 09, semester: "Fall", section: "002", type: "lrs", id: "10192" },
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "lrs", id: "11450" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11953" }
+                { year: 2015, month: 09, semester: "Fall", section: "002", type: "lrs", id: "11953" }
             ] 
         },
         ECON314 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9891" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "9891" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11600" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11600" }
             ] 
         },
         ECSE211 : { 
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1468" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1468" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1519" }
+                { year: 2013, month: 01, semester: "Winter", section: "001", type: "cool", id: "1519" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1539" },
-                { year: 2014, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1548" }
+                { year: 2013, month: 09, semester: "Fall", section: "001", type: "cool", id: "1539" },
+                { year: 2014, month: 01, semester: "Winter", section: "001", type: "cool", id: "1548" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1567" },
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1586" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1567" },
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "cool", id: "1586" }
             ] 
         },
         ECON319 : {
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13676" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13676" }
             ]  
         },
         ECSE322 : { 
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1469" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1469" }
             ],
             2012 : [ 
-                { year: 2013, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1520" }
+                { year: 2013, month: 01, semester: "Winter", section: "001", type: "cool", id: "1520" }
             ],
             2013 : [ 
-                { year: 2014, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1549" }
+                { year: 2014, month: 01, semester: "Winter", section: "001", type: "cool", id: "1549" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1566" },
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1587" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1566" },
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "cool", id: "1587" }
             ] 
         },
         ECSE549 : { 
             2011 : [ 
-                { year: 2011, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1470" }
+                { year: 2011, month: 09, semester: "Fall", section: "001", type: "cool", id: "1470" }
             ],
             2013 : [ 
-                { year: 2013, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1540" }
+                { year: 2013, month: 09, semester: "Fall", section: "001", type: "cool", id: "1540" }
             ],
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1565" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "cool", id: "1565" }
             ] 
         },
         EPSC180 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11290" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11290" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13127" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13127" }
             ] 
         },
         EPSC201 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12270" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12270" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14200" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14200" }
             ] 
         },
         FACC100 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11295" }
+                { year: 2015, month: 01, semester: "Winter", section: "002", type: "lrs", id: "11295" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13441" }
+                { year: 2016, month: 09, semester: "Fall", section: "002", type: "lrs", id: "13441" }
             ] 
         },
         FINE682 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "065", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13842" }
+                { year: 2016, month: 09, semester: "Fall", section: "065", type: "lrs", id: "13842" }
             ] 
         },
         GEOG200 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12169" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12169" }
             ] 
         },
         HIST249 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10371" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10371" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12145" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12145" }
             ] 
         },
         INDS111 : {
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13640" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13640" }
             ]  
         },
         INDS211 : {
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13688" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13688" }
             ]  
         },
         LAWG210 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11964" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11964" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13779" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13779" }
             ]  
         },
         LAWG273 : { 
             2015 : [ 
-                { year: 2016, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13346" }
+                { year: 2016, month: 05, semester: "Summer", section: "001", type: "lrs", id: "13346" }
             ] 
         },
         LAWG300 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12703" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12703" }
             ] 
         },
         LING201 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10887" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10887" }
             ] 
         },
         MATH323 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13020" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13020" }
             ] 
         },
         MATH595 : { 
             2014 : [ 
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11458" }
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "lrs", id: "11458" }
             ] 
         },
         MATH598 : { 
             2014 : [ 
-                { year: 2015, month: 05, semester: "Summer", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11459" }
+                { year: 2015, month: 05, semester: "Summer", section: "001", type: "lrs", id: "11459" }
             ] 
         },
         MGCR222 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "006", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10063" },
-                { year: 2015, month: 01, semester: "Winter", section: "005", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11337" },
-                { year: 2015, month: 01, semester: "Winter", section: "006", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10745" }
+                { year: 2014, month: 09, semester: "Fall", section: "006", type: "lrs", id: "10063" },
+                { year: 2015, month: 01, semester: "Winter", section: "005", type: "lrs", id: "11337" },
+                { year: 2015, month: 01, semester: "Winter", section: "006", type: "lrs", id: "10745" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "003", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14046" },
-                { year: 2016, month: 09, semester: "Fall", section: "005", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14048" }
+                { year: 2016, month: 09, semester: "Fall", section: "003", type: "lrs", id: "14046" },
+                { year: 2016, month: 09, semester: "Fall", section: "005", type: "lrs", id: "14048" }
             ] 
         },
         MGCR331 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10179" }
+                { year: 2014, month: 09, semester: "Fall", section: "751", type: "lrs", id: "10179" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11870" },
-                { year: 2016, month: 05, semester: "Summer", section: "751", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13333" }
+                { year: 2015, month: 09, semester: "Fall", section: "751", type: "lrs", id: "11870" },
+                { year: 2016, month: 05, semester: "Summer", section: "751", type: "lrs", id: "13333" }
             ] 
         },
         MGCR341 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12413" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12413" }
             ] 
         },
         MGPO640 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10765" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10765" }
             ] 
         },
         MIMM212 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9878" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "9878" }
             ] 
         },
         MIMM214 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10715" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10715" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12479" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12479" }
             ] 
         },
         MIMM314 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11200" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11200" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13029" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13029" }
             ] 
         },
         MIMM323 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10424" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10424" }
             ] 
         },
         MIMM413 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11203" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11203" }
             ] 
         },
         NUR1420 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12025" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12025" }
             ] 
         },
         NUTR545 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11552" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11552" }
             ] 
         },
         OCC1551 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13036" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "13036" }
             ] 
         },
         OCCH608 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "088", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1447" }
+                { year: 2011, month: 01, semester: "Winter", section: "088", type: "cool", id: "1447" }
             ] 
         },
         OCCH615 : { 
             2010 : [ 
-                { year: 2011, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1450" }
+                { year: 2011, month: 01, semester: "Winter", section: "001", type: "cool", id: "1450" }
             ],
             2011 : [ 
-                { year: 2012, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1495" }
+                { year: 2012, month: 01, semester: "Winter", section: "001", type: "cool", id: "1495" }
             ],
             2013 : [ 
-                { year: 2014, month: 01, semester: "Winter", section: "001", url: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID=1558" }
+                { year: 2014, month: 01, semester: "Winter", section: "001", type: "cool", id: "1558" }
             ] 
         },
         ORGB685 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11171" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11171" }
             ] 
         },
         PHGY209 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12213" },
-                { year: 2015, month: 09, semester: "Fall", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12080" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12213" },
+                { year: 2015, month: 09, semester: "Fall", section: "002", type: "lrs", id: "12080" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14144" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14144" }
             ] 
         },
         PHGY210 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12906" },
-                { year: 2016, month: 01, semester: "Winter", section: "002", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13060" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12906" },
+                { year: 2016, month: 01, semester: "Winter", section: "002", type: "lrs", id: "13060" }
             ] 
         },
         PHGY212 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12107" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12107" }
             ] 
         },
         PHGY314 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12215" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12215" }
             ] 
         },
         PHIL210 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=9987" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "9987" }
             ] 
         },
         PHTH440 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10806" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10806" }
             ] 
         },
         PHTH551 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12229" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "12229" }
             ] 
         },
         PHYS102 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12987" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12987" }
             ] 
         },
         POLI227 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12798" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12798" }
             ] 
         },
         POLI243 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10977" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10977" }
             ] 
         },
         POLI346 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10463" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10463" }
             ] 
         },
         POTH225 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12554" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12554" }
             ] 
         },
         POTH401 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11249" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11249" }
             ] 
         },
         POTH551 : { 
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14159" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14159" }
             ] 
         },
         POTH563 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11771" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11771" }
             ] 
         },
         POTH684 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10736" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "10736" }
             ],
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12500" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12500" }
             ] 
         },
         PSYC215 : { 
             2014 : [ 
-                { year: 2015, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11129" }
+                { year: 2015, month: 01, semester: "Winter", section: "001", type: "lrs", id: "11129" }
             ] 
         },
         PSYC331 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10132" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10132" }
             ],
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11817" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11817" }
             ] 
         },
         PSYC337 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10483" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10483" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=14190" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "14190" }
             ] 
         },
         PSYC406 : {
             2016 : [ 
-                { year: 2016, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=13830" }
+                { year: 2016, month: 09, semester: "Fall", section: "001", type: "lrs", id: "13830" }
             ] 
         },
         PSYC410 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10484" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10484" }
             ] 
         },
         SOCI225 : { 
             2015 : [ 
-                { year: 2015, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=11839" }
+                { year: 2015, month: 09, semester: "Fall", section: "001", type: "lrs", id: "11839" }
             ] 
         },
         SOCI254 : { 
             2014 : [ 
-                { year: 2014, month: 09, semester: "Fall", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=10039" }
+                { year: 2014, month: 09, semester: "Fall", section: "001", type: "lrs", id: "10039" }
             ] 
         },
         SOCI265 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12600" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12600" }
             ] 
         },
         SOCI270 : { 
             2015 : [ 
-                { year: 2016, month: 01, semester: "Winter", section: "001", url: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=12601" }
+                { year: 2016, month: 01, semester: "Winter", section: "001", type: "lrs", id: "12601" }
             ] 
         }
     };
