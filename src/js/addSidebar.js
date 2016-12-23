@@ -27,6 +27,7 @@ function makeSidebarContent() {
 
     const recordingURLdata = getRecordingData()[courseName];
     const recordingsBaseURLs = getRecordingsBaseURLs();
+    const monthToSemester = getMonthToSemester();
     const wikinotesURLdata = getWikinotesData()[courseName];
     const docuumURLdata = getDocuumData()[courseName];
     const csusURLdata = getCSUSdata()[courseName];
@@ -111,7 +112,7 @@ function makeSidebarContent() {
             for (let r = 0; r < yearRecordingURLs.length; r++) {
                 const recordingData = yearRecordingURLs[r];
                 const recordingURL = recordingsBaseURLs[recordingData.type] + recordingData.id;
-                const recordingsButtonString = "View " + recordingData.semester + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
+                const recordingsButtonString = "View " + monthToSemester[recordingData.month] + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
                 recordings.appendChild(generateSidebarLink(recordingURL, "mcen-red", recordingsButtonString, false));
             }
         }
