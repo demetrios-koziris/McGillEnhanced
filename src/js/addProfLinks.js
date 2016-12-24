@@ -122,6 +122,7 @@ function makeProfLinks() {
 
                 const termImg = document.createElement('img');
                 termImg.className = 'mcen-termImg';
+                termImg.src = chrome.extension.getURL('icons/empty-15.png');
                 termDiv.appendChild(termImg);
 
                 if (termKey in prof.terms) {

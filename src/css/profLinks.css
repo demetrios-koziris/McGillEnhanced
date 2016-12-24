@@ -52,5 +52,6 @@
 	vertical-align: middle;
 	width: 15px;
 	height: 15px;
-	margin: 0 10px 4px 10px;;
+	margin: 0 10px 4px 10px;
+	border: 1px solid #ECEFF1 !important;
 }
