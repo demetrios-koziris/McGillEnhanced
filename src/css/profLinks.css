@@ -3,17 +3,17 @@
 }
 
 .mcen-profLink {
-	margin-left: 14px !important;
+	margin-left: 10px !important;
 }
 
 .mcen-profLinkButton {
 	border-radius: 3px;
 	background: #C5C5C5 !important;
 	border: 1px solid #5B5B5A !important;
-	height: 27px !important;
+	height: 25px !important;
 	width: 80px !important;
 	font-size: 13px !important;
-	padding: 6px !important;
+	padding: 5px !important;
 	text-align: center;
 }
 .mcen-googleLinkButton {
@@ -24,6 +24,7 @@
 	background: -webkit-linear-gradient(left, #FFFFFF, #C5C5C5) !important;
 }
 .mcen-mercuryLinkButton {
+	margin-right: 10px !important;
 	border-left: none !important;
 	border-top-left-radius: 0px !important;
 	border-bottom-left-radius: 0px !important;
@@ -35,9 +36,21 @@
 	background: #ECEFF1 !important;
 	border: 1px solid #C5C5C5 !important;
 	border-left: none !important;
-	color: #C5C5C5;
+	color: #C5C5C5 !important;
 }
 
 .mcen-termSection {
-	margin: 20px 0px;
+	display: inline;
+	margin: 0px 10px;
+}
+
+.mcen-termDiv {
+	display: inline;
+}
+
+.mcen-termImg {
+	vertical-align: middle;
+	width: 15px;
+	height: 15px;
+	margin: 0 10px 4px 10px;;
 }
