@@ -126,7 +126,7 @@ function makeProfLinks() {
 
                 if (termKey in prof.terms) {
                     termDiv.title = termKey;
-                    termDiv.className += '';
+                    termDiv.className += ' tooltip';
                     termImg.src = terms[termKey];
                 } 
             }
