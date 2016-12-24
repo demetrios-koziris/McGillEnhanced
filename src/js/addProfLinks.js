@@ -107,7 +107,7 @@ function makeProfLinks() {
             if (!(prof.name.full in minervaProfs)) {
                 mercuryLinkButton.className = 'tooltipError mcen-profLinkButton mcen-mercuryLinkButton not-active';
                 mercuryLinkButton.title = mercuryLinkMessageError;
-                mercuryLink.href = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form=';
+                mercuryLink.href = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form';
             }
 
             const termSection = document.createElement('div');
@@ -168,18 +168,16 @@ function makeProfLinks() {
             delay: 400,
             offset: [0, -8],
             css: {
-            fontFamily: 'CartoGothicStdBook',
-            padding: '6px 12px',
-            color: (isNewStyle ? '#444444' : '#2C566D'),
-            fontSize: '.8em',
-            backgroundColor: '#FFF0F0',
-            borderRadius: '8px',
-            textAlign: 'center',
-            boxShadow: '2px 2px 10px #E54944'
-        }
+                fontFamily: 'CartoGothicStdBook',
+                padding: '6px 12px',
+                color: (isNewStyle ? '#444444' : '#2C566D'),
+                fontSize: '.8em',
+                backgroundColor: '#FFF0F0',
+                borderRadius: '8px',
+                textAlign: 'center',
+                boxShadow: '2px 2px 10px #E54944'
+            }
         });
-
-
     }
 }
 
