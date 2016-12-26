@@ -23,19 +23,37 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	const start = Date.now();
 	
-	const courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
+	courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 	isNewStyle = document.getElementsByClassName("transition").length > 0;
 	urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
 	urlYearW = urlYearF+1;
 	urlYears = urlYearF + "-" + urlYearW;
 	sysYear = new Date().getFullYear();
 	sysMonth = new Date().getMonth();
+	var lang = 'en';
+    if (url.match(/\/fr\//)) {
+        lang = 'fr';
+    }
 
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		addYearMenu();
 	}
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
+
+		termNames = {
+	        'en': {
+	            9: 'Fall',
+	            1: 'Winter',
+	            5: 'Summer'
+	        },
+	        'fr': {
+	            9: 'Automne',
+	            1: 'Hiver',
+	            5: 'Été'
+	        },
+	    };
+
 		makeProfLinks();
 		makeCourseLinks(courseNameRegex);
 		makeSidebarContent();

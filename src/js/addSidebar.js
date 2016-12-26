@@ -34,21 +34,21 @@ function makeSidebarContent() {
 
     const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
     const courseTermsCodes = [];
-    if (courseTerms.match(/Fall/)) {
+    if (courseTerms.match(termNames[lang][9])) {
         courseTermsCodes.push( {
             name: "Fall " + urlYearF,  
             code: urlYearF + "09",
             vsbURL: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearF + "09&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs="
         } );
     }
-    if (courseTerms.match(/Winter/)) {
+    if (courseTerms.match(termNames[lang][1])) {
         courseTermsCodes.push( {
             name: "Winter " + urlYearW,  
             code: urlYearW + "01",
             vsbURL: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearW + "01&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs="
         } );
     }
-    if (courseTerms.match(/Summer/)) {
+    if (courseTerms.match(termNames[lang][05])) {
         courseTermsCodes.push( {
             name: "Summer " + urlYearW,  
             code: urlYearW + "05"

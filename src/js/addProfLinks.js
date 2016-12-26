@@ -17,13 +17,27 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function makeProfLinks() {
 
+    
+
     terms = {
-        'Fall': 'https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/fall.gif',
-        'Winter': 'https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/winter.gif',
-        'Summer': 'https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/summer.gif'
+        'Fall': {
+            'code': 9,
+            'year': urlYearF
+        },
+        'Winter': {
+            'code': 1,
+            'year': urlYearW
+        },
+        'Summer': {
+            'code': 5,
+            'year': urlYearW
+        }
+    };
+    inst = {
+        'en': 'Instructors:',
+        'fr': 'Chargés de cours :'
     };
     profs = {};
-    const profsByTerm = {};
     const minervaProfs = getProfData();
     let profsLength = 0;
 
@@ -39,33 +53,34 @@ function makeProfLinks() {
 
     if (!profsFullSource.match(/There are no professors/)) {
 
-        const profsFullSourceArray = profsFullSource.match(/(Fall|Winter|Summer)/g);
-        for (let a = 0; a < profsFullSourceArray.length; a++) {
-            if (!(profsFullSourceArray[a] in profsByTerm)) {
-                profsByTerm[profsFullSourceArray[a]] = [];
-            }
+        if (profsFullSource.match(inst[lang])) {
+            profsFullSource = profsFullSource.split(inst[lang])[1];
+        }
+        else {
+            // this is necessary because some french pages use the english language for 'Instructors:'
+            profsFullSource = profsFullSource.split(inst.en)[1];
         }
 
-        profsFullSource = profsFullSource.split("Instructors:")[1];
-
-        for (let termKey in profsByTerm) {
+        for (let termKey in terms) {
 
             const profsTermSource = profsFullSource.split("(" + termKey + ")");
             if (profsTermSource.length > 1) {
-                profsByTerm[termKey] = profsTermSource[0].split(",");
+                profsForTerm = profsTermSource[0].split(",");
 
-                for (let p=0; p<profsByTerm[termKey].length; p++) {
+                for (let p=0; p<profsForTerm.length; p++) {
 
-                    let prof = generateProfObject(minervaProfs, profsByTerm[termKey][p], termKey);
-                    if (prof.key in profs) {
-                        profs[prof.key].terms[termKey] = '';
+                    let newProfObject = generateProfObject(minervaProfs, profsForTerm[p], termKey);
+                    if (newProfObject.key in profs) {
+                        // add term to prof object
+                        profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
+                        console.log(terms[termKey]);
                     }
                     else {
-                        profs[prof.key] = prof;
+                        profs[newProfObject.key] = newProfObject;
+                        profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
+                        console.log(newProfObject);
                     }
                 }
-
-                logForDebug(profsByTerm[termKey]);
                 profsFullSource = profsTermSource[1];
             }
         }
@@ -73,7 +88,7 @@ function makeProfLinks() {
         const profSection = document.createElement('div');
 
         const profSectionTitle = document.createElement('div');
-        profSectionTitle.innerHTML = '<b>Instructors:</b>';
+        profSectionTitle.innerHTML = '<b>' + inst[lang] + '</b>';
         profSection.appendChild(profSectionTitle);
 
         for (let profKey in profs) {
@@ -125,10 +140,11 @@ function makeProfLinks() {
                 termImg.src = chrome.extension.getURL('icons/empty-15.png');
                 termDiv.appendChild(termImg);
 
-                if (termKey in prof.terms) {
-                    termDiv.title = termKey;
+                if (termKey in prof.termsTeaching) {
+                    termInfo = prof.termsTeaching[termKey];
+                    termDiv.title = termNames[lang][termInfo.code] + ' ' + termInfo.year;
                     termDiv.className += ' tooltip';
-                    termImg.src = terms[termKey];
+                    termImg.src = 'https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/' + termKey.toLowerCase() + '.gif';
                 } 
             }
 
@@ -183,7 +199,7 @@ function makeProfLinks() {
 }
 
 
-function generateProfObject(minervaProfs, origName, term) {
+function generateProfObject(minervaProfs, origName, termKey) {
     const name = origName.trim();
     const splitName = name.split(' ');
     const profName = {
@@ -193,14 +209,13 @@ function generateProfObject(minervaProfs, origName, term) {
     };
     const prof = {
         key: name.replace(/\W/g, ''),
-        terms: {},
+        termsTeaching: {},
         minerva: minervaProfs[name],
         name: profName,
         urlCourses: 'https://www.mcgill.ca/study/' + urlYears + '/courses/search' + (isNewStyle ? '?search_api_views_fulltext=' : '/') + profName.full,
         urlGoogle: 'https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last,
         urlMercury: 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&inst_tab_in=' + minervaProfs[profName.full]
     };
-    prof.terms[term] = '';
     return prof;
 }
 
