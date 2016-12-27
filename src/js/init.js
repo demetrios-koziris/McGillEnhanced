@@ -23,13 +23,13 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	const start = Date.now();
 	
-	courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
-	isNewStyle = document.getElementsByClassName("transition").length > 0;
-	urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-	urlYearW = urlYearF+1;
-	urlYears = urlYearF + "-" + urlYearW;
-	sysYear = new Date().getFullYear();
-	sysMonth = new Date().getMonth();
+	var courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
+	var isNewStyle = document.getElementsByClassName("transition").length > 0;
+	var urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
+	var urlYearW = urlYearF+1;
+	var urlYears = urlYearF + "-" + urlYearW;
+	var sysYear = new Date().getFullYear();
+	var sysMonth = new Date().getMonth();
 	var lang = 'en';
     if (url.match(/\/fr\//)) {
         lang = 'fr';
@@ -41,7 +41,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
 
-		termNames = {
+		var termNames = {
 	        'en': {
 	            9: 'Fall',
 	            1: 'Winter',

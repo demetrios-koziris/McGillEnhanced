@@ -17,6 +17,12 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function makeProfLinks() {
 
+    if (isNewStyle) {
+        const pageTitle = document.getElementById('page-title');
+        const mainColumn =  document.getElementById('main-column');
+        mainColumn.insertBefore(pageTitle, mainColumn.firstChild);
+    }
+
     terms = {
         'Fall': {
             'code': 9,
