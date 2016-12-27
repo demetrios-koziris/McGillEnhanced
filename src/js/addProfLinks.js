@@ -17,8 +17,6 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function makeProfLinks() {
 
-    
-
     terms = {
         'Fall': {
             'code': 9,
@@ -62,24 +60,19 @@ function makeProfLinks() {
         }
 
         for (let termKey in terms) {
-
-            const profsTermSource = profsFullSource.split("(" + termKey + ")");
+            termName = ( isNewStyle ? termKey : termNames[lang][terms[termKey].code] );
+            const profsTermSource = profsFullSource.split("(" + termName + ")");
             if (profsTermSource.length > 1) {
                 profsForTerm = profsTermSource[0].split(",");
 
                 for (let p=0; p<profsForTerm.length; p++) {
 
                     let newProfObject = generateProfObject(minervaProfs, profsForTerm[p], termKey);
-                    if (newProfObject.key in profs) {
-                        // add term to prof object
-                        profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
-                        console.log(terms[termKey]);
-                    }
-                    else {
+                    if (!(newProfObject.key in profs)) {
                         profs[newProfObject.key] = newProfObject;
-                        profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
-                        console.log(newProfObject);
                     }
+                    // add term info to prof object
+                    profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
                 }
                 profsFullSource = profsTermSource[1];
             }
