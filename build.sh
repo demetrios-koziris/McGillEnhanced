@@ -65,7 +65,7 @@ for browser in "$@"; do
 
 		file=build/$buildname/manifest.json
 
-		match='"author": "Demetrios Koziris",'
+		match='"author": "kozirisdev",'
 		insert='  "-ms-preload":{"backgroundScript":"backgroundScriptsAPIBridge.js","contentScript":"contentScriptsAPIBridge.js"},'  
 		sed -i "s/$match/$match\n$insert/" $file
 
@@ -92,7 +92,7 @@ for browser in "$@"; do
 	# build firefox add-on
 	if [ $browser == firefox ]; then
 
-		match='"author": "Demetrios Koziris",'
+		match='"author": "kozirisdev",'
 		insert='  "applications":{"gecko":{"id":"extension@example.org"}},'
 		file='src/manifest.json'
 		sed -i "s/$match/$match\n$insert/" $file
