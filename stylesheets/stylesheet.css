@@ -172,10 +172,10 @@ a.button span {
 #view-on-chrome {
   margin-right: 10px;
 }
-#support-me span {
-  background: transparent url(../images/support-me-icon.png) 12px 50% no-repeat;
+#support-this span {
+  background: transparent url(../images/support-this-icon.png) 12px 50% no-repeat;
 }
-#support-me {
+#support-this {
   margin-right: 10px;
 }
 #mcgill-enhanced span {
