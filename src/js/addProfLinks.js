@@ -17,11 +17,9 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function makeProfLinks() {
 
-    if (isNewStyle) {
-        const pageTitle = document.getElementById('page-title');
-        const mainColumn =  document.getElementById('main-column');
-        mainColumn.insertBefore(pageTitle, mainColumn.firstChild);
-    }
+    const pageTitle = document.getElementById('page-title');
+    const mainColumn =  document.getElementById('main-column');
+    mainColumn.insertBefore(pageTitle, mainColumn.firstChild);
 
     terms = {
         'Fall': {
@@ -66,8 +64,7 @@ function makeProfLinks() {
         }
 
         for (let termKey in terms) {
-            termName = ( isNewStyle ? termKey : termNames[lang][terms[termKey].code] );
-            const profsTermSource = profsFullSource.split("(" + termName + ")");
+            const profsTermSource = profsFullSource.split("(" + termKey + ")");
             if (profsTermSource.length > 1) {
                 profsForTerm = profsTermSource[0].split(",");
 
@@ -168,9 +165,9 @@ function makeProfLinks() {
             css: {
                 fontFamily: 'CartoGothicStdBook',
                 padding: '6px 12px',
-                color: (isNewStyle ? '#444444' : '#2C566D'),
+                color: '#444444',
                 fontSize: '.8em',
-                backgroundColor: (isNewStyle ? '#eceff1' : '#F4F5ED'),
+                backgroundColor: '#eceff1',
                 borderRadius: '8px',
                 textAlign: 'center',
                 boxShadow: '4px 4px 10px #888888'
@@ -186,7 +183,7 @@ function makeProfLinks() {
             css: {
                 fontFamily: 'CartoGothicStdBook',
                 padding: '6px 12px',
-                color: (isNewStyle ? '#444444' : '#2C566D'),
+                color: '#444444',
                 fontSize: '.8em',
                 backgroundColor: '#FFF0F0',
                 borderRadius: '8px',
@@ -211,7 +208,7 @@ function generateProfObject(minervaProfs, origName, termKey) {
         termsTeaching: {},
         minerva: minervaProfs[name],
         name: profName,
-        urlCourses: 'https://www.mcgill.ca/study/' + urlYears + '/courses/search' + (isNewStyle ? '?search_api_views_fulltext=' : '/') + profName.full,
+        urlCourses: 'https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext=' + profName.full,
         urlGoogle: 'https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last,
         urlMercury: 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&inst_tab_in=' + minervaProfs[profName.full]
     };
