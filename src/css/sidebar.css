@@ -13,6 +13,10 @@
 	border: 0px !important;
 }
 
+.view-catalog-program{
+	padding: 0px 10px !important;
+}
+
 .mcen-sidebarLinksBlock {
 	margin-bottom: 22px !important;
 }
@@ -55,10 +59,12 @@
 }
 
 .mcen-sidebarRelatedBlock {
-	min-width: 260px !important;
+	padding: 0px !important;
+	min-width: 280px !important;
 	border: 1px solid #eee !important;
 	margin-bottom: 16px !important;
 }
+
 .mcen-sidebarRelatedBlockTitle {
 	max-width: 100% !important;
 	padding: 12px 10px !important;

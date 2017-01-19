@@ -17,7 +17,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function makeSidebarContent() {
 
-    document.getElementById((isNewStyle ? "main-column" : "center-column")).className += " mcen-main-column";
+    document.getElementById("main-column").className += " mcen-main-column";
 
     const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
     const courseSubject = urlCourseName.split("-")[0];
@@ -56,7 +56,7 @@ function makeSidebarContent() {
     }
     logForDebug(courseTermsCodes);
 
-    const newContent = document.getElementById(isNewStyle ? "main-column" : "content-area").innerHTML;
+    const newContent = document.getElementById("main-column").innerHTML;
     const courses = newContent.match(/[A-Z]{3,4}[0-9]{0,1}\s[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1}/g);
     const depsDup = [courseSubject];
     if (courses) {
@@ -72,7 +72,7 @@ function makeSidebarContent() {
 
     const sidebar = document.createElement('div');
     sidebar.className += " mcen-sidebar";
-    sidebar.id = (isNewStyle ? "sidebar-column" : "right-sidebar");
+    sidebar.id = "sidebar-column";
 
     const sidebarLinksBlock = document.createElement('div');  
     sidebarLinksBlock.className += " mcen-sidebarLinksBlock";  
@@ -182,7 +182,7 @@ function makeSidebarContent() {
         sidebarLinksBlock.appendChild(related);
 
         for (let i = 0; i < deps.length; i++) {
-            const relatedURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[i];
+            const relatedURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?f[0]=field_subject_code%3A" + deps[i];
             const relatedButtonString = "View all " +  deps[i] + " Courses";
             related.appendChild(generateSidebarLink(relatedURL, "mcen-red", relatedButtonString, false)); 
         }     
@@ -200,17 +200,14 @@ function makeSidebarContent() {
         sidebarRelatedBlock.appendChild(relatedPrograms);
     }
 
+    // remove oldSidebarContainerDiv
+    if (document.getElementById("sidebar-column")) {
+        const oldSidebarContainerDiv = document.getElementById("sidebar-column");
+        oldSidebarContainerDiv.parentNode.removeChild(oldSidebarContainerDiv); 
+    }
+
     // insert enhanced sidebar
-    const container = document.getElementById(isNewStyle ? "inner-container" : "container");
-    if (document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar")) {
-        document.createElement("div").appendChild(document.getElementById(isNewStyle ? "sidebar-column" : "right-sidebar"));
-    }
-    if (isNewStyle) {
-        container.appendChild(sidebar);
-    }
-    else {
-        container.insertBefore(sidebar, document.getElementById("footer"));
-    }
+    document.getElementById("inner-container").appendChild(sidebar);
 
     sidebarTooltipsy("minervaWarning");
 
@@ -226,7 +223,7 @@ function generateSidebarSection(titleString) {
 
 
 function generateSidebarSectionTitle(titleString) {
-    const sidebarSectionTitle = document.createElement(isNewStyle ? "h3" : "h4");
+    const sidebarSectionTitle = document.createElement("h3");
     sidebarSectionTitle.className = "mcen-sidebarSectionTitle";
     sidebarSectionTitle.innerText = titleString;
     return sidebarSectionTitle;
