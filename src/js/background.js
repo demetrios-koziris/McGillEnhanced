@@ -22,15 +22,15 @@ chrome.runtime.onInstalled.addListener(function (details) {
 	if (details.reason === "install") {
 		console.log("Installed McGill Enhanced version " + currentVersion);
 		chrome.tabs.create({url: "https://demetrios-koziris.github.io/McGillEnhanced"}, function (tab) {
-	        console.log("New tab launched with https://demetrios-koziris.github.io/McGillEnhanced");
-	    });
+			console.log("New tab launched with https://demetrios-koziris.github.io/McGillEnhanced");
+		});
 	}
 	else if (details.reason === "update") {
 		let previousVersion = details.previousVersion;
 		console.log("Updated McGill Enhanced from version " + previousVersion + " to version " + currentVersion);
-		chrome.tabs.create({url: "https://demetrios-koziris.github.io/McGillEnhanced/3.0.32"}, function (tab) {
-	        console.log("New tab launched with https://demetrios-koziris.github.io/McGillEnhanced/3.0.32");
-	    });
+		// chrome.tabs.create({url: "https://demetrios-koziris.github.io/McGillEnhanced/3.0.32"}, function (tab) {
+		// 	console.log("New tab launched with https://demetrios-koziris.github.io/McGillEnhanced/3.0.32");
+		// });
 	}
 	
 	chrome.runtime.onUpdateAvailable.addListener(function(details) {
@@ -42,5 +42,5 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 // If default popup not set in manifest, clicking the extension icon will load the following page
 chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.create({'url': "https://demetrios-koziris.github.io/McGillEnhanced/", 'selected': true});
+	chrome.tabs.create({'url': "https://demetrios-koziris.github.io/McGillEnhanced/", 'selected': true});
 });
