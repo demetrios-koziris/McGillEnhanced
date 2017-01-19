@@ -128,7 +128,7 @@ function makeSidebarContent() {
         for (let i = 0; i < courseTermsCodes.length; i++) {
             const courseRegURL = "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced?rsts=dummy&crn=dummy&term_in=" + courseTermsCodes[i].code + "&sel_subj=dummy&sel_day=dummy&sel_schd=dummy&sel_insm=dummy&sel_camp=dummy&sel_levl=dummy&sel_sess=dummy&sel_instr=dummy&sel_ptrm=dummy&sel_attr=dummy&sel_subj=" + courseSubject + "&sel_coll=&sel_crse=" + courseNumber + "&sel_title=&sel_schd=&sel_from_cred=&sel_to_cred=&sel_levl=&sel_ptrm=%25&sel_instr=%25&sel_attr=%25&begin_hh=0&begin_mi=0&begin_ap=a&end_hh=0&end_mi=0&end_ap=a&path=1&SUB_BTN=&";
             const courseRegButtonString = "View " + courseTermsCodes[i].name + " Registration";
-            courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-red", courseRegButtonString, true));       
+            courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-red", courseRegButtonString, true));     
         }
     }
 
@@ -185,7 +185,7 @@ function makeSidebarContent() {
             const relatedURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?" + (isNewStyle ? "f[0]=field_subject_code%3A" : "filters=ss_subject%3A") + deps[i];
             const relatedButtonString = "View all " +  deps[i] + " Courses";
             related.appendChild(generateSidebarLink(relatedURL, "mcen-red", relatedButtonString, false)); 
-        }      
+        }     
     }
 
 
@@ -247,7 +247,7 @@ function generateSidebarLink(url, colorClass, buttonValue, minervaWarning) {
 
 function generateSidebarLinkButton(colorClass, buttonValue, minervaWarning ) {
     const linkButton = document.createElement('button');
-    linkButton.className = 'form-submit mcen-linkButton' + (isNewStyle ? " mcen-newStyle " + colorClass : "");
+    linkButton.className = 'form-submit mcen-linkButton ' + colorClass;
     linkButton.innerText = buttonValue;
     return linkButton;
 }
@@ -255,7 +255,7 @@ function generateSidebarLinkButton(colorClass, buttonValue, minervaWarning ) {
 
 function generateSidebarBlock(titleString) {
     const sidebarRelatedBlock = document.createElement('div');
-    sidebarRelatedBlock.className = "block mcen-sidebarRelatedBlock" + (isNewStyle ? " mcen-newStyle" : "");
+    sidebarRelatedBlock.className = "block mcen-sidebarRelatedBlock";
     sidebarRelatedBlock.appendChild(generateSidebarBlockTitle(titleString));
     return sidebarRelatedBlock;   
 }
@@ -263,7 +263,7 @@ function generateSidebarBlock(titleString) {
 
 function generateSidebarBlockTitle(titleString) {
     const sidebarRelatedBlockTitle = document.createElement('h3');
-    sidebarRelatedBlockTitle.className = "mcen-sidebarRelatedBlockTitle" + (isNewStyle ? " mcen-newStyle" : "");
+    sidebarRelatedBlockTitle.className = "mcen-sidebarRelatedBlockTitle";
     sidebarRelatedBlockTitle.innerText = titleString;
     return sidebarRelatedBlockTitle;
 }
@@ -290,7 +290,7 @@ function generateRelatedCoursesLink(url, titleString) {
     const relatedCoursesLink = document.createElement('a');
     relatedCoursesLink.setAttribute("href", url);
     relatedCoursesLink.innerText = titleString;
-    return relatedCoursesLink;    
+    return relatedCoursesLink;  
 }
 
 
