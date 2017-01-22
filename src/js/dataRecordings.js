@@ -66,6 +66,11 @@ function getRecordingData() {
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12551" }
             ] 
         },
+        ANTH355 : {
+            2016 : [
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14746" }
+            ]
+        },
         ATOC184 : { 
             2014 : [ 
                 { year: 2015, month: 01, section: "001", type: "lrs", id: "11293" }
@@ -120,6 +125,11 @@ function getRecordingData() {
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12959" }
             ] 
         },
+        BIOL205 : { 
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14868" }
+            ] 
+        },
         BIOL215 : { 
             2016 : [ 
                 { year: 2016, month: 09, section: "001", type: "lrs", id: "13967" }
@@ -135,10 +145,19 @@ function getRecordingData() {
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12828" }
             ] 
         },
+        BREE301 : { 
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14849" },
+                { year: 2017, month: 01, section: "002", type: "lrs", id: "14851" }
+            ] 
+        },
         BUS2365 : { 
             2015 : [ 
                 { year: 2015, month: 09, section: "001", type: "lrs", id: "12197" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14349" }
+            ]  
         },
         CACC521 : { 
             2016 : [ 
@@ -148,6 +167,11 @@ function getRecordingData() {
         CFIN512 : { 
             2016 : [ 
                 { year: 2016, month: 09, section: "751", type: "lrs", id: "13571" }
+            ] 
+        },
+        CHEE351 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14642" }
             ] 
         },
         CHEE453 : { 
@@ -192,7 +216,10 @@ function getRecordingData() {
             ],
             2014 : [ 
                 { year: 2015, month: 01, section: "001", type: "cool", id: "1588" }
-            ]
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14873" }
+            ] 
         },
         CHEM180 : { 
             2010 : [ 
@@ -285,7 +312,10 @@ function getRecordingData() {
             2014 : [ 
                 { year: 2014, month: 09, section: "001", type: "cool", id: "1576" },
                 { year: 2014, month: 09, section: "001", type: "lrs", id: "10286" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14876" }
+            ]  
         },
         CHEM211 : { 
             2012 : [ 
@@ -296,7 +326,10 @@ function getRecordingData() {
             ],
             2014 : [ 
                 { year: 2014, month: 09, section: "001", type: "cool", id: "1570" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14840" }
+            ]  
         },
         CHEM212 : { 
             2010 : [ 
@@ -328,7 +361,10 @@ function getRecordingData() {
             ],
             2014 : [ 
                 { year: 2015, month: 01, section: "001", type: "lrs", id: "11146" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14878" }
+            ]  
         },
         CHEM222 : { 
             2010 : [ 
@@ -363,7 +399,8 @@ function getRecordingData() {
                 { year: 2016, month: 01, section: "001", type: "cool", id: "1616" }
             ],
             2016 : [ 
-                { year: 2016, month: 09, section: "001", type: "lrs", id: "14025" }
+                { year: 2016, month: 09, section: "001", type: "lrs", id: "14025" },
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14810" }
             ]   
         },
         CHEM232 : { 
@@ -386,6 +423,11 @@ function getRecordingData() {
                 { year: 2016, month: 09, section: "001", type: "lrs", id: "13966" }
             ]  
         },
+        CHEM233 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "15061" }
+            ] 
+        }, 
         CHEM281 : { 
             2010 : [ 
                 { year: 2011, month: 01, section: "001", type: "cool", id: "1436" }
@@ -471,12 +513,18 @@ function getRecordingData() {
         COMP302 : { 
             2015 : [ 
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "13118" }
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "15019" }
             ] 
         },
         COMP310 : { 
             2015 : [ 
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "13081" }
-            ] 
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14983" }
+            ]
         },
         COMP557 : { 
             2014 : [ 
@@ -611,6 +659,9 @@ function getRecordingData() {
             ],
             2015 : [ 
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "13127" }
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "15030" }
             ] 
         },
         EPSC201 : { 
@@ -668,6 +719,9 @@ function getRecordingData() {
         LAWG273 : { 
             2015 : [ 
                 { year: 2016, month: 05, section: "001", type: "lrs", id: "13346" }
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14439" }
             ] 
         },
         LAWG300 : { 
@@ -720,10 +774,20 @@ function getRecordingData() {
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12413" }
             ] 
         },
+        MGCR423 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "751", type: "lrs", id: "14667" }
+            ] 
+        },
         MGPO640 : { 
             2014 : [ 
                 { year: 2015, month: 01, section: "001", type: "lrs", id: "10765" }
             ] 
+        },
+        MIME260 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14729" }
+            ]
         },
         MIMM212 : { 
             2014 : [ 
@@ -805,11 +869,19 @@ function getRecordingData() {
             2015 : [ 
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12906" },
                 { year: 2016, month: 01, section: "002", type: "lrs", id: "13060" }
+            ],
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14817" }
             ] 
         },
         PHGY212 : { 
             2015 : [ 
                 { year: 2015, month: 09, section: "001", type: "lrs", id: "12107" }
+            ] 
+        },
+        PHGY213 : { 
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14837" }
             ] 
         },
         PHGY314 : { 
@@ -837,6 +909,11 @@ function getRecordingData() {
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12987" }
             ] 
         },
+        PHYS142 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14932" }
+            ] 
+        },
         POLI227 : { 
             2015 : [ 
                 { year: 2016, month: 01, section: "001", type: "lrs", id: "12798" }
@@ -850,6 +927,16 @@ function getRecordingData() {
         POLI346 : { 
             2014 : [ 
                 { year: 2014, month: 09, section: "001", type: "lrs", id: "10463" }
+            ] 
+        },
+        POLI423 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14613" }
+            ] 
+        },
+        POLI450 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14617" }
             ] 
         },
         POTH225 : { 
@@ -909,6 +996,21 @@ function getRecordingData() {
         PSYC410 : { 
             2014 : [ 
                 { year: 2014, month: 09, section: "001", type: "lrs", id: "10484" }
+            ] 
+        },
+        PSYC538 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14450" }
+            ] 
+        },
+        PSYC744 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14672" }
+            ] 
+        },
+        RELG253 : {
+            2016 : [ 
+                { year: 2017, month: 01, section: "001", type: "lrs", id: "14720" }
             ] 
         },
         SOCI225 : { 
