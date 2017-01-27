@@ -7,7 +7,7 @@
 }
 
 .mcen-profLink {
-	margin-left: 10px !important;
+	margin-left: 4px !important;
 }
 
 .mcen-profLinkButton {
@@ -28,7 +28,6 @@
 	background: -webkit-linear-gradient(left, #FFFFFF, #C5C5C5) !important;
 }
 .mcen-mercuryLinkButton {
-	margin-right: 10px !important;
 	border-left: none !important;
 	border-top-left-radius: 0px !important;
 	border-bottom-left-radius: 0px !important;
@@ -56,6 +55,6 @@
 	vertical-align: middle;
 	width: 15px;
 	height: 15px;
-	margin: 0 10px 4px 10px;
+	margin: 0 6px 4px 10px;
 	border: 1px solid #ECEFF1 !important;
 }
