@@ -17,97 +17,97 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function addYearMenu() {
 
-    const currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
-    const firstYear = Math.max(sysYear-10, 2009);
-    const isSearchPage = (url.match(/search/));
-    const mneClassName = 'yearMenuItemLI-MNE';
+	const currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
+	const firstYear = Math.max(sysYear-10, 2009);
+	const isSearchPage = (url.match(/search/));
+	const mneClassName = 'yearMenuItemLI-MNE';
 
-        for (let j = firstYear; j <= sysYear; j += 10)
-        {
-            const yearMenuBarDIV = document.createElement('div');
-            yearMenuBarDIV.id = "navigation";
-            yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
+		for (let j = firstYear; j <= sysYear; j += 10)
+		{
+			const yearMenuBarDIV = document.createElement('div');
+			yearMenuBarDIV.id = "navigation";
+			yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
 
-            const inner = document.createElement('div');
-            inner.className = "inner";
-            yearMenuBarDIV.appendChild(inner);
+			const inner = document.createElement('div');
+			inner.className = "inner";
+			yearMenuBarDIV.appendChild(inner);
 
-            const yearMenuBarUL = document.createElement('ul');
-            yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
-            inner.appendChild(yearMenuBarUL);
+			const yearMenuBarUL = document.createElement('ul');
+			yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
+			inner.appendChild(yearMenuBarUL);
 
-            for (let i = j; i < j+10; i++)
-            {
-                let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));    
+			for (let i = j; i < j+10; i++)
+			{
+				let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));	
 
-                const yearMenuItemLI = document.createElement('li');
-                yearMenuItemLI.className = "mcen-yearMenuItemLI";
-                yearMenuBarUL.appendChild(yearMenuItemLI);
+				const yearMenuItemLI = document.createElement('li');
+				yearMenuItemLI.className = "mcen-yearMenuItemLI";
+				yearMenuBarUL.appendChild(yearMenuItemLI);
 
-                const yearMenuItemDIV = document.createElement('div');
-                yearMenuItemDIV.className = "mcen-yearMenuItemDIV";
-                yearMenuItemLI.appendChild(yearMenuItemDIV);
+				const yearMenuItemDIV = document.createElement('div');
+				yearMenuItemDIV.className = "mcen-yearMenuItemDIV";
+				yearMenuItemLI.appendChild(yearMenuItemDIV);
 
-                const yearMenuItemA = document.createElement('a');
-                yearMenuItemA.className = "mcen-yearMenuItemA";
-                yearMenuItemA.href = yearMenuItemURL;
-                yearMenuItemA.innerHTML = i + "-" + (i + 1);
-                yearMenuItemDIV.appendChild(yearMenuItemA);
+				const yearMenuItemA = document.createElement('a');
+				yearMenuItemA.className = "mcen-yearMenuItemA";
+				yearMenuItemA.href = yearMenuItemURL;
+				yearMenuItemA.innerHTML = i + "-" + (i + 1);
+				yearMenuItemDIV.appendChild(yearMenuItemA);
 
 
-                if (i === urlYearF){
-                    yearMenuItemA.className += " mcen-yearSelected";
-                    yearMenuItemDIV.className += " mcen-yearSelected";
-                    yearMenuItemLI.className += " mcen-yearSelected";
-                }
-                else if (i == sysYear && sysMonth < 3) {
-                    yearMenuItemLI.className +=  " " + mneClassName;
-                    yearMenuItemLI.title = "This page may not exist yet!";
-                }
+				if (i === urlYearF){
+					yearMenuItemA.className += " mcen-yearSelected";
+					yearMenuItemDIV.className += " mcen-yearSelected";
+					yearMenuItemLI.className += " mcen-yearSelected";
+				}
+				else if (i == sysYear && sysMonth < 3) {
+					yearMenuItemLI.className +=  " " + mneClassName;
+					yearMenuItemLI.title = "This page may not exist yet!";
+				}
 
-                if (i === urlYearF - 1) {
-                    yearMenuItemDIV.className += " mcen-yearLeft";
-                    yearMenuItemLI.className += " mcen-yearLeft";
-                }
-                if (i === urlYearF + 1) {
-                    yearMenuItemDIV.className += " mcen-yearRight";
-                    yearMenuItemLI.className += " mcen-yearRight";
-                }
-                if (i > sysYear || i === urlYearF) {
-                    yearMenuItemA.className += " mcen-yearClosed";
-                    yearMenuItemLI.className += " mcen-yearClosed";
-                }
-                
-            }        
+				if (i === urlYearF - 1) {
+					yearMenuItemDIV.className += " mcen-yearLeft";
+					yearMenuItemLI.className += " mcen-yearLeft";
+				}
+				if (i === urlYearF + 1) {
+					yearMenuItemDIV.className += " mcen-yearRight";
+					yearMenuItemLI.className += " mcen-yearRight";
+				}
+				if (i > sysYear || i === urlYearF) {
+					yearMenuItemA.className += " mcen-yearClosed";
+					yearMenuItemLI.className += " mcen-yearClosed";
+				}
+				
+			}	 
 
-            document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
-        }
+			document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
+		}
 
-    yearMenuTooltipsy(mneClassName);
+	yearMenuTooltipsy(mneClassName);
 }
 
 
 function yearMenuTooltipsy(className, offset) {
-    if (offset === undefined) {
-        offset = [0, 10];
-    }
-    $('.' + className).tooltipsy( {
-        delay: 400,
-        offset: offset,
-        hide: function (e, $el) {
-            $el.slideUp(50);
-        },
-        css: {
-            fontFamily: 'CartoGothicStdBook',
-            padding: '6px 12px',
-            color: '#444444',
-            fontSize: '.8em',
-            backgroundColor: '#FFF0F0',
-            borderRadius: '6px',
-            // border: '1px #E54944 solid',
-            boxShadow: '2px 2px 10px #E54944'
-        }
-    });
+	if (offset === undefined) {
+		offset = [0, 10];
+	}
+	$('.' + className).tooltipsy( {
+		delay: 400,
+		offset: offset,
+		hide: function (e, $el) {
+			$el.slideUp(50);
+		},
+		css: {
+			fontFamily: 'CartoGothicStdBook',
+			padding: '6px 12px',
+			color: '#444444',
+			fontSize: '.8em',
+			backgroundColor: '#FFF0F0',
+			borderRadius: '6px',
+			// border: '1px #E54944 solid',
+			boxShadow: '2px 2px 10px #E54944'
+		}
+	});
 }
 
 

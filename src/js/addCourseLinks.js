@@ -15,38 +15,44 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-function makeCourseLinks(courseNameRegex) {
-    
-    notesElement = document.getElementsByClassName("catalog-notes")[0];
-    if (notesElement) {
-        notesElement.innerHTML = notesElement.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
-    }
+/** 
+ * On course overview pages, replace course names with links to course overview page
+ */
+function makeCourseLinks() {
+	
+	notesElement = document.getElementsByClassName("catalog-notes")[0];
+	if (notesElement) {
+		notesElement.innerHTML = notesElement.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+	}
 }
 
 
-function programOverview(courseNameRegex){    
-    //Replace Course names with links to course overview page
-    const courseSections = document.getElementsByClassName("program-course");
-    for (let c = 0; c<courseSections.length; c++) {
+/**
+ * On program overview pages, replace course names with links to course overview page
+ */
+function programOverview(){	
+	
+	const courseSections = document.getElementsByClassName("program-course");
+	for (let c = 0; c<courseSections.length; c++) {
 
-        const notes = courseSections[c].getElementsByClassName("catalog-notes")[0];
-        const title = courseSections[c].getElementsByClassName("program-course-title")[0];
+		const notes = courseSections[c].getElementsByClassName("catalog-notes")[0];
+		const title = courseSections[c].getElementsByClassName("program-course-title")[0];
 
-        const courseURL = title.href;
-        const courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
+		const courseURL = title.href;
+		const courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
 
-        const link = document.createElement('h3');
-        link.style.padding = "0px";
-        link.style.margin = "0px";
-        link.innerHTML = "<a style=\"background: none; padding-left: 0px\" href=\"" + courseURL + "\">" + courseName + "</a>";
-        
-        const contentElement = courseSections[c].getElementsByClassName("content")[0];
-        contentElement.insertBefore(link, contentElement.firstChild);
+		const link = document.createElement('h3');
+		link.style.padding = "0px";
+		link.style.margin = "0px";
+		link.innerHTML = "<a style=\"background: none; padding-left: 0px\" href=\"" + courseURL + "\">" + courseName + "</a>";
+		
+		const contentElement = courseSections[c].getElementsByClassName("content")[0];
+		contentElement.insertBefore(link, contentElement.firstChild);
 
-        if (notes) {
-            notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
-            notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
-        }
-    }
+		if (notes) {
+			notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
+			notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
+		}
+	}
 
 }

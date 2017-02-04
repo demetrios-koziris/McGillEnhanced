@@ -48,75 +48,75 @@ function enhanceVSB() {
 	button.style.border = "2px solid #5B5B5A";
 	button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
 	button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
-    
-    
+	
+	
 
 
-    const box = document.getElementsByClassName("reg_legend")[0];
+	const box = document.getElementsByClassName("reg_legend")[0];
 
-    const wrap = document.createElement('div');
-    wrap.style.width = 'calc(88% + 16px)';
-    wrap.style.margin = 'auto';
-    wrap.appendChild(button);
-    box.appendChild(wrap);
-
-
-     document.addEventListener("register", function(data) {
-
-     	var termCode = window.location.search.match(/.+term\=([0-9]{6})/)[1];
-	    if(window.debugMode){console.log(termCode);}
-
-	    var xmlRequestInfo = {
-	        method: 'GET',
-	        action: 'xhttp',
-	        url: 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode
-	    };
-	    console.log(xmlRequestInfo);
-	    chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
-	        try {
-
-                htmlParser = new DOMParser();
-                htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
-	            if(window.debugMode){console.log(htmlDoc);}
-
-	            registrationForm = htmlDoc.getElementsByTagName('form');
-	            regsitrationFormOrig = [];
-	            for (var t=0; t < registrationForm[1].length; t++) {
-	            	regsitrationFormOrig.push(registrationForm[1][t].name + "=" + registrationForm[1][t].value);
-	            }
-	            if(window.debugMode){console.log(regsitrationFormOrig);}
+	const wrap = document.createElement('div');
+	wrap.style.width = 'calc(88% + 16px)';
+	wrap.style.margin = 'auto';
+	wrap.appendChild(button);
+	box.appendChild(wrap);
 
 
-	            title = htmlDoc.getElementsByTagName('title')[0].innerText;
-	            if(window.debugMode){console.log(title);}
+	 document.addEventListener("register", function(data) {
 
-	            if (title == "Quick Add or Drop Course Sections") {
+	 	var termCode = window.location.search.match(/.+term\=([0-9]{6})/)[1];
+		if(window.debugMode){console.log(termCode);}
 
-	            	infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
-	            	if (infotext != "You are not permitted to register at this time.") {
+		var xmlRequestInfo = {
+			method: 'GET',
+			action: 'xhttp',
+			url: 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode
+		};
+		console.log(xmlRequestInfo);
+		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+			try {
 
-			            crns = document.getElementById('cartCrns').value.split(" ");
+				htmlParser = new DOMParser();
+				htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
+				if(window.debugMode){console.log(htmlDoc);}
+
+				registrationForm = htmlDoc.getElementsByTagName('form');
+				regsitrationFormOrig = [];
+				for (var t=0; t < registrationForm[1].length; t++) {
+					regsitrationFormOrig.push(registrationForm[1][t].name + "=" + registrationForm[1][t].value);
+				}
+				if(window.debugMode){console.log(regsitrationFormOrig);}
+
+
+				title = htmlDoc.getElementsByTagName('title')[0].innerText;
+				if(window.debugMode){console.log(title);}
+
+				if (title == "Quick Add or Drop Course Sections") {
+
+					infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
+					if (infotext != "You are not permitted to register at this time.") {
+
+						crns = document.getElementById('cartCrns').value.split(" ");
 						if(window.debugMode){console.log(crns);}
 
 						regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?term_in=' + termCode;
-			            regURL += '&RSTS_IN=DUMMY';
-			            regURL += '&assoc_term_in=DUMMY';
-			            regURL += '&CRN_IN=DUMMY';
-			            regURL += '&start_date_in=DUMMY';
-			            regURL += '&end_date_in=DUMMY';
-			            regURL += '&SUBJ=DUMMY';
-			            regURL += '&CRSE=DUMMY';
-			            regURL += '&SEC=DUMMY';
-			            regURL += '&LEVL=DUMMY';
-			            regURL += '&CRED=DUMMY';
-			            regURL += '&GMOD=DUMMY';
-			            regURL += '&TITLE=DUMMY';
-			            regURL += '&MESG=DUMMY';
-			            regURL += '&REG_BTN=DUMMY';
+						regURL += '&RSTS_IN=DUMMY';
+						regURL += '&assoc_term_in=DUMMY';
+						regURL += '&CRN_IN=DUMMY';
+						regURL += '&start_date_in=DUMMY';
+						regURL += '&end_date_in=DUMMY';
+						regURL += '&SUBJ=DUMMY';
+						regURL += '&CRSE=DUMMY';
+						regURL += '&SEC=DUMMY';
+						regURL += '&LEVL=DUMMY';
+						regURL += '&CRED=DUMMY';
+						regURL += '&GMOD=DUMMY';
+						regURL += '&TITLE=DUMMY';
+						regURL += '&MESG=DUMMY';
+						regURL += '&REG_BTN=DUMMY';
 
-			            var i = 15;
-			            while(registrationForm[1][i].value == 'DUMMY') {
-			            	regURL += '&MESG=' + 			registrationForm[1][i].value;
+						var i = 15;
+						while(registrationForm[1][i].value == 'DUMMY') {
+							regURL += '&MESG=' + 			registrationForm[1][i].value;
 							regURL += '&RSTS_IN=';
 							regURL += '&assoc_term_in=' + 	registrationForm[1][i+2].value;
 							regURL += '&CRN_IN=' + 			registrationForm[1][i+3].value;
@@ -130,7 +130,7 @@ function enhanceVSB() {
 							regURL += '&GMOD=' + 			registrationForm[1][i+11].value;
 							regURL += '&TITLE=' + 			registrationForm[1][i+12].value.replace(/ /g, "+");
 							i += 13;
-			            }
+						}
 
 						for (c=0; c<10; c++) {
 							regURL += '&RSTS_IN=RW';
@@ -163,12 +163,12 @@ function enhanceVSB() {
 					loginRedirect(notloggedinMessage);
 				}
 
-	        }
-	        catch(err) {
-	            console.log(err.stack);
-	            loginRedirect(errorMessage);
-	        }
-	    });
+			}
+			catch(err) {
+				console.log(err.stack);
+				loginRedirect(errorMessage);
+			}
+		});
 
 	});
 
@@ -182,9 +182,9 @@ function loginRedirect(message) {
 
 
 function register() {
-    var event = document.createEvent('Event');
-    event = new Event('register');
-    document.dispatchEvent(event);
+	var event = document.createEvent('Event');
+	event = new Event('register');
+	document.dispatchEvent(event);
 }
 
 

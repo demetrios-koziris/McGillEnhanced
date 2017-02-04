@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.1.6",
+  "version": "3.1.7",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
@@ -61,7 +61,7 @@
         "*://vsb.mcgill.ca/*"
       ],
       "js" : [
-          "js/initAtStart.js"
+          "js/insertCSS.js"
       ],
       "run_at": "document_start"
     }
