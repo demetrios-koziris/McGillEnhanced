@@ -61,6 +61,28 @@ function addYearMenu() {
 					yearMenuItemLI.className += " mcen-yearSelected";
 				}
 				else if (i == sysYear && sysMonth < 3) {
+
+					var u = yearMenuItemA.href;
+                                        // Checks if in fact this page even exists.
+                                        var checkPageExists = function(u){
+                                                jQuery.ajax({
+                                                     url: u,
+                                                     type: 'GET',
+                                                     complete: function(xhr, status) {
+                                                        //console.log('yay');
+                                                     },
+                                                     error: function(xhr, status){
+                                                       //console.log(xhr.status);
+                                                       // TODO: Hide the menu item if it leads nowhere.
+                                                       // Or, for now, just disable it.
+                                                       yearMenuItemLI.className += " mcen-yearClosed";
+                                                       yearMenuItemA.className += " mcen-yearClosed";
+                                                     }
+                                                })
+                                        }
+                                        checkPageExists(u);
+
+		
 					yearMenuItemLI.className +=  " " + mneClassName;
 					yearMenuItemLI.title = "This page may not exist yet!";
 				}
