@@ -30,7 +30,6 @@ function makeSidebarContent() {
 	const monthToSemester = getMonthToSemester();
 	const wikinotesURLdata = getWikinotesData()[courseName];
 	const docuumURLdata = getDocuumData()[courseName];
-	const csusURLdata = getCSUSdata()[courseName];
 
 	const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
 	const courseTermsCodes = [];
@@ -133,17 +132,12 @@ function makeSidebarContent() {
 	}
 
 
-	if (csusURLdata || docuumURLdata || wikinotesURLdata) {
+	if ( docuumURLdata || wikinotesURLdata) {
 
 		//SIDEBAR SECTION: OTHER RESOURCES
 		const other = generateSidebarSection("Other Resources");
 		sidebarLinksBlock.appendChild(other);
 	
-		if (csusURLdata) {
-			const csusURL = "https://mcgill-csus.github.io/compmajorguide.html#" + csusURLdata;
-			const csusButtonString = "View " + courseNameSpaced + " in the CSUS Guide";
-			other.appendChild(generateSidebarLink(csusURL, "mcen-white", csusButtonString, false));
-		}
 		if (docuumURLdata) {
 			const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
 			const docuumButtonString = "View " + courseNameSpaced + " on Docuum";
