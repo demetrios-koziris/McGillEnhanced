@@ -15,125 +15,140 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
+/**
+ * Adds a menu bar below the main menu bar to access other years on McGill Calendar pages
+ */
 function addYearMenu() {
 
+	const numYearsInMenu = 10;
 	const currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
-	const firstYear = Math.max(sysYear-10, 2009);
+	const firstYear = Math.max(sysYear-numYearsInMenu, 2009);
 	const isSearchPage = (url.match(/search/));
-	const mneClassName = 'yearMenuItemLI-MNE';
+	numYearsLeftToCheck = numYearsInMenu;
 
-		for (let j = firstYear; j <= sysYear; j += 10)
-		{
-			const yearMenuBarDIV = document.createElement('div');
-			yearMenuBarDIV.id = "navigation";
-			yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
+	const yearMenuBarDIV = document.createElement('div');
+	yearMenuBarDIV.id = "navigation";
+	yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
+	document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
 
-			const inner = document.createElement('div');
-			inner.className = "inner";
-			yearMenuBarDIV.appendChild(inner);
+	const inner = document.createElement('div');
+	inner.className = "inner";
+	yearMenuBarDIV.appendChild(inner);
 
-			const yearMenuBarUL = document.createElement('ul');
-			yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
-			inner.appendChild(yearMenuBarUL);
+	const yearMenuBarUL = document.createElement('ul');
+	yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
+	inner.appendChild(yearMenuBarUL);
 
-			for (let i = j; i < j+10; i++)
-			{
-				let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));	
+	for (let i = firstYear+numYearsInMenu-1; i >= firstYear; i-=1) {
 
-				const yearMenuItemLI = document.createElement('li');
-				yearMenuItemLI.className = "mcen-yearMenuItemLI";
-				yearMenuBarUL.appendChild(yearMenuItemLI);
+		let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));	
 
-				const yearMenuItemDIV = document.createElement('div');
-				yearMenuItemDIV.className = "mcen-yearMenuItemDIV";
-				yearMenuItemLI.appendChild(yearMenuItemDIV);
+		const yearMenuItemLI = document.createElement('li');
+		yearMenuItemLI.className = "mcen-yearMenuItemLI";
+		yearMenuBarUL.insertBefore(yearMenuItemLI, yearMenuBarUL.firstChild);
 
-				const yearMenuItemA = document.createElement('a');
-				yearMenuItemA.className = "mcen-yearMenuItemA";
-				yearMenuItemA.href = yearMenuItemURL;
-				yearMenuItemA.innerHTML = i + "-" + (i + 1);
-				yearMenuItemDIV.appendChild(yearMenuItemA);
+		const yearMenuItemDIV = document.createElement('div');
+		yearMenuItemDIV.className = "mcen-yearMenuItemDIV";
+		yearMenuItemLI.appendChild(yearMenuItemDIV);
 
+		const yearMenuItemA = document.createElement('a');
+		yearMenuItemA.className = "mcen-yearMenuItemA";
+		yearMenuItemA.href = yearMenuItemURL;
+		yearMenuItemA.innerHTML = i + "-" + (i + 1);
+		yearMenuItemDIV.appendChild(yearMenuItemA);
 
-				if (i === urlYearF){
-					yearMenuItemA.className += " mcen-yearSelected";
-					yearMenuItemDIV.className += " mcen-yearSelected";
-					yearMenuItemLI.className += " mcen-yearSelected";
-				}
-				else if (i == sysYear && sysMonth < 3) {
-
-					var u = yearMenuItemA.href;
-                                        // Checks if in fact this page even exists.
-                                        var checkPageExists = function(u){
-                                                jQuery.ajax({
-                                                     url: u,
-                                                     type: 'GET',
-                                                     complete: function(xhr, status) {
-                                                        //console.log('yay');
-                                                     },
-                                                     error: function(xhr, status){
-                                                       //console.log(xhr.status);
-                                                       // TODO: Hide the menu item if it leads nowhere.
-                                                       // Or, for now, just disable it.
-                                                       yearMenuItemLI.className += " mcen-yearClosed";
-                                                       yearMenuItemA.className += " mcen-yearClosed";
-                                                     }
-                                                })
-                                        }
-                                        checkPageExists(u);
-
-		
-					yearMenuItemLI.className +=  " " + mneClassName;
-					yearMenuItemLI.title = "This page may not exist yet!";
-				}
-
-				if (i === urlYearF - 1) {
-					yearMenuItemDIV.className += " mcen-yearLeft";
-					yearMenuItemLI.className += " mcen-yearLeft";
-				}
-				if (i === urlYearF + 1) {
-					yearMenuItemDIV.className += " mcen-yearRight";
-					yearMenuItemLI.className += " mcen-yearRight";
-				}
-				if (i > sysYear || i === urlYearF) {
-					yearMenuItemA.className += " mcen-yearClosed";
-					yearMenuItemLI.className += " mcen-yearClosed";
-				}
-				
-			}	 
-
-			document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
+		// styling for year tab directly to left of selected year tab
+		if (i === urlYearF - 1) {
+			yearMenuItemDIV.className += " mcen-yearLeft";
+			yearMenuItemLI.className += " mcen-yearLeft";
+		}
+		// styling for selected year tab
+		if (i === urlYearF) {
+			yearMenuItemA.className += " mcen-yearSelected";
+			yearMenuItemDIV.className += " mcen-yearSelected";
+			yearMenuItemLI.className += " mcen-yearSelected";
+		}
+		// styling for year tab directly to right of selected year tab
+		if (i === urlYearF + 1) {
+			yearMenuItemDIV.className += " mcen-yearRight";
+			yearMenuItemLI.className += " mcen-yearRight";
 		}
 
-	yearMenuTooltipsy(mneClassName);
+		if (i > sysYear || i === urlYearF) {
+			// disactivate selected year tab and year tabs to right of current system year
+			disactivateYearMenuItem(yearMenuItemLI);
+			// this year does not need to be checked because it disactivated
+			decrementNumYearsLeftToCheck();
+		}
+		else {
+			// this year has not been disactivated by default so check if it exists
+			checkPageExists(yearMenuItemURL, yearMenuItemLI, i === sysYear);
+		}
+		
+	}	 
 }
 
 
-function yearMenuTooltipsy(className, offset) {
-	if (offset === undefined) {
-		offset = [0, 10];
-	}
-	$('.' + className).tooltipsy( {
-		delay: 400,
-		offset: offset,
-		hide: function (e, $el) {
-			$el.slideUp(50);
+/**
+ * Checks existence of page and disactivates corresponding year menu item or sets up for later disativation
+ * @param  url 						string url of page to check
+ * @param  yearMenuItem 			html element to act on based on if page exists
+ * @param  disactivateImmediately 	boolean whether to disactivate immediately or sets up for disactivation 
+ 									later with other items (with class mcen-yearDoesNotExist) to disactivate 
+ */
+function checkPageExists(url, yearMenuItem, disactivateImmediately) {
+	jQuery.ajax({
+		url: url,
+		type: 'GET',
+		complete: function(xhr, status) {
+			decrementNumYearsLeftToCheck();
 		},
-		css: {
-			fontFamily: 'CartoGothicStdBook',
-			padding: '6px 12px',
-			color: '#444444',
-			fontSize: '.8em',
-			backgroundColor: '#FFF0F0',
-			borderRadius: '6px',
-			// border: '1px #E54944 solid',
-			boxShadow: '2px 2px 10px #E54944'
+		error: function(xhr, status) {
+			logForDebug(xhr.status);
+			// Disable the menu item if it leads nowhere.
+			if (disactivateImmediately) {
+				disactivateYearMenuItem(yearMenuItem);
+			}
+			else {
+				yearMenuItem.className += " mcen-yearDoesNotExist";
+			}
 		}
 	});
 }
 
 
+/**
+ * Decrements counter and if no more years left to check, callsdisactivate NonExistentYearTabs()
+ * This allows for all year menu tabs with non existent pages to be disactivated at the same time
+ */
+function decrementNumYearsLeftToCheck() {
+	numYearsLeftToCheck -= 1;
+	// if all years have been checked then disactiave tab for non existant year
+	if (numYearsLeftToCheck === 0) {
+		disactivateNonExistentYearTabs();
+	}
+}
 
+
+/**
+ * Disactivates year menu tabs whose page doesn't exist (all with class mcen-yearDoesNotExist)
+ */
+function disactivateNonExistentYearTabs() {
+	yearMenuItemsToDisactivate = document.getElementsByClassName("mcen-yearDoesNotExist");
+	for (let y = 0; y < yearMenuItemsToDisactivate.length; y++) {
+		disactivateYearMenuItem(yearMenuItemsToDisactivate[y]);
+	}
+}
+
+
+/**
+ * Disactivates year menu tab 
+ * @param  yearMenuItem 	html element to disactivate
+ */
+function disactivateYearMenuItem(yearMenuItem) {
+	yearMenuItem.setAttribute('style', 'pointer-events:none !important;');
+	yearMenuItem.firstChild.firstChild.setAttribute('style', 'color:#5B5B5A !important;');
+}
 
 
 

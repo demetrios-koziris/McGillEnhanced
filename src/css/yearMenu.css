@@ -65,11 +65,3 @@
 .mcen-yearMenuItemDIV.mcen-yearRight:hover {
 	border-radius: 6px 6px 0px 0px !important;
 }
-
-
-.mcen-yearMenuItemLI.mcen-yearClosed {
-	pointer-events: none !important;
-}
-.mcen-yearMenuItemA.mcen-yearClosed {
-	color: #5b5b5a !important;
-}
