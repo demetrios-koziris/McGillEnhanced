@@ -23,14 +23,13 @@ a {
     border-style: outset; 
     border-color: #E54944; 
     width:220px; 
-    padding:10px 12px;
-
+    padding:10px 12px 6px 12px;
 }
 .meTitle {
     font-family: "CartoGothicStdBold",Helvetica,"Helvetica Neue",Arial,sans serif;
     font-weight: bold;
     color: #5b5b5a;
-    margin:16px 0px 6px 0px;
+    margin:14px 0px 6px 0px;
     font-size: 16px;
 }
 .meButton {
@@ -59,4 +58,10 @@ a {
 }
 .amazonButton:hover {
     background: -webkit-linear-gradient(left, #F8991D, #C5C5C5);
+}
+
+#version {
+  text-align: center;
+  margin-top: 8px;
+  color: black;
 }
