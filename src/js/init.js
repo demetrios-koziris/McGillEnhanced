@@ -17,7 +17,8 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 var url = window.location.href;
 
-window.debugMode = false;
+let devMode = !('update_url' in chrome.runtime.getManifest())
+let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} )
 logForDebug("McGill Enhanced Debug mode is ON");
 
 // run on McGill.ca pages
@@ -48,7 +49,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 		};
 	
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
-		// run on McGill.ca pages with year in path 
+		// run on McGill.ca Calendar pages (mcgill.ca url with year in path) 
 		addYearMenu();
 	}
 
@@ -78,12 +79,3 @@ if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.m
 }
 
 
-/** 
- * Print to console when debugMode is set to true
- * @param toLog: String literal to print
- */
-function logForDebug(toLog) {
-	if (debugMode) {
-		console.log(toLog);
-	}
-}

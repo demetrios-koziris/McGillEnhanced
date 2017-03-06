@@ -104,7 +104,6 @@ function checkPageExists(url, yearMenuItem, disactivateImmediately) {
 			decrementNumYearsLeftToCheck();
 		},
 		error: function(xhr, status) {
-			logForDebug(xhr.status);
 			// Disable the menu item if it leads nowhere.
 			if (disactivateImmediately) {
 				disactivateYearMenuItem(yearMenuItem);
