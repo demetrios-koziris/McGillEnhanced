@@ -31,6 +31,9 @@ function makeSidebarContent() {
 	const wikinotesURLdata = getWikinotesData()[courseName];
 	const docuumURLdata = getDocuumData()[courseName];
 
+	const vsbSidebarTerms = [];
+	getVSBSemesters(vsbSidebarTerms);
+
 	const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
 	const courseTermsCodes = [];
 	if (courseTerms.match(termNames[lang][9])) {
@@ -151,7 +154,7 @@ function makeSidebarContent() {
 	}
 
 
-	const withinyearRangeVSB = (sysYear==urlYearF-1 && sysMonth>=4) || (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<4);
+	const withinyearRangeVSB = (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<3);
 	if ( withinyearRangeVSB && courseTermsCodes.length > 0) {
 
 		//SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
@@ -162,8 +165,9 @@ function makeSidebarContent() {
 			const term = courseTermsCodes[i];
 			if (term.vsbURL) {
 				const vsbButtonString = "View on VSB " + term.name;
-				const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple", vsbButtonString, false);
+				const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple mcen-vsb" + term.code, vsbButtonString, false);
 				vsb.appendChild(vsbLink);
+				vsbSidebarTerms.push(term.code);
 			} 
 		}
 	}
@@ -303,8 +307,56 @@ function sidebarTooltipsy(className, offset) {
 			fontSize: '.8em',
 			backgroundColor: '#FFF0F0',
 			borderRadius: '6px',
-			// border: '1px #E54944 solid',
 			boxShadow: '2px 2px 10px #E54944'
 		}
 	});
+}
+
+
+function getVSBSemesters(vsbSidebarTerms) {
+    const xmlRequestInfo = {
+        method: 'GET',
+        action: 'xhttp',
+        url: 'https://vsb.mcgill.ca/vsb'
+    };
+    chrome.runtime.sendMessage(xmlRequestInfo, generateGetVSBSemestersCallback(vsbSidebarTerms));
+}
+
+
+function generateGetVSBSemestersCallback(vsbSidebarTerms) {
+	return function(data) {
+		const htmlParser = new DOMParser();
+		const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
+
+		const vsbAvailableTerms = [];
+		vsbTermButtons = htmlDoc.getElementsByClassName('termRadio');
+		for (let t = 0; t < vsbTermButtons.length; t++) {
+			vsbAvailableTerms.push(vsbTermButtons[t].getAttribute('data-term'));
+		}
+
+		logForDebug(vsbSidebarTerms);
+		logForDebug(vsbAvailableTerms);
+
+		if (vsbAvailableTerms.length > 0) {
+			for (let t = 0; t < vsbSidebarTerms.length; t++) {
+				const termCode = vsbSidebarTerms[t];
+				if (vsbAvailableTerms.indexOf(termCode)) {
+					logForDebug("Disable " + termCode);
+					disableVSBSidebarTerm(termCode);
+				}
+			}
+			sidebarTooltipsy("vsbTermNotAvailable", [0,-3]);
+		}
+	};
+}
+
+
+function disableVSBSidebarTerm(termCode) {
+	const vsbSidebarButton = document.getElementsByClassName('mcen-vsb' + termCode)[0];
+	vsbSidebarButton.className = 'form-submit mcen-linkButton not-active';
+	vsbSidebarButton.parentElement.href = 'https://vsb.mcgill.ca/vsb';
+	// vsbSidebarButton.parentElement.setAttribute('style', 'pointer-events:none !important;');
+	
+	vsbSidebarButton.parentElement.title = 'This term is not available in VSB!';
+	vsbSidebarButton.parentElement.className = 'vsbTermNotAvailable';
 }
