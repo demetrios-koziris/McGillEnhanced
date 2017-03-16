@@ -106,7 +106,7 @@ function makeProfLinks() {
 			profDiv.appendChild(mercuryLink);
 
 			if (!(prof.name.full in minervaProfs)) {
-				mercuryLink.firstElementChild.className = 'tooltipError mcen-profLinkButton mcen-minervaLinkButton not-active';
+				mercuryLink.firstElementChild.className = 'tooltipError mcen-profLinkButton mcen-mercuryLinkButton not-active';
 				mercuryLink.firstElementChild.title = mercuryLinkMessageError;
 				mercuryLink.href = mercuryLink.href.split('?')[0];
 			}
