@@ -34,6 +34,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	var sysDate = new Date();
 	var sysYear = sysDate.getFullYear();
 	var sysMonth = sysDate.getMonth();
+	var sysCode = '' + sysYear + ('0'+sysMonth).slice(-2);
 	var lang = (url.match(/\/fr\//) ? 'fr' : 'en');
 	var termNames = {
 			'en': {

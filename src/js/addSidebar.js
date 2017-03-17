@@ -355,6 +355,11 @@ function disableVSBSidebarTerm(termCode) {
 	const vsbSidebarButton = document.getElementsByClassName('mcen-vsb' + termCode)[0];
 	vsbSidebarButton.className = 'form-submit mcen-linkButton not-active';
 	vsbSidebarButton.parentElement.href = 'https://vsb.mcgill.ca/vsb';
-	vsbSidebarButton.parentElement.title = 'This term is not available in VSB!';
 	vsbSidebarButton.parentElement.className = 'vsbTermNotAvailable';
+	if (termCode < sysCode) {
+		vsbSidebarButton.parentElement.title = 'This term is no longer available in VSB!';
+	}
+	else {
+		vsbSidebarButton.parentElement.title = 'This term is not yet available in VSB!';
+	}
 }
