@@ -24,7 +24,6 @@ function enhanceVSB() {
 	const crnMaxMessage = 'There is a maximum of 10 CRN codes that can be submitted in one registration. McGill Enhanced will attempt registration for the first 10 CRN codes detected.';
 	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 
-	console.log("".split(" "));
 
 	//Create and insert One-Click registration button
 
