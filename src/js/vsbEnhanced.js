@@ -17,58 +17,44 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 function enhanceVSB() {
 
-	notloggedinMessage = "You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.";
-	notpermittedMessage = "Minerva indicates that you are not permitted to register at this time or that this term is not available for registration processing. Please check Minerva to verify this.";
-	errorMessage = "McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time. If these are not the problems, then this feature may not be functioning as intended.";
-	minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
+	const notloggedinMessage = 'You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.';
+	const notpermittedMessage = 'Minerva indicates that you are not permitted to register at this time or that this term is not available for registration processing. Please check Minerva to verify this.';
+	const errorMessage = 'McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time. If these are not the problems, then this feature may not be functioning as intended.';
+	const crnMinMessage = 'No CRN codes detected in VSB for registration.';
+	const crnMaxMessage = 'There is a maximum of 10 CRN codes that can be submitted in one registration. McGill Enhanced will attempt registration for the first 10 CRN codes detected.';
+	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 
-	var head = document.getElementsByTagName('head')[0];
-	var s = document.createElement('style');
-	s.setAttribute('type', 'text/css');
-	s.innerText = ".bubble { background-color: #fffeef !important; }";
-	head.appendChild(s);
-
+	console.log("".split(" "));
 
 	//Create and insert One-Click registration button
 
-	const box = document.getElementsByClassName("reg_legend")[0];
+	const regLegend = document.getElementsByClassName("reg_legend")[0];
 
-	const wrap = document.createElement('div');
-	wrap.style.width = 'calc(88% + 16px)';
-	wrap.style.margin = 'auto';
+	const regDiv = document.createElement('div');
+	regDiv.style.width = 'calc(88% + 16px)';
+	regDiv.style.margin = 'auto';
+	regLegend.appendChild(regDiv);
 
-	var button = document.createElement('button');
-	button.setAttribute("type", "button");
-	button.setAttribute("onclick", 'document.dispatchEvent(new Event("register"));');
-	button.innerHTML = "McGill Enhanced:<br>One-Click Minerva Registration!";
-	button.title = "Click to register for the above CRN codes.\nMust be already signed into Minerva!";
-	button.style.width = "100%";
-	button.style.padding = "10px 4px 10px 60px";
-	button.style.margin = "10px 0px";
-	button.style.whiteSpace = "normal";
-	button.style.borderRadius = "8px";
-	button.style.webkitAppearance = "button";
-	button.style.background = "#FBF7C9 url(https://i.imgur.com/N0P89lL.png) no-repeat 6% 44%";
-	button.style.backgroundSize = '40px 40px';
-	button.style.WebkitBoxShadow  = "none";
-	button.style.boxShadow = "3px 3px 5px #dddddd";
-	button.style.border = "2px solid #5B5B5A";
-	button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
-	button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
+	const regButton = document.createElement('button');
+	regButton.setAttribute('type', 'button');
+	regButton.setAttribute('onclick', 'document.dispatchEvent(new Event("register"));');
+	regButton.id = 'mcen-vsb-registration';
+	regButton.innerHTML = 'McGill Enhanced:<br>One-Click Minerva Registration!';
+	regButton.title = 'Click to register for the above CRN codes.\nMust be already signed into Minerva!';
+	regButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"');
+	regButton.setAttribute('onmouseout', 'this.style.border="2px solid #5B5B5A"');
+	regDiv.appendChild(regButton);
 	
-	wrap.appendChild(button);
-	box.appendChild(wrap);
-
 
 	//Define function to execute when register event dispactched (when registration button clicked)
 
-	document.addEventListener("register", function(data) {
+	document.addEventListener('register', function(data) {
 
-	 	let termCode = window.location.search.match(/.+term\=([0-9]{6})/)[1];
-	 	let minervaRegister = 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode;
+	 	const termCode = window.location.search.match(/.+term\=([0-9]{6})/)[1];
+	 	const minervaRegister = 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode;
 		logForDebug(minervaRegister);
 
-		var xmlRequestInfo = {
+		const xmlRequestInfo = {
 			method: 'GET',
 			action: 'xhttp',
 			url: minervaRegister
@@ -78,7 +64,7 @@ function enhanceVSB() {
 		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
 			try {
 				htmlParser = new DOMParser();
-				htmlDoc = htmlParser.parseFromString(data.responseXML, "text/html");
+				htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
 				logForDebug(htmlDoc);
 
 				infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
@@ -92,25 +78,32 @@ function enhanceVSB() {
 					redirect(notpermittedMessage, minervaRegister);
 				}
 				else {
-					registrationForm = htmlDoc.getElementsByTagName('form')[1];
 
-					logForDebug(registrationForm);
-					logForDebug($(registrationForm).serialize().split('&'));
-
-					crns = document.getElementById('cartCrns').value.replace(/[{()}]/g, '').split(" ");
-					logForDebug(crns);
-
-					for (let c = 0; c < crns.length; c++) {
-						htmlDoc.getElementById('crn_id'+(c+1)).value = crns[c];
+					const crnString = document.getElementById('cartCrns').value.replace(/[{()}]/g, '');
+					if (crnString === "") {
+						alert(crnMinMessage);
 					}
+					else {
+						const crnCodes = crnString.split(" ");
+						logForDebug(crnCodes);
 
-					logForDebug(registrationForm);
-					logForDebug($(registrationForm).serialize().split('&'));
+						registrationForm = htmlDoc.getElementsByTagName('form')[1];
+						logForDebug(registrationForm);
+						logForDebug($(registrationForm).serialize().split('&'));
 
-					regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?' + $(registrationForm).serialize() + '&REG_BTN=Submit+Changes';
-					logForDebug(regURL);
+						for (let c = 0; c < crnCodes.length && c < 10; c++) {
+							htmlDoc.getElementById('crn_id'+(c+1)).value = crnCodes[c];
+						}
+						logForDebug(registrationForm);
+						logForDebug($(registrationForm).serialize().split('&'));
 
-					window.open(regURL, '_blank').focus();
+						if (crnCodes.length > 10) {
+							alert(crnMaxMessage);
+						}
+						regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?' + $(registrationForm).serialize() + '&REG_BTN=Submit+Changes';
+						logForDebug(regURL);
+						window.open(regURL, '_blank').focus();
+					}
 				}
 			}
 			catch(err) {
@@ -128,4 +121,3 @@ function redirect(message, url) {
 	alert(message);
 	window.open(url, '_blank');
 }
-

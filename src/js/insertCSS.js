@@ -32,6 +32,11 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	}
 }
 
+if (url.match(/.+vsb\.mcgill\.ca/)) {
+	// inject CSS for sidebar and profLinks
+	injectCSS("css/vsb.css");
+}
+
 
 /** 
  * Inject CSS scripts into current page
