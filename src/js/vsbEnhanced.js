@@ -88,70 +88,29 @@ function enhanceVSB() {
 					redirect(notloggedinMessage, minervaLogin);
 				}
 				else if (infotext.includes('You are not permitted to register at this time.') ||
-						 infotext.includes('Term not available for Registration processing.')) {
+					     infotext.includes('Term not available for Registration processing.')) {
 					redirect(notpermittedMessage, minervaRegister);
 				}
 				else {
 					registrationForm = htmlDoc.getElementsByTagName('form')[1];
+
 					logForDebug(registrationForm);
+					logForDebug($(registrationForm).serialize().split('&'));
 
-					regsitrationFormOrig = [];
-					for (var t=0; t < registrationForm.length; t++) {
-						regsitrationFormOrig.push(registrationForm[t].name + "=" + registrationForm[t].value);
-					}
-					logForDebug(regsitrationFormOrig);
-
-					crns = document.getElementById('cartCrns').value.split(" ");
+					crns = document.getElementById('cartCrns').value.replace(/[{()}]/g, '').split(" ");
 					logForDebug(crns);
 
-					regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?term_in=' + termCode;
-					regURL += '&RSTS_IN=DUMMY';
-					regURL += '&assoc_term_in=DUMMY';
-					regURL += '&CRN_IN=DUMMY';
-					regURL += '&start_date_in=DUMMY';
-					regURL += '&end_date_in=DUMMY';
-					regURL += '&SUBJ=DUMMY';
-					regURL += '&CRSE=DUMMY';
-					regURL += '&SEC=DUMMY';
-					regURL += '&LEVL=DUMMY';
-					regURL += '&CRED=DUMMY';
-					regURL += '&GMOD=DUMMY';
-					regURL += '&TITLE=DUMMY';
-					regURL += '&MESG=DUMMY';
-					regURL += '&REG_BTN=DUMMY';
-
-					let i = 15;
-					while(registrationForm[i].name !== 'RSTS_IN') {
-						for (let j = 0; j <= 12; j++) {
-							let formEntry = registrationForm[i+j];
-							regURL += '&' + formEntry.name + '=' + formEntry.value;
-						}
-						i += 13;
+					for (let c = 0; c < crns.length; c++) {
+						htmlDoc.getElementById('crn_id'+(c+1)).value = crns[c];
 					}
 
-					for (let c = 0; c < 10; c++) {
-						for (let d = 0; d <= 5; d++) {
-							let formEntry = registrationForm[i+d];
-							if (formEntry.name === 'CRN_IN' && c<crns.length) {
-								regURL += '&' + formEntry.name + '=' + crns[c].replace(/[{()}]/g, '');
-							}
-							else {
-								regURL += '&' + formEntry.name + '=' + formEntry.value;
-							}
-						}
-						i += 5;
-					}
+					logForDebug(registrationForm);
+					logForDebug($(registrationForm).serialize().split('&'));
 
-					regURL += '&regs_row=' + 			registrationForm[i].value;
-					regURL += '&wait_row=0';
-					regURL += '&add_row=10';
-					regURL += '&REG_BTN=Submit+Changes';
-					logForDebug(regURL.split('&'));
-
-					//window.location = regURL;
-					var win = window.open(regURL, '_blank');
-	  				win.focus();
+					regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?' + $(registrationForm).serialize() + '&REG_BTN=Submit+Changes';
 					logForDebug(regURL);
+
+					window.open(regURL, '_blank').focus();
 				}
 			}
 			catch(err) {
