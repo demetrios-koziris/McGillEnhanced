@@ -29,10 +29,18 @@ function enhanceVSB() {
 	head.appendChild(s);
 
 
+	//Create and insert One-Click registration button
+
+	const box = document.getElementsByClassName("reg_legend")[0];
+
+	const wrap = document.createElement('div');
+	wrap.style.width = 'calc(88% + 16px)';
+	wrap.style.margin = 'auto';
+
 	var button = document.createElement('button');
 	button.setAttribute("type", "button");
-	button.setAttribute("onclick", register.toString() +  " register();");
-	button.innerHTML = "McGill Enhanced:<br>One-Click Minerva Registration!"
+	button.setAttribute("onclick", 'document.dispatchEvent(new Event("register"));');
+	button.innerHTML = "McGill Enhanced:<br>One-Click Minerva Registration!";
 	button.title = "Click to register for the above CRN codes.\nMust be already signed into Minerva!";
 	button.style.width = "100%";
 	button.style.padding = "10px 4px 10px 60px";
@@ -48,15 +56,11 @@ function enhanceVSB() {
 	button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
 	button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
 	
-	
-	const box = document.getElementsByClassName("reg_legend")[0];
-
-	const wrap = document.createElement('div');
-	wrap.style.width = 'calc(88% + 16px)';
-	wrap.style.margin = 'auto';
 	wrap.appendChild(button);
 	box.appendChild(wrap);
 
+
+	//Define function to execute when register event dispactched (when registration button clicked)
 
 	document.addEventListener("register", function(data) {
 
@@ -81,18 +85,19 @@ function enhanceVSB() {
 				logForDebug(infotext);
 
 				if (infotext.includes('Please select one of the following login methods.')) {
-					loginRedirect(notloggedinMessage, minervaLogin);
+					redirect(notloggedinMessage, minervaLogin);
 				}
 				else if (infotext.includes('You are not permitted to register at this time.') ||
 						 infotext.includes('Term not available for Registration processing.')) {
-					loginRedirect(notpermittedMessage, minervaRegister);
+					redirect(notpermittedMessage, minervaRegister);
 				}
 				else {
-					registrationForm = htmlDoc.getElementsByTagName('form');
+					registrationForm = htmlDoc.getElementsByTagName('form')[1];
 					logForDebug(registrationForm);
+
 					regsitrationFormOrig = [];
-					for (var t=0; t < registrationForm[1].length; t++) {
-						regsitrationFormOrig.push(registrationForm[1][t].name + "=" + registrationForm[1][t].value);
+					for (var t=0; t < registrationForm.length; t++) {
+						regsitrationFormOrig.push(registrationForm[t].name + "=" + registrationForm[t].value);
 					}
 					logForDebug(regsitrationFormOrig);
 
@@ -115,37 +120,29 @@ function enhanceVSB() {
 					regURL += '&MESG=DUMMY';
 					regURL += '&REG_BTN=DUMMY';
 
-					var i = 15;
-					while(registrationForm[1][i].value == 'DUMMY') {
-						regURL += '&MESG=' + 			registrationForm[1][i].value;
-						regURL += '&RSTS_IN=';
-						regURL += '&assoc_term_in=' + 	registrationForm[1][i+2].value;
-						regURL += '&CRN_IN=' + 			registrationForm[1][i+3].value;
-						regURL += '&start_date_in=' + 	registrationForm[1][i+4].value.replace(/\//g, "%2F");
-						regURL += '&end_date_in=' + 	registrationForm[1][i+5].value.replace(/\//g, "%2F");
-						regURL += '&SUBJ=' + 			registrationForm[1][i+6].value;
-						regURL += '&CRSE=' + 			registrationForm[1][i+7].value;
-						regURL += '&SEC=' + 			registrationForm[1][i+8].value;
-						regURL += '&LEVL=' + 			registrationForm[1][i+9].value;
-						regURL += '&CRED=++++' + 		registrationForm[1][i+10].value.trim();
-						regURL += '&GMOD=' + 			registrationForm[1][i+11].value;
-						regURL += '&TITLE=' + 			registrationForm[1][i+12].value.replace(/ /g, "+");
+					let i = 15;
+					while(registrationForm[i].name !== 'RSTS_IN') {
+						for (let j = 0; j <= 12; j++) {
+							let formEntry = registrationForm[i+j];
+							regURL += '&' + formEntry.name + '=' + formEntry.value;
+						}
 						i += 13;
 					}
 
-					for (c=0; c<10; c++) {
-						regURL += '&RSTS_IN=RW';
-						regURL += '&CRN_IN=';
-						if (c < crns.length) {
-							crns[c] = crns[c].replace(/[{()}]/g, ''); //remove parentheses
-							regURL += crns[c];
+					for (let c = 0; c < 10; c++) {
+						for (let d = 0; d <= 5; d++) {
+							let formEntry = registrationForm[i+d];
+							if (formEntry.name === 'CRN_IN' && c<crns.length) {
+								regURL += '&' + formEntry.name + '=' + crns[c].replace(/[{()}]/g, '');
+							}
+							else {
+								regURL += '&' + formEntry.name + '=' + formEntry.value;
+							}
 						}
-						regURL += '&assoc_term_in=';
-						regURL += '&start_date_in=';
-						regURL += '&end_date_in=';
+						i += 5;
 					}
 
-					regURL += '&regs_row=' + 			registrationForm[1][i+50].value;
+					regURL += '&regs_row=' + 			registrationForm[i].value;
 					regURL += '&wait_row=0';
 					regURL += '&add_row=10';
 					regURL += '&REG_BTN=Submit+Changes';
@@ -159,7 +156,7 @@ function enhanceVSB() {
 			}
 			catch(err) {
 				console.log(err.stack);
-				loginRedirect(errorMessage, minervaRegister);
+				redirect(errorMessage, minervaRegister);
 			}
 		});
 
@@ -168,16 +165,8 @@ function enhanceVSB() {
 }
 
 
-function loginRedirect(message, url) {
+function redirect(message, url) {
 	alert(message);
 	window.open(url, '_blank');
 }
-
-
-function register() {
-	var event = document.createEvent('Event');
-	event = new Event('register');
-	document.dispatchEvent(event);
-}
-
 
