@@ -645,29 +645,18 @@ for (i = 0; i < courseTables.length; i+=2) {
 }
 // console.log(courseTables);
 
-const schedDownload = document.createElement('div');
+const schedDownloadDiv = document.createElement('div');
 
-var button = document.createElement('button');
-button.setAttribute("type", "button");
-button.setAttribute("onclick", "javascript:calCourseSchedule.download('CourseSchedule" + courseSemester + "');");
-button.innerHTML = "McGill Enhanced:<br>Download Course Schedule as ICS file!";
-button.title = "ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!";
-button.style.width = "100%";
-button.style.maxWidth = "500px";
-button.style.padding = "10px 4px 10px 200px";
-button.style.margin = "10px 0px";
-button.style.whiteSpace = "normal";
-button.style.borderRadius = "8px";
-button.style.webkitAppearance = "button";
-button.style.background = "#C5C5C5 url(https://i.imgur.com/HEGWp4Z.png) no-repeat 6% 44%";
-button.style.backgroundSize = '180px 60px';
-button.style.WebkitBoxShadow	= "none";
-button.style.boxShadow = "3px 3px 5px #dddddd";
-button.style.border = "2px solid #5B5B5A";
-button.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
-button.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
+var schedDownloadButton = document.createElement('button');
+schedDownloadButton.setAttribute("type", "button");
+schedDownloadButton.setAttribute("onclick", "javascript:calCourseSchedule.download('CourseSchedule" + courseSemester + "');");
+schedDownloadButton.id = 'mcen-sched-download';
+schedDownloadButton.innerHTML = "McGill Enhanced:<br>Download Course Schedule as ICS file!";
+schedDownloadButton.title = "ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!";
+schedDownloadButton.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
+schedDownloadButton.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
 
-schedDownload.appendChild(button);
+schedDownloadDiv.appendChild(schedDownloadButton);
 
 pagebodydiv = document.getElementsByClassName("pagebodydiv")[0];
-pagebodydiv.insertBefore(schedDownload, pagebodydiv.firstChild);
+pagebodydiv.insertBefore(schedDownloadDiv, pagebodydiv.firstChild);

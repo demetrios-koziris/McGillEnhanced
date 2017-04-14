@@ -33,8 +33,13 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 }
 
 if (url.match(/.+vsb\.mcgill\.ca/)) {
-	// inject CSS for sidebar and profLinks
+	// inject CSS for vsb enhanced
 	injectCSS("css/vsb.css");
+}
+
+if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.match(/mymcgill\.mcgill\.ca\/portal\/page\/portal\/myMcGill\/MINERVA_TAB/)) {
+	// inject CSS for minerva sched downloader
+	injectCSS("css/minerva.css");
 }
 
 
