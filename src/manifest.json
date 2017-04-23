@@ -2,14 +2,15 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.1.27",
+  "version": "3.1.28",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
     "*://www.mcgill.ca/study/*", 
     "*://horizon.mcgill.ca/*", 
     "*://www.docuum.com/McGill*", 
-    "*://vsb.mcgill.ca/*"
+    "*://vsb.mcgill.ca/*",
+    "*://demetrios-koziris.github.io/*"
   ],
   "background": {
     "scripts": [ "js/backgroundHTTP.js", "js/background.js" ],
@@ -32,7 +33,8 @@
         "*://www.mcgill.ca/study/*", 
         "*://horizon.mcgill.ca/*", 
         "*://www.docuum.com/McGill*", 
-        "*://vsb.mcgill.ca/*"
+        "*://vsb.mcgill.ca/*",
+        "*://demetrios-koziris.github.io/*"
       ],
       "js" : [
         "lib/jquery-1.11.2.min.js", 
@@ -47,6 +49,7 @@
         "js/addCourseLinks.js",
         "js/vsbEnhanced.js",
         "js/scheduleDownloadInserter.js",
+        "js/averageGPAsDownloader.js",
         "js/init.js"
       ]
     },
@@ -56,7 +59,8 @@
         "*://www.mcgill.ca/study/*", 
         "*://horizon.mcgill.ca/*", 
         "*://www.docuum.com/McGill*", 
-        "*://vsb.mcgill.ca/*"
+        "*://vsb.mcgill.ca/*",
+        "*://demetrios-koziris.github.io/*"
       ],
       "js" : [
           "js/insertCSS.js"

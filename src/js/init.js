@@ -17,8 +17,8 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 var url = window.location.href;
 
-let devMode = !('update_url' in chrome.runtime.getManifest())
-let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} )
+let devMode = !('update_url' in chrome.runtime.getManifest());
+let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} );
 logForDebug("McGill Enhanced Debug mode is ON");
 
 // run on McGill.ca pages
@@ -79,4 +79,6 @@ if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.m
 	insertScheduleDownloader();
 }
 
-
+if (url.match(/.+demetrios\-koziris\.github\.io\/McGillEnhanced\/averagegpa/)) {
+	averageGPAsDownloader();
+}
