@@ -18,7 +18,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 function averageGPAsDownloader() {
 
 	const notloggedinMessage = 'You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.';
-	const errorMessage = 'McGill Enhanced encountered an error while trying to register you. You may not be signed in or may not be permitted to register at this time. If these are not the problems, then this feature may not be functioning as intended.';
+	const errorMessage = 'McGill Enhanced encountered an error while trying to download the average GPAs from your transcript.';
 	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 	const transriptURL = 'https://horizon.mcgill.ca/pban1/bzsktran.P_Display_Form?user_type=S&tran_type=V';
 
@@ -31,7 +31,7 @@ function averageGPAsDownloader() {
 			action: 'xhttp',
 			url: transriptURL
 		};
-		console.log(xmlRequestInfo);
+		logForDebug(xmlRequestInfo);
 
 		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
 			try {
@@ -46,22 +46,56 @@ function averageGPAsDownloader() {
 					redirect(notloggedinMessage, minervaLogin);
 				}
 				else {
-					htmlDoc.getElementsByClassName('dataentrytable');
-					console.log('trans');
+					let transcript = htmlDoc.getElementsByClassName('dataentrytable')[1].rows;
+					logForDebug(transcript);
+					let aveGPAs = [];
+					let term = "";
+
+					for (let r = 0; r < transcript.length; r++) {
+						let cols = transcript[r].getElementsByClassName('fieldmediumtext');
+						if (cols.length === 1) {
+							let termMatch = cols[0].innerHTML.match(/\<b\>(Fall|Winter|Summer)\&nbsp\;([0-9]{4})\<\/b\>/);
+							if (termMatch) {
+								term = termMatch[1][0] + termMatch[2];
+								logForDebug(term);
+							}
+						}
+						else if (cols.length === 8 || cols.length === 7) {
+							if (cols[cols.length-1].innerText.match(/[ABCDF+-]/)) {
+								aveGPAs.push([cols[0].innerText, cols[cols.length-1].innerText, term, cols[3].innerText]);
+							}
+						} 
+					}
+					logForDebug(aveGPAs);
+					let csvString = arrayToCSV(aveGPAs);
+					let a = document.createElement('a');
+					a.href = 'data:attachment/csv,' +  encodeURIComponent(csvString);
+					a.target = '_blank';
+					a.download = 'averageGPAs.csv';
+					document.body.appendChild(a);
+					a.click();
 				}
 			}
 			catch(err) {
 				console.log(err.stack);
-				redirect(errorMessage, minervaRegister);
+				redirect(errorMessage, transriptURL);
 			}
 		});
 
 	});
-
 }
 
 
 function redirect(message, url) {
 	alert(message);
 	window.open(url, '_blank');
+}
+
+
+function arrayToCSV(rows) {
+  var content = "";
+  rows.forEach(function(row, index) {
+    content += row.join(",") + "\n";
+  });
+  return content;
 }
