@@ -36,7 +36,7 @@ function addYearMenu() {
 	yearMenuBarDIV.appendChild(inner);
 
 	const yearMenuBarUL = document.createElement('ul');
-	yearMenuBarUL.className = "sf-menu sf-main-menu mcen-yearMenuBarUL";
+	yearMenuBarUL.className = "sf-menu mcen-yearMenuBarUL";
 	inner.appendChild(yearMenuBarUL);
 
 	for (let i = firstYear+numYearsInMenu-1; i >= firstYear; i-=1) {
