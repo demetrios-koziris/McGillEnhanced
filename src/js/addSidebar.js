@@ -96,27 +96,27 @@ function makeSidebarContent() {
 	courseEval.appendChild(generateSidebarLink(mercuryURL, "mcen-red", mercuryButtonString, true));
 
 	
+	//SIDEBAR SECTION: LECTURE RECORDINGS
+	const availableRecordingURLdata = [];
+	const oldestAvailableTerm = getOldestAvailableRecordingTerm();
 	if (recordingURLdata) {
+		for (let i = 0; i < recordingURLdata.length; i++) {
+			if (recordingURLdata[i].year + ('0'+recordingURLdata[i].month).slice(-2) >= oldestAvailableTerm) {
+				availableRecordingURLdata.push(recordingURLdata[i]);
+			}
+		}
+	}
+	logForDebug(recordingURLdata);
 
-		//SIDEBAR SECTION: LECTURE RECORDINGS
+	if (availableRecordingURLdata) {
 		const recordings = generateSidebarSection("Lecture Recordings");
 		sidebarLinksBlock.appendChild(recordings);
 
-		const maxYear = Math.max.apply(Math, Object.keys(recordingURLdata));
-		if (urlYearF != maxYear) {
-			const maxYearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, maxYear+"-"+(maxYear+1));
-			const recordingsButtonString = "View " + maxYear + "-" + (maxYear+1) + " for the latest Lectures";
-			recordings.appendChild(generateSidebarLink(maxYearURL, "mcen-red", recordingsButtonString, false));
-		}
-
-		if (urlYearF in recordingURLdata) {
-			const yearRecordingURLs = recordingURLdata[urlYearF];
-			for (let r = 0; r < yearRecordingURLs.length; r++) {
-				const recordingData = yearRecordingURLs[r];
-				const recordingURL = recordingsBaseURLs[recordingData.type] + recordingData.id;
-				const recordingsButtonString = "View " + monthToSemester[recordingData.month] + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
-				recordings.appendChild(generateSidebarLink(recordingURL, "mcen-red", recordingsButtonString, false));
-			}
+		for (let r = 0; r < availableRecordingURLdata.length; r++) {
+			const recordingData = availableRecordingURLdata[r];
+			const recordingURL = recordingsBaseURLs[recordingData.type] + recordingData.id;
+			const recordingsButtonString = "View " + monthToSemester[recordingData.month] + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
+			recordings.appendChild(generateSidebarLink(recordingURL, "mcen-red", recordingsButtonString, false));
 		}
 	}  
 
