@@ -148,6 +148,7 @@ function makeSidebarContent() {
 			}
 		}
 	}
+	logForDebug(availableRecordingURLdata);
 	if (availableRecordingURLdata) {
 		const recordings = generateSidebarSection("Lecture Recordings");
 		sidebarLinksBlock.appendChild(recordings);
@@ -187,26 +188,26 @@ function makeSidebarContent() {
 	if (deps.length > 0) {
 
 		//SIDEBAR SECTION: RELATED COURSES
-		const related = generateSidebarSection("Course Subjects");
-		sidebarLinksBlock.appendChild(related);
+		const relatedCourses = generateSidebarSection("Course Subjects");
+		sidebarLinksBlock.appendChild(relatedCourses);
 
 		for (let i = 0; i < deps.length; i++) {
 			const relatedURL = "https://www.mcgill.ca/study/" + urlYears + "/courses/search?f[0]=field_subject_code%3A" + deps[i];
 			const relatedButtonString = "View all " +  deps[i] + " Courses";
-			related.appendChild(generateSidebarLink(relatedURL, "mcen-red", relatedButtonString, false)); 
+			relatedCourses.appendChild(generateSidebarLink(relatedURL, "mcen-red", relatedButtonString, false)); 
 		}	
 	}
 
-
-	// related programs section
 	if (document.getElementsByClassName("view-catalog-program").length > 0) {
 
-		const sidebarRelatedBlock = generateSidebarBlock("Related Programs");
-		sidebar.appendChild(sidebarRelatedBlock);
+		//SIDEBAR SECTION: RELATED PROGRAMS
+		const relatedPrograms = generateSidebarSection("Related Programs");
+		sidebarLinksBlock.appendChild(relatedPrograms);
 
-		const relatedPrograms = document.getElementsByClassName("view-catalog-program")[0];
-		sidebarRelatedBlock.appendChild(document.createElement('br'));
-		sidebarRelatedBlock.appendChild(relatedPrograms);
+		const relatedProgramsList = document.getElementsByClassName("view-catalog-program")[0];
+		relatedProgramsList.className += ' mcen-relatedProgramsList';
+		// sidebarRelatedBlock.appendChild(document.createElement('br'));
+		relatedPrograms.appendChild(relatedProgramsList);
 	}
 
 	// remove oldSidebarContainerDiv
@@ -214,6 +215,8 @@ function makeSidebarContent() {
 		const oldSidebarContainerDiv = document.getElementById("sidebar-column");
 		oldSidebarContainerDiv.parentNode.removeChild(oldSidebarContainerDiv); 
 	}
+
+
 
 	// insert enhanced sidebar
 	document.getElementById("inner-container").appendChild(sidebar);
@@ -300,31 +303,6 @@ function generateSidebarBlockTitle(titleString) {
 	sidebarRelatedBlockTitle.className = "mcen-sidebarRelatedBlockTitle";
 	sidebarRelatedBlockTitle.innerText = titleString;
 	return sidebarRelatedBlockTitle;
-}
-
-
-function generateRelatedCoursesSection(titleString) {
-	const relatedCoursesSection = document.createElement('div');
-	relatedCoursesSection.className = "view-catalog-program";
-	relatedCoursesSection.appendChild(document.createElement('br'));
-	relatedCoursesSection.appendChild(generateRelatedCoursesSectionTitle(titleString));
-	return relatedCoursesSection;
-}
-
-
-function generateRelatedCoursesSectionTitle(titleString) {
-	const relatedCoursesSectionTitle = document.createElement('div');
-	relatedCoursesSectionTitle.className = "view-header";
-	relatedCoursesSectionTitle.innerText = "<i>" + titleString + "</i>";
-	return relatedCoursesSectionTitle;
-}
-
-
-function generateRelatedCoursesLink(url, titleString) {
-	const relatedCoursesLink = document.createElement('a');
-	relatedCoursesLink.setAttribute("href", url);
-	relatedCoursesLink.innerText = titleString;
-	return relatedCoursesLink;  
 }
 
 
