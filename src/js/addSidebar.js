@@ -33,6 +33,7 @@ function makeSidebarContent() {
 
 	const vsbSidebarTerms = [];
 	getVSBSemesters(vsbSidebarTerms);
+	const withinyearRangeVSB = (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<3);
 
 	const courseTerms = document.getElementsByClassName("catalog-terms")[0].innerHTML;
 	const courseTermsCodes = [];
@@ -81,6 +82,47 @@ function makeSidebarContent() {
 	sidebar.appendChild(sidebarLinksBlock);
 
 
+	//SIDEBAR SUPER SECTION (YEAR SPECIFIC)
+	const registrationSidebarContentExists = courseTermsCodes.length > 0;
+	const vsbSidebarContentExists = withinyearRangeVSB && courseTermsCodes.length > 0;
+	if (registrationSidebarContentExists || vsbSidebarContentExists) {
+
+		sidebarLinksBlock.appendChild(generateSidebarSectionSeparator(urlYearF+'-'+urlYearW));
+
+		if (registrationSidebarContentExists) {
+			//SIDEBAR SECTION: MINERVA REGISTRATION
+			const courseReg = generateSidebarSection("Minerva Registration");
+			sidebarLinksBlock.appendChild(courseReg);
+
+			for (let i = 0; i < courseTermsCodes.length; i++) {
+				const courseRegURL = "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced?rsts=dummy&crn=dummy&term_in=" + courseTermsCodes[i].code + "&sel_subj=dummy&sel_day=dummy&sel_schd=dummy&sel_insm=dummy&sel_camp=dummy&sel_levl=dummy&sel_sess=dummy&sel_instr=dummy&sel_ptrm=dummy&sel_attr=dummy&sel_subj=" + courseSubject + "&sel_coll=&sel_crse=" + courseNumber + "&sel_title=&sel_schd=&sel_from_cred=&sel_to_cred=&sel_levl=&sel_ptrm=%25&sel_instr=%25&sel_attr=%25&begin_hh=0&begin_mi=0&begin_ap=a&end_hh=0&end_mi=0&end_ap=a&path=1&SUB_BTN=&";
+				const courseRegButtonString = "View " + courseTermsCodes[i].name + " Registration";
+				courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-red", courseRegButtonString, true));   
+			}
+		}
+
+		if (vsbSidebarContentExists) {
+			//SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
+			const vsb = generateSidebarSection("Visual Schedule Builder");
+			sidebarLinksBlock.appendChild(vsb);
+
+			for (let i = 0; i < courseTermsCodes.length; i++) {
+				const term = courseTermsCodes[i];
+				if (term.vsbURL) {
+					const vsbButtonString = "View on VSB " + term.name;
+					const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple mcen-vsb" + term.code, vsbButtonString, false);
+					vsb.appendChild(vsbLink);
+					vsbSidebarTerms.push(term.code);
+				} 
+			}
+		}
+
+		sidebarLinksBlock.appendChild(document.createElement('br'));
+	}
+
+	//SIDEBAR SUPER SECTION (COURSE SPECIFIC)
+	sidebarLinksBlock.appendChild(generateSidebarSectionSeparator(courseNameSpaced));
+
 	//SIDEBAR SECTION: COURSE REVIEWS
 	const courseEval = generateSidebarSection("Course Reviews");
 	sidebarLinksBlock.appendChild(courseEval);
@@ -106,8 +148,6 @@ function makeSidebarContent() {
 			}
 		}
 	}
-	logForDebug(recordingURLdata);
-
 	if (availableRecordingURLdata) {
 		const recordings = generateSidebarSection("Lecture Recordings");
 		sidebarLinksBlock.appendChild(recordings);
@@ -119,20 +159,6 @@ function makeSidebarContent() {
 			recordings.appendChild(generateSidebarLink(recordingURL, "mcen-red", recordingsButtonString, false));
 		}
 	}  
-
-
-	if (courseTermsCodes.length > 0) {
-
-		//SIDEBAR SECTION: MINERVA REGISTRATION
-		const courseReg = generateSidebarSection("Minerva Registration");
-		sidebarLinksBlock.appendChild(courseReg);
-
-		for (let i = 0; i < courseTermsCodes.length; i++) {
-			const courseRegURL = "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced?rsts=dummy&crn=dummy&term_in=" + courseTermsCodes[i].code + "&sel_subj=dummy&sel_day=dummy&sel_schd=dummy&sel_insm=dummy&sel_camp=dummy&sel_levl=dummy&sel_sess=dummy&sel_instr=dummy&sel_ptrm=dummy&sel_attr=dummy&sel_subj=" + courseSubject + "&sel_coll=&sel_crse=" + courseNumber + "&sel_title=&sel_schd=&sel_from_cred=&sel_to_cred=&sel_levl=&sel_ptrm=%25&sel_instr=%25&sel_attr=%25&begin_hh=0&begin_mi=0&begin_ap=a&end_hh=0&end_mi=0&end_ap=a&path=1&SUB_BTN=&";
-			const courseRegButtonString = "View " + courseTermsCodes[i].name + " Registration";
-			courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-red", courseRegButtonString, true));   
-		}
-	}
 
 
 	if ( docuumURLdata || wikinotesURLdata) {
@@ -153,30 +179,15 @@ function makeSidebarContent() {
 		}
 	}
 
+	sidebarLinksBlock.appendChild(document.createElement('br'));
 
-	const withinyearRangeVSB = (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<3);
-	if ( withinyearRangeVSB && courseTermsCodes.length > 0) {
-
-		//SIDEBAR SECTION: VISUAL SCHEDULE BUILDER
-		const vsb = generateSidebarSection("Visual Schedule Builder");
-		sidebarLinksBlock.appendChild(vsb);
-
-		for (let i = 0; i < courseTermsCodes.length; i++) {
-			const term = courseTermsCodes[i];
-			if (term.vsbURL) {
-				const vsbButtonString = "View on VSB " + term.name;
-				const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple mcen-vsb" + term.code, vsbButtonString, false);
-				vsb.appendChild(vsbLink);
-				vsbSidebarTerms.push(term.code);
-			} 
-		}
-	}
-
+	//SIDEBAR SUPER SECTION (RELATED)
+	sidebarLinksBlock.appendChild(generateSidebarSectionSeparator('RELATED'));
 
 	if (deps.length > 0) {
 
 		//SIDEBAR SECTION: RELATED COURSES
-		const related = generateSidebarSection("Related Courses");
+		const related = generateSidebarSection("Course Subjects");
 		sidebarLinksBlock.appendChild(related);
 
 		for (let i = 0; i < deps.length; i++) {
@@ -225,6 +236,34 @@ function generateSidebarSectionTitle(titleString) {
 	sidebarSectionTitle.className = "mcen-sidebarSectionTitle";
 	sidebarSectionTitle.innerText = titleString;
 	return sidebarSectionTitle;
+}
+
+
+function generateSidebarSectionSeparator(separatorTitleString) {
+	const sidebarSectionSeparator = document.createElement('div');
+	sidebarSectionSeparator.className = "mcen-sidebarSectionSeparator";
+	sidebarSectionSeparator.appendChild(generateSidebarSectionSeparatorLeft());
+	sidebarSectionSeparator.appendChild(generateSidebarSectionSeparatorRight(separatorTitleString));
+	return sidebarSectionSeparator;
+}
+
+
+function generateSidebarSectionSeparatorLeft() {
+	const sidebarSectionSeparatorLeftFront = document.createElement('div');
+	sidebarSectionSeparatorLeftFront.className = "mcen-sidebarSectionSeparatorLeftFront";
+
+	const sidebarSectionSeparatorLeftBack = document.createElement('div');
+	sidebarSectionSeparatorLeftBack.className = "mcen-sidebarSectionSeparatorLeftBack";
+	sidebarSectionSeparatorLeftBack.appendChild(sidebarSectionSeparatorLeftFront);
+	return sidebarSectionSeparatorLeftBack;
+}
+
+
+function generateSidebarSectionSeparatorRight(separatorTitleString) {
+	const sidebarSectionSeparatorRight = document.createElement('div');
+	sidebarSectionSeparatorRight.className = "mcen-sidebarSectionSeparatorRight";
+	sidebarSectionSeparatorRight.innerText = separatorTitleString;
+	return sidebarSectionSeparatorRight;
 }
 
 
