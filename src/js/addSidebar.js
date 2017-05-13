@@ -149,7 +149,7 @@ function makeSidebarContent() {
 		}
 	}
 	logForDebug(availableRecordingURLdata);
-	if (availableRecordingURLdata) {
+	if (availableRecordingURLdata.length > 0) {
 		const recordings = generateSidebarSection("Lecture Recordings");
 		sidebarLinksBlock.appendChild(recordings);
 
