@@ -21,6 +21,13 @@ let devMode = !('update_url' in chrome.runtime.getManifest())
 let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} )
 logForDebug("McGill Enhanced Debug mode is ON");
 
+function redirect(message, url) {
+	if (message) {
+		alert(message);
+	}
+	window.open(url, '_blank');
+}
+
 // run on McGill.ca pages
 if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
@@ -59,6 +66,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 		makeProfLinks();
 		makeCourseLinks();
 		makeSidebarContent();
+		makeAveCrowdsourceSection();
 	}
 	else {
 		// run on McGill Program Overview pages

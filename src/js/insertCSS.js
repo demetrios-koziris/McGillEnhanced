@@ -29,6 +29,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 		// inject CSS for sidebar and profLinks
 		injectCSS("css/sidebar.css");
 		injectCSS("css/profLinks.css");
+		injectCSS("css/aveCrowdsource.css");
 	}
 }
 

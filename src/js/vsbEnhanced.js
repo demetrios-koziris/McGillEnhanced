@@ -114,9 +114,3 @@ function enhanceVSB() {
 	});
 
 }
-
-
-function redirect(message, url) {
-	alert(message);
-	window.open(url, '_blank');
-}
