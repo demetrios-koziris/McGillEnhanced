@@ -17,9 +17,10 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 var url = window.location.href;
 
-let devMode = !('update_url' in chrome.runtime.getManifest())
-let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} )
+let devMode = !('update_url' in chrome.runtime.getManifest());
+let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} );
 logForDebug("McGill Enhanced Debug mode is ON");
+
 
 function redirect(message, url) {
 	if (message) {
@@ -63,9 +64,17 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
 		// run on McGill Course Overview pages:
+
+		var urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+		var courseSubject = urlCourseName.split("-")[0];
+		var courseNumber = urlCourseName.split("-")[1];
+		var courseName = courseSubject + courseNumber;
+		var courseNameSpaced = courseSubject + " " + courseNumber;
+
 		makeProfLinks();
 		makeCourseLinks();
 		makeSidebarContent();
+		addContentSeparators()
 		makeAveCrowdsourceSection();
 	}
 	else {

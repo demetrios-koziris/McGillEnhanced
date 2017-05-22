@@ -24,6 +24,10 @@ function makeProfLinks() {
 	const pageTitle = document.getElementById('page-title');
 	const mainColumn =  document.getElementById('main-column');
 	mainColumn.insertBefore(pageTitle, mainColumn.firstChild);
+	const topContent = document.getElementById('top-content');
+	if (topContent.children.length > 0) {
+		topContent.className += ' mcen-top-content';
+	}
 
 	terms = {
 		'Fall': {
@@ -87,9 +91,9 @@ function makeProfLinks() {
 
 		const profSection = document.createElement('div');
 
-		const profSectionTitle = document.createElement('div');
-		profSectionTitle.innerHTML = '<b>' + inst[lang] + '</b>';
-		profSection.appendChild(profSectionTitle);
+		// const profSectionTitle = document.createElement('div');
+		// profSectionTitle.innerHTML = '<b>' + inst[lang] + '</b>';
+		// profSection.appendChild(profSectionTitle);
 
 		for (let profKey in profs) {
 

@@ -19,12 +19,6 @@ function makeSidebarContent() {
 
 	document.getElementById("main-column").className += " mcen-main-column";
 
-	const urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-	const courseSubject = urlCourseName.split("-")[0];
-	const courseNumber = urlCourseName.split("-")[1];
-	const courseName = courseSubject + courseNumber;
-	const courseNameSpaced = courseSubject + " " + courseNumber;
-
 	const recordingURLdata = getRecordingData()[courseName];
 	const recordingsBaseURLs = getRecordingsBaseURLs();
 	const monthToSemester = getMonthToSemester();
@@ -204,6 +198,7 @@ function makeSidebarContent() {
 		const relatedPrograms = generateSidebarSection("Related Programs");
 		sidebarLinksBlock.appendChild(relatedPrograms);
 
+		document.getElementsByClassName('view-header')[0].innerHTML= '<i>This course may be used as a required or complementary course in the following:</i>'
 		const relatedProgramsList = document.getElementsByClassName("view-catalog-program")[0];
 		relatedProgramsList.className += ' mcen-relatedProgramsList';
 		// sidebarRelatedBlock.appendChild(document.createElement('br'));

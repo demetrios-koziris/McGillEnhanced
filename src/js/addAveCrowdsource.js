@@ -14,16 +14,92 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
+function generateClassAverageDiv(data) {
+	let classAverageDiv = document.createElement('div');
+	classAverageDiv.className = 'mcen-class-average-div';
+	classAverageDiv.innerHTML = '' + data.term + ': ' + data.average + '';
+	return classAverageDiv;
+}
 
-function makeAveCrowdsourceSection() {
-	// crowdsourceSection = document.createElement('div');
-	// crowdsourceSection.innerHTML = '<form class="jotform-form" action="https://submit.jotform.ca/submit/71326103409245/" method="post" enctype="multipart/form-data" name="form_71326103409245" id="71326103409245" accept-charset="utf-8"><input type="hidden" name="formID" value="71326103409245" /><input type="hidden" id="simple_spc" name="simple_spc" value="71326103409245" />  <input type="file" id="input_3" name="q3_clickTo" class="form-upload validate[required]" data-imagevalidate="yes" data-file-accept="csv" data-file-maxsize="4" data-file-minsize="0" data-file-limit="0" data-component="fileupload" required="" /><button id="input_2" type="submit" class="form-submit-button" data-component="button"> Submit </button></form><script type="text/javascript">JotForm.ownerView=true;</script>';
-	// document.getElementsByClassName('node-catalog')[0].appendChild(crowdsourceSection);
+function addContentSeparators() {
 
-	const crowdsourceSectionDiv = document.createElement('div');
+	const content = document.getElementsByClassName('node-catalog')[0].children[1];
+	content.id = 'mcen-content';
+	content.children[0].remove();
 
-	const crowdsourceSectionTitle = generateSidebarSectionSeparator("CLASS AVERAGES");
-	crowdsourceSectionDiv.appendChild(crowdsourceSectionTitle);
+	contentContainers = []
+
+	const overviewContainer = document.createElement('div');
+	overviewContainer.id = 'mcen-overviewContainer';
+	overviewContainer.className = 'mcen-container'
+	overviewContainer.appendChild(generateMainContentSeparator("OVERVIEW"));
+	overviewContainer.appendChild(content.children[0]);
+	overviewContainer.appendChild(content.children[0]);
+	contentContainers.push(overviewContainer);
+
+	const instructorsContainer = document.createElement('div');
+	instructorsContainer.id = 'mcen-instructorsContainer';
+	instructorsContainer.className = 'mcen-container'
+	instructorsContainer.appendChild(generateMainContentSeparator("INSTRUCTORS"));
+	instructorsContainer.appendChild(content.children[0]);
+	contentContainers.push(instructorsContainer);
+
+	const notesContainer = document.createElement('div');
+	notesContainer.id = 'mcen-notesContainer';
+	notesContainer.className = 'mcen-container'
+	notesContainer.appendChild(generateMainContentSeparator("NOTES"));
+	if (content.children.length	> 0) {
+		notesContainer.appendChild(content.children[0]);
+	}
+	contentContainers.push(notesContainer);
+
+	const averagesContainer = document.createElement('div');
+	averagesContainer.id = 'mcen-averagesContainer';
+	averagesContainer.className = 'mcen-container'
+	averagesContainer.appendChild(generateMainContentSeparator("CLASS AVERAGES"));
+	averagesContainer.appendChild(generateAveCrowdsourceSection());
+	contentContainers.push(averagesContainer);
+
+	for (let i = 0; i < contentContainers.length; i++) {
+		content.appendChild(contentContainers[i]);
+	}
+
+}
+
+function generateAveCrowdsourceSection() {
+
+	const classAveragesData = getClassAveragesData()[courseName];
+	console.log(classAveragesData);
+
+	const crowdsourceContent = document.createElement('div');
+	crowdsourceContent.id = 'mcen-class-averages-content';
+
+	if (classAveragesData) {
+		const crowdsourceContentRight = document.createElement('div');
+		crowdsourceContentRight.id = 'mcen-class-averages-content-right';
+		crowdsourceContent.appendChild(crowdsourceContentRight);
+
+		const crowdsourceContentRightTable = document.createElement('div');
+		crowdsourceContentRightTable.id = 'mcen-class-averages-content-right-table';
+		crowdsourceContentRight.appendChild(crowdsourceContentRightTable);
+
+		for (let i = 0; i < classAveragesData.length; i++) {
+			crowdsourceContentRightTable.appendChild(generateClassAverageDiv(classAveragesData[i]));
+		}
+	}
+
+	const crowdsourceContentLeft = document.createElement('div');
+	crowdsourceContentLeft.id = 'mcen-class-averages-content-left';
+	if (classAveragesData) {
+		// crowdsourceContentLeft.innerHTML = 'The following class averages are unofficial and were gathered by students on r/McGill. McGill Enhanced is currently undertaking its own crowdsourcing initiative to gather a more accurate and complete dataset. If you would like to participate, the button below will download a CSV file of the class averages on your transcript and will open a form where you can submit the file.';
+		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by students on the McGill subreddit. Inspired by this effort, McGill Enhanced is currently undertaking its own crowdsourcing initiative to gather a more complete dataset of class averages. If you would like to participate, the button below will download a CSV file of your class averages and will open a form where you can submit it.</p>';
+	}
+	else {
+		crowdsourceContentLeft.style.paddingLeft = '0px';
+		crowdsourceContentLeft.style.width = '100%';
+		crowdsourceContentLeft.innerHTML = '<p>McGill Enhanced is currently undertaking a crowdsourcing initiative to gather a dataset of historical class averages. If you would like to participate, the button below will download a CSV file of the class averages on your transcript and will open a form where you can submit the file.</p>';
+	}
+	crowdsourceContent.appendChild(crowdsourceContentLeft);
 
 	var downloadClassAveragesButton = document.createElement('button');
 	downloadClassAveragesButton.setAttribute('type', 'button');
@@ -31,14 +107,13 @@ function makeAveCrowdsourceSection() {
 	downloadClassAveragesButton.id = 'mcen-class-averages-download';
 	downloadClassAveragesButton.innerHTML = 'McGill Enhanced: Download Your Class Averages!';
 	downloadClassAveragesButton.title = 'Click to download the class averages from your transcript.\nMust be already signed into Minerva!';
-	downloadClassAveragesButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"; this.style.paddingTop="6px";');
-	downloadClassAveragesButton.setAttribute('onmouseout', 'this.style.border="1px solid #5B5B5A"; this.style.paddingTop="7px";');
-	crowdsourceSectionDiv.appendChild(downloadClassAveragesButton);
-
-	document.getElementsByClassName('node-catalog')[0].appendChild(crowdsourceSectionDiv);
-
+	downloadClassAveragesButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"; this.style.padding="6px 0px";');
+	downloadClassAveragesButton.setAttribute('onmouseout', 'this.style.border="1px solid #5B5B5A"; this.style.padding="7px";');
+	crowdsourceContentLeft.appendChild(downloadClassAveragesButton);
 
 	averageGPAsDownloader();
+
+	return crowdsourceContent;
 }
 
 
@@ -103,7 +178,10 @@ function averageGPAsDownloader() {
 					document.body.appendChild(a);
 					a.click();
 
-					redirect('', 'https://form.jotform.ca/mcgillenhanced/class-average-crowdsourcing');
+					setTimeout(function () {
+						redirect('', 'https://form.jotform.ca/mcgillenhanced/class-average-crowdsourcing');
+ 					}, 1000);
+
 				}
 			}
 			catch(err) {
@@ -122,4 +200,28 @@ function arrayToCSV(rows) {
     content += row.join(",") + "\n";
   });
   return content;
+}
+
+
+function generateMainContentSeparator(separatorTitleString) {
+
+	const mainContentSeparator = document.createElement('div');
+	mainContentSeparator.className = "mcen-contentSeparator";	
+
+	const mainContentSeparatorLabel = document.createElement('div');
+	mainContentSeparatorLabel.className = "mcen-contentSeparatorLabel";
+	mainContentSeparatorLabel.innerText = separatorTitleString;
+	mainContentSeparator.appendChild(mainContentSeparatorLabel);
+
+	const mainContentSeparatorSpaceBack = document.createElement('div');
+	mainContentSeparatorSpaceBack.className = "mcen-contentSeparatorSpaceBack";
+	mainContentSeparator.appendChild(mainContentSeparatorSpaceBack);
+
+	const mainContentSeparatorSpaceFront = document.createElement('div');
+	mainContentSeparatorSpaceFront.className = "mcen-contentSeparatorSpaceFront";
+	mainContentSeparatorSpaceBack.appendChild(mainContentSeparatorSpaceFront);
+
+	
+
+	return mainContentSeparator;
 }

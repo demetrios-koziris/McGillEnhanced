@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "declarativeContent",
@@ -41,6 +41,7 @@
         "js/dataDocuum.js",
         "js/dataProf.js",
         "js/dataRecordings.js",
+        "js/dataClassAverages.js",
         "js/addSidebar.js", 
         "js/addYearMenu.js",
         "js/addAveCrowdsource.js", 

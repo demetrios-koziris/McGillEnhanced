@@ -1,19 +1,36 @@
 
-.mcen-main-column{
-	max-width: 620px !important;
+.mcen-main-column {
+	max-width: 640px !important;
 	float: left !important;
+	font-family: "CartoGothicStdBook",Helvetica,"Helvetica Neue",Arial,sans serif;
 }
 
+.mcen-top-content {
+	margin-top: 20px;
+}
+
+.breadcrumb {
+	padding: 0 0 1em 0 !important;
+}
+#page-title {
+	padding: 0px !important; 	
+}
 #inner-container {
 	width: 100% !important;
 }
 
-.mcen-sidebar{
+.mcen-sidebar {
 	min-width: 280px;
 	border: 0px !important;
+	padding-top: 8px;
+	font-family: "CartoGothicStdBook",Helvetica,"Helvetica Neue",Arial,sans serif;
 }
 
-.view-catalog-program{
+.view-header {
+	font-size: 14px;
+}
+
+.view-catalog-program {
 	padding: 0px 10px !important;
 }
 
@@ -41,18 +58,20 @@
 }
 
 .mcen-sidebarSectionSeparatorLeftFront {
-	width: 100% !important;
-	border-radius: 0px 4px 0px 0px !important;
-	background-color: #FFFFFF !important;
+	width: 100%;
+	border-radius: 0px 4px 0px 0px;
+	background-color: #FFFFFF;
 }
 
 .mcen-sidebarSectionSeparatorLeftBack {
-	width: 100% !important;
-	display: flex !important;
-	background-color: #5B5B5B !important;
+	box-sizing: border-box;
+	width: 60%;
+	display: flex;
+	background-color: #5B5B5B;
 }
 
 .mcen-sidebarSectionSeparatorRight {
+	box-sizing: border-box;
 	width: 40%;
 	text-align: center;
 	margin: 0px;
