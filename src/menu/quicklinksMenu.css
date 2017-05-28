@@ -33,31 +33,19 @@ a {
     font-size: 16px;
 }
 .meButton {
+    background: #FFF;
+    border: 2px solid #C5C5C5 !important;
     border-radius: 3px;
     padding: 3px;
     cursor: pointer;
     text-align: center;
     margin: 2px 0px;
-    border: 1px solid #707070;
     width: 100%;
     color: #000;
-    background-color: #C5C5C5;
 }
 .meButton:hover {
-    color: #000;
-    border: 1px solid #000;
-}
-.docuumButton:hover {
-    background: -webkit-linear-gradient(left, #56AFE5, #C5C5C5);
-}
-.vsbButton:hover {
-    background: -webkit-linear-gradient(left, #7173F6, #C5C5C5);
-}
-.mcgillButton:hover {
-    background: -webkit-linear-gradient(left, #E54944, #C5C5C5);
-}
-.amazonButton:hover {
-    background: -webkit-linear-gradient(left, #F8991D, #C5C5C5);
+    background: #D5D7D9 !important;
+    border: 2px solid #5B5B5A !important;
 }
 
 #version {
