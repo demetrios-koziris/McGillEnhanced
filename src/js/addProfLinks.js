@@ -59,7 +59,7 @@ function makeProfLinks() {
 	const profLinkMessage = 'View other courses<br>taught by this instructor';
 	const googleLinkMessage = 'View Google query for<br>instructor reviews';
 	const mercuryLinkMessage = 'View Mercury query for this instructor name<br>Must already be signed into Minerva!';
-	const mercuryLinkMessageError = 'No instructor found in<br>Mercury with this name';
+	const mercuryLinkMessageError = 'No instructor found in<br>Mercury with this name!';
 
 	if (!profsFullSource.match(/There are no professors/)) {
 
@@ -174,13 +174,15 @@ function applyToolTipsy(className) {
 	const style = {
 		tooltip: {
 			backgroundColor: '#eceff1',
-			boxShadow: '4px 4px 10px #888888'
+			boxShadow: '4px 4px 10px #888888',
+			fontWeight: 'inherit'
 		},
 		tooltipError: {
 			backgroundColor: '#FFF0F0',
-			boxShadow: '2px 2px 10px #E54944'
+			boxShadow: '2px 2px 10px #E54944',
+			fontWeight: 'bold'
 		}
-	}
+	};
 
 	$('.' + className).tooltipsy( {
 		hide: function (e, $el) {

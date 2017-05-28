@@ -82,32 +82,43 @@
 }
 	
 .mcen-linkButton {
-	background: #C5C5C5 !important;
+	background: #FFF;
+	border: 2px solid #C5C5C5 !important;
 	width: 100% !important;
-	height: 32px !important;
+	padding: 5px !important;
 	margin: 4px 0px !important;
 	font-family: CartoGothicStdBook, Helvetica, "Helvetica Neue", Arial, "sans serif" !important;
 	font-size: 14.4px !important;
-	border: 1px solid #5B5B5A !important;
 	-webkit-box-shadow : none !important;
 	box-shadow: none !important;
 }
-.mcen-linkButton.mcen-blue:hover {
-	background: #ECF3FF !important;
-	background: -webkit-linear-gradient(left, #56AFE5, #C5C5C5) !important;
+.mcen-linkButton:hover {
+	background: #D5D7D9 !important;
+	border: 2px solid #5B5B5A !important;
 }
-.mcen-linkButton.mcen-red:hover {
-	background: #ECF3FF !important;
-	background: -webkit-linear-gradient(left, #E54944, #C5C5C5) !important;
+
+.mcen-linkButton.mcen-fall {
+	background: url(https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/fall.gif) no-repeat 3% 48% !important ;
 }
-.mcen-linkButton.mcen-white:hover {
-	background: #ECF3FF !important;
-	background: -webkit-linear-gradient(left, #FFFFFF, #C5C5C5) !important;
+.mcen-linkButton.mcen-fall:hover {
+	background: #D5D7D9 url(https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/fall.gif) no-repeat 3% 48% !important ;
+	border: 2px solid #840000 !important;
 }
-.mcen-linkButton.mcen-purple:hover {
-	background: #ECF3FF !important;
-	background: -webkit-linear-gradient(left, #7173F6, #C5C5C5) !important;
+.mcen-linkButton.mcen-winter {
+	background: url(https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/winter.gif) no-repeat 3% 48% !important ;
 }
+.mcen-linkButton.mcen-winter:hover {
+	background: #D5D7D9 url(https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/winter.gif) no-repeat 3% 48% !important ;
+	border: 2px solid #2B5E94 !important;
+}
+.mcen-linkButton.mcen-summer {
+	background: url(https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/summer.gif) no-repeat 3% 48% !important ;
+}
+.mcen-linkButton.mcen-summer:hover {
+	background: #D5D7D9 url(https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/summer.gif) no-repeat 3% 48% !important ;
+	border: 2px solid #FF9400 !important;
+}
+
 .mcen-linkButton.not-active {
 	background: #ECEFF1 !important;
 	border: 1px solid #C5C5C5 !important;

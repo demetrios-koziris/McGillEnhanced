@@ -107,8 +107,6 @@ function generateAveCrowdsourceSection() {
 	downloadClassAveragesButton.id = 'mcen-class-averages-download';
 	downloadClassAveragesButton.innerHTML = 'McGill Enhanced: Download Your Class Averages!';
 	downloadClassAveragesButton.title = 'Click to download the class averages from your transcript.\nMust be already signed into Minerva!';
-	downloadClassAveragesButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"; this.style.padding="6px 0px";');
-	downloadClassAveragesButton.setAttribute('onmouseout', 'this.style.border="1px solid #5B5B5A"; this.style.padding="7px";');
 	crowdsourceContentLeft.appendChild(downloadClassAveragesButton);
 
 	averageGPAsDownloader();

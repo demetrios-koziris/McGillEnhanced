@@ -33,6 +33,7 @@ function makeSidebarContent() {
 	const courseTermsCodes = [];
 	if (courseTerms.match(termNames[lang][9])) {
 		courseTermsCodes.push( {
+			term: "fall",
 			name: "Fall " + urlYearF,  
 			code: urlYearF + "09",
 			vsbURL: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearF + "09&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs="
@@ -40,6 +41,7 @@ function makeSidebarContent() {
 	}
 	if (courseTerms.match(termNames[lang][1])) {
 		courseTermsCodes.push( {
+			term: "winter",
 			name: "Winter " + urlYearW,  
 			code: urlYearW + "01",
 			vsbURL: "https://vsb.mcgill.ca/vsb/criteria.jsp?term=" + urlYearW + "01&course_0_0=" + courseSubject + "-" + courseNumber + "&ca_0_0=&bbs="
@@ -47,6 +49,7 @@ function makeSidebarContent() {
 	}
 	if (courseTerms.match(termNames[lang][05])) {
 		courseTermsCodes.push( {
+			term: "summer",
 			name: "Summer " + urlYearW,  
 			code: urlYearW + "05"
 		} );
@@ -90,8 +93,8 @@ function makeSidebarContent() {
 
 			for (let i = 0; i < courseTermsCodes.length; i++) {
 				const courseRegURL = "https://horizon.mcgill.ca/pban1/bwskfcls.P_GetCrse_Advanced?rsts=dummy&crn=dummy&term_in=" + courseTermsCodes[i].code + "&sel_subj=dummy&sel_day=dummy&sel_schd=dummy&sel_insm=dummy&sel_camp=dummy&sel_levl=dummy&sel_sess=dummy&sel_instr=dummy&sel_ptrm=dummy&sel_attr=dummy&sel_subj=" + courseSubject + "&sel_coll=&sel_crse=" + courseNumber + "&sel_title=&sel_schd=&sel_from_cred=&sel_to_cred=&sel_levl=&sel_ptrm=%25&sel_instr=%25&sel_attr=%25&begin_hh=0&begin_mi=0&begin_ap=a&end_hh=0&end_mi=0&end_ap=a&path=1&SUB_BTN=&";
-				const courseRegButtonString = "View " + courseTermsCodes[i].name + " Registration";
-				courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-red", courseRegButtonString, true));   
+				const courseRegButtonString = courseTermsCodes[i].name + " Registration";
+				courseReg.appendChild(generateSidebarLink(courseRegURL, "mcen-" + courseTermsCodes[i].term, courseRegButtonString, true));   
 			}
 		}
 
@@ -103,8 +106,8 @@ function makeSidebarContent() {
 			for (let i = 0; i < courseTermsCodes.length; i++) {
 				const term = courseTermsCodes[i];
 				if (term.vsbURL) {
-					const vsbButtonString = "View on VSB " + term.name;
-					const vsbLink = generateSidebarLink(term.vsbURL, "mcen-purple mcen-vsb" + term.code, vsbButtonString, false);
+					const vsbButtonString = term.name + " VSB Listing";
+					const vsbLink = generateSidebarLink(term.vsbURL, "mcen-" + term.term + " mcen-vsb" + term.code, vsbButtonString, false);
 					vsb.appendChild(vsbLink);
 					vsbSidebarTerms.push(term.code);
 				} 
@@ -123,12 +126,12 @@ function makeSidebarContent() {
 
 	if (docuumURLdata) { 
 		const docuumURL = "http://www.docuum.com/McGill/review/read_course/" + docuumURLdata;
-		const docuumButtonString = "View Docuum Course Reviews";
+		const docuumButtonString = "Docuum Course Reviews";
 		courseEval.appendChild(generateSidebarLink(docuumURL, "mcen-blue", docuumButtonString, false));
 	}
 
 	const mercuryURL = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&subj_tab_in='+courseSubject+'&crse_in='+courseNumber;
-	const mercuryButtonString = "View Mercury Course Evaluations";
+	const mercuryButtonString = "Mercury Course Evaluations";
 	courseEval.appendChild(generateSidebarLink(mercuryURL, "mcen-red", mercuryButtonString, true));
 
 	
@@ -150,7 +153,7 @@ function makeSidebarContent() {
 		for (let r = 0; r < availableRecordingURLdata.length; r++) {
 			const recordingData = availableRecordingURLdata[r];
 			const recordingURL = recordingsBaseURLs[recordingData.type] + recordingData.id;
-			const recordingsButtonString = "View " + monthToSemester[recordingData.month] + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
+			const recordingsButtonString = monthToSemester[recordingData.month] + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
 			recordings.appendChild(generateSidebarLink(recordingURL, "mcen-red", recordingsButtonString, false));
 		}
 	}  
@@ -164,12 +167,12 @@ function makeSidebarContent() {
 	
 		if (docuumURLdata) {
 			const docuumURL = "http://www.docuum.com/McGill/document/view_class/" + docuumURLdata;
-			const docuumButtonString = "View " + courseNameSpaced + " on Docuum";
+			const docuumButtonString = courseNameSpaced + " on Docuum";
 			other.appendChild(generateSidebarLink(docuumURL, "mcen-blue", docuumButtonString, false));
 		}
 		if (wikinotesURLdata) {
 			const wikinotesURL = "https://www.wikinotes.ca/" + wikinotesURLdata;
-			const wikinotesButtonString = "View " + courseNameSpaced + " on Wikinotes";
+			const wikinotesButtonString = courseNameSpaced + " on Wikinotes";
 			other.appendChild(generateSidebarLink(wikinotesURL, "mcen-white", wikinotesButtonString, false));
 		}
 	}
@@ -307,7 +310,7 @@ function sidebarTooltipsy(className, offset) {
 		offset = [0, -14];
 	}
 	$('.' + className).tooltipsy( {
-		delay: 400,
+		delay: 1000,
 		offset: offset,
 		hide: function (e, $el) {
 			$el.slideUp(50);
