@@ -27,11 +27,11 @@ function addContentSeparators() {
 	content.id = 'mcen-content';
 	content.children[0].remove();
 
-	contentContainers = []
+	contentContainers = [];
 
 	const overviewContainer = document.createElement('div');
 	overviewContainer.id = 'mcen-overviewContainer';
-	overviewContainer.className = 'mcen-container'
+	overviewContainer.className = 'mcen-container';
 	overviewContainer.appendChild(generateMainContentSeparator("OVERVIEW"));
 	overviewContainer.appendChild(content.children[0]);
 	overviewContainer.appendChild(content.children[0]);
@@ -39,26 +39,26 @@ function addContentSeparators() {
 
 	const instructorsContainer = document.createElement('div');
 	instructorsContainer.id = 'mcen-instructorsContainer';
-	instructorsContainer.className = 'mcen-container'
+	instructorsContainer.className = 'mcen-container';
 	instructorsContainer.appendChild(generateMainContentSeparator("INSTRUCTORS"));
 	instructorsContainer.appendChild(content.children[0]);
 	contentContainers.push(instructorsContainer);
 
 	const notesContainer = document.createElement('div');
 	notesContainer.id = 'mcen-notesContainer';
-	notesContainer.className = 'mcen-container'
+	notesContainer.className = 'mcen-container';
 	notesContainer.appendChild(generateMainContentSeparator("NOTES"));
 	if (content.children.length	> 0) {
 		notesContainer.appendChild(content.children[0]);
 	}
 	contentContainers.push(notesContainer);
 
-	const averagesContainer = document.createElement('div');
-	averagesContainer.id = 'mcen-averagesContainer';
-	averagesContainer.className = 'mcen-container'
-	averagesContainer.appendChild(generateMainContentSeparator("CLASS AVERAGES"));
-	averagesContainer.appendChild(generateAveCrowdsourceSection());
-	contentContainers.push(averagesContainer);
+	// const averagesContainer = document.createElement('div');
+	// averagesContainer.id = 'mcen-averagesContainer';
+	// averagesContainer.className = 'mcen-container';
+	// averagesContainer.appendChild(generateMainContentSeparator("CLASS AVERAGES"));
+	// averagesContainer.appendChild(generateAveCrowdsourceSection());
+	// contentContainers.push(averagesContainer);
 
 	for (let i = 0; i < contentContainers.length; i++) {
 		content.appendChild(contentContainers[i]);
