@@ -14,11 +14,31 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
-function generateClassAverageDiv(data) {
-	let classAverageDiv = document.createElement('div');
-	classAverageDiv.className = 'mcen-class-average-div';
-	classAverageDiv.innerHTML = '' + data.term + ': ' + data.average + '';
-	return classAverageDiv;
+function generateClassAverageRow(data, rowIndex) {
+	const aveYearF = data.year - (data.term === 'Winter' || data.term === 'Summer' ? 1 : 0);
+
+	const classAverageRow = document.createElement('div');
+	classAverageRow.className = 'mcen-class-average-row';
+	classAverageRow.id = 'mcen-class-average-row' + rowIndex;
+
+	const classAverageTerm = document.createElement('div');
+	classAverageTerm.className = 'mcen-class-average-term';
+	if (aveYearF === urlYearF) {
+		classAverageTerm.className = 'mcen-class-average-term-nonactive';
+		classAverageTerm.innerHTML = '&bull; ' + data.year + ' ' + data.term + ':';
+	}
+	else {
+		const yearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, aveYearF+"-"+(aveYearF+1));	
+		classAverageTerm.innerHTML = '<a href=' + yearURL + '>' + data.year + ' ' + data.term + ':</a>';
+	}
+	classAverageRow.appendChild(classAverageTerm);
+
+	const classAverageVal = document.createElement('div');
+	classAverageVal.className = 'mcen-class-average-val';
+	classAverageVal.innerHTML = data.average;
+	classAverageRow.appendChild(classAverageVal);
+
+	return classAverageRow;
 }
 
 function addContentSeparators() {
@@ -53,12 +73,12 @@ function addContentSeparators() {
 	}
 	contentContainers.push(notesContainer);
 
-	// const averagesContainer = document.createElement('div');
-	// averagesContainer.id = 'mcen-averagesContainer';
-	// averagesContainer.className = 'mcen-container';
-	// averagesContainer.appendChild(generateMainContentSeparator("CLASS AVERAGES"));
-	// averagesContainer.appendChild(generateAveCrowdsourceSection());
-	// contentContainers.push(averagesContainer);
+	const averagesContainer = document.createElement('div');
+	averagesContainer.id = 'mcen-averagesContainer';
+	averagesContainer.className = 'mcen-container';
+	averagesContainer.appendChild(generateMainContentSeparator("CLASS AVERAGES"));
+	averagesContainer.appendChild(generateAveCrowdsourceSection());
+	contentContainers.push(averagesContainer);
 
 	for (let i = 0; i < contentContainers.length; i++) {
 		content.appendChild(contentContainers[i]);
@@ -83,8 +103,8 @@ function generateAveCrowdsourceSection() {
 		crowdsourceContentRightTable.id = 'mcen-class-averages-content-right-table';
 		crowdsourceContentRight.appendChild(crowdsourceContentRightTable);
 
-		for (let i = 0; i < classAveragesData.length; i++) {
-			crowdsourceContentRightTable.appendChild(generateClassAverageDiv(classAveragesData[i]));
+		for (let i = classAveragesData.length-1; i >= 0; i--) {
+			crowdsourceContentRightTable.appendChild(generateClassAverageRow(classAveragesData[i], i));
 		}
 	}
 

@@ -36,16 +36,44 @@
 }
 
 #mcen-class-averages-content-right-table {
-	padding: 8px !important;
+	padding: 5px 8px !important;
 	border: 1px solid #C5C5C5 !important;
 	border-radius: 4px;
 }
 
-.mcen-class-average-div {
-    padding-bottom: .2em !important;
-    margin-bottom: .2em !important;
-    border-bottom: 1px solid #E1E1D9 !important;
-    font-family: CartoGothicStdBook, Helvetica, "Helvetica Neue", Arial, "sans serif" !important;
+.mcen-class-average-row {
+	padding-bottom: .2em !important;
+	margin-bottom: .2em !important;
+	border-bottom: 1px solid #E1E1D9 !important;
+	font-family: CartoGothicStdBook, Helvetica, "Helvetica Neue", Arial, "sans serif" !important;
+}
+/*.mcen-class-average-row a{
+	text-decoration: none !important;
+}
+.mcen-class-average-row a:hover{
+	text-decoration: underline !important;
+}*/
+
+#mcen-class-average-row0 {
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
+	border-bottom: 0px !important;
+}
+
+.mcen-class-average-term {
+	box-sizing: border-box;
+	display:inline-block;
+	padding-left: 18px;
+	width: 80%;
+}
+.mcen-class-average-term-nonactive {
+	box-sizing: border-box;
+	display:inline-block;
+	padding-left: 4px;
+	width: 80%;
+}
+.mcen-class-average-val {
+	display:inline-block;
 }
 
 #mcen-class-averages-download {
