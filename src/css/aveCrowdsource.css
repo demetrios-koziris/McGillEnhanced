@@ -76,7 +76,11 @@
 	display:inline-block;
 }
 
-#mcen-class-averages-download {
+#mcen-class-averages-button-div {
+	text-align: center;
+}
+.mcen-class-averages-button {
+	box-sizing: border-box;
 	background: #FFF url(https://i.imgur.com/N0P89lL.png) no-repeat 3% 30%/24px 24px;
 	border: 2px solid #C5C5C5 !important;
 	width: 100%;
@@ -86,10 +90,31 @@
 	font-size: 14.4px;
 	-webkit-box-shadow : none;
 }
-#mcen-class-averages-download:hover {
+.mcen-class-averages-button:hover {
 	background: #D5D7D9 url(https://i.imgur.com/N0P89lL.png) no-repeat 3% 30%/24px 24px;
 	border: 2px solid #5B5B5A !important;
 }
+#mcen-class-averages-submit {
+	width: 240px;
+	background: #FFF;
+	padding: 6px !important;
+}
+#mcen-class-averages-submit:hover {
+	background: #D5D7D9;
+}
+.mcen-class-averages-scroll {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 240px;
+	max-height: 158px; 
+	text-align: left;
+	overflow: auto;
+	padding: 6px 18px !important;
+	border: 1px solid #C5C5C5 !important;
+	border-radius: 4px;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
 
 .catalog-notes {
 	margin-bottom: 14.4px !important;

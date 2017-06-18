@@ -22,12 +22,12 @@ function generateClassAverageRow(data, rowIndex) {
 	classAverageRow.id = 'mcen-class-average-row' + rowIndex;
 
 	const classAverageTerm = document.createElement('div');
-	classAverageTerm.className = 'mcen-class-average-term';
 	if (aveYearF === urlYearF) {
 		classAverageTerm.className = 'mcen-class-average-term-nonactive';
 		classAverageTerm.innerHTML = '&bull; ' + data.year + ' ' + data.term + ':';
 	}
 	else {
+		classAverageTerm.className = 'mcen-class-average-term';
 		const yearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, aveYearF+"-"+(aveYearF+1));	
 		classAverageTerm.innerHTML = '<a href=' + yearURL + '>' + data.year + ' ' + data.term + ':</a>';
 	}
@@ -112,22 +112,27 @@ function generateAveCrowdsourceSection() {
 	crowdsourceContentLeft.id = 'mcen-class-averages-content-left';
 	if (classAveragesData) {
 		// crowdsourceContentLeft.innerHTML = 'The following class averages are unofficial and were gathered by students on r/McGill. McGill Enhanced is currently undertaking its own crowdsourcing initiative to gather a more accurate and complete dataset. If you would like to participate, the button below will download a CSV file of the class averages on your transcript and will open a form where you can submit the file.';
-		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by students on the McGill subreddit. Inspired by this effort, McGill Enhanced is currently undertaking its own crowdsourcing initiative to gather a more complete dataset of class averages. If you would like to participate, the button below will download a CSV file of your class averages and will open a form where you can submit it.</p>';
+		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by McGill students on reddit. Inspired by this effort, McGill Enhanced is undertaking its own crowdsourcing initiative to gather a more complete dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your courses and allow you to submit them.</p>';
 	}
 	else {
 		crowdsourceContentLeft.style.paddingLeft = '0px';
 		crowdsourceContentLeft.style.width = '100%';
-		crowdsourceContentLeft.innerHTML = '<p>McGill Enhanced is currently undertaking a crowdsourcing initiative to gather a dataset of historical class averages. If you would like to participate, the button below will download a CSV file of the class averages on your transcript and will open a form where you can submit the file.</p>';
+		crowdsourceContentLeft.innerHTML = '<p>McGill Enhanced is currently undertaking a crowdsourcing initiative to gather a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your courses and allow you to submit them.</p>';
 	}
 	crowdsourceContent.appendChild(crowdsourceContentLeft);
 
-	var downloadClassAveragesButton = document.createElement('button');
+	const classAveragesButtonDiv = document.createElement('div');
+	classAveragesButtonDiv.id = 'mcen-class-averages-button-div';
+	crowdsourceContentLeft.appendChild(classAveragesButtonDiv);
+
+	const downloadClassAveragesButton = document.createElement('button');
 	downloadClassAveragesButton.setAttribute('type', 'button');
 	downloadClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("downloadClassAverages"));');
 	downloadClassAveragesButton.id = 'mcen-class-averages-download';
-	downloadClassAveragesButton.innerHTML = 'McGill Enhanced: Download Your Class Averages!';
-	downloadClassAveragesButton.title = 'Click to download the class averages from your transcript.\nMust be already signed into Minerva!';
-	crowdsourceContentLeft.appendChild(downloadClassAveragesButton);
+	downloadClassAveragesButton.className = 'mcen-class-averages-button';
+	downloadClassAveragesButton.innerHTML = 'McGill Enhanced: Retrieve Your Class Averages!';
+	downloadClassAveragesButton.title = 'Click to retrieve the class averages from your transcript.\nMust be already signed into Minerva!';
+	classAveragesButtonDiv.appendChild(downloadClassAveragesButton);
 
 	averageGPAsDownloader();
 
@@ -138,9 +143,11 @@ function generateAveCrowdsourceSection() {
 function averageGPAsDownloader() {
 
 	const notloggedinMessage = 'You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.';
-	const errorMessage = 'McGill Class Averages Downloader encountered an error while trying to download the average GPAs from your transcript.';
+	const errorMessageRetrieval = 'McGill Enhanced encountered an error while trying to retrieve the average GPAs from your courses.';
+	const errorMessageSubmission= 'McGill Enhanced encountered an error while trying to submit the average GPAs from your courses.';
 	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 	const transriptURL = 'https://horizon.mcgill.ca/pban1/bzsktran.P_Display_Form?user_type=S&tran_type=V';
+	aveGPAsSubmitString = '';
 
 	//Define function to execute when downloadClassAverages event dispactched
 
@@ -174,39 +181,78 @@ function averageGPAsDownloader() {
 					for (let r = 0; r < transcript.length; r++) {
 						let cols = transcript[r].getElementsByClassName('fieldmediumtext');
 						if (cols.length === 1) {
-							let termMatch = cols[0].innerHTML.match(/\<b\>(Fall|Winter|Summer)\&nbsp\;20([0-9]{2})\<\/b\>/);
+							let termMatch = cols[0].innerHTML.match(/\<b\>(Fall|Winter|Summer)\&nbsp\;(20[0-9]{2})\<\/b\>/);
 							if (termMatch) {
 								term = termMatch[1][0] + termMatch[2];
 								logForDebug(term);
 							}
 						}
 						else if (cols.length === 8 || cols.length === 7) {
+							logForDebug(cols);
 							if (cols[cols.length-1].innerText.match(/[ABCDF+-]/)) {
 								let course = cols[0].innerText.split(" ");
-								aveGPAs.push([course[0], course[1], cols[cols.length-1].innerText, term, cols[3].innerText]);
+								aveGPAs.push([cols[0].innerText.replace(/\s/, ''), course[0], course[1], cols[1].innerText, term, cols[3].innerText, cols[cols.length-1].innerText]);
 							}
 						} 
 					}
 					logForDebug(aveGPAs);
-					let csvString = arrayToCSV(aveGPAs);
-					let a = document.createElement('a');
-					a.href = 'data:attachment/csv,' +  encodeURIComponent(csvString);
-					a.target = '_blank';
-					a.download = 'ClassAverages.csv';
-					document.body.appendChild(a);
-					a.click();
 
-					setTimeout(function () {
-						redirect('', 'https://form.jotform.ca/mcgillenhanced/class-average-crowdsourcing');
- 					}, 1000);
+					let aveGPAsShowString = '';
+					for (let i = 0; i < aveGPAs.length; i++) {
+						aveGPAsSubmitString += encodeURIComponent(aveGPAs[i].toString()) + '%0A';
+						// aveGPAsSubmitString += aveGPAs[i].toString() + ';';
+						aveGPAsShowString += '<p>' + aveGPAs[i][1] +' '+ aveGPAs[i][2] +' '+aveGPAs[i][4] +' '+ aveGPAs[i][5] +' '+ aveGPAs[i][6] + '</p>';
+					}
+
+					const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
+					const downloadClassAveragesButton = document.getElementById('mcen-class-averages-download');
+					classAveragesButtonDiv.removeChild(downloadClassAveragesButton);
+
+					const submitClassAveragesButton = document.createElement('button');
+					submitClassAveragesButton.setAttribute('type', 'button');
+					submitClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("submitClassAverages"));');					
+					submitClassAveragesButton.id = 'mcen-class-averages-submit';
+					submitClassAveragesButton.className = 'mcen-class-averages-button';
+					submitClassAveragesButton.innerHTML = 'Submit Retrieved Class Averages';
+					submitClassAveragesButton.title = 'Click to submit the class averages from your transcript!';
+					classAveragesButtonDiv.appendChild(submitClassAveragesButton);
+
+					classAveragesButtonDiv.appendChild(document.createElement('br'));
+
+					const classAveragesScrollDiv = document.createElement('div');
+					classAveragesScrollDiv.className = 'mcen-class-averages-scroll';
+					classAveragesScrollDiv.innerHTML = aveGPAsShowString;
+					classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
 
 				}
 			}
 			catch(err) {
 				console.log(err.stack);
-				redirect(errorMessage, transriptURL);
+				redirect(errorMessageRetrieval, transriptURL);
 			}
 		});
+
+	});
+
+	document.addEventListener('submitClassAverages', function(data) {
+		try {
+
+			const averageXMLRequestInfo = {
+				method: 'GET',
+				action: 'xhttp',
+				url: 'https://docs.google.com/forms/d/e/1FAIpQLSdfzbhOe2wvxgQ9IhzPmJ3iIyRM9-0FN3vkuuS-Pr4YX5plCQ/formResponse?ifq&entry.988087755=' + aveGPAsSubmitString + '&submit=Submit'
+			};
+			logForDebug(averageXMLRequestInfo);
+			chrome.runtime.sendMessage(averageXMLRequestInfo);
+
+			const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
+			classAveragesButtonDiv.parentNode.removeChild(classAveragesButtonDiv);
+
+		}
+		catch(err) {
+			console.log(err.stack);
+			alert(errorMessageSubmission);
+		}
 
 	});
 }
@@ -243,3 +289,4 @@ function generateMainContentSeparator(separatorTitleString) {
 
 	return mainContentSeparator;
 }
+
