@@ -144,9 +144,11 @@ function averageGPAsDownloader() {
 
 	const notloggedinMessage = 'You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.';
 	const errorMessageRetrieval = 'McGill Enhanced encountered an error while trying to retrieve the average GPAs from your courses.';
+	const noClassAveragesFound = 'McGill Enhanced was not able to retrieve any class averages from your courses. Class Averages are usually released for the courses on your transcript a month after the semester has ended.';
 	const errorMessageSubmission= 'McGill Enhanced encountered an error while trying to submit the average GPAs from your courses.';
 	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 	const transriptURL = 'https://horizon.mcgill.ca/pban1/bzsktran.P_Display_Form?user_type=S&tran_type=V';
+	aveGPAs = [];
 	aveGPAsSubmitString = '';
 
 	//Define function to execute when downloadClassAverages event dispactched
@@ -175,7 +177,6 @@ function averageGPAsDownloader() {
 				else {
 					let transcript = htmlDoc.getElementsByClassName('dataentrytable')[1].rows;
 					logForDebug(transcript);
-					let aveGPAs = [];
 					let term = "";
 
 					for (let r = 0; r < transcript.length; r++) {
@@ -197,33 +198,36 @@ function averageGPAsDownloader() {
 					}
 					logForDebug(aveGPAs);
 
-					let aveGPAsShowString = '';
-					for (let i = 0; i < aveGPAs.length; i++) {
-						aveGPAsSubmitString += encodeURIComponent(aveGPAs[i].toString()) + '%0A';
-						// aveGPAsSubmitString += aveGPAs[i].toString() + ';';
-						aveGPAsShowString += '<p>' + aveGPAs[i][1] +' '+ aveGPAs[i][2] +' '+aveGPAs[i][4] +' '+ aveGPAs[i][5] +' '+ aveGPAs[i][6] + '</p>';
+					if (aveGPAs.length > 0) {
+						let aveGPAsShowString = '';
+						for (let i = 0; i < aveGPAs.length; i++) {
+							aveGPAsSubmitString += encodeURIComponent(aveGPAs[i].toString()) + '%0A';
+							aveGPAsShowString += '<p>' + aveGPAs[i][1] +' '+ aveGPAs[i][2] +' '+aveGPAs[i][4] +' '+ aveGPAs[i][5] +' '+ aveGPAs[i][6] + '</p>';
+						}
+
+						const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
+						const downloadClassAveragesButton = document.getElementById('mcen-class-averages-download');
+						classAveragesButtonDiv.removeChild(downloadClassAveragesButton);
+
+						const submitClassAveragesButton = document.createElement('button');
+						submitClassAveragesButton.setAttribute('type', 'button');
+						submitClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("submitClassAverages"));');					
+						submitClassAveragesButton.id = 'mcen-class-averages-submit';
+						submitClassAveragesButton.className = 'mcen-class-averages-button';
+						submitClassAveragesButton.innerHTML = 'Submit Retrieved Class Averages';
+						submitClassAveragesButton.title = 'Click to submit the class averages from your transcript!';
+						classAveragesButtonDiv.appendChild(submitClassAveragesButton);
+
+						classAveragesButtonDiv.appendChild(document.createElement('br'));
+
+						const classAveragesScrollDiv = document.createElement('div');
+						classAveragesScrollDiv.className = 'mcen-class-averages-scroll';
+						classAveragesScrollDiv.innerHTML = aveGPAsShowString;
+						classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
 					}
-
-					const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
-					const downloadClassAveragesButton = document.getElementById('mcen-class-averages-download');
-					classAveragesButtonDiv.removeChild(downloadClassAveragesButton);
-
-					const submitClassAveragesButton = document.createElement('button');
-					submitClassAveragesButton.setAttribute('type', 'button');
-					submitClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("submitClassAverages"));');					
-					submitClassAveragesButton.id = 'mcen-class-averages-submit';
-					submitClassAveragesButton.className = 'mcen-class-averages-button';
-					submitClassAveragesButton.innerHTML = 'Submit Retrieved Class Averages';
-					submitClassAveragesButton.title = 'Click to submit the class averages from your transcript!';
-					classAveragesButtonDiv.appendChild(submitClassAveragesButton);
-
-					classAveragesButtonDiv.appendChild(document.createElement('br'));
-
-					const classAveragesScrollDiv = document.createElement('div');
-					classAveragesScrollDiv.className = 'mcen-class-averages-scroll';
-					classAveragesScrollDiv.innerHTML = aveGPAsShowString;
-					classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
-
+					else {
+						redirect(noClassAveragesFound, transriptURL);		
+					}
 				}
 			}
 			catch(err) {
@@ -237,16 +241,41 @@ function averageGPAsDownloader() {
 	document.addEventListener('submitClassAverages', function(data) {
 		try {
 
-			const averageXMLRequestInfo = {
-				method: 'GET',
-				action: 'xhttp',
-				url: 'https://docs.google.com/forms/d/e/1FAIpQLSdfzbhOe2wvxgQ9IhzPmJ3iIyRM9-0FN3vkuuS-Pr4YX5plCQ/formResponse?ifq&entry.988087755=' + aveGPAsSubmitString + '&submit=Submit'
-			};
-			logForDebug(averageXMLRequestInfo);
-			chrome.runtime.sendMessage(averageXMLRequestInfo);
+			chrome.storage.sync.get('classAveragesSubmission', function(result) {
+				const prevClassAveragesSubmission = result.classAveragesSubmission;
+				let currClassAveragesSubmission = aveGPAsSubmitString;
+				
+				chrome.storage.sync.set({classAveragesSubmission:currClassAveragesSubmission});
+				if (prevClassAveragesSubmission) {
+					currClassAveragesSubmission = currClassAveragesSubmission.replace(prevClassAveragesSubmission, '');
+				}
+				logForDebug(currClassAveragesSubmission);
+
+				if (currClassAveragesSubmission !== '') {
+					const averageXMLRequestInfo = {
+						method: 'GET',
+						action: 'xhttp',
+						url: 'https://docs.google.com/forms/d/e/1FAIpQLSdfzbhOe2wvxgQ9IhzPmJ3iIyRM9-0FN3vkuuS-Pr4YX5plCQ/formResponse?ifq&entry.988087755=' + currClassAveragesSubmission + '&submit=Submit'
+					};
+					logForDebug(averageXMLRequestInfo);
+					chrome.runtime.sendMessage(averageXMLRequestInfo);
+				}
+				else {
+					logForDebug('The following class average data has already been submitted: '+ prevClassAveragesSubmission);
+				}
+			});
 
 			const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
 			classAveragesButtonDiv.parentNode.removeChild(classAveragesButtonDiv);
+
+			const classAveragesMessageDiv = document.getElementById('mcen-class-averages-content-left');
+			classAveragesMessageDiv.appendChild(document.createElement('br'));
+
+			const classAveragesThanksMessage = document.createElement('p');
+			classAveragesThanksMessage.id = 'mcen-class-averages-thanks';
+			classAveragesThanksMessage.innerText = 'Thank you for your contribution!';
+			classAveragesMessageDiv.appendChild(classAveragesThanksMessage);
+
 
 		}
 		catch(err) {
@@ -284,8 +313,6 @@ function generateMainContentSeparator(separatorTitleString) {
 	const mainContentSeparatorSpaceFront = document.createElement('div');
 	mainContentSeparatorSpaceFront.className = "mcen-contentSeparatorSpaceFront";
 	mainContentSeparatorSpaceBack.appendChild(mainContentSeparatorSpaceFront);
-
-	
 
 	return mainContentSeparator;
 }

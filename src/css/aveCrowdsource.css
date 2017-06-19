@@ -30,6 +30,10 @@
 	margin-bottom: 4px !important;
 }
 
+#mcen-class-averages-thanks {
+	text-align: center;
+}
+
 #mcen-class-averages-content-right {
 	box-sizing: border-box !important;
 	width: 28% !important;

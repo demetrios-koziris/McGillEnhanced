@@ -2,9 +2,10 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.2.7",
+  "version": "3.2.9",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
+    "storage",
     "declarativeContent",
     "*://www.mcgill.ca/study/*", 
     "*://horizon.mcgill.ca/*", 

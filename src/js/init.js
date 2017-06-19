@@ -74,8 +74,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 		makeProfLinks();
 		makeCourseLinks();
 		makeSidebarContent();
-		addContentSeparators()
-		makeAveCrowdsourceSection();
+		addContentSeparators();
 	}
 	else {
 		// run on McGill Program Overview pages
