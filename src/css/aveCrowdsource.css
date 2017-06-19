@@ -100,11 +100,11 @@
 }
 #mcen-class-averages-submit {
 	width: 240px;
-	background: #FFF;
-	padding: 6px !important;
+	background: #FFF url(https://i.imgur.com/N0P89lL.png) no-repeat 5% 30%/24px 24px;
+	padding: 6px 6px 6px 30px !important;
 }
 #mcen-class-averages-submit:hover {
-	background: #D5D7D9;
+	background: #D5D7D9 url(https://i.imgur.com/N0P89lL.png) no-repeat 5% 30%/24px 24px;
 }
 .mcen-class-averages-scroll {
 	box-sizing: border-box;
@@ -114,6 +114,7 @@
 	text-align: left;
 	overflow: auto;
 	padding: 6px 18px !important;
+	margin-top: 10px;
 	border: 1px solid #C5C5C5 !important;
 	border-radius: 4px;
 	font-family: "Lucida Console", Monaco, monospace;

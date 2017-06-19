@@ -112,7 +112,7 @@ function generateAveCrowdsourceSection() {
 	crowdsourceContentLeft.id = 'mcen-class-averages-content-left';
 	if (classAveragesData) {
 		// crowdsourceContentLeft.innerHTML = 'The following class averages are unofficial and were gathered by students on r/McGill. McGill Enhanced is currently undertaking its own crowdsourcing initiative to gather a more accurate and complete dataset. If you would like to participate, the button below will download a CSV file of the class averages on your transcript and will open a form where you can submit the file.';
-		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by McGill students on reddit. Inspired by this effort, McGill Enhanced is undertaking its own crowdsourcing initiative to gather a more complete dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your courses and allow you to submit them.</p>';
+		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by McGill students on <a href="https://www.reddit.com/r/mcgill/">r/mcgill</a>. Inspired by this effort, McGill Enhanced is undertaking its own crowdsourcing initiative to gather a more complete dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your courses and allow you to submit them.</p>';
 	}
 	else {
 		crowdsourceContentLeft.style.paddingLeft = '0px';
@@ -209,21 +209,21 @@ function averageGPAsDownloader() {
 						const downloadClassAveragesButton = document.getElementById('mcen-class-averages-download');
 						classAveragesButtonDiv.removeChild(downloadClassAveragesButton);
 
+						const classAveragesScrollDiv = document.createElement('div');
+						classAveragesScrollDiv.className = 'mcen-class-averages-scroll';
+						classAveragesScrollDiv.innerHTML = aveGPAsShowString;
+						classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
+
+						classAveragesButtonDiv.appendChild(document.createElement('br'));
+
 						const submitClassAveragesButton = document.createElement('button');
 						submitClassAveragesButton.setAttribute('type', 'button');
 						submitClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("submitClassAverages"));');					
 						submitClassAveragesButton.id = 'mcen-class-averages-submit';
 						submitClassAveragesButton.className = 'mcen-class-averages-button';
-						submitClassAveragesButton.innerHTML = 'Submit Retrieved Class Averages';
-						submitClassAveragesButton.title = 'Click to submit the class averages from your transcript!';
+						submitClassAveragesButton.innerHTML = 'Submit Class Averages';
+						submitClassAveragesButton.title = 'Click to submit the above class averages\nthat were retrieved from your transcript!';
 						classAveragesButtonDiv.appendChild(submitClassAveragesButton);
-
-						classAveragesButtonDiv.appendChild(document.createElement('br'));
-
-						const classAveragesScrollDiv = document.createElement('div');
-						classAveragesScrollDiv.className = 'mcen-class-averages-scroll';
-						classAveragesScrollDiv.innerHTML = aveGPAsShowString;
-						classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
 					}
 					else {
 						redirect(noClassAveragesFound, transriptURL);		
