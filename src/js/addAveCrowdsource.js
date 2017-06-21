@@ -191,8 +191,8 @@ function averageGPAsDownloader() {
 						else if (cols.length === 8 || cols.length === 7) {
 							logForDebug(cols);
 							if (cols[cols.length-1].innerText.match(/[ABCDF+-]/)) {
-								let course = cols[0].innerText.split(" ");
-								aveGPAs.push([cols[0].innerText.replace(/\s/, ''), course[0], course[1], cols[1].innerText, term, cols[3].innerText, cols[cols.length-1].innerText]);
+								let courseName = cols[0].innerHTML.split("&nbsp;")[0].split(" ");
+								aveGPAs.push([courseName[0]+courseName[1], courseName[0], courseName[1], cols[1].innerText, term, cols[3].innerText, cols[cols.length-1].innerText]);
 							}
 						} 
 					}
