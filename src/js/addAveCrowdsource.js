@@ -89,7 +89,7 @@ function addContentSeparators() {
 function generateAveCrowdsourceSection() {
 
 	const classAveragesData = getClassAveragesData()[courseName];
-	console.log(classAveragesData);
+	logForDebug(classAveragesData);
 
 	const crowdsourceContent = document.createElement('div');
 	crowdsourceContent.id = 'mcen-class-averages-content';
@@ -274,7 +274,7 @@ function averageGPAsDownloader() {
 
 			const classAveragesThanksMessage = document.createElement('p');
 			classAveragesThanksMessage.id = 'mcen-class-averages-thanks';
-			classAveragesThanksMessage.innerHTML = '<strong>Thank you for your contribution!</strong><br>The results can be accessed by clicking <a href="https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing">Crowdsourced Averages</a> link in the Other Resources section of the McGill Enhanced menu:<br><img src = "https://i.imgur.com/NnFCCqe.png" style="margin-top: 10px;"/>';
+			classAveragesThanksMessage.innerHTML = '<strong>Thank you for your contribution!</strong><br>The results can be accessed by clicking the <a href="https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing">Crowdsourced Averages</a> link in the Other Resources section of the McGill Enhanced menu:<br><img src = "https://i.imgur.com/NnFCCqe.png" style="margin-top: 10px;"/>';
 			classAveragesMessageDiv.appendChild(classAveragesThanksMessage);
 
 
