@@ -273,7 +273,7 @@ function averageGPAsDownloader() {
 
 			const classAveragesThanksMessage = document.createElement('p');
 			classAveragesThanksMessage.id = 'mcen-class-averages-thanks';
-			classAveragesThanksMessage.innerText = 'Thank you for your contribution!';
+			classAveragesThanksMessage.innerHTML = '<strong>Thank you for your contribution!</strong><br>The results can be accessed by clicking <a href="https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing">Crowdsourced Averages</a> link in the Other Resources section of the McGill Enhanced menu:<br><img src = "http://i.imgur.com/NnFCCqe.png" style="margin-top: 10px;"/>';
 			classAveragesMessageDiv.appendChild(classAveragesThanksMessage);
 
 
