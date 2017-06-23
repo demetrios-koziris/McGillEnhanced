@@ -148,7 +148,6 @@ function averageGPAsDownloader() {
 	const errorMessageSubmission= 'McGill Enhanced encountered an error while trying to submit the average GPAs from your courses.';
 	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 	const transriptURL = 'https://horizon.mcgill.ca/pban1/bzsktran.P_Display_Form?user_type=S&tran_type=V';
-	aveGPAs = [];
 	aveGPAsSubmitString = '';
 
 	//Define function to execute when downloadClassAverages event dispactched
@@ -175,10 +174,12 @@ function averageGPAsDownloader() {
 					redirect(notloggedinMessage, minervaLogin);
 				}
 				else {
-					let transcript = htmlDoc.getElementsByClassName('dataentrytable')[1].rows;
+					let aveGPAs = [];
+					let dataTables = htmlDoc.getElementsByClassName('dataentrytable')
+					let transcript = dataTables[dataTables.length-1].rows;
 					logForDebug(transcript);
+					
 					let term = "";
-
 					for (let r = 0; r < transcript.length; r++) {
 						let cols = transcript[r].getElementsByClassName('fieldmediumtext');
 						if (cols.length === 1) {
@@ -273,7 +274,7 @@ function averageGPAsDownloader() {
 
 			const classAveragesThanksMessage = document.createElement('p');
 			classAveragesThanksMessage.id = 'mcen-class-averages-thanks';
-			classAveragesThanksMessage.innerHTML = '<strong>Thank you for your contribution!</strong><br>The results can be accessed by clicking <a href="https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing">Crowdsourced Averages</a> link in the Other Resources section of the McGill Enhanced menu:<br><img src = "http://i.imgur.com/NnFCCqe.png" style="margin-top: 10px;"/>';
+			classAveragesThanksMessage.innerHTML = '<strong>Thank you for your contribution!</strong><br>The results can be accessed by clicking <a href="https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing">Crowdsourced Averages</a> link in the Other Resources section of the McGill Enhanced menu:<br><img src = "https://i.imgur.com/NnFCCqe.png" style="margin-top: 10px;"/>';
 			classAveragesMessageDiv.appendChild(classAveragesThanksMessage);
 
 
