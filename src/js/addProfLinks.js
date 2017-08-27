@@ -103,10 +103,10 @@ function makeProfLinks() {
 			profDiv.className = 'mcen-profDiv';
 			profSection.appendChild(profDiv);
 
-			googleLink = generateProfLinkButton(prof.urlGoogle, googleLinkMessage, 'Google')
+			googleLink = generateProfLinkButton(prof.urlGoogle, googleLinkMessage, 'Google');
 			profDiv.appendChild(googleLink);
 
-			mercuryLink = generateProfLinkButton(prof.urlMercury, mercuryLinkMessage, 'Mercury')
+			mercuryLink = generateProfLinkButton(prof.urlMercury, mercuryLinkMessage, 'Mercury');
 			profDiv.appendChild(mercuryLink);
 
 			if (!(prof.name.full in minervaProfs)) {
@@ -158,6 +158,8 @@ function makeProfLinks() {
 function generateProfLinkButton(url, message, className) {
 
 	const link = document.createElement('a');
+	link.setAttribute('onmouseover', 'this.parentNode.lastChild.style.fontWeight="bold"');
+	link.setAttribute('onmouseout', 'this.parentNode.lastChild.style.fontWeight="inherit"');
 	link.href = url;
 
 	const linkButton = document.createElement('button');
