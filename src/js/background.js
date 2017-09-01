@@ -44,3 +44,18 @@ chrome.runtime.onInstalled.addListener(function (details) {
 chrome.browserAction.onClicked.addListener(function(tab) {
 	chrome.tabs.create({'url': "https://demetrios-koziris.github.io/McGillEnhanced/", 'selected': true});
 });
+
+
+var callback = function(details) {
+	console.log(details);
+};
+
+chrome.webRequest.onBeforeRequest.addListener(
+	function(details) {
+		console.log(details);
+		console.log(details.requestBody.formData);
+		chrome.tabs.sendMessage(details.tabId,{action:"SendIt", data:details});
+	},
+	{urls: ["*://mymdcm.medicine.mcgill.ca/ords/wwv_flow.ajax"]},
+	["requestBody"]
+);

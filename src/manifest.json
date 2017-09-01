@@ -2,19 +2,21 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.2.16",
+  "version": "3.3.0",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
+    "webRequest", 
     "declarativeContent",
     "*://www.mcgill.ca/study/*", 
     "*://horizon.mcgill.ca/*", 
     "*://www.docuum.com/McGill*", 
-    "*://vsb.mcgill.ca/*"
+    "*://vsb.mcgill.ca/*",
+    "*://mymdcm.medicine.mcgill.ca/*"
   ],
   "background": {
     "scripts": [ "js/backgroundHTTP.js", "js/background.js" ],
-    "persistent": false
+    "persistent": true
   },
   "browser_action": {
     "default_icon": {
@@ -65,6 +67,17 @@
           "js/insertCSS.js"
       ],
       "run_at": "document_start"
+    },
+    {
+      "run_at": "document_start",
+      "matches": [
+        "*://mymdcm.medicine.mcgill.ca/*"
+      ],
+      "js": [
+        "lib/jquery-1.11.2.min.js", 
+        "lib/icsLib.js", 
+        "js/mymdcmEnhanced.js"
+      ]
     }
   ],
   "web_accessible_resources": [
