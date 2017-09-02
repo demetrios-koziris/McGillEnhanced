@@ -28,43 +28,45 @@ var mymdcmCalendarRequest = 0;
 chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
 	if (msg.action == 'SendIt' && mymdcmCalendarRequest === 0) {
 		mymdcmCalendarRequest++;
-		console.log("Message recieved!");
-		console.log(JSON.stringify(Date.now()));
-		console.log(msg.data);
+		logForDebug("Message recieved!");
+		logForDebug(JSON.stringify(Date.now()));
+		logForDebug(msg.data);
 		mymdcmRun(msg.data);
 	}
 });
 
 function mymdcmRun(request) {
-	console.log("Ready");
-
 	const row = document.createElement('div');
 	row.className = "row";
-	row.innerHTML = "<div class='col col-12 '> <div class='t-Region t-Region--scrollBody js-apex-region'> <div class='t-Region-header'> <div class='t-Region-headerItems t-Region-headerItems--title'> <h2 class='t-Region-title' >McGill Enhanced: Export Calendar Feature</h2> </div><div class='t-Region-headerItems t-Region-headerItems--buttons'><span class='js-maximizeButtonContainer'></span></div></div><div class='t-Region-bodyWrap'> <div class='t-Region-buttons t-Region-buttons--top'> <div class='t-Region-buttons-left'></div><div class='t-Region-buttons-right'></div></div><div class='t-Region-body'> <div class='t-Form-labelContainer col' style='min-width: 80px;'> <label class='t-Form-label'>Start Date</label> </div><div class='t-Form-inputContainer col col-1' style='min-width: 100px;'> <input type='text' class='u-TF-item--datepicker datepicker' id='mcen-export-cal-start'> </div><div class='t-Form-labelContainer col' style='min-width: 80px;'> <label class='t-Form-label'>End Date</label> </div><div class='t-Form-inputContainer col col-1' style='min-width: 100px;'> <input type='text' class='u-TF-item--datepicker datepicker'id='mcen-export-cal-end'> </div><div class='t-Form-labelContainer col col-1'> <label class='t-Form-label'></label> </div><button type='button' class='t-Button t-Button--hot col col-2' id='mcen-export-cal' style='min-width: 120px;'> <span class='t-Button-label'>Export Calendar</span> </button> <div class='t-Form-labelContainer col'> <label class='t-Form-label'></label> </div><a href='https://digibites.zendesk.com/hc/en-us/articles/200134792-How-do-I-import-ics-ical-csv-files-into-Google-Calendar-'><button type='button' class='t-Button td-align-right col col-3' style='min-width: 260px;'> <span class='t-Button-label'> How to import ICS files into google calendar </span> </button></a> </div></div></div></div>";
+	row.innerHTML = "<div class='col col-12 '> <div class='t-Region t-Region--scrollBody js-apex-region'> <div class='t-Region-header'> <div class='t-Region-headerItems t-Region-headerItems--title'> <h2 class='t-Region-title' >McGill Enhanced: Export Calendar Feature</h2> </div><div class='t-Region-headerItems t-Region-headerItems--buttons'><span class='js-maximizeButtonContainer'></span></div></div><div class='t-Region-bodyWrap'> <div class='t-Region-buttons t-Region-buttons--top'> <div class='t-Region-buttons-left'></div><div class='t-Region-buttons-right'></div></div><div class='t-Region-body'> <div class='t-Form-fieldContainer rel-col'> <div class='t-Form-labelContainer col col-2'> <label class='t-Form-label'>Date Range</label> </div><div class='t-Form-inputContainer col'> <input type='text' class='u-TF-item--datepicker datepicker' id='mcen-export-cal-start'> </div><div class='t-Form-labelContainer col'> <label class='t-Form-label'>to</label> </div><div class='t-Form-inputContainer col'> <input type='text' class='u-TF-item--datepicker datepicker'id='mcen-export-cal-end'> </div></div><div class='t-Form-fieldContainer rel-col'> <div class='t-Form-labelContainer col col-2'> <label class='t-Form-label'>Export Type</label> </div><div class='t-Form-inputContainer col'> <div class='t-Form-itemWrapper'> <select class='selectlist apex-item-select' id='mcen-export-cal-type'> <option value='all' selected='selected'>Export all course events to one ICS file</option> <option value='split'>Export separate ICS file for each course</option> </select> </div></div></div><br><div class='t-Form-fieldContainer rel-col' style='float: right;'> <button type='button' class='t-Button t-Button--hot col' id='mcen-export-cal'> <span class='t-Button-label'>Export Calendar Events to ICS file</span> </button> <div class='t-Form-labelContainer col'> <label class='t-Form-label'></label> </div><a href='https://digibites.zendesk.com/hc/en-us/articles/200134792-How-do-I-import-ics-ical-csv- fileinto-Google-Calendar-' class='t-Button col'> How to import ICS files into Google Calendar </a> </div></div></div></div></div>";
 	document.getElementsByClassName("container")[0].appendChild(row);
 	injectScript('$(".datepicker").datepicker({dateFormat: "mm/dd/yy"});$(".datepicker").datepicker("setDate", new Date())');
 	document.getElementById('mcen-export-cal').setAttribute('onclick', 'document.dispatchEvent(new Event("mcenExportCalendar"));');
 
 	document.addEventListener('mcenExportCalendar', function(data) {
-		console.log('mcenExportCalendar');
-		console.log(data);
+		logForDebug('mcenExportCalendar');
+		logForDebug(data);
 
 		const reqData = request.requestBody.formData;
-		const startDate = new Date(document.getElementById('mcen-export-cal-start').value);
-		const endDate = new Date(document.getElementById('mcen-export-cal-end').value);
+		const exportParams = {
+			type: document.getElementById('mcen-export-cal-type').selectedIndex,
+			start: document.getElementById('mcen-export-cal-start').value,
+			end: document.getElementById('mcen-export-cal-end').value
+		};
+		const startDate = new Date(exportParams.start);
+		const endDate = new Date(exportParams.end);
 		endDate.setDate(endDate.getDate() + 1);
 
 		reqData.x02 = startDate.toISOString().slice(0,10).replace(/-/g,"");
 		reqData.x03 = endDate.toISOString().slice(0,10).replace(/-/g,"");
 		const reqParams = jQuery.param(reqData).replace(/%5B%5D/g,'');
 		const reqURL = 'https://mymdcm.medicine.mcgill.ca/ords/wwv_flow.ajax?' + reqParams;
-		console.log(reqURL);
+		logForDebug(reqURL);
 
-		getCalendarJSON(reqURL);
-
+		getCalendarJSON(reqURL, exportParams);
 	});
-
 }
+
 
 function injectScript(code) {
 	const script = document.createElement('script');
@@ -73,26 +75,44 @@ function injectScript(code) {
 }
 
 
-function getCalendarJSON(reqURL) {
-    const xmlRequestInfo = {
-        method: 'GET',
-        action: 'xhttp',
-        url: reqURL,
-    };
-    chrome.runtime.sendMessage(xmlRequestInfo, generateGetCalendarJSONCallback(reqURL));
+function getCalendarJSON(reqURL, exportParams) {
+	const xmlRequestInfo = {
+		method: 'GET',
+		action: 'xhttp',
+		url: reqURL,
+	};
+	chrome.runtime.sendMessage(xmlRequestInfo, generateGetCalendarJSONCallback(reqURL, exportParams));
 }
 
 
-function generateGetCalendarJSONCallback(reqURL) {
-    return function(data) {
-    	let eventsData = JSON.parse(data.responseXML);
-    	console.log(eventsData);
+function generateGetCalendarJSONCallback(reqURL, exportParams) {
+	return function(data) {
+		const eventsData = JSON.parse(data.responseXML);
+		logForDebug(eventsData);
 
-    	let eventsICS = ics();
-    	for (let i = 0; i < eventsData.length; i++) {
-    		let eventInfo = eventsData[i].title.match(/\>[^<>]+/g).map(function(e){return e.slice(1);});
-    		eventsICS.addEvent(eventInfo[0], eventInfo[1], eventInfo[2], eventsData[i].start, eventsData[i].end);
-    	}
-    	eventsICS.download("myMDCM_calendar");
-    };
+		if (exportParams.type === 0) {
+			let eventsICS = ics();
+			for (let i = 0; i < eventsData.length; i++) {
+				let eventInfo = eventsData[i].title.match(/\>[^<>]+/g).map(function(e){return e.slice(1);});
+				eventsICS.addEvent(eventInfo[0], eventInfo[1], eventInfo[2], eventsData[i].start, eventsData[i].end);
+			}
+			logForDebug(eventsICS);
+			eventsICS.download("myMDCM_Calendar_"+document.getElementById('mcen-export-cal-start').value+"_to_"+document.getElementById('mcen-export-cal-end').value+"_All");
+		}
+		else {
+			let eventsICS = {};
+			for (let i = 0; i < eventsData.length; i++) {
+				let eventInfo = eventsData[i].title.match(/\>[^<>]+/g).map(function(e){return e.slice(1);});
+				const eventCourse = eventInfo[0].split('-')[0].replace(/\s/g,'');
+				if (!(eventCourse in eventsICS)) {
+					eventsICS[eventCourse] = ics();
+				}
+				eventsICS[eventCourse].addEvent(eventInfo[0], eventInfo[1], eventInfo[2], eventsData[i].start, eventsData[i].end);
+			}
+			logForDebug(eventsICS);
+			for (var course in eventsICS) {
+				eventsICS[course].download("myMDCM_Calendar_"+document.getElementById('mcen-export-cal-start').value+"_to_"+document.getElementById('mcen-export-cal-end').value+"_"+course);
+			}
+		}
+	};
 }

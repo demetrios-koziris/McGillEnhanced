@@ -20,14 +20,14 @@
   },
   "browser_action": {
     "default_icon": {
-      "38": "icons/mcgill-128.png",
-      "128": "icons/mcgill-128.png"
+      "38": "icons/mymdcm5-256.png",
+      "128": "icons/mymdcm5-256.png"
     },
     "default_popup": "menu/quicklinksMenu.html",
     "default_title": "Click to view Quick Links Menu!"
   },
   "icons": {
-    "128": "icons/mcgill-128.png"
+    "128": "icons/mymdcm5-256.png"
   },
   "content_scripts" : [
     {
