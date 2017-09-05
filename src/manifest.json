@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.2.16",
+  "version": "3.2.17",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
@@ -49,7 +49,6 @@
         "js/addProfLinks.js", 
         "js/addCourseLinks.js",
         "js/vsbEnhanced.js",
-        "js/scheduleDownloadInserter.js",
         "js/init.js"
       ]
     },
@@ -62,14 +61,21 @@
         "*://vsb.mcgill.ca/*"
       ],
       "js" : [
-          "js/insertCSS.js"
+        "js/insertCSS.js"
       ],
       "run_at": "document_start"
+    },
+    {
+      "matches" : [
+        "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl/*"
+      ],
+      "js" : [
+        "lib/icsLib.js", 
+         "js/scheduleExport.js"
+      ]
     }
   ],
   "web_accessible_resources": [
-    "lib/icsLib.js", 
-    "js/scheduleDownload.js",
     "css/sidebar.css",
     "css/yearMenu.css",
     "css/aveCrowdsource.css",

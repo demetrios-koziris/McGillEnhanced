@@ -89,10 +89,3 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 if (url.match(/.+vsb\.mcgill\.ca/)) {
 	enhanceVSB();
 }
-
-// run on Minerva Course Schedule by Course Name page
-if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.match(/mymcgill\.mcgill\.ca\/portal\/page\/portal\/myMcGill\/MINERVA_TAB/)) {
-	insertScheduleDownloader();
-}
-
-
