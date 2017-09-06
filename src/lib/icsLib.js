@@ -405,6 +405,7 @@ var ics = function() {
     var calendarEvents = [];
     var calendarStart = [
         'BEGIN:VCALENDAR',
+        'X-WR-TIMEZONE:America/Toronto',
         'VERSION:2.0'
     ].join(SEPARATOR);
     var calendarEnd = SEPARATOR + 'END:VCALENDAR';
