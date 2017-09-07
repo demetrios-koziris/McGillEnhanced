@@ -14,17 +14,22 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
+
 function generateClassAverageRow(data, rowIndex) {
 	const aveYearF = data.year - (data.term === 'Winter' || data.term === 'Summer' ? 1 : 0);
 
 	const classAverageRow = document.createElement('div');
 	classAverageRow.className = 'mcen-class-average-row';
 	classAverageRow.id = 'mcen-class-average-row' + rowIndex;
-
+	
 	const classAverageTerm = document.createElement('div');
 	if (aveYearF === urlYearF) {
 		classAverageTerm.className = 'mcen-class-average-term-nonactive';
 		classAverageTerm.innerHTML = '&bull; ' + data.year + ' ' + data.term + ':';
+
+		classAverageRow.setAttribute('onmouseover', 'let profsFromClassAveTerm = document.getElementsByClassName("mcen-class-ave-prof-marker-" + '+data.termcode.slice(-1)+'); for (let i = 0; i < profsFromClassAveTerm.length; i++){profsFromClassAveTerm[i].style.display="inline"}');
+		classAverageRow.setAttribute('onmouseout', 'let profsFromClassAveTerm = document.getElementsByClassName("mcen-class-ave-prof-marker-" + '+data.termcode.slice(-1)+'); for (let i = 0; i < profsFromClassAveTerm.length; i++){profsFromClassAveTerm[i].style.display="none"}');
+
 	}
 	else {
 		classAverageTerm.className = 'mcen-class-average-term';

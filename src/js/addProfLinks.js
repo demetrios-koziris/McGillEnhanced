@@ -138,6 +138,15 @@ function makeProfLinks() {
 				} 
 			}
 
+			const profBullet = document.createElement('span');
+			profBullet.className = 'mcen-class-ave-prof-marker';
+			profBullet.innerHTML = '&bull;';
+			const profTermsTeaching = prof.termsTeaching;
+			for (let term in profTermsTeaching) {
+				profBullet.className += ' mcen-class-ave-prof-marker-' + profTermsTeaching[term].code;
+			}
+			profDiv.appendChild(profBullet);
+
 			const profLink = document.createElement('a');
 			profLink.href = prof.urlCourses;
 			profLink.className = 'tooltip mcen-profLink ' + prof.key;

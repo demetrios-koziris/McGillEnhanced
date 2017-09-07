@@ -10,6 +10,11 @@
 	margin-left: 4px !important;
 }
 
+.mcen-class-ave-prof-marker {
+	margin-left: 4px !important;
+	display: none;
+}
+
 .mcen-profLinkButton {
 	border-radius: 3px;
 	background: #FFF !important;
