@@ -21,7 +21,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 	if (details.reason === "install") {
 		console.log("Installed McGill Enhanced version " + currentVersion);
-		chrome.tabs.create({url: "https://demetrios-koziris.github.io/McGillEnhanced"}, function (tab) {
+		chrome.tabs.create({url: "https://demetrios-koziris.github.io/McGillEnhanced/landing"}, function (tab) {
 			console.log("New tab launched with https://demetrios-koziris.github.io/McGillEnhanced");
 		});
 	}
