@@ -250,7 +250,8 @@ function getRecordingData() {
 			{ year: 2015, month: 09, section: "001", type: "cool", id: "1601" },
 			{ year: 2016, month: 01, section: "001", type: "cool", id: "1616" },
 			{ year: 2016, month: 09, section: "001", type: "lrs", id: "14025" },
-			{ year: 2017, month: 01, section: "001", type: "lrs", id: "14810" }
+			{ year: 2017, month: 01, section: "001", type: "lrs", id: "14810" },
+			{ year: 2017, month: 09, section: "001", type: "lrs", id: "17037" }
 		],
 		CHEM232 : [  
 			{ year: 2010, month: 09, section: "001", type: "cool", id: "1419" },
@@ -292,7 +293,8 @@ function getRecordingData() {
 		COMP202 : [  
 			{ year: 2015, month: 09, section: "001", type: "lrs", id: "12237" },
 			{ year: 2016, month: 05, section: "001", type: "lrs", id: "13267" },
-			{ year: 2016, month: 09, section: "001", type: "lrs", id: "14166" }
+			{ year: 2016, month: 09, section: "001", type: "lrs", id: "14166" },
+			{ year: 2017, month: 09, section: "001", type: "lrs", id: "17196" }
 		],
 		COMP208 : [  
 			{ year: 2016, month: 09, section: "001", type: "lrs", id: "13909" }
@@ -302,7 +304,8 @@ function getRecordingData() {
 			{ year: 2015, month: 09, section: "001", type: "lrs", id: "12243" },
 			{ year: 2015, month: 09, section: "002", type: "lrs", id: "11806" },
 			{ year: 2016, month: 01, section: "001", type: "lrs", id: "13068" },
-			{ year: 2016, month: 09, section: "001", type: "lrs", id: "14171" }
+			{ year: 2016, month: 09, section: "001", type: "lrs", id: "14171" },
+			{ year: 2017, month: 09, section: "001", type: "lrs", id: "17202" }
 		],
 		COMP251 : [ 
 			{ year: 2016, month: 09, section: "001", type: "lrs", id: "14172" },
