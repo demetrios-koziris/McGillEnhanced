@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.2.22",
+  "version": "3.3.0",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
@@ -21,7 +21,7 @@
       "38": "icons/mcgill-128.png",
       "128": "icons/mcgill-128.png"
     },
-    "default_popup": "menu/quicklinksMenu.html",
+    "default_popup": "menu/quicklinksMenuSimvo.html",
     "default_title": "Click to view Quick Links Menu!"
   },
   "icons": {
