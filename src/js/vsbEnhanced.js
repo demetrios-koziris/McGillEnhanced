@@ -69,7 +69,7 @@ function enhanceVSB() {
 				infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
 				logForDebug(infotext);
 
-				if (infotext.includes('Please select one of the following login methods.')) {
+				if (htmlDoc.getElementById('mcg_id_submit')) {
 					redirect(notloggedinMessage, minervaLogin);
 				}
 				else if (infotext.includes('You are not permitted to register at this time.') ||

@@ -172,10 +172,7 @@ function averageGPAsDownloader() {
 				htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
 				logForDebug(htmlDoc);
 
-				infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
-				// logForDebug(infotext);
-
-				if (infotext.includes('Please select one of the following login methods.')) {
+				if (htmlDoc.getElementById('mcg_id_submit')) {
 					redirect(notloggedinMessage, minervaLogin);
 				}
 				else {
