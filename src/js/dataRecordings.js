@@ -201,7 +201,8 @@ function getRecordingData() {
 			{ year: 2013, month: 01, section: "001", type: "cool", id: "1522" },
 			{ year: 2014, month: 09, section: "001", type: "cool", id: "1576" },
 			{ year: 2014, month: 09, section: "001", type: "lrs", id: "10286" },
-			{ year: 2017, month: 01, section: "001", type: "lrs", id: "14876" }
+			{ year: 2017, month: 01, section: "001", type: "lrs", id: "14876" },
+			{ year: 2017, month: 09, section: "001", type: "lrs", id: "17003" }
 		],
 		CHEM211 : [  
 			{ year: 2012, month: 09, section: "001", type: "cool", id: "1506" },
@@ -286,6 +287,9 @@ function getRecordingData() {
 		CLAS203 : [  
 			{ year: 2014, month: 09, section: "001", type: "lrs", id: "10001" },
 			{ year: 2015, month: 09, section: "001", type: "lrs", id: "11700" }
+		],
+		CMSC000 : [
+			{ year: 2017, month: 09, section: "741", type: "lrs", id:"16606" }
 		],
 		CMS2531 : [
 			{ year: 2017, month: 09, section: "771", type: "lrs", id: "17294" }
@@ -429,6 +433,9 @@ function getRecordingData() {
 		INDS211 : [ 
 			{ year: 2016, month: 09, section: "001", type: "lrs", id: "13688" }
 		],
+		INSY691:[
+			{ year: 2017, month: 09, section: "001", type: "lrs", id: "16910" }
+		],
 		LAWG210 : [  
 			{ year: 2015, month: 09, section: "001", type: "lrs", id: "11964" },
 			{ year: 2016, month: 09, section: "001", type: "lrs", id: "13779" }
@@ -494,9 +501,6 @@ function getRecordingData() {
 		],
 		MIMM413 : [  
 			{ year: 2015, month: 01, section: "001", type: "lrs", id: "11203" }
-		],
-		NUR1323 : [
-			{ year: 2017, month: 09, section: "001", type: "lrs", id: "16946" }
 		],
 		NUR1420 : [  
 			{ year: 2015, month: 09, section: "001", type: "lrs", id: "12025" }
