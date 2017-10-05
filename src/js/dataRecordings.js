@@ -436,6 +436,9 @@ function getRecordingData() {
 		INSY691:[
 			{ year: 2017, month: 09, section: "001", type: "lrs", id: "16910" }
 		],
+		LAWG100D1:[
+			{ year: 2017, month: 09, section: "002", type: "lrs", id: "17101"}
+		],
 		LAWG210 : [  
 			{ year: 2015, month: 09, section: "001", type: "lrs", id: "11964" },
 			{ year: 2016, month: 09, section: "001", type: "lrs", id: "13779" }
