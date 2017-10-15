@@ -17,24 +17,3 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 let isDevVersion = !('update_url' in chrome.runtime.getManifest());
 document.getElementById('version').innerText = 'Version ' + chrome.app.getDetails().version + (isDevVersion ? ' DEV' : '');
-
-
-let simvoHideBtn = document.getElementById('simvo-hide-btn')
-if (simvoHideBtn) {
-	simvoHideBtn.addEventListener('click', toggleSimvoHide);
-}
-
-let simvoShowBtn = document.getElementById('simvo-show-btn')
-if (simvoShowBtn) {
-	simvoShowBtn.addEventListener('click', toggleSimvoShow);
-}
-
-function toggleSimvoHide() {
-	chrome.browserAction.setPopup({popup: "menu/quicklinksMenu.html"});
-	window.location.href="quicklinksMenu.html";
-}
-
-function toggleSimvoShow() {
-	chrome.browserAction.setPopup({popup: "menu/quicklinksMenuSimvo.html"});
-	window.location.href="quicklinksMenuSimvo.html";
-}
