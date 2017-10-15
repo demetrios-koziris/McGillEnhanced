@@ -116,13 +116,12 @@ function generateAveCrowdsourceSection() {
 	const crowdsourceContentLeft = document.createElement('div');
 	crowdsourceContentLeft.id = 'mcen-class-averages-content-left';
 	if (classAveragesData) {
-		// crowdsourceContentLeft.innerHTML = 'The following class averages are unofficial and were gathered by students on r/McGill. McGill Enhanced is currently undertaking its own crowdsourcing initiative to gather a more accurate and complete dataset. If you would like to participate, the button below will download a CSV file of the class averages on your transcript and will open a form where you can submit the file.';
-		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by McGill students on <a href="https://www.reddit.com/r/mcgill/">r/mcgill</a>. Inspired by this effort, McGill Enhanced is undertaking its own crowdsourcing initiative to gather a more complete dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your courses and allow you to submit them.</p>';
+		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to gather a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript and allow you to submit them.</p>';
 	}
 	else {
 		crowdsourceContentLeft.style.paddingLeft = '0px';
 		crowdsourceContentLeft.style.width = '100%';
-		crowdsourceContentLeft.innerHTML = '<p>McGill Enhanced is currently undertaking a crowdsourcing initiative to gather a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your courses and allow you to submit them.</p>';
+		crowdsourceContentLeft.innerHTML = '<p>McGill Enhanced is currently undertaking a crowdsourcing initiative to gather a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript classes and allow you to submit them.</p>';
 	}
 	crowdsourceContent.appendChild(crowdsourceContentLeft);
 
