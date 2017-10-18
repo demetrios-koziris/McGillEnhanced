@@ -95,3 +95,8 @@ a {
 #simvo-show-btn {
   width:  408px;
 }
+
+#version {
+  padding-top: 4px;
+  text-align: center;
+}
