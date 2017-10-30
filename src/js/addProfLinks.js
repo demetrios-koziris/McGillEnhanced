@@ -228,9 +228,9 @@ function generateProfObject(minervaProfs, origName, termKey) {
 		termsTeaching: {},
 		minerva: minervaProfs[name],
 		name: profName,
-		urlCourses: 'https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext=' + profName.full,
-		urlGoogle: 'https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last,
-		urlMercury: 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&inst_tab_in=' + minervaProfs[profName.full]
+		urlCourses: encodeURI('https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext="' + profName.full + '"'),
+		urlGoogle: encodeURI('https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last),
+		urlMercury: encodeURI('https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&inst_tab_in=' + minervaProfs[profName.full])
 	};
 	return prof;
 }
