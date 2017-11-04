@@ -41,18 +41,22 @@ function programOverview(){
 		const courseURL = title.href;
 		const courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
 
-		const link = document.createElement('h3');
-		link.style.padding = "0px";
-		link.style.margin = "0px";
-		link.innerHTML = "<a style=\"background: none; padding-left: 0px\" href=\"" + courseURL + "\">" + courseName + "</a>";
-		
+		const link = document.createElement('a');
+		link.href = courseURL;
+		link.style.background = 'none';
+		link.style.paddingLeft = '0px';
+		link.innerText = courseName;
+
 		const contentElement = courseSections[c].getElementsByClassName("content")[0];
-		contentElement.insertBefore(link, contentElement.firstChild);
+		const overviewHeader = contentElement.getElementsByTagName('h3')[0];
+		overviewHeader.innerText = "";
+		overviewHeader.appendChild(link);
 
 		if (notes) {
-			notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
+			// notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
 			notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
 		}
+
 	}
 
 }

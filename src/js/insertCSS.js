@@ -23,6 +23,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		// inject CSS for yearMenu
 		injectCSS("css/yearMenu.css");
+		injectCSS("css/programs.css");
 	}
 
 	if (url.match(/.+study.+courses.+[-]+/)) {

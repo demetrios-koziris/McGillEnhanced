@@ -54,7 +54,7 @@ function addYearMenu() {
 		const yearMenuItemA = document.createElement('a');
 		yearMenuItemA.className = "mcen-yearMenuItemA";
 		yearMenuItemA.href = yearMenuItemURL;
-		yearMenuItemA.innerHTML = i + "-" + (i + 1);
+		yearMenuItemA.innerText = i + "-" + (i + 1);
 		yearMenuItemDIV.appendChild(yearMenuItemA);
 
 		// styling for year tab directly to left of selected year tab

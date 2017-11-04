@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.3.13",
+  "version": "3.3.14",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
@@ -79,6 +79,8 @@
     "css/yearMenu.css",
     "css/aveCrowdsource.css",
     "css/profLinks.css",
+    "css/profLinks.css",
+    "css/programs.css",
     "css/vsb.css",
     "css/minerva.css",
     "icons/empty-15.png"
