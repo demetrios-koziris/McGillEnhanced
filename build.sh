@@ -61,7 +61,7 @@ for browser in "$@"; do
 
 		mkdir -p build/$buildname
 		cp -r src/edge/background.html src/edge/backgroundScriptsAPIBridge.js src/edge/contentScriptsAPIBridge.js build/$buildname
-		cp -r src/css src/icons src/js src/lib src/manifest.json build/$buildname
+		cp -r src/css src/icons src/js src/lib src/menu src/manifest.json build/$buildname
 
 		file=build/$buildname/manifest.json
 
@@ -76,16 +76,6 @@ for browser in "$@"; do
 		insertB='    "page": "background.html",'  
 		sed -i "s/$match/$match\n$insertA/" $file
 		sed -i "s/$match/$match\n$insertB/" $file
-
-		sed -i '/"default_title"/d' $file  
-		match='"default_popup": "menu\/quicklinksMenu.html",'
-		insertC='    "default_title": "Click to visit the McGill Enhanced site!"'   
-		sed -i "s/$match/$match\n$insertC/" $file
-		sed -i '/"default_popup"/d' $file  
-
-		sed -i '/"default_popup"/d' $file 
-		sed -i '/"js\/vsbEnhanced.js"/d' $file 
-		sed -i '/"js\/scheduleDownloadInserter.js"/d' $file 
 
 	fi
 

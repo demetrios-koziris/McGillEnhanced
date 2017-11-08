@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.3.14",
+  "version": "3.3.15",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
@@ -66,7 +66,7 @@
     },
     {
       "matches" : [
-        "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl/*"
+        "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl*"
       ],
       "js" : [
         "lib/icsLib.js", 
