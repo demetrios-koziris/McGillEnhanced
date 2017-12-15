@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.3.15",
+  "version": "3.3.16",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
