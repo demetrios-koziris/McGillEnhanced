@@ -56,6 +56,9 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 				5: 'Été'
 			},
 		};
+	var numYearsInMenu = 10;
+	var currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
+	var firstYear = Math.max(sysYear-numYearsInMenu, 2009);
 	
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		// run on McGill.ca Calendar pages (mcgill.ca url with year in path) 

@@ -108,6 +108,14 @@ function generateAveCrowdsourceSection() {
 		crowdsourceContentRightTable.id = 'mcen-class-averages-content-right-table';
 		crowdsourceContentRight.appendChild(crowdsourceContentRightTable);
 
+		// filter out class averages from terms before the fall term of the first year in the year menu
+		const firstTerm = (firstYear*100 + 09);
+		for (let i = classAveragesData.length-1; i >= 0; i--) {
+			if (classAveragesData[i].termcode < firstTerm) {
+				classAveragesData.splice(i, 1);
+			}
+		}
+		let classAverageRowCounter = 0;
 		for (let i = classAveragesData.length-1; i >= 0; i--) {
 			crowdsourceContentRightTable.appendChild(generateClassAverageRow(classAveragesData[i], i));
 		}
