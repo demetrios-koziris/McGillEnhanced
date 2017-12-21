@@ -109,10 +109,9 @@ function makeProfLinks() {
 			mercuryLink = generateProfLinkButton(prof.urlMercury, mercuryLinkMessage, 'Mercury');
 			profDiv.appendChild(mercuryLink);
 
-			if (!(prof.name.full in minervaProfs)) {
+			if (prof.minervaID === undefined) {
 				mercuryLink.firstElementChild.className = 'tooltipError mcen-profLinkButton mcen-mercuryLinkButton not-active';
 				mercuryLink.firstElementChild.title = mercuryLinkMessageError;
-				mercuryLink.href = mercuryLink.href.split('?')[0];
 			}
 
 			const termSection = document.createElement('div');
@@ -223,14 +222,15 @@ function generateProfObject(minervaProfs, origName, termKey) {
 		first: splitName[0],
 		last: splitName[splitName.length-1]
 	};
+	const minervaID = minervaProfs[CryptoJS.MD5(name)];
 	const prof = {
 		key: name.replace(/\W/g, ''),
-		termsTeaching: {},
-		minerva: minervaProfs[name],
 		name: profName,
+		minervaID: minervaID,
+		termsTeaching: {},
 		urlCourses: encodeURI('https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext="' + profName.full + '"'),
 		urlGoogle: encodeURI('https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last),
-		urlMercury: encodeURI('https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&inst_tab_in=' + minervaProfs[profName.full])
+		urlMercury: encodeURI('https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form' + (minervaID !== undefined ? '?form_mode=ar&inst_tab_in='+minervaID : ''))
 	};
 	return prof;
 }

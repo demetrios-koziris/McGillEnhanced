@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.3.18",
+  "version": "3.3.19",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
@@ -38,6 +38,7 @@
         "lib/jquery-1.11.2.min.js", 
         "lib/tooltipsy.min.js", 
         "lib/levenshtein.js", 
+        "lib/md5.js", 
         "js/dataDocuum.js",
         "js/dataProf.js",
         "js/dataRecordings.js",
