@@ -92,3 +92,7 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 if (url.match(/.+vsb\.mcgill\.ca/)) {
 	enhanceVSB();
 }
+
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}

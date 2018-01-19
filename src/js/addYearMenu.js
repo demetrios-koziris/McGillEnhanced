@@ -20,16 +20,18 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
  */
 function addYearMenu() {
 
-	const numYearsInMenu = 10;
-	const currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
-	const firstYear = Math.max(sysYear-numYearsInMenu, 2009);
 	const isSearchPage = (url.match(/search/));
 	numYearsLeftToCheck = numYearsInMenu;
 
 	const yearMenuBarDIV = document.createElement('div');
 	yearMenuBarDIV.id = "navigation";
 	yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
-	document.body.insertBefore(yearMenuBarDIV, document.getElementById("highlighted"));
+	if (document.getElementById("navigation")) {
+		insertAfter(yearMenuBarDIV, document.getElementById("navigation"));
+	}
+	else {
+		insertAfter(yearMenuBarDIV, document.getElementById("header"));
+	}
 
 	const inner = document.createElement('div');
 	inner.className = "inner";
