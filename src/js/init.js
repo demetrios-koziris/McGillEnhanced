@@ -39,10 +39,16 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 	var urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
 	var urlYearW = urlYearF + 1;
 	var urlYears = urlYearF + "-" + urlYearW;
+
 	var sysDate = new Date();
 	var sysYear = sysDate.getFullYear();
-	var sysMonth = sysDate.getMonth();
-	var sysCode = '' + sysYear + ('0'+sysMonth).slice(-2);
+	var sysMonth = sysDate.getMonth()+1;
+	var sysCode = translateToTermCode(sysYear, sysMonth);
+
+	var currentTermYear = sysYear;
+	var currentTermMonth = (sysMonth>=9 ? 9 : (sysMonth>=5 ? 5 : 1));
+	var currentTermCode = translateToTermCode(currentTermYear, currentTermMonth);
+
 	var lang = (url.match(/\/fr\//) ? 'fr' : 'en');
 	var termNames = {
 			'en': {
@@ -57,7 +63,6 @@ if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
 			},
 		};
 	var numYearsInMenu = 10;
-	var currentYear = (sysMonth > 5 ? sysYear : sysYear-1);
 	var firstYear = Math.max(sysYear-numYearsInMenu, 2009);
 	
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
@@ -95,4 +100,12 @@ if (url.match(/.+vsb\.mcgill\.ca/)) {
 
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+function monthAsTwoDigitString(month) {
+	return ('0'+month).slice(-2);
+}
+
+function translateToTermCode(year, month) {
+	return '' + year + monthAsTwoDigitString(month);
 }

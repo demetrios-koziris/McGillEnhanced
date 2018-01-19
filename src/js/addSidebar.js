@@ -137,10 +137,10 @@ function makeSidebarContent() {
 	
 	//SIDEBAR SECTION: LECTURE RECORDINGS
 	const availableRecordingURLdata = [];
-	const oldestAvailableTerm = getOldestAvailableRecordingTerm();
+	const oldestAvailableTerm = translateToTermCode(currentTermYear-1, currentTermMonth);
 	if (recordingURLdata) {
 		for (let i = 0; i < recordingURLdata.length; i++) {
-			if (recordingURLdata[i].year + ('0'+recordingURLdata[i].month).slice(-2) >= oldestAvailableTerm) {
+			if (translateToTermCode(recordingURLdata[i].year, recordingURLdata[i].month) >= oldestAvailableTerm) {
 				availableRecordingURLdata.push(recordingURLdata[i]);
 			}
 		}
@@ -377,4 +377,9 @@ function disableVSBSidebarTerm(termCode) {
 	else {
 		vsbSidebarButton.parentElement.title = 'This term is not yet available in VSB!';
 	}
+}
+
+
+function translateToTermCode(year, month) {
+	return '' + year + monthAsTwoDigitString(month);
 }
