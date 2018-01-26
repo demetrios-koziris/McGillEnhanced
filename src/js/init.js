@@ -30,7 +30,7 @@ function redirect(message, url) {
 }
 
 // run on McGill.ca pages
-if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
+if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 
 	const start = Date.now();
 	

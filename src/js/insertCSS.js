@@ -17,7 +17,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 var url = window.location.href;
 
-if (url.match(/.+www\.mcgill\.ca\/study\/.+/)) {
+if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 	// run on McGill.ca pages
 
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
