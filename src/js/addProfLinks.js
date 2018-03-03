@@ -48,7 +48,7 @@ function makeProfLinks() {
 		'fr': 'Chargés de cours :'
 	};
 	profs = {};
-	const minervaProfs = getProfData();
+	const mercuryProfs = getMercuryData();
 	let profsLength = 0;
 
 	const profsFullSourceElem = document.getElementsByClassName("catalog-instructors")[0];
@@ -78,7 +78,7 @@ function makeProfLinks() {
 
 				for (let p=0; p<profsForTerm.length; p++) {
 
-					let newProfObject = generateProfObject(minervaProfs, profsForTerm[p], termKey);
+					let newProfObject = generateProfObject(mercuryProfs, profsForTerm[p], termKey);
 					if (!(newProfObject.key in profs)) {
 						profs[newProfObject.key] = newProfObject;
 					}
@@ -213,7 +213,7 @@ function applyToolTipsy(className) {
 	});
 }
 
-function generateProfObject(minervaProfs, origName, termKey) {
+function generateProfObject(mercuryProfs, origName, termKey) {
 
 	const name = origName.trim();
 	const splitName = name.split(' ');
@@ -222,7 +222,7 @@ function generateProfObject(minervaProfs, origName, termKey) {
 		first: splitName[0],
 		last: splitName[splitName.length-1]
 	};
-	const minervaID = minervaProfs[CryptoJS.MD5(name)];
+	const minervaID = mercuryProfs[CryptoJS.MD5(name)];
 	const prof = {
 		key: name.replace(/\W/g, ''),
 		name: profName,
