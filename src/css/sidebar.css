@@ -8,6 +8,12 @@
 .mcen-top-content {
 	margin-top: 20px;
 }
+#block-bean-older-edition-of-ecalendar-jum {
+	margin: 0px;
+}
+#block-bean-older-edition-of-ecalendar-jum .block-inner {
+	padding: 0px;
+}
 
 .breadcrumb {
 	padding: 0 0 1em 0 !important;
