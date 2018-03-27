@@ -119,7 +119,8 @@ function getRecordingData() {
 		],
 		"BUS2365": [
 			{ "year": 2015, "month": 9, "section": "001", "type": "lrs", "id": "12197" },
-			{ "year": 2017, "month": 1, "section": "001", "type": "lrs", "id": "14349" }
+			{ "year": 2017, "month": 1, "section": "001", "type": "lrs", "id": "14349" },
+			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "17453" }
 		],
 		"BUSA499": [
 			{ "year": 2017, "month": 9, "section": "001", "type": "lrs", "id": "17243" }
@@ -309,7 +310,8 @@ function getRecordingData() {
 			{ "year": 2015, "month": 9, "section": "001", "type": "lrs", "id": "12237" },
 			{ "year": 2016, "month": 5, "section": "001", "type": "lrs", "id": "13267" },
 			{ "year": 2016, "month": 9, "section": "001", "type": "lrs", "id": "14166" },
-			{ "year": 2017, "month": 9, "section": "001", "type": "lrs", "id": "17196" }
+			{ "year": 2017, "month": 9, "section": "001", "type": "lrs", "id": "17196" },
+			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "18200" }
 		],
 		"COMP206": [
 			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "18208" }
@@ -342,12 +344,6 @@ function getRecordingData() {
 		],
 		"COMP330": [
 			{ "year": 2017, "month": 9, "section": "001", "type": "lrs", "id": "17212" }
-		],
-		"COMP360": [
-			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "18285" }
-		],
-		"COMP421": [
-			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "18223" }
 		],
 		"COMP557": [
 			{ "year": 2015, "month": 1, "section": "001", "type": "lrs", "id": "10865" }
@@ -643,7 +639,8 @@ function getRecordingData() {
 		],
 		"POTH684": [
 			{ "year": 2015, "month": 1, "section": "001", "type": "lrs", "id": "10736" },
-			{ "year": 2016, "month": 1, "section": "001", "type": "lrs", "id": "12500" }
+			{ "year": 2016, "month": 1, "section": "001", "type": "lrs", "id": "12500" },
+			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "17516" }
 		],
 		"PSYC212": [
 			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "17624" }
