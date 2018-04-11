@@ -345,6 +345,9 @@ function getRecordingData() {
 		"COMP330": [
 			{ "year": 2017, "month": 9, "section": "001", "type": "lrs", "id": "17212" }
 		],
+		"COMP360": [
+			{ "year": 2018, "month": 1, "section": "001", "type": "lrs", "id": "18285" }
+		],
 		"COMP557": [
 			{ "year": 2015, "month": 1, "section": "001", "type": "lrs", "id": "10865" }
 		],
