@@ -64,13 +64,15 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 		};
 	var numYearsInMenu = 10;
 	var firstYear = Math.max(sysYear-numYearsInMenu, 2009);
+
+	var courseUrlRegex = /.+study.+courses.+[-]+/;
 	
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		// run on McGill.ca Calendar pages (mcgill.ca url with year in path) 
 		addYearMenu();
 	}
 
-	if (url.match(/.+study.+courses.+[-]+/)) {
+	if (url.match(courseUrlRegex)) {
 		// run on McGill Course Overview pages:
 
 		var urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
@@ -83,6 +85,8 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 		makeCourseLinks();
 		makeSidebarContent();
 		addContentSeparators();
+		addCourseTitleTooltips();
+		applyToolTipsy();
 	}
 	else {
 		// run on McGill Program Overview pages
