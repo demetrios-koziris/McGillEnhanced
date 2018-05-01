@@ -161,7 +161,11 @@ function getRecordingData() {
 		],
 		"CHEM211": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14840" },
+			{ "year": 2017, "month": 5, "section": "001", "id": "16244" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17089" }
+		],
+		"CHEM212": [
+			{ "year": 2017, "month": 5, "section": "001", "id": "16240" }
 		],
 		"CHEM214": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11146" },
@@ -173,8 +177,10 @@ function getRecordingData() {
 			{ "year": 2015, "month": 5, "section": "001", "id": "11423" },
 			{ "year": 2016, "month": 9, "section": "001", "id": "14025" },
 			{ "year": 2017, "month": 1, "section": "001", "id": "14810" },
+			{ "year": 2017, "month": 5, "section": "001", "id": "16246" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17037" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "18046" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18046" },
+			{ "year": 2018, "month": 5, "section": "001", "id": "18468" }
 		],
 		"CHEM232": [
 			{ "year": 2016, "month": 9, "section": "001", "id": "13966" }
@@ -195,7 +201,8 @@ function getRecordingData() {
 			{ "year": 2015, "month": 9, "section": "001", "id": "11700" }
 		],
 		"CMS2500": [
-			{ "year": 2018, "month": 1, "section": "771", "id": "18167" }
+			{ "year": 2018, "month": 1, "section": "771", "id": "18167" },
+			{ "year": 2018, "month": 5, "section": "771", "id": "18509" }
 		],
 		"CMS2531": [
 			{ "year": 2017, "month": 9, "section": "771", "id": "17294" }
@@ -257,11 +264,11 @@ function getRecordingData() {
 		"DENT318J1": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12324" }
 		],
-		"DENT320J3": [
-			{ "year": 2016, "month": 5, "section": "001", "id": "13322" }
-		],
 		"DENT323J1": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12328" }
+		],
+		"DENT409": [
+			{ "year": 2015, "month": 9, "section": "001", "id": "12337" }
 		],
 		"DENT411": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12339" }
@@ -353,6 +360,9 @@ function getRecordingData() {
 		"LAWG518": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "18145" }
 		],
+		"LAWG536": [
+			{ "year": 2018, "month": 5, "section": "001", "id": "18400" }
+		],
 		"LING201": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "10887" }
 		],
@@ -376,7 +386,8 @@ function getRecordingData() {
 			{ "year": 2015, "month": 1, "section": "005", "id": "11337" },
 			{ "year": 2015, "month": 1, "section": "006", "id": "10745" },
 			{ "year": 2016, "month": 9, "section": "003", "id": "14046" },
-			{ "year": 2016, "month": 9, "section": "005", "id": "14048" }
+			{ "year": 2016, "month": 9, "section": "005", "id": "14048" },
+			{ "year": 2017, "month": 1, "section": "001", "id": "15069" }
 		],
 		"MGCR293": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17285" }
@@ -428,8 +439,14 @@ function getRecordingData() {
 		"NUTR545": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "11552" }
 		],
+		"OCC1547": [
+			{ "year": 2017, "month": 1, "section": "001", "id": "14979" }
+		],
 		"OCC1551": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "13036" }
+		],
+		"OCC1623": [
+			{ "year": 2017, "month": 1, "section": "001", "id": "15009" }
 		],
 		"ORGB685": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11171" }
@@ -437,6 +454,7 @@ function getRecordingData() {
 		"PHGY209": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12213" },
 			{ "year": 2015, "month": 9, "section": "002", "id": "12080" },
+			{ "year": 2015, "month": 9, "section": "004", "id": "11545" },
 			{ "year": 2016, "month": 9, "section": "001", "id": "14144" }
 		],
 		"PHGY210": [
@@ -463,7 +481,11 @@ function getRecordingData() {
 			{ "year": 2015, "month": 1, "section": "001", "id": "10806" }
 		],
 		"PHTH551": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12229" }
+			{ "year": 2015, "month": 9, "section": "001", "id": "12229" },
+			{ "year": 2016, "month": 9, "section": "001", "id": "14159" }
+		],
+		"PHTH622": [
+			{ "year": 2017, "month": 1, "section": "001", "id": "14524" }
 		],
 		"PHYS102": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12987" }
@@ -503,15 +525,13 @@ function getRecordingData() {
 		"POTH401": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11249" }
 		],
-		"POTH551": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "14159" }
-		],
 		"POTH563": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "11771" }
 		],
 		"POTH684": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "10736" },
 			{ "year": 2016, "month": 1, "section": "001", "id": "12500" },
+			{ "year": 2017, "month": 1, "section": "001", "id": "14413" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "17516" }
 		],
 		"PSYC212": [
