@@ -20,7 +20,6 @@ function makeSidebarContent() {
 	document.getElementById("main-column").className += " mcen-main-column";
 
 	const recordingURLdata = getRecordingData()[courseName];
-	const recordingsBaseURLs = getRecordingsBaseURLs();
 	const monthToSemester = getMonthToSemester();
 	const wikinotesURLdata = getWikinotesData()[courseName];
 	const docuumURLdata = getDocuumData()[courseName];
@@ -152,7 +151,7 @@ function makeSidebarContent() {
 
 		for (let r = 0; r < availableRecordingURLdata.length; r++) {
 			const recordingData = availableRecordingURLdata[r];
-			const recordingURL = recordingsBaseURLs[recordingData.type] + recordingData.id;
+			const recordingURL = "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=" + recordingData.id;
 			const recordingsButtonString = monthToSemester[recordingData.month] + " " + recordingData.year + " Sec " + recordingData.section + " Lectures";
 			recordings.appendChild(generateSidebarLink(recordingURL, "mcen-red", recordingsButtonString, false));
 		}

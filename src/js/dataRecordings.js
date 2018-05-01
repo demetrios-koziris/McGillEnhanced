@@ -15,14 +15,6 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-function getRecordingsBaseURLs() {
-	let recordingsBaseURLs = {
-		lrs: "https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=",
-		cool: "http://cool.mcgill.ca/COOLLectureListing.aspx?CourseID="
-	};
-	return recordingsBaseURLs;
-}
-
 function getMonthToSemester() {
 	let monthToSemester = {
 		1: "Winter",
