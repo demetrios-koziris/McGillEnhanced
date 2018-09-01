@@ -1,33 +1,20 @@
-<h1>
-  McGill Enhanced
-</h1>
+# McGill Enhanced
 
-A Chrome Extension Improving the McGill.ca Website Experience
+#### A Chrome Extension Improving the McGill.ca Website Experience
 
-<h4>
-  <a href="https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en">Download from the Google Chrome Store</a>
-</h4>
+Special thanks to contributors [jeromepl](https://github.com/jeromepl) and [youngelpaso](https://github.com/YoungElPaso)!
 
-<h4>
-  <a href="http://demetrios-koziris.github.io/McGillEnhanced/">View the McGill Enhanced landing page</a>
-</h4>
+#### [Download from the Google Chrome Store](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
 
-<br>
+#### [View the McGill Enhanced landing page](http://demetrios-koziris.github.io/McGillEnhanced/)
 
-<h2>
-  Features
-</h2>
+
+## Features
 
 McGill Enhanced makes looking up courses and registration easier by providing direct access to Mercury course evaluations, archived lecture recordings, Docuum, Minerva Registration, Visual Schedule Builder and more for a given course all from the course overview page. It also adds a menu bar that lets you quickly jump to a different year's version of the given page as well as a quick links menu that you can access by clicking the McGill Enhanced icon in the chrome menu bar. 
 
 For a full list of features, please see the following link:
-
-
-<h4>
-  <a href="http://demetrios-koziris.github.io/McGillEnhanced/features">View Detailed Feature List</a>
-</h4>
-
-<br>
+#### [View Detailed Feature List](http://demetrios-koziris.github.io/McGillEnhanced/features)
 
 
 ## Building the extension using the `build.sh` script
@@ -59,11 +46,7 @@ firefox  Create a firefox add-on in /build
 ```
 
 
-<br>
-
-<h2>
-License
-</h2>
+## License
 
 McGill Enhanced is a chrome extension that improves the functionality and navigability of the McGill website.
 Copyright (C) 2016 Demetrios Koziris. McGill is a University in Montreal, Quebec Canada and has no affiliation with this software.
