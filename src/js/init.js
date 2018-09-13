@@ -26,7 +26,7 @@ function redirect(message, url) {
 	if (message) {
 		alert(message);
 	}
-	window.open(url, '_blank');
+	window.location.href = url;
 }
 
 // run on McGill.ca pages
