@@ -2,12 +2,12 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.3.52",
+  "version": "4.0.0",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
-    "*://www.mcgill.ca/study/*", 
-    "*://horizon.mcgill.ca/*", 
+    "*://*.mcgill.ca/*", 
+    "*://demetrios-koziris.github.io/*", 
     "*://www.docuum.com/McGill*", 
     "*://vsb.mcgill.ca/*"
   ],
@@ -29,8 +29,8 @@
   "content_scripts" : [
     {
       "matches" : [
-        "*://www.mcgill.ca/study/*", 
-        "*://horizon.mcgill.ca/*", 
+        "*://*.mcgill.ca/*", 
+        "*://demetrios-koziris.github.io/*", 
         "*://www.docuum.com/McGill*", 
         "*://vsb.mcgill.ca/*"
       ],
@@ -58,8 +58,8 @@
     {
       "all_frames": true,
       "matches" : [
-        "*://www.mcgill.ca/study/*", 
-        "*://horizon.mcgill.ca/*", 
+        "*://*.mcgill.ca/*", 
+        "*://demetrios-koziris.github.io/*", 
         "*://www.docuum.com/McGill*", 
         "*://vsb.mcgill.ca/*"
       ],

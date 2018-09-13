@@ -15,10 +15,6 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-/** 
- * Print to console when debugMode is set to true
- * @param toLog: String literal to print
- */
 function makeProfLinks() {
 
 	const pageTitle = document.getElementById('page-title');

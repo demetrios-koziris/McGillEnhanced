@@ -83,7 +83,7 @@ for browser in "$@"; do
 	if [ $browser == firefox ]; then
 
 		match='"author": "kozirisdev",'
-		insert='  "applications":{"gecko":{"id":"extension@example.org"}},'
+		insert='  "applications":{"gecko":{"id":"{fbd3b601-613b-4747-a92b-4d37b2fd7667}"}},'
 		file='src/manifest.json'
 		sed -i "s/$match/$match\n$insert/" $file
 
