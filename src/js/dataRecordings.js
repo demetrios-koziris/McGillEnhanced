@@ -25,7 +25,7 @@ function getMonthToSemester() {
 }
 
 function getRecordingData() {
-	let recordingData = 	{
+	let recordingData = {
 		"AECH111": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11256" },
 			{ "year": 2016, "month": 1, "section": "001", "id": "13093" }
@@ -67,11 +67,13 @@ function getRecordingData() {
 			{ "year": 2015, "month": 1, "section": "001", "id": "11264" }
 		],
 		"BIOC320": [
-			{ "year": 2017, "month": 9, "section": "001", "id": "16765" }
+			{ "year": 2017, "month": 9, "section": "001", "id": "16765" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19010" }
 		],
 		"BIOC450": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10452" },
-			{ "year": 2017, "month": 9, "section": "001", "id": "17190" }
+			{ "year": 2017, "month": 9, "section": "001", "id": "17190" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19526" }
 		],
 		"BIOC454": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17191" },
@@ -84,8 +86,7 @@ function getRecordingData() {
 			{ "year": 2015, "month": 9, "section": "001", "id": "12042" }
 		],
 		"BIOL200": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13768" },
-			{ "year": 2018, "month": 9, "section": "001", "id": "18962" }
+			{ "year": 2016, "month": 9, "section": "001", "id": "13768" }
 		],
 		"BIOL201": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12958" }
@@ -108,6 +109,9 @@ function getRecordingData() {
 		"BIOL313": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12828" }
 		],
+		"BIOL314": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19145" }
+		],
 		"BREE301": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14849" },
 			{ "year": 2017, "month": 1, "section": "002", "id": "14851" }
@@ -115,7 +119,8 @@ function getRecordingData() {
 		"BUS2365": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12197" },
 			{ "year": 2017, "month": 1, "section": "001", "id": "14349" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "17453" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "17453" },
+			{ "year": 2018, "month": 9, "section": "003", "id": "19493" }
 		],
 		"BUSA499": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17243" }
@@ -125,6 +130,9 @@ function getRecordingData() {
 		],
 		"CFIN512": [
 			{ "year": 2016, "month": 9, "section": "751", "id": "13571" }
+		],
+		"CGMG210": [
+			{ "year": 2018, "month": 9, "section": "761", "id": "18741" }
 		],
 		"CHEE351": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14642" }
@@ -166,7 +174,8 @@ function getRecordingData() {
 		"CHEM211": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14840" },
 			{ "year": 2017, "month": 5, "section": "001", "id": "16244" },
-			{ "year": 2017, "month": 9, "section": "001", "id": "17089" }
+			{ "year": 2017, "month": 9, "section": "001", "id": "17089" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19427" }
 		],
 		"CHEM212": [
 			{ "year": 2017, "month": 5, "section": "001", "id": "16240" },
@@ -225,10 +234,13 @@ function getRecordingData() {
 			{ "year": 2018, "month": 1, "section": "001", "id": "18200" }
 		],
 		"COMP206": [
-			{ "year": 2018, "month": 1, "section": "001", "id": "18208" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18208" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19535" },
+			{ "year": 2018, "month": 9, "section": "002", "id": "19068" }
 		],
 		"COMP208": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13909" }
+			{ "year": 2016, "month": 9, "section": "001", "id": "13909" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19057" }
 		],
 		"COMP250": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10464" },
@@ -251,7 +263,8 @@ function getRecordingData() {
 		],
 		"COMP310": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "13081" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14983" }
+			{ "year": 2017, "month": 1, "section": "001", "id": "14983" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19302" }
 		],
 		"COMP330": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17212" }
@@ -299,6 +312,9 @@ function getRecordingData() {
 		"ECON257D1": [
 			{ "year": 2016, "month": 9, "section": "001", "id": "13591" }
 		],
+		"ECON302": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "18707" }
+		],
 		"ECON313": [
 			{ "year": 2014, "month": 9, "section": "002", "id": "10192" },
 			{ "year": 2015, "month": 5, "section": "001", "id": "11450" },
@@ -306,7 +322,8 @@ function getRecordingData() {
 		],
 		"ECON314": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "9891" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "11600" }
+			{ "year": 2015, "month": 9, "section": "001", "id": "11600" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "18692" }
 		],
 		"ECON319": [
 			{ "year": 2016, "month": 9, "section": "001", "id": "13676" }
@@ -322,6 +339,9 @@ function getRecordingData() {
 			{ "year": 2016, "month": 9, "section": "001", "id": "14200" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17231" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19554" }
+		],
+		"EXMD504": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19544" }
 		],
 		"FACC100": [
 			{ "year": 2015, "month": 1, "section": "002", "id": "11295" },
@@ -349,7 +369,8 @@ function getRecordingData() {
 			{ "year": 2016, "month": 9, "section": "001", "id": "13688" }
 		],
 		"INSY336": [
-			{ "year": 2018, "month": 9, "section": "001", "id": "19108" }
+			{ "year": 2018, "month": 9, "section": "001", "id": "19108" },
+			{ "year": 2018, "month": 9, "section": "002", "id": "19119" }
 		],
 		"INSY691": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "16910" }
@@ -360,6 +381,9 @@ function getRecordingData() {
 		"LAWG210": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "11964" },
 			{ "year": 2016, "month": 9, "section": "001", "id": "13779" }
+		],
+		"LAWG220D1": [
+			{ "year": 2018, "month": 9, "section": "002", "id": "19094" }
 		],
 		"LAWG273": [
 			{ "year": 2016, "month": 5, "section": "001", "id": "13346" },
@@ -384,7 +408,8 @@ function getRecordingData() {
 			{ "year": 2018, "month": 1, "section": "001", "id": "18149" }
 		],
 		"MATH323": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13020" }
+			{ "year": 2016, "month": 1, "section": "001", "id": "13020" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19420" }
 		],
 		"MATH447": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "18038" }
@@ -394,6 +419,9 @@ function getRecordingData() {
 		],
 		"MATH598": [
 			{ "year": 2015, "month": 5, "section": "001", "id": "11459" }
+		],
+		"MECH201": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19568" }
 		],
 		"MGCR222": [
 			{ "year": 2014, "month": 9, "section": "006", "id": "10063" },
@@ -438,14 +466,22 @@ function getRecordingData() {
 		],
 		"MIMM323": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10424" },
-			{ "year": 2017, "month": 9, "section": "001", "id": "17156" }
+			{ "year": 2017, "month": 9, "section": "001", "id": "17156" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19496" }
 		],
 		"MIMM413": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11203" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18177" }
 		],
+		"MUAR211": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "18819" },
+			{ "year": 2018, "month": 9, "section": "002", "id": "18820" }
+		],
 		"MUHL186": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "18686" }
+		],
+		"NUR1209": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19113" }
 		],
 		"NUR1324": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "17990" }
@@ -453,14 +489,26 @@ function getRecordingData() {
 		"NUR1420": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12025" }
 		],
+		"NUR1428": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "18818" }
+		],
 		"NUTR545": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "11552" }
+		],
+		"OCC1245": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19149" }
 		],
 		"OCC1547": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14979" }
 		],
+		"OCC1550": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19519" }
+		],
 		"OCC1551": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "13036" }
+		],
+		"OCC1618": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19603" }
 		],
 		"OCC1623": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "15009" }
@@ -523,7 +571,8 @@ function getRecordingData() {
 			{ "year": 2017, "month": 9, "section": "001", "id": "16755" }
 		],
 		"POLI346": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10463" }
+			{ "year": 2014, "month": 9, "section": "001", "id": "10463" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19071" }
 		],
 		"POLI354": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "17779" }
@@ -533,6 +582,9 @@ function getRecordingData() {
 		],
 		"POLI423": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14613" }
+		],
+		"POLI445": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19074" }
 		],
 		"POLI450": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14617" }
@@ -552,6 +604,9 @@ function getRecordingData() {
 			{ "year": 2017, "month": 1, "section": "001", "id": "14413" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "17516" }
 		],
+		"PSYC100": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19434" }
+		],
 		"PSYC212": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "17624" }
 		],
@@ -567,7 +622,8 @@ function getRecordingData() {
 			{ "year": 2016, "month": 9, "section": "001", "id": "14190" }
 		],
 		"PSYC406": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13830" }
+			{ "year": 2016, "month": 9, "section": "001", "id": "13830" },
+			{ "year": 2018, "month": 9, "section": "001", "id": "19009" }
 		],
 		"PSYC410": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10484" }
