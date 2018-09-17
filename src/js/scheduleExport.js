@@ -74,7 +74,7 @@ function exportSchedule() {
 				const startTime = courseSchedTable[j+0].innerText.split(" - ")[0];
 				const endDay = courseSchedTable[j+3].innerText.split(" - ")[1];
 				const endTime = courseSchedTable[j+0].innerText.split(" - ")[1];
-				const courseDays = courseSchedTable[j+1].innerText.split("");
+				const courseDays = courseSchedTable[j+1].innerText.trim().split("");
 				let courseLocation = courseSchedTable[j+2].innerText;
 				const courseLocationArr = courseLocation.split(" ");
 				const courseBuilding = courseLocationArr.slice(0, -1).join(" ");
