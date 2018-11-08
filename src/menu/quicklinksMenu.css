@@ -29,6 +29,7 @@ a {
 .mePopup-td {
   width: 50%;
   padding:0px 6px;
+  vertical-align: top;
 }
 
 .mePopup-td-wide {
