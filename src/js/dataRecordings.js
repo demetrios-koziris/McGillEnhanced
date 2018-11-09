@@ -83,7 +83,8 @@ function getRecordingData() {
 			{ "year": 2017, "month": 9, "section": "001", "id": "16951" }
 		],
 		"BIOL115": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12042" }
+			{ "year": 2015, "month": 9, "section": "001", "id": "12042" },
+			{ "year": 2017, "month": 9, "section": "001", "id": "16973" }
 		],
 		"BIOL200": [
 			{ "year": 2016, "month": 9, "section": "001", "id": "13768" }
@@ -122,6 +123,9 @@ function getRecordingData() {
 			{ "year": 2018, "month": 1, "section": "001", "id": "17453" },
 			{ "year": 2018, "month": 9, "section": "003", "id": "19493" }
 		],
+		"BUSA100": [
+			{ "year": 2018, "month": 9, "section": "071", "id": "18726" }
+		],
 		"BUSA499": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17243" }
 		],
@@ -130,6 +134,9 @@ function getRecordingData() {
 		],
 		"CFIN512": [
 			{ "year": 2016, "month": 9, "section": "751", "id": "13571" }
+		],
+		"CGM2510": [
+			{ "year": 2018, "month": 9, "section": "761", "id": "18639" }
 		],
 		"CGMG210": [
 			{ "year": 2018, "month": 9, "section": "761", "id": "18741" }
@@ -239,8 +246,7 @@ function getRecordingData() {
 			{ "year": 2018, "month": 9, "section": "002", "id": "19068" }
 		],
 		"COMP208": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13909" },
-			{ "year": 2018, "month": 9, "section": "001", "id": "19057" }
+			{ "year": 2016, "month": 9, "section": "001", "id": "13909" }
 		],
 		"COMP250": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10464" },
@@ -401,6 +407,9 @@ function getRecordingData() {
 		"LING201": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "10887" }
 		],
+		"MATH133": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19347" }
+		],
 		"MATH141": [
 			{ "year": 2018, "month": 1, "section": "024", "id": "17760" }
 		],
@@ -506,9 +515,6 @@ function getRecordingData() {
 		],
 		"OCC1551": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "13036" }
-		],
-		"OCC1618": [
-			{ "year": 2018, "month": 9, "section": "001", "id": "19603" }
 		],
 		"OCC1623": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "15009" }
