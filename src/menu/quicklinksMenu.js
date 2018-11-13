@@ -15,5 +15,5 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-let isDevVersion = !('update_url' in chrome.runtime.getManifest());
+let isDevVersion = !(chrome.runtime.id === "ffcpepgcelahhnipmdglnlakjgbhpejb" || chrome.runtime.id === "{fbd3b601-613b-4747-a92b-4d37b2fd7667}");
 document.getElementById('version').innerText += 'McGill Enhanced Version ' + chrome.runtime.getManifest().version + (isDevVersion ? ' DEV' : '');

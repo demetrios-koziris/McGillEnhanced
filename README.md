@@ -1,12 +1,12 @@
 # McGill Enhanced
 
-#### A Chrome Extension Improving the McGill.ca Website Experience
+#### A Browser Extension Improving the McGill.ca Website Experience
 
 Special thanks to contributors [jeromepl](https://github.com/jeromepl) and [youngelpaso](https://github.com/YoungElPaso)!
 
-#### [Download from the Google Chrome Store](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+#### Install from the [Google Chrome Store](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en) or the [Firefox Add-ons site](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
 
-#### [View the McGill Enhanced landing page](http://demetrios-koziris.github.io/McGillEnhanced/)
+#### View the [McGill Enhanced landing page](http://demetrios-koziris.github.io/McGillEnhanced/)
 
 
 ## Features
@@ -48,7 +48,7 @@ firefox  Create a firefox add-on in /build
 
 ## License
 
-McGill Enhanced is a chrome extension that improves the functionality and navigability of the McGill website.
+McGill Enhanced is a browser extension that improves the functionality and navigability of the McGill website.
 Copyright (C) 2016 Demetrios Koziris. McGill is a University in Montreal, Quebec Canada and has no affiliation with this software.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
