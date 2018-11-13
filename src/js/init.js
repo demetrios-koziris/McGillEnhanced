@@ -17,8 +17,8 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 var url = window.location.href;
 
-let devMode = !('update_url' in chrome.runtime.getManifest());
-let logForDebug = ( devMode ? console.log.bind(window.console) : function(){} );
+let isDevVersion = !(chrome.runtime.id === "ffcpepgcelahhnipmdglnlakjgbhpejb" || chrome.runtime.id === "{fbd3b601-613b-4747-a92b-4d37b2fd7667}");
+let logForDebug = ( isDevVersion ? console.log.bind(window.console) : function(){} );
 logForDebug("McGill Enhanced Debug mode is ON");
 
 
