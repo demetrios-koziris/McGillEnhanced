@@ -14,6 +14,11 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
+const prodIDs = ['jlacaimkacnkhlcgapgakpklnibgfkde', '{fbd3b601-613b-4747-a92b-4d37b2fd7667}'];
+const intIDs = ['fmjglinhknddndjfblbjoinijenppenk', 'fdjidmiaclmoakbolclpiefedoiodinf', '{1510757c-cb05-47b4-b47a-fe08a0866f71}'];
 
-let isDevVersion = !(chrome.runtime.id === "ffcpepgcelahhnipmdglnlakjgbhpejb" || chrome.runtime.id === "{fbd3b601-613b-4747-a92b-4d37b2fd7667}");
-document.getElementById('version').innerText += 'McGill Enhanced Version ' + chrome.runtime.getManifest().version + (isDevVersion ? ' DEV' : '');
+const isPROD = prodIDs.includes(chrome.runtime.id)
+const isINT = intIDs.includes(chrome.runtime.id);
+versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (ID: ' + chrome.runtime.id.substring(0, 16) + ')');
+
+document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
