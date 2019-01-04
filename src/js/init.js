@@ -65,7 +65,7 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 			},
 		};
 	var numYearsInMenu = 10;
-	var firstYear = Math.max(sysYear-numYearsInMenu, 2009);
+	var firstYear = Math.max(sysYear-numYearsInMenu+1, 2009);
 
 	var courseUrlRegex = /.+study\/.+courses\/[A-za-z0-9]{4}-[0-9]{3}/;
 

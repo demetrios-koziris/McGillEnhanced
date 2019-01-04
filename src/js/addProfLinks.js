@@ -15,6 +15,9 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
+/** 
+ * Build Instructors section with prof links in eCalendar course overview
+ */
 function makeProfLinks() {
 
 	const pageTitle = document.getElementById('page-title');
@@ -47,11 +50,11 @@ function makeProfLinks() {
 	const mercuryProfs = getMercuryData();
 	let profsLength = 0;
 
-	const profsFullSourceElem = document.getElementsByClassName("catalog-instructors")[0];
+	const profsFullSourceElem = document.getElementsByClassName('catalog-instructors')[0];
 	let profsFullSource = profsFullSourceElem.innerHTML;
 
-	const loadMessage = "McGill Enhanced is loading ratings!";
-	const profHoverMessage = "McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.";
+	const loadMessage = 'McGill Enhanced is loading ratings!';
+	const profHoverMessage = 'McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.';
 	const profLinkMessage = 'View other courses<br>taught by this instructor';
 	const googleLinkMessage = 'View Google query for<br>instructor reviews';
 	const mercuryLinkMessage = 'View Mercury query for this instructor name<br>Must already be signed into Minerva!';
@@ -67,29 +70,24 @@ function makeProfLinks() {
 			profsFullSource = profsFullSource.split(inst.en)[1];
 		}
 
-		for (let termKey in terms) {
-			const profsTermSource = profsFullSource.split("(" + termKey + ")");
-			if (profsTermSource.length > 1) {
-				profsForTerm = profsTermSource[0].split(",");
+		const profsSourceByTerm = profsFullSource.split(/\((Fall|Winter|Summer)\)/g);
+		logForDebug(profsSourceByTerm);
+		for (let i = 0; i+1 < profsSourceByTerm.length; i+=2) {
 
-				for (let p=0; p<profsForTerm.length; p++) {
+			const termKey = profsSourceByTerm[i+1]
+			const profsForTerm = profsSourceByTerm[i].split(',');
+			for (let p=0; p<profsForTerm.length; p++) {
 
-					let newProfObject = generateProfObject(mercuryProfs, profsForTerm[p], termKey);
-					if (!(newProfObject.key in profs)) {
-						profs[newProfObject.key] = newProfObject;
-					}
-					// add term info to prof object
-					profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
+				const newProfObject = generateProfObject(mercuryProfs, profsForTerm[p], termKey);
+				if (!(newProfObject.key in profs)) {
+					profs[newProfObject.key] = newProfObject;
 				}
-				profsFullSource = profsTermSource[1];
+				// add term info to prof object
+				profs[newProfObject.key].termsTeaching[termKey] = terms[termKey];
 			}
 		}
 
 		const profSection = document.createElement('div');
-
-		// const profSectionTitle = document.createElement('div');
-		// profSectionTitle.innerHTML = '<b>' + inst[lang] + '</b>';
-		// profSection.appendChild(profSectionTitle);
 
 		for (let profKey in profs) {
 
@@ -150,7 +148,7 @@ function makeProfLinks() {
 			profDiv.appendChild(profLink);
 		}
 
-		document.getElementsByClassName("catalog-instructors")[0].innerHTML = "";
+		document.getElementsByClassName('catalog-instructors')[0].innerHTML = '';
 		profsFullSourceElem.appendChild(profSection);
 	}
 }

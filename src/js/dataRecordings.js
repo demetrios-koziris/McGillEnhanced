@@ -82,6 +82,9 @@ function getRecordingData() {
 		"BIOL111": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "16951" }
 		],
+		"BIOL112": [
+			{ "year": 2019, "month": 1, "section": "001", "id": "20388" }
+		],
 		"BIOL115": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12042" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "16973" }
@@ -115,7 +118,8 @@ function getRecordingData() {
 		],
 		"BREE301": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14849" },
-			{ "year": 2017, "month": 1, "section": "002", "id": "14851" }
+			{ "year": 2017, "month": 1, "section": "002", "id": "14851" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20372" }
 		],
 		"BUS2365": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12197" },
@@ -155,7 +159,8 @@ function getRecordingData() {
 		],
 		"CHEM120": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14873" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "18108" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18108" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20395" }
 		],
 		"CHEM181": [
 			{ "year": 2015, "month": 1, "section": "761", "id": "11287" },
@@ -202,7 +207,8 @@ function getRecordingData() {
 			{ "year": 2017, "month": 9, "section": "001", "id": "17037" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18046" },
 			{ "year": 2018, "month": 5, "section": "001", "id": "18468" },
-			{ "year": 2018, "month": 5, "section": "003", "id": "18408" }
+			{ "year": 2018, "month": 5, "section": "003", "id": "18408" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20328" }
 		],
 		"CHEM232": [
 			{ "year": 2016, "month": 9, "section": "001", "id": "13966" }
@@ -338,13 +344,15 @@ function getRecordingData() {
 			{ "year": 2015, "month": 1, "section": "001", "id": "11290" },
 			{ "year": 2016, "month": 1, "section": "001", "id": "13127" },
 			{ "year": 2017, "month": 1, "section": "001", "id": "15030" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "18267" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18267" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20558" }
 		],
 		"EPSC201": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12270" },
 			{ "year": 2016, "month": 9, "section": "001", "id": "14200" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17231" },
-			{ "year": 2018, "month": 9, "section": "001", "id": "19554" }
+			{ "year": 2018, "month": 9, "section": "001", "id": "19554" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20379" }
 		],
 		"EXMD504": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "19544" }
@@ -533,14 +541,16 @@ function getRecordingData() {
 			{ "year": 2016, "month": 1, "section": "002", "id": "13060" },
 			{ "year": 2017, "month": 1, "section": "001", "id": "14817" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18050" },
-			{ "year": 2018, "month": 1, "section": "002", "id": "18202" }
+			{ "year": 2018, "month": 1, "section": "002", "id": "18202" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20330" }
 		],
 		"PHGY212": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12107" }
 		],
 		"PHGY213": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14837" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "18075" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18075" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20352" }
 		],
 		"PHGY314": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12215" }
@@ -564,14 +574,16 @@ function getRecordingData() {
 		],
 		"PHYS142": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14932" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "18169" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18169" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20458" }
 		],
 		"POLI227": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12798" }
 		],
 		"POLI243": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "10977" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "17753" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "17753" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20000" }
 		],
 		"POLI340": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "16755" }
