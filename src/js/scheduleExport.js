@@ -49,7 +49,9 @@ function exportSchedule() {
 
 	const mapData = getMapData();
 
-	const calCourseSchedule = ics();
+	const manifest = chrome.runtime.getManifest();
+	const icsExportPRODID = manifest.name.replace(' ', '') + '-' + manifest.version + '-' + chrome.runtime.id;
+	const calCourseSchedule = ics(uuid(), icsExportPRODID);
 
 	const courseTables = document.getElementsByClassName("datadisplaytable");
 	let courseSemester = '';

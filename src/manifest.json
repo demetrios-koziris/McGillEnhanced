@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "3.3.66",
+  "version": "3.3.67",
   "description": "Enhance the functionality of McGill.ca",
   "permissions" : [
     "storage",
@@ -73,6 +73,7 @@
         "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl*"
       ],
       "js" : [
+        "lib/uuid-random.js", 
         "lib/icsLib.js", 
         "js/scheduleExport.js"
       ]
