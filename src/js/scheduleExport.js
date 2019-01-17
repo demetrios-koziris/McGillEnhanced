@@ -60,13 +60,14 @@ function exportSchedule() {
 
 		logForDebug(courseTables[i].getElementsByClassName("captiontext")[0].innerText);
 		logForDebug(courseTables[i+1].getElementsByClassName("captiontext")[0].innerText);
+
 		if (courseTables[i+1].getElementsByClassName("captiontext")[0].innerText === "Scheduled Meeting Times") {
 
 			const courseInfoTable = courseTables[i].getElementsByClassName("dddefault");
 			const courseSchedTable = courseTables[i+1].getElementsByClassName("dddefault");
-			//console.log(courseSchedTable);
 
 			for (j = 0; j < courseSchedTable.length; j+=6) {
+
 				courseSemester = courseTables[0].getElementsByClassName("dddefault")[0].innerText.replace(" ","");
 				const courseName = courseTables[i].getElementsByClassName("captiontext")[0].innerText.split(" - ")[0];
 				const courseNumberArr = courseTables[i].getElementsByClassName("captiontext")[0].innerText.split(" - ");
@@ -76,12 +77,11 @@ function exportSchedule() {
 				const startTime = courseSchedTable[j+0].innerText.split(" - ")[0];
 				const endDay = courseSchedTable[j+3].innerText.split(" - ")[1];
 				const endTime = courseSchedTable[j+0].innerText.split(" - ")[1];
-				const courseDays = courseSchedTable[j+1].innerText.trim().split("");
+				let courseDays = courseSchedTable[j+1].innerText.trim().split("");
 				let courseLocation = courseSchedTable[j+2].innerText;
 				const courseLocationArr = courseLocation.split(" ");
 				const courseBuilding = courseLocationArr.slice(0, -1).join(" ");
 				const courseRoom = courseLocationArr[courseLocationArr.length-1];
-
 
 				let eventName = courseNumber + " " + courseType.slice(0,3).toUpperCase();
 				let eventDesc = courseName + "\\n" + courseType + " in " + courseLocation;
@@ -95,72 +95,27 @@ function exportSchedule() {
 					}		
 				}
 
+				const daySymbolTranslation = {
+					'U': 'SU',
+					'M': 'MO',
+					'T': 'TU',
+					'W': 'WE',
+					'R': 'TH',
+					'F': 'FR',
+					'S': 'SA'
+				};
+				if (courseDays.every(day => day in daySymbolTranslation)) {
+					courseDays = courseDays.map(day => daySymbolTranslation[day]);
 
-				
-
-				const days = ["U","M","T","W","R","F","S"];
-				const startDate = new Date(courseStartDay);
-				let startDateHasCourse = false;
-				let count = 0;
-				while (!startDateHasCourse && count < 7) {
-					//console.log("round" + count + " startDate:" + startDate.toUTCString());
-					for (l = 0; l < courseDays.length; l++) {
-						//console.log("courseDays["+l+"]:" + courseDays[l]);
-						//console.log("days[startDate.getDay()]:days["+startDate.getDay()+"]:" + days[startDate.getDay()] );
-						if (courseDays[l] == days[startDate.getDay()]) {
-							//console.log("true");
-							startDateHasCourse = true;
-						}
-					}
-					if (!startDateHasCourse) {
+					const startDate = new Date(courseStartDay);
+					const daySymbols = ["SU","MO","TU","WE","TH","FR","SA"];
+					while (!courseDays.includes(daySymbols[startDate.getDay()])) {
 						startDate.setDate(startDate.getDate() + 1);
-						count++;
 					}
-				}
-				const startDayValues = startDate.toUTCString().split(" ");
-				startDay = startDayValues[2] + " " + startDayValues[1] + ", " + startDayValues[3];
-				//console.log(startDay);
 
-				for (k = 0; k < courseDays.length; k++) {
-					switch (courseDays[k]) {
-						case "U":
-								courseDays[k] = "SU";
-								break;
-						case "M":
-								courseDays[k] = "MO";
-								break;
-						case "T":
-								courseDays[k] = "TU";
-								break;
-						case "W":
-								courseDays[k] = "WE";
-								break;
-						case "R":
-								courseDays[k] = "TH";
-								break;
-						case "F":
-								courseDays[k] = "FR";
-								break;
-						case "S":
-								courseDays[k] = "SA";
-								break;
-					}
-				}
+					const startDayValues = startDate.toUTCString().split(" ");
+					startDay = startDayValues[2] + " " + startDayValues[1] + ", " + startDayValues[3];
 
-				const validDays = ["SU","MO","TU","WE","TH","FR","SA"];
-				let validEvent = true;
-				for (m = 0; m < courseDays.length; m++) {
-					validEventDay = false;
-					for (n = 0; n < validDays.length; n++) {
-						if (courseDays[m] == validDays[n]) {
-							validEventDay = true;
-						}
-					}
-					if (!validEventDay) {
-						validEvent = false;
-					}
-				}
-				if (validEvent) {
 					const rrule = {
 							freq:"WEEKLY",
 							until:endDay,
@@ -168,21 +123,19 @@ function exportSchedule() {
 							byday:courseDays
 					};
 					calCourseSchedule.addEvent(eventName, eventDesc, courseLocation, startDay + " " + startTime, startDay + " " + endTime, rrule);
+				
+					const courseData = {
+						courseName:courseName,
+						courseNumber:courseNumber,
+						startTime:startTime,
+						startDay:startDay,
+						endTime:endTime,
+						endDay:endDay,
+						courseDays:courseDays,
+						courseLocation:courseLocation,
+						courseType:courseType
+					};
 				}
-
-
-				const courseData = {
-					courseName:courseName,
-					courseNumber:courseNumber,
-					startTime:startTime,
-					startDay:startDay,
-					endTime:endTime,
-					endDay:endDay,
-					courseDays:courseDays,
-					courseLocation:courseLocation,
-					courseType:courseType
-				};
-				// console.log(courseData);
 	
 			}
 
