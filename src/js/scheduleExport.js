@@ -24,13 +24,13 @@ function setupScheduleExporter() {
 		const schedDownloadDiv = document.createElement('div');
 
 		const schedDownloadButton = document.createElement('button');
-		schedDownloadButton.setAttribute("type", "button");
-		schedDownloadButton.setAttribute("onclick", "document.dispatchEvent(new Event('mcenExportSchedule'));");
+		schedDownloadButton.setAttribute('type', 'button');
+		schedDownloadButton.setAttribute('onclick', 'document.dispatchEvent(new Event("mcenExportSchedule"));');
 		schedDownloadButton.id = 'mcen-sched-download';
-		schedDownloadButton.innerHTML = "McGill Enhanced:<br>Export Course Schedule as ICS file!";
-		schedDownloadButton.title = "ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!";
-		schedDownloadButton.setAttribute("onmouseover", "this.style.border=\"2px solid #E54944\"");
-		schedDownloadButton.setAttribute("onmouseout", "this.style.border=\"2px solid #5B5B5A\"");
+		schedDownloadButton.innerHTML = 'McGill Enhanced:<br>Export Course Schedule as ICS file!';
+		schedDownloadButton.title = 'ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!';
+		schedDownloadButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"');
+		schedDownloadButton.setAttribute('onmouseout', 'this.style.border="2px solid #5B5B5A"');
 		schedDownloadDiv.appendChild(schedDownloadButton);
 
 		const pagebodydiv = document.getElementsByClassName("pagebodydiv")[0];
@@ -45,147 +45,113 @@ function setupScheduleExporter() {
 }
 
 
+function validTimeAndDateRange(schedTime, schedDateRange) {
+	if (schedTime.length !== 2 || schedDateRange.length !== 2) {
+		return false;
+	}
+	const eventStart = schedDateRange[0] + ' ' + schedTime[0];
+	const eventStop = schedDateRange[0] + ' ' + schedTime[1];
+	return (!isNaN(Date.parse(schedDateRange[1])) && !isNaN(Date.parse(eventStart)) && !isNaN(Date.parse(eventStop)));
+}
+
+function validDays(schedDays, daySymbolTranslation) {
+	if (schedDays.length === 0) {
+		return false;
+	}
+	return schedDays.every(day => day in daySymbolTranslation);
+}
+
 function exportSchedule() {
 
 	const mapData = getMapData();
+	const daySymbolTranslation = {
+		'U': 'SU',
+		'M': 'MO',
+		'T': 'TU',
+		'W': 'WE',
+		'R': 'TH',
+		'F': 'FR',
+		'S': 'SA'
+	};
 
 	const manifest = chrome.runtime.getManifest();
 	const icsExportPRODID = manifest.name.replace(' ', '') + '-' + manifest.version + '-' + chrome.runtime.id;
 	const calCourseSchedule = ics(uuid(), icsExportPRODID);
 
-	const courseTables = document.getElementsByClassName("datadisplaytable");
-	let courseSemester = '';
+	const courseTables = document.getElementsByClassName('datadisplaytable');
+	let courseTerm = '';
 
 	for (i = 0; i < courseTables.length-1; ) {
 
-		logForDebug(courseTables[i].getElementsByClassName("captiontext")[0].innerText);
-		logForDebug(courseTables[i+1].getElementsByClassName("captiontext")[0].innerText);
-		if (courseTables[i+1].getElementsByClassName("captiontext")[0].innerText === "Scheduled Meeting Times") {
+		if (courseTables[i+1].getElementsByClassName('captiontext')[0].innerText === 'Scheduled Meeting Times') {
 
-			const courseInfoTable = courseTables[i].getElementsByClassName("dddefault");
-			const courseSchedTable = courseTables[i+1].getElementsByClassName("dddefault");
-			//console.log(courseSchedTable);
+			const courseInfoTableTitle = courseTables[i].getElementsByClassName('captiontext')[0].innerText.split(/\s-\s(.+)/);
+			const courseTitle = courseInfoTableTitle[0];
+			const courseName = courseInfoTableTitle[1].replace(/\s/g,'');
+
+			const courseInfoTable = courseTables[i].getElementsByClassName('dddefault');
+			courseTerm = courseInfoTable[0].innerText.replace(/\s/g,'');
+
+			const courseSchedTable = courseTables[i+1].getElementsByClassName('dddefault');
 
 			for (j = 0; j < courseSchedTable.length; j+=6) {
-				courseSemester = courseTables[0].getElementsByClassName("dddefault")[0].innerText.replace(" ","");
-				const courseName = courseTables[i].getElementsByClassName("captiontext")[0].innerText.split(" - ")[0];
-				const courseNumberArr = courseTables[i].getElementsByClassName("captiontext")[0].innerText.split(" - ");
-				const courseNumber = courseNumberArr[1].replace(/\s/g,"") + "-" + courseNumberArr[2].replace(/\s/g,"");
-				const courseType = courseSchedTable[j+4].innerText;
-				const courseStartDay = courseSchedTable[j+3].innerText.split(" - ")[0];
-				const startTime = courseSchedTable[j+0].innerText.split(" - ")[0];
-				const endDay = courseSchedTable[j+3].innerText.split(" - ")[1];
-				const endTime = courseSchedTable[j+0].innerText.split(" - ")[1];
-				const courseDays = courseSchedTable[j+1].innerText.trim().split("");
-				let courseLocation = courseSchedTable[j+2].innerText;
-				const courseLocationArr = courseLocation.split(" ");
-				const courseBuilding = courseLocationArr.slice(0, -1).join(" ");
-				const courseRoom = courseLocationArr[courseLocationArr.length-1];
-
-
-				let eventName = courseNumber + " " + courseType.slice(0,3).toUpperCase();
-				let eventDesc = courseName + "\\n" + courseType + " in " + courseLocation;
-				const courseMapData = mapData[courseBuilding];
-				if (courseMapData) {
-					courseLocation = courseBuilding + " " + courseMapData.address;
-					eventName = courseNumber + " " + courseType.slice(0,3).toUpperCase() + " (" + courseMapData.minerva + " " + courseRoom + ")";
-					const mapIDs = courseMapData.map;
-					for (let m = 0; m < mapIDs.length; m++) {
-						eventDesc += "\\n" + "http://maps.mcgill.ca/?campus=DWT&txt=EN&id=" + mapIDs[m];
-					}		
-				}
-
-
 				
+				const schedTime = courseSchedTable[j+0].innerText.split(' - ');
+				const schedDays = courseSchedTable[j+1].innerText.trim().split('');
+				const schedLocation = courseSchedTable[j+2].innerText.split(/\s(?!.+\s)/);
+				const schedDateRange = courseSchedTable[j+3].innerText.split(' - ');
+				const schedType = courseSchedTable[j+4].innerText;
 
-				const days = ["U","M","T","W","R","F","S"];
-				const startDate = new Date(courseStartDay);
-				let startDateHasCourse = false;
-				let count = 0;
-				while (!startDateHasCourse && count < 7) {
-					//console.log("round" + count + " startDate:" + startDate.toUTCString());
-					for (l = 0; l < courseDays.length; l++) {
-						//console.log("courseDays["+l+"]:" + courseDays[l]);
-						//console.log("days[startDate.getDay()]:days["+startDate.getDay()+"]:" + days[startDate.getDay()] );
-						if (courseDays[l] == days[startDate.getDay()]) {
-							//console.log("true");
-							startDateHasCourse = true;
-						}
-					}
-					if (!startDateHasCourse) {
-						startDate.setDate(startDate.getDate() + 1);
-						count++;
-					}
-				}
-				const startDayValues = startDate.toUTCString().split(" ");
-				startDay = startDayValues[2] + " " + startDayValues[1] + ", " + startDayValues[3];
-				//console.log(startDay);
+				if (validTimeAndDateRange(schedTime, schedDateRange) && validDays(schedDays, daySymbolTranslation)) {
 
-				for (k = 0; k < courseDays.length; k++) {
-					switch (courseDays[k]) {
-						case "U":
-								courseDays[k] = "SU";
-								break;
-						case "M":
-								courseDays[k] = "MO";
-								break;
-						case "T":
-								courseDays[k] = "TU";
-								break;
-						case "W":
-								courseDays[k] = "WE";
-								break;
-						case "R":
-								courseDays[k] = "TH";
-								break;
-						case "F":
-								courseDays[k] = "FR";
-								break;
-						case "S":
-								courseDays[k] = "SA";
-								break;
+					const eventDays = schedDays.map(day => daySymbolTranslation[day]);
+					const eventStartDate = new Date(schedDateRange[0]);
+					const eventDaySymbols = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+					while (!eventDays.includes(eventDaySymbols[eventStartDate.getDay()])) {
+						eventStartDate.setDate(eventStartDate.getDate() + 1);
 					}
-				}
+					const eventStartDateValues = eventStartDate.toUTCString().split(' ');
+					const eventStartDateString = eventStartDateValues[2] + ' ' + eventStartDateValues[1] + ' ' + eventStartDateValues[3];
+					const eventStart = eventStartDateString + " " + schedTime[0];
+					const eventEnd = eventStartDateString + " " + schedTime[1];
 
-				const validDays = ["SU","MO","TU","WE","TH","FR","SA"];
-				let validEvent = true;
-				for (m = 0; m < courseDays.length; m++) {
-					validEventDay = false;
-					for (n = 0; n < validDays.length; n++) {
-						if (courseDays[m] == validDays[n]) {
-							validEventDay = true;
-						}
+					const locationBuilding = schedLocation[0];
+					const locationRoom = schedLocation[1];
+					const locationMapData = mapData[locationBuilding];
+
+					let eventName = courseName + ' ' + schedType.slice(0,3).toUpperCase();
+					if (locationMapData) {
+						eventName += ' (' + locationMapData.minerva + ' ' + locationRoom + ')';
 					}
-					if (!validEventDay) {
-						validEvent = false;
+
+					let eventDesc = courseTitle + '\\n' + schedType + ' in ' + locationBuilding + ' ' + locationRoom;
+					if (locationMapData) {
+						const mapIDs = locationMapData.map;
+						for (let m = 0; m < mapIDs.length; m++) {
+							eventDesc += '\\n' + 'http://maps.mcgill.ca/?campus=DWT&txt=EN&id=' + mapIDs[m];
+						}		
 					}
-				}
-				if (validEvent) {
+
+					let eventLocation = locationBuilding + ' ' + locationRoom;
+					if (locationMapData) {
+						eventLocation = locationBuilding + ' ' + locationMapData.address;	
+					}
+
 					const rrule = {
-							freq:"WEEKLY",
-							until:endDay,
-							interval:1,
-							byday:courseDays
+						freq: 'WEEKLY',
+						until: schedDateRange[1],
+						interval: 1,
+						byday: eventDays
 					};
-					calCourseSchedule.addEvent(eventName, eventDesc, courseLocation, startDay + " " + startTime, startDay + " " + endTime, rrule);
+
+					calCourseSchedule.addEvent(eventName, eventDesc, eventLocation, eventStart, eventEnd, rrule);
+					
 				}
-
-
-				const courseData = {
-					courseName:courseName,
-					courseNumber:courseNumber,
-					startTime:startTime,
-					startDay:startDay,
-					endTime:endTime,
-					endDay:endDay,
-					courseDays:courseDays,
-					courseLocation:courseLocation,
-					courseType:courseType
-				};
-				// console.log(courseData);
+				else {
+					alert('A Scheduled Meeting Time for ' + courseName + ' contains invalid Time, Day, or Date Range data and cannot be included in the calendar export!');
+				}
 	
 			}
-
 			i+=2;
 		}
 		else {
@@ -194,10 +160,10 @@ function exportSchedule() {
 	}
 
 	if (courseTables.length > 0) {
-		calCourseSchedule.download('CourseSchedule' + courseSemester);
+		calCourseSchedule.download('CourseSchedule' + courseTerm);
 	}
 	else {
-		alert("McGill Enhanced did not find any course events to export.");
+		alert('McGill Enhanced did not find any course events to export.');
 	}
 	
 }
