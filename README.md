@@ -1,5 +1,10 @@
 # McGill Enhanced
 
+![GitHub](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg) 
+
+
 #### A Browser Extension Improving the McGill.ca Website Experience
 
 Special thanks to contributors [jeromepl](https://github.com/jeromepl) and [youngelpaso](https://github.com/YoungElPaso)!
