@@ -47,7 +47,8 @@ function getRecordingData() {
 			{ "year": 2017, "month": 1, "section": "001", "id": "14746" }
 		],
 		"ATOC184": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11293" }
+			{ "year": 2015, "month": 1, "section": "001", "id": "11293" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20561" }
 		],
 		"ATOC185": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "9858" }
@@ -252,7 +253,8 @@ function getRecordingData() {
 			{ "year": 2016, "month": 5, "section": "001", "id": "13267" },
 			{ "year": 2016, "month": 9, "section": "001", "id": "14166" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17196" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "18200" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "18200" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20489" }
 		],
 		"COMP206": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "18208" },
@@ -260,7 +262,8 @@ function getRecordingData() {
 			{ "year": 2018, "month": 9, "section": "002", "id": "19068" }
 		],
 		"COMP208": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13909" }
+			{ "year": 2016, "month": 9, "section": "001", "id": "13909" },
+			{ "year": 2019, "month": 1, "section": "001", "id": "20318" }
 		],
 		"COMP250": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10464" },
@@ -398,6 +401,9 @@ function getRecordingData() {
 		"INSY336": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "19108" },
 			{ "year": 2018, "month": 9, "section": "002", "id": "19119" }
+		],
+		"INSY442": [
+			{ "year": 2019, "month": 1, "section": "001", "id": "19812" }
 		],
 		"INSY691": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "16910" }
@@ -556,7 +562,8 @@ function getRecordingData() {
 			{ "year": 2017, "month": 1, "section": "001", "id": "14817" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18050" },
 			{ "year": 2018, "month": 1, "section": "002", "id": "18202" },
-			{ "year": 2019, "month": 1, "section": "001", "id": "20330" }
+			{ "year": 2019, "month": 1, "section": "001", "id": "20330" },
+			{ "year": 2019, "month": 1, "section": "004", "id": "20399" }
 		],
 		"PHGY212": [
 			{ "year": 2015, "month": 9, "section": "001", "id": "12107" }
