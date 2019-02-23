@@ -1,15 +1,18 @@
 # McGill Enhanced
-
 ![GitHub](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg) 
 
-
 #### A Browser Extension Improving the McGill.ca Website Experience
 
-Special thanks to contributors [jeromepl](https://github.com/jeromepl) and [youngelpaso](https://github.com/YoungElPaso)!
+#### Install as [Chrome Extension](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)  
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
 
-#### Install from the [Google Chrome Store](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en) or the [Firefox Add-ons site](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+#### Install as [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+
 
 #### View the [McGill Enhanced landing page](http://demetrios-koziris.github.io/McGillEnhanced/)
 
