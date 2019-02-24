@@ -1,21 +1,43 @@
+[![license](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg)](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt)
+[![top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg)](https://github.com/demetrios-koziris/McGillEnhanced)
+[![commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg)](https://github.com/demetrios-koziris/McGillEnhanced/releases)
+[![made with love](https://img.shields.io/badge/made%20with-%E2%9D%A4-brightgreen.svg?color=ED1B2F)](https://github.com/demetrios-koziris)
+
+
+<br>
+
 # McGill Enhanced
-![GitHub](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg)
-![GitHub top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg) 
 
-#### A Browser Extension Improving the McGill.ca Website Experience
+<h4 align="center">
+  <img src="https://raw.githubusercontent.com/demetrios-koziris/McGillEnhanced/master/src/icons/mcgill-128.png">
+  <br><br>
+  A Browser Extension Improving the McGill.ca Website Experience
+  <br><br>
+  <a href="http://demetrios-koziris.github.io/McGillEnhanced">View the McGill Enhanced landing page</a>
+</h4>
 
-#### Install as [Chrome Extension](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)  
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
-
-#### Install as [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+##
 
 
-#### View the [McGill Enhanced landing page](http://demetrios-koziris.github.io/McGillEnhanced/)
+### Install  [Chrome Extension](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)  
 
+[![chrome icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+&nbsp; 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white&label=weekly%20users)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
+
+### Install [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+
+[![firefox icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+&nbsp; 
+[![Mozilla Add-on](https://img.shields.io/amo/v/mcgillenhanced.svg?logo=)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+[![Mozilla Add-on](https://img.shields.io/amo/users/mcgillenhanced.svg?logo=mozilla-firefox&logoColor=white&label=daily%20users)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+[![Mozilla Add-on](https://img.shields.io/amo/stars/mcgillenhanced.svg?logo=mozilla-firefox&logoColor=white&label=rating)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/reviews/)
+
+
+<br>
 
 ## Features
 
@@ -24,6 +46,8 @@ McGill Enhanced makes looking up courses and registration easier by providing di
 For a full list of features, please see the following link:
 #### [View Detailed Feature List](http://demetrios-koziris.github.io/McGillEnhanced/features)
 
+
+<br>
 
 ## Building the extension using the `build.sh` script
 #### Usage:  
@@ -53,6 +77,8 @@ firefox  Create a firefox add-on in /build
 ./build.sh -c edge chrome firefox  
 ```
 
+
+<br>
 
 ## License
 
