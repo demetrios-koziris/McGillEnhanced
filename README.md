@@ -1,13 +1,42 @@
+[![license](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg)](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt)
+[![top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg)](https://github.com/demetrios-koziris/McGillEnhanced)
+[![commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg)](https://github.com/demetrios-koziris/McGillEnhanced/releases)
+[![made with love](https://img.shields.io/badge/made%20with-%E2%9D%A4-brightgreen.svg?color=ED1B2F)](https://github.com/demetrios-koziris)
+
+
+<br>
+
 # McGill Enhanced
 
-#### A Browser Extension Improving the McGill.ca Website Experience
+<h4 align="center">
+  <img src="https://raw.githubusercontent.com/demetrios-koziris/McGillEnhanced/master/src/icons/mcgill-128.png">
+  <br><br>
+  A Browser Extension Improving the McGill.ca Website Experience
+  <br><br>
+  <a href="http://demetrios-koziris.github.io/McGillEnhanced">View the McGill Enhanced landing page</a>
+</h4>
 
-Special thanks to contributors [jeromepl](https://github.com/jeromepl) and [youngelpaso](https://github.com/YoungElPaso)!
+##
 
-#### Install from the [Google Chrome Store](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en) or the [Firefox Add-ons site](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+### Install  [Chrome Extension](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)  
 
-#### View the [McGill Enhanced landing page](http://demetrios-koziris.github.io/McGillEnhanced/)
+[![chrome icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+&nbsp; 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white&label=weekly%20users)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
 
+### Install [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+
+[![firefox icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+&nbsp; 
+[![Mozilla Add-on](https://img.shields.io/amo/v/mcgillenhanced.svg?logo=)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+[![Mozilla Add-on](https://img.shields.io/amo/users/mcgillenhanced.svg?logo=mozilla-firefox&logoColor=white&label=daily%20users)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+[![Mozilla Add-on](https://img.shields.io/amo/stars/mcgillenhanced.svg?logo=mozilla-firefox&logoColor=white&label=rating)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/reviews/)
+
+
+<br>
 
 ## Features
 
@@ -17,47 +46,41 @@ For a full list of features, please see the following link:
 #### [View Detailed Feature List](http://demetrios-koziris.github.io/McGillEnhanced/features)
 
 
-## Building the extension using the `build.sh` script
+<br>
+
+## Build Script
+
 #### Usage:  
 ```
-command [option] [parameter]... 
-```
-#### Options:  
-```
--c       Clean the /build directory before building  
-```
-#### Parameters:  
-```
-edge     Create an edge extension in /build  
-chrome   Create a chrome extension in /build  
-firefox  Create a firefox add-on in /build 
+$ ./build.sh [options] [<platform>...]
 ```
 ```
-*If no parameters are passed, script will default to building the extension for every browser
+Options:
+    -c       Clean the /build directory before building  
+Platform:
+    edge     Create an edge extension in /build  
+    chrome   Create a chrome extension in /build  
+    firefox  Create a firefox add-on in /build 
+             If no platform is given, script will default to building the extension for every platform
 ```
 #### Examples:
 ```
-./build.sh
-./build.sh -c
-./build.sh chrome  
-./build.sh -c edge  
-./build.sh chrome firefox  
-./build.sh -c edge chrome firefox  
+$ ./build.sh
+$ ./build.sh chrome  
+$ ./build.sh -c edge  
+$ ./build.sh chrome firefox  
 ```
 
 
+<br>
+
 ## License
 
-McGill Enhanced is a browser extension that improves the functionality and navigability of the McGill website.
-Copyright (C) 2016 Demetrios Koziris. McGill is a University in Montreal, Quebec Canada and has no affiliation with this software.
+McGill Enhanced is a browser extension that improves the functionality and navigability of the McGill website.  
+Copyright © Demetrios Koziris. McGill is a University in Montreal, Canada and has no affiliation with this software.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
 as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-A copy of the GNU General Public License is provided in the LICENSE.txt file along with this program.  
-The GNU General Public License can also be found at <https://www.gnu.org/licenses/gpl-3.0.html>.
-
+The GNU General Public License is provided in the [LICENSE file](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt) of this repository and can also be found at [www.gnu.org](https://www.gnu.org/licenses/gpl-3.0.html).
 
