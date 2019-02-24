@@ -1,8 +1,5 @@
-from time import sleep
-from pprint import pprint
 import mechanicalsoup
 import re
-import sys
 from collections import OrderedDict
 import json
 
@@ -25,7 +22,7 @@ def scrape_lrs_terms(browser):
 		
 	options = browser.get_current_page().find(id='DropDownListSemesterID').find_all('option')
 	return [opt.get('value') for opt in options if re.match('20[0-9]{2}0[159]', opt.get('value'))]
-	
+
 
 def scrape_lrs_data(terms, browser):
 	lrs_data = {}
@@ -45,7 +42,7 @@ def scrape_lrs_data(terms, browser):
 				lrs_data[course_code] = []
 				
 			lrs_data[course_code].append(ordered_listing_data)
-			
+
 	return lrs_data
 
 
