@@ -1,6 +1,6 @@
 function applyToolTipsy() {
-    applyToolTipsyForClass('tooltip');
-    applyToolTipsyForClass('tooltipError');
+	applyToolTipsyForClass('tooltip');
+	applyToolTipsyForClass('tooltipError');
 }
 
 function applyToolTipsyForClass(className) {

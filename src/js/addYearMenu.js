@@ -24,56 +24,56 @@ function addYearMenu() {
 	numYearsLeftToCheck = numYearsInMenu;
 
 	const yearMenuBarDIV = document.createElement('div');
-	yearMenuBarDIV.id = "navigation";
-	yearMenuBarDIV.className = "mcen-yearMenuBarDIV ";
-	if (document.getElementById("navigation")) {
-		insertAfter(yearMenuBarDIV, document.getElementById("navigation"));
+	yearMenuBarDIV.id = 'navigation';
+	yearMenuBarDIV.className = 'mcen-yearMenuBarDIV ';
+	if (document.getElementById('navigation')) {
+		insertAfter(yearMenuBarDIV, document.getElementById('navigation'));
 	}
 	else {
-		insertAfter(yearMenuBarDIV, document.getElementById("header"));
+		insertAfter(yearMenuBarDIV, document.getElementById('header'));
 	}
 
 	const inner = document.createElement('div');
-	inner.className = "inner";
+	inner.className = 'inner';
 	yearMenuBarDIV.appendChild(inner);
 
 	const yearMenuBarUL = document.createElement('ul');
-	yearMenuBarUL.className = "sf-menu mcen-yearMenuBarUL";
+	yearMenuBarUL.className = 'sf-menu mcen-yearMenuBarUL';
 	inner.appendChild(yearMenuBarUL);
 
 	for (let i = firstYear+numYearsInMenu-1; i >= firstYear; i-=1) {
 
-		let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+"-"+(i+1));	
+		let yearMenuItemURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, i+'-'+(i+1));	
 
 		const yearMenuItemLI = document.createElement('li');
-		yearMenuItemLI.className = "mcen-yearMenuItemLI";
+		yearMenuItemLI.className = 'mcen-yearMenuItemLI';
 		yearMenuBarUL.insertBefore(yearMenuItemLI, yearMenuBarUL.firstChild);
 
 		const yearMenuItemDIV = document.createElement('div');
-		yearMenuItemDIV.className = "mcen-yearMenuItemDIV";
+		yearMenuItemDIV.className = 'mcen-yearMenuItemDIV';
 		yearMenuItemLI.appendChild(yearMenuItemDIV);
 
 		const yearMenuItemA = document.createElement('a');
-		yearMenuItemA.className = "mcen-yearMenuItemA";
+		yearMenuItemA.className = 'mcen-yearMenuItemA';
 		yearMenuItemA.href = yearMenuItemURL;
-		yearMenuItemA.innerText = i + "-" + (i + 1);
+		yearMenuItemA.innerText = i + '-' + (i + 1);
 		yearMenuItemDIV.appendChild(yearMenuItemA);
 
 		// styling for year tab directly to left of selected year tab
 		if (i === urlYearF - 1) {
-			yearMenuItemDIV.className += " mcen-yearLeft";
-			yearMenuItemLI.className += " mcen-yearLeft";
+			yearMenuItemDIV.className += ' mcen-yearLeft';
+			yearMenuItemLI.className += ' mcen-yearLeft';
 		}
 		// styling for selected year tab
 		if (i === urlYearF) {
-			yearMenuItemA.className += " mcen-yearSelected";
-			yearMenuItemDIV.className += " mcen-yearSelected";
-			yearMenuItemLI.className += " mcen-yearSelected";
+			yearMenuItemA.className += ' mcen-yearSelected';
+			yearMenuItemDIV.className += ' mcen-yearSelected';
+			yearMenuItemLI.className += ' mcen-yearSelected';
 		}
 		// styling for year tab directly to right of selected year tab
 		if (i === urlYearF + 1) {
-			yearMenuItemDIV.className += " mcen-yearRight";
-			yearMenuItemLI.className += " mcen-yearRight";
+			yearMenuItemDIV.className += ' mcen-yearRight';
+			yearMenuItemLI.className += ' mcen-yearRight';
 		}
 
 		if (i > sysYear || i === urlYearF) {
@@ -86,8 +86,7 @@ function addYearMenu() {
 			// this year has not been disactivated by default so check if it exists
 			checkPageExists(yearMenuItemURL, yearMenuItemLI, i === sysYear);
 		}
-		
-	}	 
+	}
 }
 
 
@@ -111,7 +110,7 @@ function checkPageExists(url, yearMenuItem, disactivateImmediately) {
 				disactivateYearMenuItem(yearMenuItem);
 			}
 			else {
-				yearMenuItem.className += " mcen-yearDoesNotExist";
+				yearMenuItem.className += ' mcen-yearDoesNotExist';
 			}
 		}
 	});
@@ -135,7 +134,7 @@ function decrementNumYearsLeftToCheck() {
  * Disactivates year menu tabs whose page doesn't exist (all with class mcen-yearDoesNotExist)
  */
 function disactivateNonExistentYearTabs() {
-	yearMenuItemsToDisactivate = document.getElementsByClassName("mcen-yearDoesNotExist");
+	const yearMenuItemsToDisactivate = document.getElementsByClassName('mcen-yearDoesNotExist');
 	for (let y = 0; y < yearMenuItemsToDisactivate.length; y++) {
 		disactivateYearMenuItem(yearMenuItemsToDisactivate[y]);
 	}
@@ -150,40 +149,4 @@ function disactivateYearMenuItem(yearMenuItem) {
 	yearMenuItem.setAttribute('style', 'pointer-events:none !important;');
 	yearMenuItem.firstChild.firstChild.setAttribute('style', 'color:#5B5B5A !important;');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

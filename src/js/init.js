@@ -40,7 +40,7 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 	var courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
 	var urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
 	var urlYearW = urlYearF + 1;
-	var urlYears = urlYearF + "-" + urlYearW;
+	var urlYears = urlYearF + '-' + urlYearW;
 
 	var sysDate = new Date();
 	var sysYear = sysDate.getFullYear();
@@ -53,17 +53,17 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 
 	var lang = (url.match(/\/fr\//) ? 'fr' : 'en');
 	var termNames = {
-			'en': {
-				9: 'Fall',
-				1: 'Winter',
-				5: 'Summer'
-			},
-			'fr': {
-				9: 'Automne',
-				1: 'Hiver',
-				5: 'Été'
-			},
-		};
+		'en': {
+			9: 'Fall',
+			1: 'Winter',
+			5: 'Summer'
+		},
+		'fr': {
+			9: 'Automne',
+			1: 'Hiver',
+			5: 'Été'
+		}
+	};
 	var numYearsInMenu = 10;
 	var firstYear = Math.max(sysYear-numYearsInMenu+1, 2009);
 
@@ -79,10 +79,10 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 		// run on McGill Course Overview pages:
 
 		var urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-		var courseSubject = urlCourseName.split("-")[0];
-		var courseNumber = urlCourseName.split("-")[1];
+		var courseSubject = urlCourseName.split('-')[0];
+		var courseNumber = urlCourseName.split('-')[1];
 		var courseName = courseSubject + courseNumber;
-		var courseNameSpaced = courseSubject + " " + courseNumber;
+		var courseNameSpaced = courseSubject + ' ' + courseNumber;
 
 		makeProfLinks();
 		makeCourseLinks();
@@ -97,7 +97,7 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 	}
 
 	const time = Date.now() - start;
-	console.log("McGill Enhanced took " + time + " ms to improve this page!");
+	console.log('McGill Enhanced took ' + time + ' ms to improve this page!');
 }
 
 // run on VSB pages
@@ -106,7 +106,7 @@ if (url.match(/.+vsb\.mcgill\.ca/)) {
 }
 
 function insertAfter(newNode, referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 function monthAsTwoDigitString(month) {

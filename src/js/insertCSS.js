@@ -22,26 +22,26 @@ if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
 
 	if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
 		// inject CSS for yearMenu
-		injectCSS("css/yearMenu.css");
-		injectCSS("css/programs.css");
+		injectCSS('css/yearMenu.css');
+		injectCSS('css/programs.css');
 	}
 
 	if (url.match(/.+study.+courses.+[-]+/)) {
 		// inject CSS for sidebar and profLinks
-		injectCSS("css/sidebar.css");
-		injectCSS("css/profLinks.css");
-		injectCSS("css/aveCrowdsource.css");
+		injectCSS('css/sidebar.css');
+		injectCSS('css/profLinks.css');
+		injectCSS('css/aveCrowdsource.css');
 	}
 }
 
 if (url.match(/.+vsb\.mcgill\.ca/)) {
 	// inject CSS for vsb enhanced
-	injectCSS("css/vsb.css");
+	injectCSS('css/vsb.css');
 }
 
 if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.match(/mymcgill\.mcgill\.ca\/portal\/page\/portal\/myMcGill\/MINERVA_TAB/)) {
 	// inject CSS for minerva sched downloader
-	injectCSS("css/minerva.css");
+	injectCSS('css/minerva.css');
 }
 
 
@@ -51,8 +51,8 @@ if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.m
  */
 function injectCSS(srcName) {
 	var css = document.createElement('link');
-	css.rel = "stylesheet";
-	css.type = "text/css";
+	css.rel = 'stylesheet';
+	css.type = 'text/css';
 	css.href = chrome.extension.getURL(srcName);
 	(document.head || document.documentElement).appendChild(css);
 }

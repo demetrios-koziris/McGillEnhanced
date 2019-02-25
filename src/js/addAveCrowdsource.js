@@ -52,12 +52,12 @@ function addContentSeparators() {
 	content.id = 'mcen-content';
 	content.children[0].remove();
 
-	contentContainers = [];
+	const contentContainers = [];
 
 	const overviewContainer = document.createElement('div');
 	overviewContainer.id = 'mcen-overviewContainer';
 	overviewContainer.className = 'mcen-container';
-	overviewContainer.appendChild(generateMainContentSeparator("OVERVIEW"));
+	overviewContainer.appendChild(generateMainContentSeparator('OVERVIEW'));
 	overviewContainer.appendChild(content.children[0]);
 	overviewContainer.appendChild(content.children[0]);
 	contentContainers.push(overviewContainer);
@@ -65,14 +65,14 @@ function addContentSeparators() {
 	const instructorsContainer = document.createElement('div');
 	instructorsContainer.id = 'mcen-instructorsContainer';
 	instructorsContainer.className = 'mcen-container';
-	instructorsContainer.appendChild(generateMainContentSeparator("INSTRUCTORS"));
+	instructorsContainer.appendChild(generateMainContentSeparator('INSTRUCTORS'));
 	instructorsContainer.appendChild(content.children[0]);
 	contentContainers.push(instructorsContainer);
 
 	const notesContainer = document.createElement('div');
 	notesContainer.id = 'mcen-notesContainer';
 	notesContainer.className = 'mcen-container';
-	notesContainer.appendChild(generateMainContentSeparator("NOTES"));
+	notesContainer.appendChild(generateMainContentSeparator('NOTES'));
 	if (content.children.length	> 0) {
 		notesContainer.appendChild(content.children[0]);
 	}
@@ -81,7 +81,7 @@ function addContentSeparators() {
 	const averagesContainer = document.createElement('div');
 	averagesContainer.id = 'mcen-averagesContainer';
 	averagesContainer.className = 'mcen-container';
-	averagesContainer.appendChild(generateMainContentSeparator("CLASS AVERAGES"));
+	averagesContainer.appendChild(generateMainContentSeparator('CLASS AVERAGES'));
 	averagesContainer.appendChild(generateAveCrowdsourceSection());
 	contentContainers.push(averagesContainer);
 
@@ -160,13 +160,13 @@ function averageGPAsDownloader() {
 	const errorMessageSubmission= 'McGill Enhanced encountered an error while trying to submit the average GPAs from your courses.';
 	const minervaLogin = 'https://horizon.mcgill.ca/pban1/twbkwbis.P_WWWLogin';
 	const transriptURL = 'https://horizon.mcgill.ca/pban1/bzsktran.P_Display_Form?user_type=S&tran_type=V';
-	aveGPAsSubmitString = '';
+	let aveGPAsSubmitString = '';
 
 	//Define function to execute when downloadClassAverages event dispactched
 
-	document.addEventListener('downloadClassAverages', function(data) {
+	document.addEventListener('downloadClassAverages', function() {
 
-	 	const xmlRequestInfo = {
+		const xmlRequestInfo = {
 			method: 'GET',
 			action: 'xhttp',
 			url: transriptURL
@@ -175,8 +175,8 @@ function averageGPAsDownloader() {
 
 		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
 			try {
-				htmlParser = new DOMParser();
-				htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
+				const htmlParser = new DOMParser();
+				const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
 				logForDebug(htmlDoc);
 
 				if (htmlDoc.getElementById('mcg_id_submit')) {
@@ -188,7 +188,7 @@ function averageGPAsDownloader() {
 					let transcript = dataTables[dataTables.length-1].rows;
 					logForDebug(transcript);
 					
-					let term = "";
+					let term = '';
 					for (let r = 0; r < transcript.length; r++) {
 						let cols = transcript[r].getElementsByClassName('fieldmediumtext');
 						if (cols.length === 1) {
@@ -201,7 +201,7 @@ function averageGPAsDownloader() {
 						else if (cols.length === 8 || cols.length === 7) {
 							logForDebug(cols);
 							if (cols[cols.length-1].innerText.match(/[ABCDF+-]/)) {
-								let courseName = cols[0].innerHTML.split("&nbsp;")[0].split(" ");
+								let courseName = cols[0].innerHTML.split('&nbsp;')[0].split(' ');
 								aveGPAs.push([courseName[0]+courseName[1], courseName[0], courseName[1], cols[1].innerText, term, cols[3].innerText, cols[cols.length-1].innerText]);
 							}
 						} 
@@ -248,7 +248,7 @@ function averageGPAsDownloader() {
 
 	});
 
-	document.addEventListener('submitClassAverages', function(data) {
+	document.addEventListener('submitClassAverages', function() {
 		try {
 
 			chrome.storage.sync.get('classAveragesSubmission', function(result) {
@@ -298,30 +298,30 @@ function averageGPAsDownloader() {
 
 
 function arrayToCSV(rows) {
-  var content = "";
-  rows.forEach(function(row, index) {
-    content += row.join(",") + "\n";
-  });
-  return content;
+	var content = '';
+	rows.forEach(function(row, index) {
+		content += row.join(',') + '\n';
+	});
+	return content;
 }
 
 
 function generateMainContentSeparator(separatorTitleString) {
 
 	const mainContentSeparator = document.createElement('div');
-	mainContentSeparator.className = "mcen-contentSeparator";	
+	mainContentSeparator.className = 'mcen-contentSeparator';
 
 	const mainContentSeparatorLabel = document.createElement('div');
-	mainContentSeparatorLabel.className = "mcen-contentSeparatorLabel";
+	mainContentSeparatorLabel.className = 'mcen-contentSeparatorLabel';
 	mainContentSeparatorLabel.innerText = separatorTitleString;
 	mainContentSeparator.appendChild(mainContentSeparatorLabel);
 
 	const mainContentSeparatorSpaceBack = document.createElement('div');
-	mainContentSeparatorSpaceBack.className = "mcen-contentSeparatorSpaceBack";
+	mainContentSeparatorSpaceBack.className = 'mcen-contentSeparatorSpaceBack';
 	mainContentSeparator.appendChild(mainContentSeparatorSpaceBack);
 
 	const mainContentSeparatorSpaceFront = document.createElement('div');
-	mainContentSeparatorSpaceFront.className = "mcen-contentSeparatorSpaceFront";
+	mainContentSeparatorSpaceFront.className = 'mcen-contentSeparatorSpaceFront';
 	mainContentSeparatorSpaceBack.appendChild(mainContentSeparatorSpaceFront);
 
 	return mainContentSeparator;

@@ -20,9 +20,9 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
  */
 function makeCourseLinks() {
 	
-	notesElement = document.getElementsByClassName("catalog-notes")[0];
+	const notesElement = document.getElementsByClassName('catalog-notes')[0];
 	if (notesElement) {
-		notesElement.innerHTML = notesElement.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");
+		notesElement.innerHTML = notesElement.innerHTML.replace(courseNameRegex, '<a href="http://www.mcgill.ca/study/'+urlYears+'/courses/$1-$2">$1 $2</a>');
 	}
 }
 
@@ -32,14 +32,14 @@ function makeCourseLinks() {
  */
 function programOverview(){	
 	
-	const courseSections = document.getElementsByClassName("program-course");
+	const courseSections = document.getElementsByClassName('program-course');
 	for (let c = 0; c<courseSections.length; c++) {
 
-		const notes = courseSections[c].getElementsByClassName("catalog-notes")[0];
-		const title = courseSections[c].getElementsByClassName("program-course-title")[0];
+		const notes = courseSections[c].getElementsByClassName('catalog-notes')[0];
+		const title = courseSections[c].getElementsByClassName('program-course-title')[0];
 
 		const courseURL = title.href;
-		const courseName = courseURL.match(/courses\/(.+)/)[1].replace("-", " ").toUpperCase();
+		const courseName = courseURL.match(/courses\/(.+)/)[1].replace('-', ' ').toUpperCase();
 
 		const link = document.createElement('a');
 		link.href = courseURL;
@@ -47,16 +47,16 @@ function programOverview(){
 		link.style.paddingLeft = '0px';
 		link.innerText = courseName;
 
-		const contentElement = courseSections[c].getElementsByClassName("content")[0];
+		const contentElement = courseSections[c].getElementsByClassName('content')[0];
 		const overviewHeader = contentElement.getElementsByTagName('h3')[0];
-		overviewHeader.innerText = "";
+		overviewHeader.innerText = '';
 		overviewHeader.appendChild(link);
 
 		if (notes) {
-			// notes.innerHTML = notes.innerHTML.replace(/<li>(.+)<.li>/g, "<p>$1</p>");
-			notes.innerHTML = notes.innerHTML.replace(courseNameRegex, "<a href=\"http://www.mcgill.ca/study/" + urlYears + "/courses/$1-$2\">$1 $2</a>");   
+			notes.innerHTML = notes.innerHTML.replace(courseNameRegex, '<a href="http://www.mcgill.ca/study/'+urlYears+'/courses/$1-$2">$1 $2</a>');   
 		}
 
 	}
 
 }
+
