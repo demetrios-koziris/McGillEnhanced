@@ -11,7 +11,7 @@
 <h4 align="center">
   <img src="https://raw.githubusercontent.com/demetrios-koziris/McGillEnhanced/master/src/icons/mcgill-128.png">
   <br><br>
-  A Browser Extension Improving the McGill.ca Website Experience
+  A Browser Extension Enhancing the McGill User Experience
   <br><br>
   <a href="http://demetrios-koziris.github.io/McGillEnhanced">Website</a>
   • <a href="https://demetrios-koziris.github.io/McGillEnhanced/features">Features</a>
