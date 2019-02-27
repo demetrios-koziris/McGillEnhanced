@@ -13,9 +13,13 @@
   <br><br>
   A Browser Extension Improving the McGill.ca Website Experience
   <br><br>
-  <a href="http://demetrios-koziris.github.io/McGillEnhanced">View the McGill Enhanced landing page</a>
+  <a href="http://demetrios-koziris.github.io/McGillEnhanced">Website</a>
+  • <a href="https://demetrios-koziris.github.io/McGillEnhanced/features">Features</a>
+  • <a href="https://demetrios-koziris.github.io/McGillEnhanced/support">Support</a>
 </h4>
 
+
+<br>
 
 ## Installation
 
