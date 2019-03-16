@@ -1,23 +1,23 @@
 #!/bin/bash
 
 #  Usage: 
-#    command [option] <parameter>...
+#    $ ./build.sh [options] [<platform>...]
 #
 #  Options:
 #    -c       Clean the /build directory before building
-#  Parameters:
+#  Platform:
 #    edge     Create an edge extension in /build 
 #    chrome   Create a chrome extension in /build
 #    firefox  Create a firefox add-on in /build 
-#    *If no parameters are passed, script will default to building the extension for every browser
+#             If no parameters are passed, script will default to building the extension for every browser
 #
 #  Examples :
-#    ./build.sh 
-#    ./build.sh -c
-#    ./build.sh chrome
-#    ./build.sh -c edge
-#    ./build.sh chrome firefox
-#    ./build.sh -c edge chrome firefox
+#    $ ./build.sh 
+#    $ ./build.sh -c
+#    $ ./build.sh chrome
+#    $ ./build.sh -c edge
+#    $ ./build.sh chrome firefox
+#    $ ./build.sh -c edge chrome firefox
 
 
 # handle -c (clean) option flag
@@ -51,8 +51,8 @@ for browser in "$@"; do
 		continue
 	fi 
 
-	today=`date '+%Y_%m_%d__%H_%M_%S'`;
-	buildname="McGillEnhanced__"$today"__"$browser
+	today=$(date '+%Y_%m_%d__%H_%M_%S');
+	buildname="McGillEnhanced__${today}__${browser}"
 	echo "$0: Creating $browser version in build/$buildname"
 	mkdir -p build
 

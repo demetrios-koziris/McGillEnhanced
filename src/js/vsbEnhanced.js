@@ -27,7 +27,7 @@ function enhanceVSB() {
 
 	//Create and insert One-Click registration button
 
-	const regLegend = document.getElementsByClassName("reg_legend")[0];
+	const regLegend = document.getElementsByClassName('reg_legend')[0];
 
 	const regDiv = document.createElement('div');
 	regDiv.style.width = 'calc(88% + 16px)';
@@ -47,10 +47,10 @@ function enhanceVSB() {
 
 	//Define function to execute when register event dispactched (when registration button clicked)
 
-	document.addEventListener('register', function(data) {
+	document.addEventListener('register', function() {
 
-	 	const termCode = window.location.search.match(/.+term\=([0-9]{6})/)[1];
-	 	const minervaRegister = 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode;
+		const termCode = window.location.search.match(/.+term=([0-9]{6})/)[1];
+		const minervaRegister = 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode;
 		logForDebug(minervaRegister);
 
 		const xmlRequestInfo = {
@@ -62,31 +62,31 @@ function enhanceVSB() {
 
 		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
 			try {
-				htmlParser = new DOMParser();
-				htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
+				const htmlParser = new DOMParser();
+				const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
 				logForDebug(htmlDoc);
 
-				infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(" ");
+				const infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(' ');
 				logForDebug(infotext);
 
 				if (htmlDoc.getElementById('mcg_id_submit')) {
 					redirect(notloggedinMessage, minervaLogin);
 				}
 				else if (infotext.includes('You are not permitted to register at this time.') ||
-					     infotext.includes('Term not available for Registration processing.')) {
+						infotext.includes('Term not available for Registration processing.')) {
 					redirect(notpermittedMessage, minervaRegister);
 				}
 				else {
 
 					const crnString = document.getElementById('cartCrns').value.replace(/[{()}]/g, '');
-					if (crnString === "") {
+					if (crnString === '') {
 						alert(crnMinMessage);
 					}
 					else {
-						const crnCodes = crnString.split(" ");
+						const crnCodes = crnString.split(' ');
 						logForDebug(crnCodes);
 
-						registrationForm = htmlDoc.getElementsByTagName('form')[1];
+						const registrationForm = htmlDoc.getElementsByTagName('form')[1];
 						logForDebug(registrationForm);
 						logForDebug($(registrationForm).serialize().split('&'));
 
@@ -99,7 +99,7 @@ function enhanceVSB() {
 						if (crnCodes.length > 10) {
 							alert(crnMaxMessage);
 						}
-						regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?' + $(registrationForm).serialize() + '&REG_BTN=Submit+Changes';
+						const regURL = 'https://horizon.mcgill.ca/pban1/bwckcoms.P_Regs?' + $(registrationForm).serialize() + '&REG_BTN=Submit+Changes';
 						logForDebug(regURL);
 						window.open(regURL, '_blank').focus();
 					}
