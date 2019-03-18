@@ -1,7 +1,7 @@
-[![license](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg)](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt)
-[![top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg)](https://github.com/demetrios-koziris/McGillEnhanced)
-[![commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg)](https://github.com/demetrios-koziris/McGillEnhanced/releases)
-[![made with love](https://img.shields.io/badge/made%20with-%E2%9D%A4-brightgreen.svg?color=ED1B2F)](https://github.com/demetrios-koziris)
+[![license](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg?style=flat-square)](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt)&nbsp;
+[![top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg?style=flat-square)](https://github.com/demetrios-koziris/McGillEnhanced)&nbsp;
+[![commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg?style=flat-square)](https://github.com/demetrios-koziris/McGillEnhanced/releases)&nbsp;
+[![made with love](https://img.shields.io/badge/made%20with-%E2%9D%A4-brightgreen.svg?style=flat-square&color=ED1B2F)](https://github.com/demetrios-koziris)
 
 
 <br>
@@ -11,29 +11,30 @@
 <h4 align="center">
   <img src="https://raw.githubusercontent.com/demetrios-koziris/McGillEnhanced/master/src/icons/mcgill-128.png">
   <br><br>
-  A Browser Extension Improving the McGill.ca Website Experience
+  A Browser Extension Enhancing the McGill User Experience
   <br><br>
-  <a href="http://demetrios-koziris.github.io/McGillEnhanced">View the McGill Enhanced landing page</a>
+  <a href="http://demetrios-koziris.github.io/McGillEnhanced">Website</a>
+  • <a href="https://demetrios-koziris.github.io/McGillEnhanced/features">Features</a>
+  • <a href="https://demetrios-koziris.github.io/McGillEnhanced/support">Support</a>
 </h4>
 
-##
 
-### Install  [Chrome Extension](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)  
+<br>
 
-[![chrome icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
-&nbsp; 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white&label=weekly%20users)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
+## Installation
 
-### Install [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
+### [Chrome Extension](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en) compatible with &nbsp;&nbsp;[![chrome icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png)](https://www.google.com/chrome/)&nbsp;&nbsp;[![chromium icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chromium/chromium_24x24.png)](https://download-chromium.appspot.com/)&nbsp;&nbsp;[![opera icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png)](https://www.opera.com/)&nbsp;&nbsp;[![brave icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/brave/brave_24x24.png)](https://brave.com/)&nbsp;&nbsp;[![vivaldi icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_24x24.png)](https://vivaldi.com/)
 
-[![firefox icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
-&nbsp; 
-[![Mozilla Add-on](https://img.shields.io/amo/v/mcgillenhanced.svg?logo=)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
-[![Mozilla Add-on](https://img.shields.io/amo/users/mcgillenhanced.svg?logo=mozilla-firefox&logoColor=white&label=daily%20users)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)
-[![Mozilla Add-on](https://img.shields.io/amo/stars/mcgillenhanced.svg?logo=mozilla-firefox&logoColor=white&label=rating)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/reviews/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)&nbsp;
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=&logoColor=white&label=total%20weekly%20users)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)&nbsp;
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)&nbsp;
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=&logoColor=white&label=%23%20of%20ratings)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
+
+### [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/) compatible with &nbsp;&nbsp;[![firefox icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png)](https://www.mozilla.org/en-US/firefox/new/?v=b)&nbsp;&nbsp;<a href="https://www.waterfoxproject.org/en-US/"><img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Waterfox_Logo_%28redesigned_2015%29.png" width="24"></a>
+ 
+[![Mozilla Add-on](https://img.shields.io/amo/v/mcgillenhanced.svg?style=flat-square&logo=mozilla-firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)&nbsp;
+[![Mozilla Add-on](https://img.shields.io/amo/users/mcgillenhanced.svg?style=flat-square&logo=&logoColor=white&label=average%20daily%20users)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)&nbsp;
+[![Mozilla Add-on](https://img.shields.io/amo/stars/mcgillenhanced.svg?style=flat-square&logo=&logoColor=white&label=rating)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/reviews/)
 
 
 <br>
@@ -82,5 +83,5 @@ Copyright © Demetrios Koziris. McGill is a University in Montreal, Canada and h
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
 as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-The GNU General Public License is provided in the [LICENSE file](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt) of this repository and can also be found at [www.gnu.org](https://www.gnu.org/licenses/gpl-3.0.html).
+The GNU General Public License is available in the [LICENSE file](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt) of this repository and on the [GNU website](https://www.gnu.org/licenses/gpl-3.0.html).
 

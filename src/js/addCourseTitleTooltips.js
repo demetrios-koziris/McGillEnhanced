@@ -16,7 +16,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 
 function addCourseTitleTooltips() {
-    const aTags = document.getElementsByTagName("a");
+    const aTags = document.getElementsByTagName('a');
     const courseTitleData = getCourseTitleData();
 
     for (let i = 0; i < aTags.length; i++) {
@@ -30,9 +30,10 @@ function addCourseTitleTooltips() {
                 const courseTitle = courseTitleData[linkCourseName];
                 if (courseTitle) {
                     aTag.title = courseTitle;
-                    aTag.classList.add("tooltip");
+                    aTag.classList.add('tooltip');
                 }
             }
         }
     }
 }
+

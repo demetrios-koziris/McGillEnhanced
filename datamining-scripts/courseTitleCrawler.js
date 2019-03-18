@@ -17,13 +17,13 @@ async function main() {
         pageIndex++;
     } while (success); // Keep going until we reach the end of the course list
 
-    console.log("Done! Final page index: " + pageIndex);
+    console.log('Done! Final page index: ' + pageIndex);
 
     fs.writeFile('output-coursetitles.json', JSON.stringify(json, null, 4), (err) => {
         if (!err) {
-            console.log("Saved all data in 'output-coursetitles.json'");
+            console.log('Saved all data in output-coursetitles.json');
         } else {
-            console.error("Error occurred while trying to save the output file");
+            console.error('Error occurred while trying to save the output file');
         }
     });
 }
@@ -32,7 +32,7 @@ main();
 
 function getAllDescriptionsOnPage(pageIndex) {
     return new Promise((resolve, reject) => {
-        console.log("Getting " + (url + pageIndex))
+        console.log('Getting ' + (url + pageIndex));
         request(url + pageIndex, (error, response, html) => {
             if (!error) {
                 const $ = cheerio.load(html);
@@ -58,7 +58,7 @@ function getAllDescriptionsOnPage(pageIndex) {
                     resolve(true);
                 }
             } else {
-                console.error("An error occurred while trying to retrieve a page");
+                console.error('An error occurred while trying to retrieve a page');
                 resolve(false);
             }
         });

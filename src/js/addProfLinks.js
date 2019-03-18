@@ -28,7 +28,7 @@ function makeProfLinks() {
 		topContent.className += ' mcen-top-content';
 	}
 
-	terms = {
+	const terms = {
 		'Fall': {
 			'code': 9,
 			'year': urlYearF
@@ -42,19 +42,16 @@ function makeProfLinks() {
 			'year': urlYearW
 		}
 	};
-	inst = {
+	const inst = {
 		'en': 'Instructors:',
 		'fr': 'Chargés de cours :'
 	};
-	profs = {};
+	let profs = {};
 	const mercuryProfs = getMercuryData();
-	let profsLength = 0;
 
 	const profsFullSourceElem = document.getElementsByClassName('catalog-instructors')[0];
 	let profsFullSource = profsFullSourceElem.innerHTML;
 
-	const loadMessage = 'McGill Enhanced is loading ratings!';
-	const profHoverMessage = 'McGill Enhanced is no longer able to display ratings here.<br>Please click this link to view courses taught by this prof.';
 	const profLinkMessage = 'View other courses<br>taught by this instructor';
 	const googleLinkMessage = 'View Google query for<br>instructor reviews';
 	const mercuryLinkMessage = 'View Mercury query for this instructor name<br>Must already be signed into Minerva!';
@@ -74,11 +71,11 @@ function makeProfLinks() {
 		logForDebug(profsSourceByTerm);
 		for (let i = 0; i+1 < profsSourceByTerm.length; i+=2) {
 
-			const termKey = profsSourceByTerm[i+1]
+			const termKey = profsSourceByTerm[i+1];
 			const profsForTerm = profsSourceByTerm[i].split(',');
 			for (let p=0; p<profsForTerm.length; p++) {
 
-				const newProfObject = generateProfObject(mercuryProfs, profsForTerm[p], termKey);
+				const newProfObject = generateProfObject(mercuryProfs, profsForTerm[p]);
 				if (!(newProfObject.key in profs)) {
 					profs[newProfObject.key] = newProfObject;
 				}
@@ -89,21 +86,19 @@ function makeProfLinks() {
 
 		const profSection = document.createElement('div');
 
-		for (let profKey in profs) {
-
-			const prof = profs[profKey];
+		Object.values(profs).forEach((prof) => {
 
 			const profDiv = document.createElement('div');
 			profDiv.className = 'mcen-profDiv';
 			profSection.appendChild(profDiv);
 
-			googleLink = generateProfLinkButton(prof.urlGoogle, googleLinkMessage, 'Google');
+			const googleLink = generateProfLinkButton(prof.urlGoogle, googleLinkMessage, 'Google');
 			profDiv.appendChild(googleLink);
 
-			mercuryLink = generateProfLinkButton(prof.urlMercury, mercuryLinkMessage, 'Mercury');
+			const mercuryLink = generateProfLinkButton(prof.urlMercury, mercuryLinkMessage, 'Mercury');
 			profDiv.appendChild(mercuryLink);
 
-			if (prof.minervaID === undefined) {
+			if (prof.minervaID === null) {
 				mercuryLink.firstElementChild.className = 'tooltipError mcen-profLinkButton mcen-mercuryLinkButton not-active';
 				mercuryLink.firstElementChild.title = mercuryLinkMessageError;
 			}
@@ -112,7 +107,7 @@ function makeProfLinks() {
 			termSection.className = 'mcen-termSection';
 			profDiv.appendChild(termSection);
 
-			for (let termKey in terms) {
+			Object.keys(terms).forEach((termKey) => {
 
 				const termDiv = document.createElement('div');
 				termDiv.className = 'mcen-termDiv';
@@ -124,20 +119,19 @@ function makeProfLinks() {
 				termDiv.appendChild(termImg);
 
 				if (termKey in prof.termsTeaching) {
-					termInfo = prof.termsTeaching[termKey];
+					const termInfo = prof.termsTeaching[termKey];
 					termDiv.title = termNames[lang][termInfo.code] + ' ' + termInfo.year;
 					termDiv.className += ' tooltip';
 					termImg.src = 'https://www.mcgill.ca/ece/sites/all/modules/mcgill/courses/' + termKey.toLowerCase() + '.gif';
 				} 
-			}
+			});
 
 			const profBullet = document.createElement('span');
 			profBullet.className = 'mcen-class-ave-prof-marker';
 			profBullet.innerHTML = '&bull;';
-			const profTermsTeaching = prof.termsTeaching;
-			for (let term in profTermsTeaching) {
-				profBullet.className += ' mcen-class-ave-prof-marker-' + profTermsTeaching[term].code;
-			}
+			Object.values(prof.termsTeaching).forEach((termTeaching) => {
+				profBullet.className += ' mcen-class-ave-prof-marker-' + termTeaching.code;
+			});
 			profDiv.appendChild(profBullet);
 
 			const profLink = document.createElement('a');
@@ -146,7 +140,7 @@ function makeProfLinks() {
 			profLink.title = profLinkMessage;
 			profLink.innerText = prof.name.full;
 			profDiv.appendChild(profLink);
-		}
+		});
 
 		document.getElementsByClassName('catalog-instructors')[0].innerHTML = '';
 		profsFullSourceElem.appendChild(profSection);
@@ -169,7 +163,7 @@ function generateProfLinkButton(url, message, className) {
 	return link;
 }
 
-function generateProfObject(mercuryProfs, origName, termKey) {
+function generateProfObject(mercuryProfs, origName) {
 
 	const name = origName.trim();
 	const splitName = name.split(' ');
@@ -178,15 +172,16 @@ function generateProfObject(mercuryProfs, origName, termKey) {
 		first: splitName[0],
 		last: splitName[splitName.length-1]
 	};
-	const minervaID = mercuryProfs[CryptoJS.MD5(name)];
+	const nameMD5 = CryptoJS.MD5(name);
+	const profMinervaID = (nameMD5 in mercuryProfs ? mercuryProfs[nameMD5] : null);
 	const prof = {
 		key: name.replace(/\W/g, ''),
 		name: profName,
-		minervaID: minervaID,
+		minervaID: profMinervaID,
 		termsTeaching: {},
 		urlCourses: encodeURI('https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext="' + profName.full + '"'),
 		urlGoogle: encodeURI('https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last),
-		urlMercury: encodeURI('https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form' + (minervaID !== undefined ? '?form_mode=ar&inst_tab_in='+minervaID : ''))
+		urlMercury: encodeURI('https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form' + (profMinervaID !== null ? '?form_mode=ar&inst_tab_in='+profMinervaID : ''))
 	};
 	return prof;
 }

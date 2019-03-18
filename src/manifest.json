@@ -2,9 +2,9 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.0.13",
+  "version": "4.0.14",
   "description": "Enhance the functionality of McGill.ca",
-  "permissions" : [
+  "permissions": [
     "storage",
     "*://*.mcgill.ca/*", 
     "*://demetrios-koziris.github.io/*", 
@@ -12,7 +12,9 @@
     "*://vsb.mcgill.ca/*"
   ],
   "background": {
-    "scripts": [ "js/backgroundHTTP.js", "js/background.js" ],
+    "scripts": [
+      "js/backgroundHTTP.js",
+      "js/background.js" ],
     "persistent": false
   },
   "browser_action": {
@@ -26,7 +28,7 @@
   "icons": {
     "128": "icons/mcgill-128.png"
   },
-  "content_scripts" : [
+  "content_scripts": [
     {
       "matches" : [
         "*://*.mcgill.ca/*", 
@@ -34,20 +36,20 @@
         "*://www.docuum.com/McGill*", 
         "*://vsb.mcgill.ca/*"
       ],
-      "js" : [
-        "lib/jquery-1.11.2.min.js", 
-        "lib/tooltipsy.min.js", 
-        "lib/levenshtein.js", 
+      "js": [
+        "lib/jquery-1.11.2.min.js",
+        "lib/tooltipsy.min.js",
+        "lib/levenshtein.js",
         "lib/md5.js",
         "js/dataDocuum.js",
         "js/dataMercury.js",
         "js/dataRecordings.js",
         "js/dataClassAverages.js",
         "js/dataCourseTitles.js",
-        "js/addSidebar.js", 
+        "js/addSidebar.js",
         "js/addYearMenu.js",
-        "js/addAveCrowdsource.js", 
-        "js/addProfLinks.js", 
+        "js/addAveCrowdsource.js",
+        "js/addProfLinks.js",
         "js/addCourseLinks.js",
         "js/applyToolTipsy.js",
         "js/addCourseTitleTooltips.js",
@@ -69,12 +71,13 @@
       "run_at": "document_start"
     },
     {
-      "matches" : [
+      "matches": [
         "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl*"
       ],
-      "js" : [
-        "lib/uuid-random.js", 
-        "lib/icsLib.js", 
+      "js": [
+        "lib/uuid-random.js",
+        "lib/icsLib.js",
+        "js/dataMcGillMap.js",
         "js/scheduleExport.js"
       ]
     }

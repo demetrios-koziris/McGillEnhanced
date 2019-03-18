@@ -2,8 +2,8 @@
 
 /**
  *  Possible parameters for request:
- *  action: "xhttp" for a cross-origin HTTP request
- *  method: Default "GET"
+ *  action: 'xhttp' for a cross-origin HTTP request
+ *  method: Default 'GET'
  *  url   : required, but not validated
  *
  * The callback function is called upon completion of the request 
@@ -13,12 +13,12 @@
 
 
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
-	if (request.action == "xhttp") {
+	if (request.action == 'xhttp') {
 		var xhttp = new XMLHttpRequest();
 		var method = request.method ? request.method.toUpperCase() : 'GET';
 
 		var data = {
-			responseXML : "",
+			responseXML : '',
 			url: request.url
 		};
 
@@ -27,13 +27,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4) {
 				if (xhttp.status == 200) {
-					console.log(xhttp.status + " " + JSON.stringify(data));
+					console.log(xhttp.status + ' ' + JSON.stringify(data));
 					data.responseXML = this.responseText;
 					callback(data);
 				}
 				else {
 					console.log(xhttp.status + JSON.stringify(data));
-					data.responseXML = "error";
+					data.responseXML = 'error';
 					callback(data);
 				}
 			}
