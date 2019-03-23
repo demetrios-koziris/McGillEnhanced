@@ -26,7 +26,7 @@ function makeSidebarContent() {
 
 	const vsbSidebarTerms = [];
 	getVSBSemesters(vsbSidebarTerms);
-	const withinyearRangeVSB = (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<3);
+	const withinyearRangeVSB = (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<9);
 
 	const courseTerms = document.getElementsByClassName('catalog-terms')[0].innerHTML;
 	const courseTermsCodes = [];
@@ -50,7 +50,8 @@ function makeSidebarContent() {
 		courseTermsCodes.push( {
 			term: 'summer',
 			name: 'Summer ' + urlYearW,  
-			code: urlYearW + '05'
+			code: urlYearW + '05',
+			vsbURL: 'https://vsb.mcgill.ca/vsb/criteria.jsp?term=' + urlYearW + '05&course_0_0=' + courseSubject + '-' + courseNumber + '&ca_0_0=&bbs='
 		} );
 	}
 	logForDebug(courseTermsCodes);
