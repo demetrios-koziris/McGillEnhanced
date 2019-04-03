@@ -10,7 +10,7 @@
     "*://mcgill.ca/study/*",
     "*://horizon.mcgill.ca/*",
     "*://www.docuum.com/McGill*",
-    "*://vsb.mcgill.ca/*",
+    "*://vsb.mcgill.ca/*"
   ],
   "background": {
     "scripts": [
