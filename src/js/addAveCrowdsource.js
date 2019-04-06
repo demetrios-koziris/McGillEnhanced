@@ -118,7 +118,6 @@ function generateAveCrowdsourceSection() {
 				classAveragesData.splice(i, 1);
 			}
 		}
-		let classAverageRowCounter = 0;
 		for (let i = classAveragesData.length-1; i >= 0; i--) {
 			crowdsourceContentRightTable.appendChild(generateClassAverageRow(classAveragesData[i], i));
 		}
@@ -317,15 +316,6 @@ function averageGPAsDownloader() {
 		}
 
 	});
-}
-
-
-function arrayToCSV(rows) {
-	var content = '';
-	rows.forEach(function(row, index) {
-		content += row.join(',') + '\n';
-	});
-	return content;
 }
 
 

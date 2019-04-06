@@ -16,24 +16,24 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 
 function addCourseTitleTooltips() {
-    const aTags = document.getElementsByTagName('a');
-    const courseTitleData = getCourseTitleData();
+	const aTags = document.getElementsByTagName('a');
+	const courseTitleData = getCourseTitleData();
 
-    for (let i = 0; i < aTags.length; i++) {
-        const aTag = aTags[i];
-        const url = aTag.href;
-        if (aTag.textContent.length > 0 && url && url.match(courseUrlRegex)) { // Filter to get all links that point to course titles
+	for (let i = 0; i < aTags.length; i++) {
+		const aTag = aTags[i];
+		const url = aTag.href;
+		if (aTag.textContent.length > 0 && url && url.match(courseUrlRegex)) { // Filter to get all links that point to course titles
 
-            const linkCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-            if (linkCourseName !== urlCourseName) { // Check that this is not a link to the same course (either for the same or for a different year)
+			const linkCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
+			if (linkCourseName !== urlCourseName) { // Check that this is not a link to the same course (either for the same or for a different year)
 
-                const courseTitle = courseTitleData[linkCourseName];
-                if (courseTitle) {
-                    aTag.title = courseTitle;
-                    aTag.classList.add('tooltip');
-                }
-            }
-        }
-    }
+				const courseTitle = courseTitleData[linkCourseName];
+				if (courseTitle) {
+					aTag.title = courseTitle;
+					aTag.classList.add('tooltip');
+				}
+			}
+		}
+	}
 }
 
