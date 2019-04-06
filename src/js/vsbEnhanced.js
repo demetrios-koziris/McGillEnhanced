@@ -38,10 +38,12 @@ function enhanceVSB() {
 	regButton.setAttribute('type', 'button');
 	regButton.setAttribute('onclick', 'document.dispatchEvent(new Event("register"));');
 	regButton.id = 'mcen-vsb-registration';
-	regButton.innerHTML = 'McGill Enhanced:<br>One-Click Minerva Registration!';
 	regButton.title = 'Click to register for the above CRN codes.\nMust be already signed into Minerva!';
 	regButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"');
 	regButton.setAttribute('onmouseout', 'this.style.border="2px solid #5B5B5A"');
+	regButton.appendChild(document.createTextNode('McGill Enhanced:'));
+	regButton.appendChild(document.createElement('br'));
+	regButton.appendChild(document.createTextNode('One-Click Minerva Registration!'));
 	regDiv.appendChild(regButton);
 	
 

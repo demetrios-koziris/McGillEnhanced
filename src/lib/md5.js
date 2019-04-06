@@ -1,3 +1,10 @@
+/************************************************************************************************************************
+Source:   https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/crypto-js/CryptoJS%20v3.1.2.zip 
+File:     'CryptoJS v3.1.2.zip\rollups\md5.js'
+License:  https://code.google.com/p/crypto-js/wiki/License
+************************************************************************************************************************/
+
+
 /*
 CryptoJS v3.1.2
 code.google.com/p/crypto-js

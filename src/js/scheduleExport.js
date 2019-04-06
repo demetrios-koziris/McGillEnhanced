@@ -27,10 +27,12 @@ function setupScheduleExporter() {
 		schedDownloadButton.setAttribute('type', 'button');
 		schedDownloadButton.setAttribute('onclick', 'document.dispatchEvent(new Event("mcenExportSchedule"));');
 		schedDownloadButton.id = 'mcen-sched-download';
-		schedDownloadButton.innerHTML = 'McGill Enhanced:<br>Export Course Schedule as ICS file!';
 		schedDownloadButton.title = 'ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!';
 		schedDownloadButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"');
 		schedDownloadButton.setAttribute('onmouseout', 'this.style.border="2px solid #5B5B5A"');
+		schedDownloadButton.appendChild(document.createTextNode('McGill Enhanced:'));
+		schedDownloadButton.appendChild(document.createElement('br'));
+		schedDownloadButton.appendChild(document.createTextNode('Export Course Schedule as ICS file!'));
 		schedDownloadDiv.appendChild(schedDownloadButton);
 
 		const pagebodydiv = document.getElementsByClassName('pagebodydiv')[0];

@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.0.16",
+  "version": "4.1.0",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
@@ -37,7 +37,8 @@
         "*://vsb.mcgill.ca/*"
       ],
       "js": [
-        "lib/jquery-1.11.2.min.js",
+        "lib/purify.min.js",
+        "lib/jquery-3.3.1.min.js",
         "lib/tooltipsy.min.js",
         "lib/levenshtein.js",
         "lib/md5.js",
@@ -75,7 +76,9 @@
         "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl*"
       ],
       "js": [
-        "lib/uuid-random.js",
+        "lib/purify.min.js",
+        "lib/uuid-random.min.js",
+        "lib/fileSaver.js",
         "lib/icsLib.js",
         "js/dataMcGillMap.js",
         "js/scheduleExport.js"

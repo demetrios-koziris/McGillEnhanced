@@ -128,7 +128,7 @@ function makeProfLinks() {
 
 			const profBullet = document.createElement('span');
 			profBullet.className = 'mcen-class-ave-prof-marker';
-			profBullet.innerHTML = '&bull;';
+			profBullet.innerText = '\u2022';
 			Object.values(prof.termsTeaching).forEach((termTeaching) => {
 				profBullet.className += ' mcen-class-ave-prof-marker-' + termTeaching.code;
 			});
@@ -142,7 +142,7 @@ function makeProfLinks() {
 			profDiv.appendChild(profLink);
 		});
 
-		document.getElementsByClassName('catalog-instructors')[0].innerHTML = '';
+		document.getElementsByClassName('catalog-instructors')[0].innerText = '';
 		profsFullSourceElem.appendChild(profSection);
 	}
 }

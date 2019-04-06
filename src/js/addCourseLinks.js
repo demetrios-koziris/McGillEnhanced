@@ -22,7 +22,8 @@ function makeCourseLinks() {
 	
 	const notesElement = document.getElementsByClassName('catalog-notes')[0];
 	if (notesElement) {
-		notesElement.innerHTML = notesElement.innerHTML.replace(courseNameRegex, '<a href="http://www.mcgill.ca/study/'+urlYears+'/courses/$1-$2">$1 $2</a>');
+		const notesElementEnhancedWithLinks = notesElement.innerHTML.replace(courseNameRegex, '<a href="http://www.mcgill.ca/study/'+urlYears+'/courses/$1-$2">$1 $2</a>');
+		notesElement.innerHTML = DOMPurify.sanitize(notesElementEnhancedWithLinks);
 	}
 }
 
@@ -53,7 +54,8 @@ function programOverview(){
 		overviewHeader.appendChild(link);
 
 		if (notes) {
-			notes.innerHTML = notes.innerHTML.replace(courseNameRegex, '<a href="http://www.mcgill.ca/study/'+urlYears+'/courses/$1-$2">$1 $2</a>');   
+			const notesEnhancedWithLinks = notes.innerHTML.replace(courseNameRegex, '<a href="http://www.mcgill.ca/study/'+urlYears+'/courses/$1-$2">$1 $2</a>');
+			notes.innerHTML = DOMPurify.sanitize(notesEnhancedWithLinks);
 		}
 
 	}
