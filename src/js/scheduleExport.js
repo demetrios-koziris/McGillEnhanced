@@ -78,7 +78,7 @@ function exportSchedule() {
 
 	const manifest = chrome.runtime.getManifest();
 	const icsExportPRODID = manifest.name.replace(' ', '') + '-' + manifest.version + '-' + chrome.runtime.id;
-	const calCourseSchedule = ics(uuid(), icsExportPRODID);
+	const calCourseSchedule = ics(uuid(), icsExportPRODID, 'America/Toronto');
 
 	const courseTables = document.getElementsByClassName('datadisplaytable');
 	let courseTerm = '';

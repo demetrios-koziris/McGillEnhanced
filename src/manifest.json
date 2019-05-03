@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
@@ -40,7 +40,6 @@
         "lib/purify.min.js",
         "lib/jquery-3.3.1.min.js",
         "lib/tooltipsy.min.js",
-        "lib/levenshtein.js",
         "lib/md5.js",
         "js/dataDocuum.js",
         "js/dataMercury.js",
@@ -79,7 +78,7 @@
         "lib/purify.min.js",
         "lib/uuid-random.min.js",
         "lib/fileSaver.js",
-        "lib/icsLib.js",
+        "lib/ics.js",
         "js/dataMcGillMap.js",
         "js/scheduleExport.js"
       ]

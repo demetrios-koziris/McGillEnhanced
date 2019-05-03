@@ -1,0 +1,42 @@
+
+
+filesaver.js
+Source:     https://github.com/eligrey/FileSaver.js/blob/2.0.0/src/FileSaver.js
+License:    https://github.com/eligrey/FileSaver.js/blob/2.0.0/LICENSE.md
+
+
+ics.js
+Source:     https://github.com/demetrios-koziris/ics.js/blob/0.3.0/build/ics.js
+License:    https://github.com/demetrios-koziris/ics.js/blob/0.3.0/LICENSE
+
+
+jquery-3.3.1.min.js
+Source:     https://code.jquery.com/jquery-3.3.1.min.js
+Unminified: https://code.jquery.com/jquery-3.3.1.js
+License:    https://jquery.org/license
+
+
+md5.js
+Source:     https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/crypto-js/CryptoJS%20v3.1.2.zip 
+File:       CryptoJS v3.1.2.zip\rollups\md5.js
+License:    https://code.google.com/p/crypto-js/wiki/License
+
+
+purify.min.js
+Source:     https://github.com/cure53/DOMPurify/blob/1.0.10/dist/purify.min.js
+Unminified: https://github.com/cure53/DOMPurify/blob/1.0.10/dist/purify.js
+License:    https://github.com/cure53/DOMPurify/blob/1.0.10/LICENSE
+
+
+tooltipsy.min.js
+Note:       This repository does not provide tagged releases (I'm planning to switch to a different tooltips library).
+Source:     https://github.com/briancray/tooltipsy/blob/aadb25874aede34a73b0845bd22d41ba7f9f5ebe/tooltipsy.min.js
+Unminified: https://github.com/briancray/tooltipsy/blob/aadb25874aede34a73b0845bd22d41ba7f9f5ebe/tooltipsy.source.js
+License:    https://github.com/briancray/tooltipsy/blob/aadb25874aede34a73b0845bd22d41ba7f9f5ebe/LICENSE
+
+
+uuid-random.min.js
+Source:     https://github.com/jchook/uuid-random/blob/1.0.7/uuid-random.min.js
+Unminified: https://github.com/jchook/uuid-random/blob/1.0.7/index.js
+License:    https://github.com/jchook/uuid-random/blob/1.0.7/LICENSE.txt
+
