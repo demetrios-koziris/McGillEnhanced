@@ -44,3 +44,27 @@ chrome.runtime.onInstalled.addListener(function (details) {
 chrome.browserAction.onClicked.addListener(function(tab) {
 	chrome.tabs.create({'url': 'https://demetrios-koziris.github.io/McGillEnhanced/', 'selected': true});
 });
+
+
+// if enabled setting not in storage, create it and set to true
+chrome.storage.local.get('enabled', function(result) {
+	const enabledSetting = result.enabled;
+	if (enabledSetting === undefined) {
+		chrome.storage.local.set({'enabled': true});
+	}
+});
+
+// on changes to storage, update extension icon if enabled setting was changed
+chrome.storage.onChanged.addListener(function(changes, areaName) {
+	for(let key in changes) {
+		if(key === 'enabled') {
+			const enabledSetting = changes[key].newValue;
+			setIcon(enabledSetting);
+		}
+	}
+});
+
+// set extension icon according to enabled setting
+function setIcon(enabledSetting) {
+	chrome.browserAction.setIcon({path: '/icons/mcgill-' + (enabledSetting ? '' : 'disabled-') + '128.png'});
+}

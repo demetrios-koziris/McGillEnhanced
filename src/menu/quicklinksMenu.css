@@ -89,9 +89,9 @@ a {
 
 #simvo-hide-btn {
 	width: 24px;
-	height:   24px;
+	height:	 24px;
 	padding: 0px;
-	margin:   0px;
+	margin:	 0px;
 	float: right ;
 	margin-bottom: 10px;
 }
@@ -100,10 +100,90 @@ a {
 	width:	408px;
 }
 
+
+
+.switch {
+	position: relative;
+	width: 34px;
+	height: 18px;
+}
+
+.switch input { 
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 12px;
+	width: 12px;
+	left: 3px;
+	bottom: 3px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: #E54944;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #E54944;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(16px);
+	-ms-transform: translateX(16px);
+	transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+.versionWrapper {
+	user-select: none;
+	text-align: center; 
+	padding-top: 8px;
+	padding-bottom: 4px;
+	font-size: 14px;
+}
+
+.versionWrapper div, label {
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	user-select: none;
+	display: inline-block;
+	vertical-align:middle;
+	padding: 0px 6px;
+}
+
 #version {
-	padding-top: 4px;
 	text-align: center;
 	color: #000;
-	font-family: "Segoe UI", Tahoma, sans-serif;
-	font-size: 12px;
+}
+
+#enabledLabel {
+	width: 70px;
+	padding-left: 6px;
+	text-align: left; 
 }
