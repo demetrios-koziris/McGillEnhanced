@@ -2,14 +2,13 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
-    "*://*.mcgill.ca/*", 
-    "*://demetrios-koziris.github.io/*", 
-    "*://www.docuum.com/McGill*", 
-    "*://vsb.mcgill.ca/*"
+    "*://*.mcgill.ca/*",
+    "*://demetrios-koziris.github.io/*",
+    "*://www.docuum.com/*"
   ],
   "background": {
     "scripts": [
@@ -31,10 +30,9 @@
   "content_scripts": [
     {
       "matches" : [
-        "*://*.mcgill.ca/*", 
-        "*://demetrios-koziris.github.io/*", 
-        "*://www.docuum.com/McGill*", 
-        "*://vsb.mcgill.ca/*"
+        "*://*.mcgill.ca/*",
+        "*://demetrios-koziris.github.io/*",
+        "*://www.docuum.com/*"
       ],
       "js": [
         "lib/purify.min.js",
@@ -60,10 +58,9 @@
     {
       "all_frames": true,
       "matches" : [
-        "*://*.mcgill.ca/*", 
-        "*://demetrios-koziris.github.io/*", 
-        "*://www.docuum.com/McGill*", 
-        "*://vsb.mcgill.ca/*"
+        "*://*.mcgill.ca/*",
+        "*://demetrios-koziris.github.io/*",
+        "*://www.docuum.com/*"
       ],
       "js" : [
         "js/insertCSS.js"
@@ -96,6 +93,3 @@
     "icons/empty-15.png"
   ]
 }
-
-
-
