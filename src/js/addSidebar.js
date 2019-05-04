@@ -201,10 +201,11 @@ function makeSidebarContent() {
 		const relatedPrograms = generateSidebarSection('Related Programs');
 		sidebarLinksBlock.appendChild(relatedPrograms);
 
-		document.getElementsByClassName('view-header')[0].innerHTML= '<i>This course may be used as a required or complementary course in the following:</i>'
+		const relatedProgramsHeader = document.getElementsByClassName('view-header')[0];
+		relatedProgramsHeader.firstElementChild.innerText = 'This course may be used as a required or complementary course in the following:';
+
 		const relatedProgramsList = document.getElementsByClassName('view-catalog-program')[0];
 		relatedProgramsList.className += ' mcen-relatedProgramsList';
-		// sidebarRelatedBlock.appendChild(document.createElement('br'));
 		relatedPrograms.appendChild(relatedProgramsList);
 	}
 

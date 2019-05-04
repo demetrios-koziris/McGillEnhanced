@@ -25,7 +25,7 @@ function generateClassAverageRow(data, rowIndex) {
 	const classAverageTerm = document.createElement('div');
 	if (aveYearF === urlYearF) {
 		classAverageTerm.className = 'mcen-class-average-term-nonactive';
-		classAverageTerm.innerHTML = '&bull; ' + data.year + ' ' + data.term + ':';
+		classAverageTerm.innerText = '\u2022 ' + data.year + ' ' + data.term + ':';
 
 		classAverageRow.setAttribute('onmouseover', 'let profsFromClassAveTerm = document.getElementsByClassName("mcen-class-ave-prof-marker-" + '+data.termcode.slice(-1)+'); for (let i = 0; i < profsFromClassAveTerm.length; i++){profsFromClassAveTerm[i].style.display="inline"}');
 		classAverageRow.setAttribute('onmouseout', 'let profsFromClassAveTerm = document.getElementsByClassName("mcen-class-ave-prof-marker-" + '+data.termcode.slice(-1)+'); for (let i = 0; i < profsFromClassAveTerm.length; i++){profsFromClassAveTerm[i].style.display="none"}');
@@ -33,14 +33,17 @@ function generateClassAverageRow(data, rowIndex) {
 	}
 	else {
 		classAverageTerm.className = 'mcen-class-average-term';
-		const yearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, aveYearF+"-"+(aveYearF+1));	
-		classAverageTerm.innerHTML = '<a href=' + yearURL + '>' + data.year + ' ' + data.term + ':</a>';
+		const yearURL = url.replace(/20[0-9][0-9]-20[0-9][0-9]/, aveYearF+"-"+(aveYearF+1));
+		const classAverageTermLink = document.createElement('a');
+		classAverageTermLink.href = yearURL;
+		classAverageTermLink.innerText = data.year + ' ' + data.term + ':';
+		classAverageTerm.appendChild(classAverageTermLink)
 	}
 	classAverageRow.appendChild(classAverageTerm);
 
 	const classAverageVal = document.createElement('div');
 	classAverageVal.className = 'mcen-class-average-val';
-	classAverageVal.innerHTML = data.average;
+	classAverageVal.innerText = data.average;
 	classAverageRow.appendChild(classAverageVal);
 
 	return classAverageRow;
@@ -115,7 +118,6 @@ function generateAveCrowdsourceSection() {
 				classAveragesData.splice(i, 1);
 			}
 		}
-		let classAverageRowCounter = 0;
 		for (let i = classAveragesData.length-1; i >= 0; i--) {
 			crowdsourceContentRightTable.appendChild(generateClassAverageRow(classAveragesData[i], i));
 		}
@@ -123,14 +125,17 @@ function generateAveCrowdsourceSection() {
 
 	const crowdsourceContentLeft = document.createElement('div');
 	crowdsourceContentLeft.id = 'mcen-class-averages-content-left';
+
+	const crowdsourceContentLeftP = document.createElement('p');
 	if (classAveragesData) {
-		crowdsourceContentLeft.innerHTML = '<p>These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript and allow you to submit them.</p>';
+		crowdsourceContentLeftP.innerText = 'These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript and allow you to submit them.';
 	}
 	else {
+		crowdsourceContentLeftP.innerText = 'McGill Enhanced is currently undertaking a crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript classes and allow you to submit them.';
 		crowdsourceContentLeft.style.paddingLeft = '0px';
 		crowdsourceContentLeft.style.width = '100%';
-		crowdsourceContentLeft.innerHTML = '<p>McGill Enhanced is currently undertaking a crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript classes and allow you to submit them.</p>';
 	}
+	crowdsourceContentLeft.appendChild(crowdsourceContentLeftP);
 	crowdsourceContent.appendChild(crowdsourceContentLeft);
 
 	const classAveragesButtonDiv = document.createElement('div');
@@ -142,7 +147,7 @@ function generateAveCrowdsourceSection() {
 	downloadClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("downloadClassAverages"));');
 	downloadClassAveragesButton.id = 'mcen-class-averages-download';
 	downloadClassAveragesButton.className = 'mcen-class-averages-button';
-	downloadClassAveragesButton.innerHTML = 'McGill Enhanced: Retrieve Your Class Averages!';
+	downloadClassAveragesButton.innerText = 'McGill Enhanced: Retrieve Your Class Averages!';
 	downloadClassAveragesButton.title = 'Click to retrieve the class averages from your transcript.\nMust be already signed into Minerva!';
 	classAveragesButtonDiv.appendChild(downloadClassAveragesButton);
 
@@ -209,30 +214,30 @@ function averageGPAsDownloader() {
 					logForDebug(aveGPAs);
 
 					if (aveGPAs.length > 0) {
-						let aveGPAsShowString = '';
-						for (let i = 0; i < aveGPAs.length; i++) {
-							aveGPAsSubmitString += encodeURIComponent(aveGPAs[i].toString()) + '%0A';
-							aveGPAsShowString += '<p>' + aveGPAs[i][1] +' '+ aveGPAs[i][2] +' '+aveGPAs[i][4] +' '+ aveGPAs[i][5] +' '+ aveGPAs[i][6] + '</p>';
-						}
-
-						const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
-						const downloadClassAveragesButton = document.getElementById('mcen-class-averages-download');
-						classAveragesButtonDiv.removeChild(downloadClassAveragesButton);
 
 						const classAveragesScrollDiv = document.createElement('div');
 						classAveragesScrollDiv.className = 'mcen-class-averages-scroll';
-						classAveragesScrollDiv.innerHTML = aveGPAsShowString;
-						classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
-
-						classAveragesButtonDiv.appendChild(document.createElement('br'));
+						for (let i = 0; i < aveGPAs.length; i++) {
+							aveGPAsSubmitString += encodeURIComponent(aveGPAs[i].toString()) + '%0A';
+							
+							const aveGPAsShowText = document.createElement('p');
+							aveGPAsShowText.innerText = aveGPAs[i][1] +' '+ aveGPAs[i][2] +' '+aveGPAs[i][4] +' '+ aveGPAs[i][5] +' '+ aveGPAs[i][6];
+							classAveragesScrollDiv.append(aveGPAsShowText);
+						}
 
 						const submitClassAveragesButton = document.createElement('button');
 						submitClassAveragesButton.setAttribute('type', 'button');
 						submitClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("submitClassAverages"));');					
 						submitClassAveragesButton.id = 'mcen-class-averages-submit';
 						submitClassAveragesButton.className = 'mcen-class-averages-button';
-						submitClassAveragesButton.innerHTML = 'Submit Class Averages';
+						submitClassAveragesButton.innerText = 'Submit Class Averages';
 						submitClassAveragesButton.title = 'Click to submit the above class averages\nthat were retrieved from your transcript!';
+
+						const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
+						const downloadClassAveragesButton = document.getElementById('mcen-class-averages-download');
+						classAveragesButtonDiv.removeChild(downloadClassAveragesButton);
+						classAveragesButtonDiv.appendChild(classAveragesScrollDiv);
+						classAveragesButtonDiv.appendChild(document.createElement('br'));
 						classAveragesButtonDiv.appendChild(submitClassAveragesButton);
 					}
 					else {
@@ -278,14 +283,31 @@ function averageGPAsDownloader() {
 			const classAveragesButtonDiv = document.getElementById('mcen-class-averages-button-div');
 			classAveragesButtonDiv.parentNode.removeChild(classAveragesButtonDiv);
 
-			const classAveragesMessageDiv = document.getElementById('mcen-class-averages-content-left');
-			classAveragesMessageDiv.appendChild(document.createElement('br'));
+			const classAveragesThanksMessageHeader = document.createElement('strong');
+			classAveragesThanksMessageHeader.innerText = 'Thank you for your contribution!';
+
+			const classAveragesThanksMessageLink = document.createElement('a');
+			classAveragesThanksMessageLink.href = 'https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing';
+			classAveragesThanksMessageLink.innerText = 'Crowdsourced Averages';
+
+			const classAveragesThanksMessageImage = document.createElement('img');
+			classAveragesThanksMessageImage.src = 'https://i.imgur.com/ClIR1CX.png'
+			classAveragesThanksMessageImage.setAttribute('style', 'margin-top: 10px;');
 
 			const classAveragesThanksMessage = document.createElement('p');
 			classAveragesThanksMessage.id = 'mcen-class-averages-thanks';
-			classAveragesThanksMessage.innerHTML = '<strong>Thank you for your contribution!</strong><br>The results can be accessed by clicking the <a href="https://demetrios-koziris.github.io/McGillEnhanced/class-ave-crowdsourcing">Crowdsourced Averages</a><br>link in the McGill Enhanced section of the Extension menu:<br><img src = "https://i.imgur.com/ClIR1CX.png" style="margin-top: 10px;"/>';
-			classAveragesMessageDiv.appendChild(classAveragesThanksMessage);
+			classAveragesThanksMessage.appendChild(classAveragesThanksMessageHeader)
+			classAveragesThanksMessage.appendChild(document.createElement('br'));
+			classAveragesThanksMessage.appendChild(document.createTextNode('The results can be accessed by clicking the '));
+			classAveragesThanksMessage.appendChild(classAveragesThanksMessageLink)
+			classAveragesThanksMessage.appendChild(document.createElement('br'));
+			classAveragesThanksMessage.appendChild(document.createTextNode('link in the McGill Enhanced section of the Extension menu:'));
+			classAveragesThanksMessage.appendChild(document.createElement('br'));
+			classAveragesThanksMessage.appendChild(classAveragesThanksMessageImage)
 
+			const classAveragesMessageDiv = document.getElementById('mcen-class-averages-content-left');
+			classAveragesMessageDiv.appendChild(document.createElement('br'));
+			classAveragesMessageDiv.appendChild(classAveragesThanksMessage);
 
 		}
 		catch(err) {
@@ -294,15 +316,6 @@ function averageGPAsDownloader() {
 		}
 
 	});
-}
-
-
-function arrayToCSV(rows) {
-	var content = '';
-	rows.forEach(function(row, index) {
-		content += row.join(',') + '\n';
-	});
-	return content;
 }
 
 

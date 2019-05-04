@@ -19,6 +19,36 @@ const intIDs = ['fmjglinhknddndjfblbjoinijenppenk', 'fdjidmiaclmoakbolclpiefedoi
 
 const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
-const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (ID: ' + chrome.runtime.id.substring(0, 16) + ')');
+const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
 document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
+
+document.getElementById('enabledSwitch').addEventListener('click', updateEnabledSetting);
+
+function updateEnabledSetting() {
+	const newEnabledSetting = document.getElementById('enabledSwitch').checked;
+	updateEnabledSwitchLabel(newEnabledSetting);
+	setEnabled(newEnabledSetting);
+}
+
+function updateEnabledSwitchLabel(enabledSetting) {
+	document.getElementById('enabledLabel').innerText = (enabledSetting ? 'Enabled' : 'Disabled');
+}
+
+function setEnabled(enabledSetting) {
+	chrome.storage.local.set({'enabled':enabledSetting});
+}
+
+function initializeEnabledSwitch() {
+	chrome.storage.local.get('enabled', function(result) {
+		let enabledSetting = result.enabled;
+		if (enabledSetting === undefined) {
+			updateEnabledSetting();
+		}
+		else {
+			updateEnabledSwitchLabel(enabledSetting);
+			document.getElementById('enabledSwitch').checked = enabledSetting;
+		}
+	});
+}
+initializeEnabledSwitch();
