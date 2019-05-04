@@ -30,7 +30,7 @@ initIfEnabled();
 function initIfEnabled() {
 	const start = Date.now();
 	chrome.storage.local.get('enabled', function(result) {
-		const enabledSetting = result.enabled
+		const enabledSetting = result.enabled;
 		if (enabledSetting === false) {
 			console.log('McGill Enhanced is currently disabled.');
 		}

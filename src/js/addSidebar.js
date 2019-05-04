@@ -137,7 +137,8 @@ function makeSidebarContent() {
 	
 	//SIDEBAR SECTION: LECTURE RECORDINGS
 	const availableRecordingURLdata = [];
-	const oldestAvailableTerm = translateToTermCode(currentTermYear-1, currentTermMonth);
+	const oldestAvailableTerm = calcOldestAvailableTerm(currentTermYear, currentTermMonth);
+	logForDebug('LRS oldestAvailableTerm: ' + oldestAvailableTerm);
 	if (recordingURLdata) {
 		for (let i = 0; i < recordingURLdata.length; i++) {
 			if (translateToTermCode(recordingURLdata[i].year, recordingURLdata[i].month) >= oldestAvailableTerm) {
@@ -224,6 +225,12 @@ function makeSidebarContent() {
 
 }
 
+
+function calcOldestAvailableTerm(currentTermYear, currentTermMonth) {
+	const oldestAvailableTermYear = (currentTermMonth===1 ? currentTermYear-2 : currentTermYear-1);
+	const oldestAvailableTermMonth = (sysMonth>=9 ? 5 : (sysMonth>=5 ? 1 : 9));
+	return translateToTermCode(oldestAvailableTermYear, oldestAvailableTermMonth);
+}
 
 function generateSidebarSection(titleString) {
 	const sidebarSection = document.createElement('div');
