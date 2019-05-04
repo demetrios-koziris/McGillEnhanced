@@ -25,7 +25,7 @@ function getMonthToSemester() {
 }
 
 function getRecordingData() {
-	let recordingData = {
+	let recordingData = 	{
 		"AECH111": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11256" },
 			{ "year": 2016, "month": 1, "section": "001", "id": "13093" }
@@ -188,7 +188,8 @@ function getRecordingData() {
 			{ "year": 2017, "month": 1, "section": "001", "id": "14840" },
 			{ "year": 2017, "month": 5, "section": "001", "id": "16244" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17089" },
-			{ "year": 2018, "month": 9, "section": "001", "id": "19427" }
+			{ "year": 2018, "month": 9, "section": "001", "id": "19427" },
+			{ "year": 2019, "month": 5, "section": "001", "id": "20714" }
 		],
 		"CHEM212": [
 			{ "year": 2017, "month": 5, "section": "001", "id": "16240" },
@@ -211,7 +212,8 @@ function getRecordingData() {
 			{ "year": 2018, "month": 5, "section": "001", "id": "18468" },
 			{ "year": 2018, "month": 5, "section": "003", "id": "18408" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20328" },
-			{ "year": 2019, "month": 1, "section": "008", "id": "19739" }
+			{ "year": 2019, "month": 1, "section": "008", "id": "19739" },
+			{ "year": 2019, "month": 5, "section": "001", "id": "20715" }
 		],
 		"CHEM232": [
 			{ "year": 2016, "month": 9, "section": "001", "id": "13966" }
@@ -254,7 +256,8 @@ function getRecordingData() {
 			{ "year": 2016, "month": 9, "section": "001", "id": "14166" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17196" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18200" },
-			{ "year": 2019, "month": 1, "section": "001", "id": "20489" }
+			{ "year": 2019, "month": 1, "section": "001", "id": "20489" },
+			{ "year": 2019, "month": 5, "section": "001", "id": "20658" }
 		],
 		"COMP206": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "18208" },
