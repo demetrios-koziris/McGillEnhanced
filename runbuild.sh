@@ -51,8 +51,10 @@ for browser in "$@"; do
 		continue
 	fi 
 
-	today=$(date '+%Y_%m_%d__%H_%M_%S');
-	buildname="McGillEnhanced__${today}__${browser}"
+	today=$(date '+%Y.%m.%d_%H.%M.%S');
+	manifest='src/manifest.json'
+	version=$(grep "\"version\":" $manifest | grep -o "[0-9]\+\(\.[0-9]\+\)\+")
+	buildname="McGillEnhanced_v${version}__${today}__${browser}"
 	echo "$0: Creating $browser version in build/$buildname"
 	mkdir -p build
 
