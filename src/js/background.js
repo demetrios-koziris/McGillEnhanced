@@ -52,6 +52,9 @@ chrome.storage.local.get('enabled', function(result) {
 	if (enabledSetting === undefined) {
 		chrome.storage.local.set({'enabled': true});
 	}
+	else {
+		setIcon(result.enabled);
+	}
 });
 
 // on changes to storage, update extension icon if enabled setting was changed
