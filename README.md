@@ -53,23 +53,23 @@ For a full list of features, please see the following link:
 
 #### Usage:  
 ```
-$ ./build.sh [options] [<platform>...]
+$ ./runbuild.sh [options] [<platform>...]
 ```
 ```
 Options:
-    -c       Clean the /build directory before building  
+    -c       Clear the /build directory before building  
 Platform:
-    edge     Create an edge extension in /build  
-    chrome   Create a chrome extension in /build  
-    firefox  Create a firefox add-on in /build 
-             If no platform is given, script will default to building the extension for every platform
+    publish  For publishing in chrome web store or mozilla add-on site
+    edge     For dev purposes (Edge extension)
+    firefox  For dev purposes (Firefox add-on)
+             If no parameters are passed, script will default to building all platforms
 ```
 #### Examples:
 ```
-$ ./build.sh
-$ ./build.sh chrome  
-$ ./build.sh -c edge  
-$ ./build.sh chrome firefox  
+$ ./runbuild.sh
+$ ./runbuild.sh publish  
+$ ./runbuild.sh -c edge  
+$ ./runbuild.sh publish firefox  
 ```
 
 

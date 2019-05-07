@@ -1,31 +1,30 @@
 #!/bin/bash
 
 #  Usage: 
-#    $ ./build.sh [options] [<platform>...]
+#    $ ./runbuild.sh [options] [<platform>...]
 #
 #  Options:
-#    -c       Clean the /build directory before building
+#    -c       Clear the /build directory before building
 #  Platform:
-#    edge     Create an edge extension in /build 
-#    chrome   Create a chrome extension in /build
-#    firefox  Create a firefox add-on in /build 
-#             If no parameters are passed, script will default to building the extension for every browser
+#    publish  For publishing in chrome web store or mozilla add-on site
+#    edge     For dev purposes (Edge extension)
+#    firefox  For dev purposes (Firefox add-on)
+#             If no parameters are passed, script will default to building all platforms
 #
 #  Examples :
-#    $ ./build.sh 
-#    $ ./build.sh -c
-#    $ ./build.sh chrome
-#    $ ./build.sh -c edge
-#    $ ./build.sh chrome firefox
-#    $ ./build.sh -c edge chrome firefox
+#    $ ./runbuild.sh 
+#    $ ./runbuild.sh -c
+#    $ ./runbuild.sh publish
+#    $ ./runbuild.sh -c edge
+#    $ ./runbuild.sh publish firefox
 
 
 # handle -c (clean) option flag
 while getopts "c" opt; do
   case $opt in
     c)
-      echo "$0: Option -clean was triggered"
-      echo "$0: Cleaning /build directory"
+      echo "$0: Option -clear was triggered"
+      echo "$0: Clearing /build directory"
       rm -r build
       mkdir -p build
       set -- ${@:2}
@@ -33,33 +32,33 @@ while getopts "c" opt; do
   esac
 done
 
-# if no arguments passed, default to building all browser versions of extension
+# if no arguments passed, default to building all versions
 if [ $# -lt 1 ] ; then
   echo
-  echo "$0: Building all browser extensions since no arguments specifying browsers received"
-  set -- "edge" "firefox" "chrome"
+  echo "$0: Building all platforms since no arguments specifying platform received"
+  set -- "publish" "edge" "firefox"
 fi
 
-# build extension for each browser specified in arguments (builds all if no browser specified)
-for browser in "$@"; do
+# build extension for each version specified in arguments (builds all if no version specified)
+for platform in "$@"; do
 
 	echo 
 
-	if [ $browser != edge ] && [ $browser != firefox ] && [ $browser != chrome ]; then
-		echo "$0: Invalid argument: $browser"
-		echo "$0: Browser argument specified must be edge, firefox, or chrome"
+	if [ $platform != publish ] && [ $platform != edge ] && [ $platform != firefox ]; then
+		echo "$0: Invalid argument: $platform"
+		echo "$0: Version argument specified must be publish, edge, or firefox"
 		continue
 	fi 
 
 	today=$(date '+%Y.%m.%d_%H.%M.%S');
 	manifest='src/manifest.json'
 	version=$(grep "\"version\":" $manifest | grep -o "[0-9]\+\(\.[0-9]\+\)\+")
-	buildname="McGillEnhanced_v${version}__${today}__${browser}"
-	echo "$0: Creating $browser version in build/$buildname"
+	buildname="McGillEnhanced_v${version}__${today}__${platform}"
+	echo "$0: Creating $platform version in build/$buildname"
 	mkdir -p build
 
-	# build edge extension
-	if [ $browser == edge ]; then
+	# build edge extension for dev purposes 
+	if [ $platform == edge ]; then
 
 		mkdir -p build/$buildname
 		cp -r src/edge/background.html src/edge/backgroundScriptsAPIBridge.js src/edge/contentScriptsAPIBridge.js build/$buildname
@@ -81,8 +80,8 @@ for browser in "$@"; do
 
 	fi
 
-	# build firefox add-on
-	if [ $browser == firefox ]; then
+	# build firefox add-on for dev purposes 
+	if [ $platform == firefox ]; then
 
 		match='"author": "kozirisdev",'
 		insert='  "applications":{"gecko":{"id":"{fbd3b601-613b-4747-a92b-4d37b2fd7667}"}},'
@@ -97,8 +96,8 @@ for browser in "$@"; do
 
 	fi
 
-	# build chrome extension
-	if [ $browser == chrome ]; then
+	# build extension suitable for publishing as chrome extension or firefox webextension
+	if [ $platform == publish ]; then
 
 		cd src
 		zip -rq ../build/$buildname.zip css icons js lib menu manifest.json
