@@ -15,38 +15,11 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-var url = window.location.href;
-
-const prodIDs = ['jlacaimkacnkhlcgapgakpklnibgfkde', '{fbd3b601-613b-4747-a92b-4d37b2fd7667}'];
-const isPROD = prodIDs.includes(chrome.runtime.id);
-
-let logForDebug = (isPROD ? function(){} : console.log.bind(window.console));
-logForDebug('McGill Enhanced Debug mode is ON');
-
-
-initIfEnabled();
-
-
-function initIfEnabled() {
-	const start = Date.now();
-	chrome.storage.local.get('enabled', function(result) {
-		const enabledSetting = result.enabled;
-		if (enabledSetting === false) {
-			console.log('McGill Enhanced is currently disabled.');
-		}
-		else {
-			if (enabledSetting === undefined) {
-				chrome.storage.local.set({'enabled': true});
-			}
-			init();
-			const time = Date.now() - start;
-			logForDebug('McGill Enhanced took ' + time + ' ms to fetch enabled setting.');
-		}
-	});
+if (enabledSetting) {
+	applyEnhancement();
 }
 
-
-function init() {
+function applyEnhancement() {
 
 	// run on McGill.ca pages
 	if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {

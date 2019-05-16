@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.2.11",
+  "version": "4.2.12",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
@@ -29,6 +29,19 @@
   },
   "content_scripts": [
     {
+      "all_frames": true,
+      "matches" : [
+        "*://*.mcgill.ca/*",
+        "*://demetrios-koziris.github.io/*",
+        "*://www.docuum.com/*"
+      ],
+      "js" : [
+        "js/preInit.js",
+        "js/initStyling.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
       "matches" : [
         "*://*.mcgill.ca/*",
         "*://demetrios-koziris.github.io/*",
@@ -52,20 +65,8 @@
         "js/applyToolTipsy.js",
         "js/addCourseTitleTooltips.js",
         "js/vsbEnhanced.js",
-        "js/init.js"
+        "js/initEnhancement.js"
       ]
-    },
-    {
-      "all_frames": true,
-      "matches" : [
-        "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*",
-        "*://www.docuum.com/*"
-      ],
-      "js" : [
-        "js/insertCSS.js"
-      ],
-      "run_at": "document_start"
     },
     {
       "matches": [
@@ -85,7 +86,6 @@
     "css/sidebar.css",
     "css/yearMenu.css",
     "css/aveCrowdsource.css",
-    "css/profLinks.css",
     "css/profLinks.css",
     "css/programs.css",
     "css/vsb.css",
