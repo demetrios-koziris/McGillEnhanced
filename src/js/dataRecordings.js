@@ -140,10 +140,12 @@ function getRecordingData() {
 			{ "year": 2016, "month": 9, "section": "751", "id": "13571" }
 		],
 		"CGM2510": [
-			{ "year": 2018, "month": 9, "section": "761", "id": "18639" }
+			{ "year": 2018, "month": 9, "section": "761", "id": "18639" },
+			{ "year": 2019, "month": 5, "section": "741", "id": "20740" }
 		],
 		"CGMG210": [
-			{ "year": 2018, "month": 9, "section": "761", "id": "18741" }
+			{ "year": 2018, "month": 9, "section": "761", "id": "18741" },
+			{ "year": 2019, "month": 5, "section": "741", "id": "20741" }
 		],
 		"CHEE351": [
 			{ "year": 2017, "month": 1, "section": "001", "id": "14642" }
@@ -188,8 +190,7 @@ function getRecordingData() {
 			{ "year": 2017, "month": 1, "section": "001", "id": "14840" },
 			{ "year": 2017, "month": 5, "section": "001", "id": "16244" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17089" },
-			{ "year": 2018, "month": 9, "section": "001", "id": "19427" },
-			{ "year": 2019, "month": 5, "section": "001", "id": "20714" }
+			{ "year": 2018, "month": 9, "section": "001", "id": "19427" }
 		],
 		"CHEM212": [
 			{ "year": 2017, "month": 5, "section": "001", "id": "16240" },
