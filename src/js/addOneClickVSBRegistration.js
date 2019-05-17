@@ -15,7 +15,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-function enhanceVSB() {
+function addOneClickVSBRegistration() {
 
 	const notloggedinMessage = 'You must be already signed in to Minvera in order to use this feature. Please sign in and then return to this page.';
 	const notpermittedMessage = 'Minerva indicates that you are not permitted to register at this time or that this term is not available for registration processing. Please check Minerva to verify this.';

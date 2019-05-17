@@ -16,10 +16,10 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 
 if (enabledSetting) {
-	applyEnhancement();
+	initEnhancement();
 }
 
-function applyEnhancement() {
+function initEnhancement() {
 
 	// run on McGill.ca pages
 	if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
@@ -89,9 +89,14 @@ function applyEnhancement() {
 		console.log('McGill Enhanced took ' + time + ' ms to improve this page!');
 	}
 
+	// run on Minerva Course Schedule page
+	if (url.match(/horizon.mcgill.ca\/pban1\/bwskfshd.P_CrseSchdDetl.*/)) {
+		addScheduleExporter();
+	}
+
 	// run on VSB pages
 	if (url.match(/.+vsb\.mcgill\.ca/)) {
-		enhanceVSB();
+		addOneClickVSBRegistration();
 	}
 }
 

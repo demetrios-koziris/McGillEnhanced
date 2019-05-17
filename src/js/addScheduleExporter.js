@@ -15,10 +15,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-setupScheduleExporter();
-
-
-function setupScheduleExporter() {
+function addScheduleExporter() {
 	if (!(document.getElementById('term_id'))) {
 
 		const schedDownloadDiv = document.createElement('div');

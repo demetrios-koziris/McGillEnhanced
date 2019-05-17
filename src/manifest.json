@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.2.12",
+  "version": "4.2.13",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
@@ -52,11 +52,15 @@
         "lib/jquery-3.3.1.min.js",
         "lib/tooltipsy.min.js",
         "lib/md5.js",
+        "lib/uuid-random.min.js",
+        "lib/fileSaver.js",
+        "lib/ics.js",
         "js/dataDocuum.js",
         "js/dataMercury.js",
         "js/dataRecordings.js",
         "js/dataClassAverages.js",
         "js/dataCourseTitles.js",
+        "js/dataMcGillMap.js",
         "js/addSidebar.js",
         "js/addYearMenu.js",
         "js/addAveCrowdsource.js",
@@ -64,21 +68,9 @@
         "js/addCourseLinks.js",
         "js/applyToolTipsy.js",
         "js/addCourseTitleTooltips.js",
-        "js/vsbEnhanced.js",
+        "js/addScheduleExporter.js",
+        "js/addOneClickVSBRegistration.js",
         "js/initEnhancement.js"
-      ]
-    },
-    {
-      "matches": [
-        "*://horizon.mcgill.ca/pban1/bwskfshd.P_CrseSchdDetl*"
-      ],
-      "js": [
-        "lib/purify.min.js",
-        "lib/uuid-random.min.js",
-        "lib/fileSaver.js",
-        "lib/ics.js",
-        "js/dataMcGillMap.js",
-        "js/scheduleExport.js"
       ]
     }
   ],
