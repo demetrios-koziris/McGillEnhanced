@@ -25,7 +25,7 @@ function getMonthToSemester() {
 }
 
 function getRecordingData() {
-	let recordingData = 	{
+	let recordingData = {
 		"AECH111": [
 			{ "year": 2015, "month": 1, "section": "001", "id": "11256" },
 			{ "year": 2016, "month": 1, "section": "001", "id": "13093" }
@@ -665,7 +665,8 @@ function getRecordingData() {
 			{ "year": 2019, "month": 1, "section": "001", "id": "19884" }
 		],
 		"PSYC215": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11129" }
+			{ "year": 2015, "month": 1, "section": "001", "id": "11129" },
+			{ "year": 2019, "month": 5, "section": "001", "id": "20719" }
 		],
 		"PSYC331": [
 			{ "year": 2014, "month": 9, "section": "001", "id": "10132" },
@@ -706,6 +707,9 @@ function getRecordingData() {
 		],
 		"SOCI270": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12601" }
+		],
+		"YCBS263": [
+			{ "year": 2019, "month": 5, "section": "001", "id": "20777" }
 		]
 	};
 	return recordingData;
