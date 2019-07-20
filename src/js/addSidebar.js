@@ -136,28 +136,25 @@ function makeSidebarContent() {
 
 	
 	//SIDEBAR SECTION: LECTURE RECORDINGS
-	const availableRecordingURLdata = [];
 	const oldestAvailableTerm = calcOldestAvailableTerm(currentTermYear, currentTermMonth);
 	logForDebug('LRS oldestAvailableTerm: ' + oldestAvailableTerm);
 	if (recordingURLdata) {
-		for (let i = 0; i < recordingURLdata.length; i++) {
-			if (translateToTermCode(recordingURLdata[i].year, recordingURLdata[i].month) >= oldestAvailableTerm) {
-				availableRecordingURLdata.push(recordingURLdata[i]);
-			}
-		}
-	}
-	logForDebug(availableRecordingURLdata);
-	if (availableRecordingURLdata.length > 0) {
 		const recordings = generateSidebarSection('Lecture Recordings');
 		sidebarLinksBlock.appendChild(recordings);
 
-		for (let r = 0; r < availableRecordingURLdata.length; r++) {
-			const recordingData = availableRecordingURLdata[r];
-			const recordingURL = 'https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=' + recordingData.id;
-			const recordingsButtonString = monthToSemester[recordingData.month] + ' ' + recordingData.year + ' Sec ' + recordingData.section + ' Lectures';
-			recordings.appendChild(generateSidebarLink(recordingURL, 'mcen-red', recordingsButtonString, false));
+		const lrsplusURL = 'https://jhcccc.github.io/LRSPlus/?subject=' + courseSubject.toUpperCase() + '&number=' + courseNumber;
+		const lrsplusButtonString = courseNameSpaced + ' on LRS+';
+		recordings.appendChild(generateSidebarLink(lrsplusURL, 'mcen-red', lrsplusButtonString, false));
+
+		for (let i = 0; i < recordingURLdata.length; i++) {
+			if (translateToTermCode(recordingURLdata[i].year, recordingURLdata[i].month) >= oldestAvailableTerm) {
+				const recordingData = recordingURLdata[i];
+				const recordingURL = 'https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=' + recordingData.id;
+				const recordingsButtonString = monthToSemester[recordingData.month] + ' ' + recordingData.year + ' Sec ' + recordingData.section + ' Lectures';
+				recordings.appendChild(generateSidebarLink(recordingURL, 'mcen-red', recordingsButtonString, false));
+			}
 		}
-	}  
+	}
 
 
 	if ( docuumURLdata || wikinotesURLdata) {
