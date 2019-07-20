@@ -150,7 +150,7 @@ function makeSidebarContent() {
 			if (translateToTermCode(recordingURLdata[i].year, recordingURLdata[i].month) >= oldestAvailableTerm) {
 				const recordingData = recordingURLdata[i];
 				const recordingURL = 'https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=' + recordingData.id;
-				const recordingsButtonString = monthToSemester[recordingData.month] + ' ' + recordingData.year + ' Sec ' + recordingData.section + ' Lectures';
+				const recordingsButtonString = monthToSemester[recordingData.month] + ' ' + recordingData.year + ' Sec ' + recordingData.section + ' Recordings';
 				recordings.appendChild(generateSidebarLink(recordingURL, 'mcen-red', recordingsButtonString, false));
 			}
 		}
@@ -224,10 +224,9 @@ function makeSidebarContent() {
 
 
 function calcOldestAvailableTerm(currentTermYear, currentTermMonth) {
-	const oldestAvailableTermYear = (currentTermMonth===1 ? currentTermYear-2 : currentTermYear-1);
-	const oldestAvailableTermMonth = (sysMonth>=9 ? 5 : (sysMonth>=5 ? 1 : 9));
-	return translateToTermCode(oldestAvailableTermYear, oldestAvailableTermMonth);
+	return translateToTermCode(currentTermYear-1, currentTermMonth);
 }
+
 
 function generateSidebarSection(titleString) {
 	const sidebarSection = document.createElement('div');
