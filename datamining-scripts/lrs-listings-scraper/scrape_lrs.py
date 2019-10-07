@@ -58,14 +58,15 @@ def scrape_term_lrs_data(term, browser):
 	links = browser.get_current_page().find_all('a')
 	for link in links:
 		course = link.contents[0].text.split('-')
-		course_code = course[0] + course[1]
-		lrs_listings.append({
-			'course': course_code,
-			'year': int(term[:4]),
-			'month': int(term[-1]),
-			'section': course[2],
-			'id': link.get('href').split('CourseID=')[1]
-		})
+		if (len(course) >= 3):
+			course_code = course[0] + course[1]
+			lrs_listings.append({
+				'course': course_code,
+				'year': int(term[:4]),
+				'month': int(term[-1]),
+				'section': course[2],
+				'id': link.get('href').split('CourseID=')[1]
+			})
 
 	return lrs_listings
 
