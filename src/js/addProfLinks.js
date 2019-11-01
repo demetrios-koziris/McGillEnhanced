@@ -72,7 +72,7 @@ function makeProfLinks() {
 		for (let i = 0; i+1 < profsSourceByTerm.length; i+=2) {
 
 			const termKey = profsSourceByTerm[i+1];
-			const profsForTerm = profsSourceByTerm[i].split(',');
+			const profsForTerm = profsSourceByTerm[i].split(';');
 			for (let p=0; p<profsForTerm.length; p++) {
 
 				const newProfObject = generateProfObject(mercuryProfs, profsForTerm[p]);
@@ -163,24 +163,28 @@ function generateProfLinkButton(url, message, className) {
 	return link;
 }
 
-function generateProfObject(mercuryProfs, origName) {
+function generateProfObject(mercuryProfs, parsedName) {
 
-	const name = origName.trim();
-	const splitName = name.split(' ');
-	const profName = {
-		full: name,
-		first: splitName[0],
-		last: splitName[splitName.length-1]
-	};
-	const nameMD5 = CryptoJS.MD5(name);
+	const origName = parsedName.trim();
+	const splitName = origName.split(',');
+	const firstName = splitName[1].trim();
+	const lastName = splitName[0].trim();
+	const fullName = firstName + ' ' + lastName;
+	const nameMD5 = CryptoJS.MD5(fullName);
 	const profMinervaID = (nameMD5 in mercuryProfs ? mercuryProfs[nameMD5] : null);
+
 	const prof = {
-		key: name.replace(/\W/g, ''),
-		name: profName,
+		key: fullName.replace(/\W/g, ''),
+		name: {
+			orig: origName,
+			full: fullName,
+			first: firstName,
+			last: lastName
+		},
 		minervaID: profMinervaID,
 		termsTeaching: {},
-		urlCourses: encodeURI('https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext="' + profName.full + '"'),
-		urlGoogle: encodeURI('https://www.google.ca/search?q="rate"+"mcgill"+' + profName.first + '+' + profName.last),
+		urlCourses: encodeURI('https://www.mcgill.ca/study/' + urlYears + '/courses/search?search_api_views_fulltext="' + origName + '"'),
+		urlGoogle: encodeURI('https://www.google.ca/search?q="rate"+"mcgill"+' + firstName + '+' + lastName),
 		urlMercury: encodeURI('https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form' + (profMinervaID !== null ? '?form_mode=ar&inst_tab_in='+profMinervaID : ''))
 	};
 	return prof;
