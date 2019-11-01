@@ -330,6 +330,9 @@ function getRecordingData() {
 		"COMP767": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "17481" }
 		],
+		"CPAG410": [
+			{ "year": 2019, "month": 9, "section": "751", "id": "21522" }
+		],
 		"DENT220D1": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12642" }
 		],
@@ -427,6 +430,7 @@ function getRecordingData() {
 			{ "year": 2016, "month": 9, "section": "001", "id": "13640" }
 		],
 		"INDS116": [
+			{ "year": 2017, "month": 1, "section": "001", "id": "16163" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20625" }
 		],
 		"INDS117": [
@@ -442,6 +446,9 @@ function getRecordingData() {
 		],
 		"INDS212": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "16635" }
+		],
+		"INDS305": [
+			{ "year": 2015, "month": 5, "section": "001", "id": "11533" }
 		],
 		"INSY336": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "19108" },
