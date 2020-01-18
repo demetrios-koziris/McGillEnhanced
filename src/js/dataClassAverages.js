@@ -16,7 +16,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 
 function getClassAveragesData() {
-	let classAveragesData = 	{
+	let classAveragesData = {
 		"ACCT351": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
@@ -154,7 +154,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"AEPH112": [
 			{ "credits": "4", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B+" },
@@ -205,8 +206,12 @@ function getClassAveragesData() {
 		"AGRI215": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
+		"AGRI325": [
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
+		],
 		"AGRI411": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"ANAT212": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" },
@@ -322,7 +327,8 @@ function getClassAveragesData() {
 		],
 		"ANSC424": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ANSC560": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
@@ -379,7 +385,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2016", "term": "Summer", "termcode": "201605", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "A-" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"ANTH222": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B" },
@@ -393,7 +400,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B+" }
 		],
 		"ANTH301": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" }
@@ -410,6 +418,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
+		"ANTH319": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+		],
 		"ANTH322": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
@@ -425,6 +436,9 @@ function getClassAveragesData() {
 		],
 		"ANTH327": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+		],
+		"ANTH332": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"ANTH339": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
@@ -448,6 +462,9 @@ function getClassAveragesData() {
 		],
 		"ANTH358": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" }
+		],
+		"ANTH380": [
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
 		],
 		"ARCH201": [
 			{ "credits": "6", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
@@ -589,7 +606,11 @@ function getClassAveragesData() {
 		"ATOC214": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A-" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
+		],
+		"ATOC215": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"ATOC219": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
@@ -620,6 +641,9 @@ function getClassAveragesData() {
 		],
 		"BIEN310": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
+		],
+		"BIEN320": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"BIEN350": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
@@ -674,6 +698,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
+		"BIOC470": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+		],
 		"BIOL111": [
 			{ "credits": "3", "year": "2012", "term": "Fall", "termcode": "201209", "average": "B+" },
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B+" },
@@ -726,7 +753,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "C+" }
 		],
 		"BIOL205": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
@@ -860,7 +888,8 @@ function getClassAveragesData() {
 		"BREE103": [
 			{ "credits": "3", "year": "2012", "term": "Winter", "termcode": "201201", "average": "C+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B-" },
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "C+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "C+" },
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
 		],
 		"BREE205": [
 			{ "credits": "3", "year": "2012", "term": "Fall", "termcode": "201209", "average": "A-" },
@@ -882,7 +911,8 @@ function getClassAveragesData() {
 		],
 		"BREE217": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"BREE252": [
 			{ "credits": "3", "year": "2012", "term": "Fall", "termcode": "201209", "average": "B" },
@@ -953,7 +983,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"BUSA356": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
@@ -999,7 +1030,8 @@ function getClassAveragesData() {
 		],
 		"CATH200": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"CCOM205": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "C+" }
@@ -1020,10 +1052,12 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"CCOM314": [
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"CCOM315": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
@@ -1147,24 +1181,31 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"CHEE401": [
-			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" }
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"CHEE423": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B-" }
 		],
 		"CHEE440": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"CHEE453": [
 			{ "credits": "4", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "4", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"CHEE455": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"CHEE456": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"CHEE457": [
-			{ "credits": "5", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
+			{ "credits": "5", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
+			{ "credits": "5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"CHEE474": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
@@ -1178,13 +1219,15 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"CHEE491": [
-			{ "credits": "4", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
+			{ "credits": "4", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
+			{ "credits": "4", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"CHEE511": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"CHEE541": [
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
 		"CHEE563": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
@@ -1358,6 +1401,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
+		"CHEM332": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+		],
 		"CHEM345": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B-" }
@@ -1368,6 +1414,9 @@ function getClassAveragesData() {
 			{ "credits": "2", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" },
 			{ "credits": "2", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
 			{ "credits": "2", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
+		],
+		"CHEM365": [
+			{ "credits": "2", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
 		],
 		"CHEM367": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
@@ -1397,7 +1446,8 @@ function getClassAveragesData() {
 			{ "credits": "4", "year": "2015", "term": "Winter", "termcode": "201501", "average": "A-" },
 			{ "credits": "4", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B-" },
 			{ "credits": "4", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
-			{ "credits": "4", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "4", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "4", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"CIVE205": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
@@ -1415,7 +1465,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "C+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
 		],
 		"CIVE207": [
 			{ "credits": "4", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
@@ -1437,7 +1488,8 @@ function getClassAveragesData() {
 		"CIVE210": [
 			{ "credits": "2", "year": "2016", "term": "Summer", "termcode": "201605", "average": "A-" },
 			{ "credits": "2", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B+" },
-			{ "credits": "2", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" }
+			{ "credits": "2", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
+			{ "credits": "2", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"CIVE225": [
 			{ "credits": "4", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
@@ -1615,7 +1667,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B" }
 		],
 		"COMP204": [
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"COMP206": [
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B" },
@@ -1778,13 +1831,14 @@ function getClassAveragesData() {
 		],
 		"COMP361D2": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"COMP361": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"COMP361D1": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"COMP362": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
@@ -1925,7 +1979,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"COMS355": [
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"COMS361": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
@@ -1965,13 +2020,14 @@ function getClassAveragesData() {
 		"EAST230D2": [
 			{ "credits": "4.5", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "4.5", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "4.5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"EAST230": [
-			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "4.5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"EAST230D1": [
-			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "4.5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"EAST240": [
 			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
@@ -2009,6 +2065,10 @@ function getClassAveragesData() {
 		],
 		"EAST361": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+		],
+		"EAST362": [
+			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"ECON205": [
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "A-" },
@@ -2048,7 +2108,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "C+" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B-" }
 		],
 		"ECON219": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "A" },
@@ -2141,7 +2202,8 @@ function getClassAveragesData() {
 		],
 		"ECON304": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"ECON305": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B-" },
@@ -2256,6 +2318,9 @@ function getClassAveragesData() {
 		"ECON423": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
+		"ECON424": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
 		"ECON450": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A-" }
 		],
@@ -2278,7 +2343,8 @@ function getClassAveragesData() {
 		],
 		"ECON546": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ECSE200": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B-" },
@@ -2490,7 +2556,8 @@ function getClassAveragesData() {
 		],
 		"ECSE353": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B-" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"ECSE354": [
 			{ "credits": "4", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
@@ -2568,7 +2635,8 @@ function getClassAveragesData() {
 		],
 		"ECSE443": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ECSE444": [
 			{ "credits": "4", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" },
@@ -2591,7 +2659,8 @@ function getClassAveragesData() {
 		"ECSE461": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"ECSE486": [
 			{ "credits": "2", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
@@ -2608,6 +2677,9 @@ function getClassAveragesData() {
 		],
 		"ECSE512": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+		],
+		"ECSE543": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
 		"EDEA241": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A" }
@@ -2831,7 +2903,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
 		],
 		"EDKP495": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"EDKP498": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
@@ -2865,11 +2938,14 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
 		],
 		"EDPT200": [
-			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A" }
+			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A" },
+			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
 		"EDPT204": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"EDSL210": [
 			{ "credits": "1", "year": "2013", "term": "Fall", "termcode": "201309", "average": "A-" },
@@ -2922,12 +2998,14 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A" }
 		],
 		"ENGL202": [
+			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B-" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B-" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B-" }
 		],
 		"ENGL203": [
+			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
@@ -2938,6 +3016,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
 		],
 		"ENGL215": [
+			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B-" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
@@ -2989,6 +3068,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ENGL311": [
+			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
@@ -3011,6 +3091,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
 		],
 		"ENGL326": [
+			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
 		],
@@ -3027,7 +3108,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
 		"ENGL346": [
-			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" }
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
 		],
 		"ENGL347": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
@@ -3040,9 +3122,11 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"ENGL357": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"ENGL359": [
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ENGL360": [
@@ -3051,8 +3135,17 @@ function getClassAveragesData() {
 		"ENGL363": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
+		"ENGL366": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"ENGL374": [
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
+		],
 		"ENGL378": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
+		],
+		"ENGL382": [
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"ENGL391": [
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" }
@@ -3068,6 +3161,9 @@ function getClassAveragesData() {
 		],
 		"ENGL440": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
+		],
+		"ENGL472": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ENGL481": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
@@ -3164,7 +3260,8 @@ function getClassAveragesData() {
 		"EPSC181": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"EPSC182": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "A" },
@@ -3179,7 +3276,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"EPSC186": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"EPSC201": [
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B" },
@@ -3270,7 +3368,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B-" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B" }
 		],
 		"FACC400": [
 			{ "credits": "1", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
@@ -3345,6 +3444,7 @@ function getClassAveragesData() {
 		],
 		"FILM279": [
 			{ "credits": "3", "year": "2013", "term": "Winter", "termcode": "201301", "average": "B-" },
+			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B-" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
@@ -3377,6 +3477,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"FINE442": [
@@ -3391,7 +3492,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"FINE445": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
@@ -3417,7 +3519,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
 		"FINE492": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
@@ -3481,7 +3584,8 @@ function getClassAveragesData() {
 			{ "credits": "6", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
 			{ "credits": "6", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
 			{ "credits": "6", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
-			{ "credits": "6", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "6", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "6", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"FRSL207D2": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
@@ -3498,7 +3602,8 @@ function getClassAveragesData() {
 			{ "credits": "6", "year": "2016", "term": "Summer", "termcode": "201605", "average": "B+" },
 			{ "credits": "6", "year": "2017", "term": "Summer", "termcode": "201705", "average": "A-" },
 			{ "credits": "6", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
-			{ "credits": "6", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "6", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "6", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"FRSL211D2": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" },
@@ -3536,7 +3641,8 @@ function getClassAveragesData() {
 		"FRSL325": [
 			{ "credits": "6", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "6", "year": "2016", "term": "Summer", "termcode": "201605", "average": "B+" },
-			{ "credits": "6", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "6", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "6", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"FRSL332": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" }
@@ -3551,13 +3657,14 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"FRSL431": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"FRSL431D1": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"FRSL445": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
@@ -3630,7 +3737,8 @@ function getClassAveragesData() {
 		"GEOG272": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A-" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"GEOG300": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
@@ -3720,6 +3828,9 @@ function getClassAveragesData() {
 		"GEOG494": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
+		"GERM197": [
+			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "A-" }
+		],
 		"GERM202D2": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
@@ -3753,7 +3864,8 @@ function getClassAveragesData() {
 		"GSFS200": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"GSFS250": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
@@ -3915,7 +4027,8 @@ function getClassAveragesData() {
 		"HIST218": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"HIST219": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
@@ -3930,6 +4043,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"HIST223": [
+			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
@@ -3964,7 +4078,8 @@ function getClassAveragesData() {
 		],
 		"HIST306": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"HIST309": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
@@ -4030,7 +4145,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "A-" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"HIST342": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
@@ -4057,10 +4173,12 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
 		],
 		"HIST354": [
-			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" }
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"HIST356": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"HIST358": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B-" }
@@ -4099,7 +4217,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"HIST380": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"HIST382": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
@@ -4175,6 +4294,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
+		"INDG202": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+		],
 		"INDG401": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
@@ -4202,7 +4324,8 @@ function getClassAveragesData() {
 		],
 		"INSY333": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"INSY336": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
@@ -4233,6 +4356,9 @@ function getClassAveragesData() {
 		],
 		"INSY446": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+		],
+		"INSY450": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"INSY455": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
@@ -4277,7 +4403,8 @@ function getClassAveragesData() {
 		],
 		"ISLA200": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"ISLA210": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" },
@@ -4307,23 +4434,25 @@ function getClassAveragesData() {
 			{ "credits": "4.5", "year": "2014", "term": "Winter", "termcode": "201401", "average": "A-" },
 			{ "credits": "4.5", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
 			{ "credits": "4.5", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
-			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "4.5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"ISLA521": [
-			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "4.5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"ISLA521D1": [
-			{ "credits": "4.5", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "4.5", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"ISLA522D2": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ISLA522": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ISLA522D1": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"ISLA523D2": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
@@ -4361,7 +4490,11 @@ function getClassAveragesData() {
 		],
 		"ITAL355": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+		],
+		"ITAL375": [
+			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" }
 		],
 		"JWST220D2": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
@@ -4378,6 +4511,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+		],
+		"JWST254": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"JWST303": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
@@ -4422,7 +4558,20 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
 		],
 		"LAWG210": [
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"LAWG220D2": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"LAWG220": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"LAWG220D1": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"LAWG415": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"LING200": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" },
@@ -4451,7 +4600,8 @@ function getClassAveragesData() {
 		"LING210": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"LING260": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
@@ -4461,7 +4611,8 @@ function getClassAveragesData() {
 		"LING320": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"LING325": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
@@ -4490,7 +4641,8 @@ function getClassAveragesData() {
 		],
 		"LING355": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"LING360": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "C+" },
@@ -4542,6 +4694,9 @@ function getClassAveragesData() {
 		],
 		"LLCU300": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+		],
+		"LLCU311": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"LSCI202": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
@@ -4664,7 +4819,8 @@ function getClassAveragesData() {
 			{ "credits": "4", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
 			{ "credits": "4", "year": "2018", "term": "Summer", "termcode": "201805", "average": "C+" },
 			{ "credits": "4", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
-			{ "credits": "4", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+			{ "credits": "4", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" },
+			{ "credits": "4", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B-" }
 		],
 		"MATH150": [
 			{ "credits": "4", "year": "2012", "term": "Fall", "termcode": "201209", "average": "B" },
@@ -4726,7 +4882,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "C+" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B" }
 		],
 		"MATH223": [
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B" },
@@ -4796,7 +4953,8 @@ function getClassAveragesData() {
 		"MATH249": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B-" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"MATH251": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
@@ -4834,7 +4992,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"MATH263": [
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "C+" },
@@ -4870,7 +5029,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B-" }
 		],
 		"MATH270": [
 			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B" },
@@ -5222,7 +5382,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B-" }
 		],
 		"MECH360": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A-" },
@@ -5345,7 +5506,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B+" }
 		],
 		"MGCR271": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
@@ -5368,7 +5530,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B-" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"MGCR331": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
@@ -5455,6 +5618,9 @@ function getClassAveragesData() {
 		],
 		"MGPO362": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+		],
+		"MGPO364": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"MGPO365": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" }
@@ -5555,6 +5721,7 @@ function getClassAveragesData() {
 		],
 		"MIME262": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
+			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B-" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
@@ -5760,7 +5927,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B+" }
 		],
 		"MUAR211": [
 			{ "credits": "3", "year": "2013", "term": "Winter", "termcode": "201301", "average": "A-" },
@@ -5778,7 +5946,11 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" },
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
+		"MUAR374": [
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
+		],
 		"MUAR392": [
+			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "B+" },
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "A-" },
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
@@ -5790,7 +5962,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"MUAR393": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "A-" },
@@ -5806,12 +5979,18 @@ function getClassAveragesData() {
 		"MUAR399": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B-" }
 		],
+		"MUEN560": [
+			{ "credits": "1", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" },
+			{ "credits": "1", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
+		],
 		"MUEN563": [
 			{ "credits": "2", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
 		],
 		"MUEN567": [
 			{ "credits": "1", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
-			{ "credits": "1", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
+			{ "credits": "1", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "1", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" },
+			{ "credits": "1", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"MUEN568": [
 			{ "credits": "1", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A" }
@@ -5823,6 +6002,9 @@ function getClassAveragesData() {
 			{ "credits": "1", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A" },
 			{ "credits": "1", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A" },
 			{ "credits": "1", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
+		],
+		"MUEN590": [
+			{ "credits": "2", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
 		"MUEN593": [
 			{ "credits": "2", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A-" },
@@ -5848,12 +6030,14 @@ function getClassAveragesData() {
 		"MUIN180": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
 		"MUIN181": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"MUIN280": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A" },
@@ -5905,7 +6089,8 @@ function getClassAveragesData() {
 		],
 		"MUSP141": [
 			{ "credits": "2", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
-			{ "credits": "2", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
+			{ "credits": "2", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
+			{ "credits": "2", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"MUSP170": [
 			{ "credits": "1", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B-" },
@@ -5943,7 +6128,8 @@ function getClassAveragesData() {
 		"MUTH151": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"MUTH250": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B-" },
@@ -6587,8 +6773,10 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"PHYS182": [
+			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"PHYS183": [
 			{ "credits": "3", "year": "2012", "term": "Winter", "termcode": "201201", "average": "B+" },
@@ -6676,7 +6864,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"PHYS333": [
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"PHYS339": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
@@ -6685,6 +6874,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
+		],
+		"PHYS342": [
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"PHYS350": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
@@ -6707,20 +6899,33 @@ function getClassAveragesData() {
 		],
 		"PHYS359": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"PHYS362": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
+		],
+		"PHYS434": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+		],
+		"PHYS439": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"PHYS446": [
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
+		],
+		"PHYS447": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"PHYS457": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"PHYS514": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
@@ -6793,7 +6998,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B+" }
 		],
 		"POLI231": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
@@ -6876,6 +7082,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"POLI330": [
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
 		],
 		"POLI331": [
@@ -6907,6 +7114,7 @@ function getClassAveragesData() {
 		],
 		"POLI346": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B+" },
+			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
@@ -6945,7 +7153,8 @@ function getClassAveragesData() {
 		"POLI359": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"POLI360": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
@@ -6972,7 +7181,8 @@ function getClassAveragesData() {
 		],
 		"POLI366": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B" },
-			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B" }
+			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B" }
 		],
 		"POLI367": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
@@ -6993,7 +7203,8 @@ function getClassAveragesData() {
 		],
 		"POLI378": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"POLI379": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
@@ -7029,11 +7240,13 @@ function getClassAveragesData() {
 		],
 		"POLI441": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"POLI444": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"POLI445": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
@@ -7043,6 +7256,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
 		"POLI449": [
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" }
 		],
 		"POLI450": [
@@ -7052,6 +7266,9 @@ function getClassAveragesData() {
 		"POLI451": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+		],
+		"POLI474": [
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
 		],
 		"POLI476": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
@@ -7090,14 +7307,17 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" },
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
-		"PROC124D2": [
+		"PROC124": [
 			{ "credits": "2", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
 		],
-		"PROC124": [
+		"PROC124D2": [
 			{ "credits": "2", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
 		],
 		"PROC124D1": [
 			{ "credits": "2", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
+		],
+		"PROC200": [
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"PRV3534": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
@@ -7132,7 +7352,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B+" }
 		],
 		"PSYC211": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B" },
@@ -7149,7 +7370,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "A-" }
 		],
 		"PSYC213": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B" },
@@ -7172,7 +7394,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B+" }
 		],
 		"PSYC301": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
@@ -7215,7 +7438,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B-" }
 		],
 		"PSYC315": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
@@ -7308,7 +7532,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
 		],
 		"PSYC433": [
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"PSYC436": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
@@ -7359,7 +7584,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B" }
 		],
 		"PUB2313": [
-			{ "credits": "4", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+			{ "credits": "4", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "4", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
 		"PUB2501": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
@@ -7421,7 +7647,8 @@ function getClassAveragesData() {
 		"RELG208": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "A-" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B-" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"RELG210": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B+" },
@@ -7441,6 +7668,9 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
+		],
+		"RELG254": [
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"RELG255": [
@@ -7463,7 +7693,11 @@ function getClassAveragesData() {
 		],
 		"RELG300": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
+		],
+		"RELG311": [
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A-" }
 		],
 		"RELG316": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
@@ -7487,7 +7721,8 @@ function getClassAveragesData() {
 		],
 		"RELG353": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "A-" },
-			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B+" }
+			{ "credits": "3", "year": "2017", "term": "Summer", "termcode": "201705", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"RELG356": [
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
@@ -7498,6 +7733,7 @@ function getClassAveragesData() {
 		"RELG370": [
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
+			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" },
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"RELG372": [
@@ -7505,7 +7741,8 @@ function getClassAveragesData() {
 		],
 		"RELG375": [
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "A-" },
-			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" }
+			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A" }
 		],
 		"RETL402": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
@@ -7519,7 +7756,8 @@ function getClassAveragesData() {
 		"RUSS211": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
-			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" }
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
 		],
 		"RUSS218": [
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B+" },
@@ -7533,13 +7771,17 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B+" }
 		],
 		"RUSS229": [
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "A" }
 		],
 		"RUSS337": [
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
+		],
+		"RUSS340": [
+			{ "credits": "3", "year": "2014", "term": "Winter", "termcode": "201401", "average": "A-" }
 		],
 		"RUSS357": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" }
@@ -7548,6 +7790,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" }
 		],
 		"SOCI210": [
+			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Summer", "termcode": "201605", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
@@ -7568,7 +7811,8 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Summer", "termcode": "201805", "average": "B" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" },
-			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" },
+			{ "credits": "3", "year": "2019", "term": "Summer", "termcode": "201905", "average": "B" }
 		],
 		"SOCI212": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
@@ -7583,6 +7827,7 @@ function getClassAveragesData() {
 		],
 		"SOCI222": [
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "A-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
@@ -7610,11 +7855,13 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B" },
 			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
+			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"SOCI247": [
 			{ "credits": "3", "year": "2013", "term": "Fall", "termcode": "201309", "average": "B" },
+			{ "credits": "3", "year": "2014", "term": "Fall", "termcode": "201409", "average": "B" },
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B" },
@@ -7633,6 +7880,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "B" }
 		],
 		"SOCI265": [
+			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "B+" }
 		],
@@ -7640,14 +7888,16 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2015", "term": "Winter", "termcode": "201501", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "A-" },
-			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" }
+			{ "credits": "3", "year": "2018", "term": "Winter", "termcode": "201801", "average": "A-" },
+			{ "credits": "3", "year": "2019", "term": "Winter", "termcode": "201901", "average": "A-" }
 		],
 		"SOCI304": [
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B-" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B" }
 		],
 		"SOCI305": [
-			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" }
+			{ "credits": "3", "year": "2016", "term": "Winter", "termcode": "201601", "average": "A-" },
+			{ "credits": "3", "year": "2017", "term": "Winter", "termcode": "201701", "average": "B+" }
 		],
 		"SOCI307": [
 			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
@@ -7679,6 +7929,7 @@ function getClassAveragesData() {
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
 		],
 		"SOCI330": [
+			{ "credits": "3", "year": "2015", "term": "Fall", "termcode": "201509", "average": "B+" },
 			{ "credits": "3", "year": "2016", "term": "Fall", "termcode": "201609", "average": "B+" },
 			{ "credits": "3", "year": "2017", "term": "Fall", "termcode": "201709", "average": "B+" },
 			{ "credits": "3", "year": "2018", "term": "Fall", "termcode": "201809", "average": "B+" }
