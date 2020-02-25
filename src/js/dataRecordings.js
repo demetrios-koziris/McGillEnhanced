@@ -324,7 +324,8 @@ function getRecordingData() {
 		"COMP302": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "13118" },
 			{ "year": 2017, "month": 1, "section": "001", "id": "15019" },
-			{ "year": 2019, "month": 1, "section": "001", "id": "20549" }
+			{ "year": 2019, "month": 1, "section": "001", "id": "20549" },
+			{ "year": 2020, "month": 1, "section": "001", "id": "22163" }
 		],
 		"COMP310": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "13081" },
@@ -498,6 +499,7 @@ function getRecordingData() {
 			{ "year": 2017, "month": 9, "section": "001", "id": "16634" }
 		],
 		"INDS212": [
+			{ "year": 2016, "month": 9, "section": "001", "id": "13689" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "16635" }
 		],
 		"INDS305": [
@@ -550,7 +552,8 @@ function getRecordingData() {
 			{ "year": 2019, "month": 9, "section": "001", "id": "21599" }
 		],
 		"MATH141": [
-			{ "year": 2018, "month": 1, "section": "024", "id": "17760" }
+			{ "year": 2018, "month": 1, "section": "024", "id": "17760" },
+			{ "year": 2020, "month": 1, "section": "001", "id": "21933" }
 		],
 		"MATH204": [
 			{ "year": 2018, "month": 1, "section": "001", "id": "18149" }
@@ -594,6 +597,7 @@ function getRecordingData() {
 		"MGCR341": [
 			{ "year": 2016, "month": 1, "section": "001", "id": "12413" },
 			{ "year": 2018, "month": 5, "section": "061", "id": "18472" },
+			{ "year": 2019, "month": 9, "section": "001", "id": "21421" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22571" },
 			{ "year": 2020, "month": 1, "section": "002", "id": "22572" }
 		],
@@ -636,6 +640,9 @@ function getRecordingData() {
 		],
 		"MIMM466": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21966" }
+		],
+		"MRKT690": [
+			{ "year": 2020, "month": 1, "section": "090", "id": "22778" }
 		],
 		"MUAR211": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "18819" },
