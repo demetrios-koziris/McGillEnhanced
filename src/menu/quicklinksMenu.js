@@ -56,8 +56,16 @@ function initializeEnabledSwitch() {
 }
 initializeEnabledSwitch();
 
-chrome.storage.sync.get("lecture", function(data) {
-	if (data.lecture) {
-		downloadLec.setAttribute("href", data.lecture);
-	}
-});
+// Functionality for download lecture button.
+// Gets the url from storage and prompts a download.
+downloadLec.onclick = function() {
+	chrome.storage.sync.get("lecture", function(data) {
+		if (data.lecture) { // The download will not happen if the link is empty.
+			chrome.downloads.download({
+				url: data.lecture,
+				filename: "lecture.mp4",
+				saveAs: true
+			})
+		}
+	});
+}

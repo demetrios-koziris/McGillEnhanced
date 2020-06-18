@@ -9,7 +9,8 @@
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*",
     "*://www.docuum.com/*",
-    "webRequest"
+    "webRequest",
+    "downloads"
   ],
   "background": {
     "scripts": [
