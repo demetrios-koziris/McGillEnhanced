@@ -21,6 +21,9 @@ const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
+let downloadLec = document.getElementById("downloadLec");
+
+
 document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
 
 document.getElementById('enabledSwitch').addEventListener('click', updateEnabledSetting);
@@ -52,3 +55,9 @@ function initializeEnabledSwitch() {
 	});
 }
 initializeEnabledSwitch();
+
+chrome.storage.sync.get("lecture", function(data) {
+	if (data.lecture) {
+		downloadLec.setAttribute("href", data.lecture);
+	}
+});
