@@ -21,7 +21,7 @@ const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
-let downloadLec = document.getElementById("downloadLec");
+let downloadLec = document.getElementById('downloadLec');
 
 
 document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
@@ -59,13 +59,13 @@ initializeEnabledSwitch();
 // Functionality for download lecture button.
 // Gets the url from storage and prompts a download.
 downloadLec.onclick = function() {
-	chrome.storage.sync.get("lecture", function(data) {
+	chrome.storage.sync.get('lecture', function(data) {
 		if (data.lecture) { // The download will not happen if the link is empty.
 			chrome.downloads.download({
 				url: data.lecture,
-				filename: "lecture.mp4",
+				filename: 'lecture.mp4',
 				saveAs: true
-			})
+			});
 		}
 	});
-}
+};

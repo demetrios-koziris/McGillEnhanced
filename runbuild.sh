@@ -74,7 +74,7 @@ for platform in "$@"; do
 		sed -i '/"persistent"/d' $file  
 		match='"background": {'
 		insertA='    "persistent": true,'  
-		insertB='    "page": "background.html",'  
+		#insertB='    "page": "background.html",'  
 		sed -i "s/$match/$match\n$insertA/" $file
 		#sed -i "s/$match/$match\n$insertB/" $file
 
