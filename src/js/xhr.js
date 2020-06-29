@@ -7,7 +7,7 @@ chrome.webRequest.onCompleted.addListener(function(details) {
   
     if (new URL(details.url).hostname.startsWith('pcdn')) {
         chrome.storage.sync.get('lecture', function(data) {
-          if (details.url != data.lecture) {
+          if (details.url !== data.lecture) {
             chrome.storage.sync.set({lecture: details.url}, function() {
               //console.log('New url saved to lecture');
             });

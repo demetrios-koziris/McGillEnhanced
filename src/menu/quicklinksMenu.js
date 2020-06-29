@@ -65,12 +65,12 @@ downloadLec.onclick = function() {
 				if (granted) {
 					chrome.downloads.download({
 						url: data.lecture,
-						filename: "last-viewed-lecture-recording.mp4",
+						filename: 'last-viewed-lecture-recording.mp4',
 						saveAs: true
-					})
+					});
 				} 
 				else {
-					alert('Download permission not granted.')
+					alert('Download permission not granted.');
 				}
 			});
 		}
