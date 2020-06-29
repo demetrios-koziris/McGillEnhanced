@@ -61,10 +61,17 @@ initializeEnabledSwitch();
 downloadLec.onclick = function() {
 	chrome.storage.sync.get('lecture', function(data) {
 		if (data.lecture) { // The download will not happen if the link is empty.
-			chrome.downloads.download({
-				url: data.lecture,
-				filename: 'lecture.mp4',
-				saveAs: true
+			chrome.permissions.request({permissions: ['downloads']}, function(granted) {
+				if (granted) {
+					chrome.downloads.download({
+						url: data.lecture,
+						filename: "last-viewed-lecture-recording.mp4",
+						saveAs: true
+					})
+				} 
+				else {
+					alert('Download permission not granted.')
+				}
 			});
 		}
 	});
