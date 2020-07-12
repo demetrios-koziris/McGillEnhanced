@@ -21,6 +21,9 @@ const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
+let downloadLec = document.getElementById('downloadLec');
+
+
 document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
 
 document.getElementById('enabledSwitch').addEventListener('click', updateEnabledSetting);
@@ -52,3 +55,24 @@ function initializeEnabledSwitch() {
 	});
 }
 initializeEnabledSwitch();
+
+// Functionality for download lecture button.
+// Gets the url from storage and prompts a download.
+downloadLec.onclick = function() {
+	chrome.storage.sync.get('lecture', function(data) {
+		if (data.lecture) { // The download will not happen if the link is empty.
+			chrome.permissions.request({permissions: ['downloads']}, function(granted) {
+				if (granted) {
+					chrome.downloads.download({
+						url: data.lecture,
+						filename: 'last-viewed-lecture-recording.mp4',
+						saveAs: true
+					});
+				} 
+				else {
+					alert('Download permission not granted.');
+				}
+			});
+		}
+	});
+};

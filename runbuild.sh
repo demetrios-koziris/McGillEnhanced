@@ -70,13 +70,13 @@ for platform in "$@"; do
 		insert='  "-ms-preload":{"backgroundScript":"backgroundScriptsAPIBridge.js","contentScript":"contentScriptsAPIBridge.js"},'  
 		sed -i "s/$match/$match\n$insert/" $file
 
-		sed -i '/"scripts"/d' $file  
+		#sed -i '/"scripts"/d' $file  
 		sed -i '/"persistent"/d' $file  
 		match='"background": {'
-		insertA='    "persistent": true'  
-		insertB='    "page": "background.html",'  
+		insertA='    "persistent": true,'  
+		#insertB='    "page": "background.html",'  
 		sed -i "s/$match/$match\n$insertA/" $file
-		sed -i "s/$match/$match\n$insertB/" $file
+		#sed -i "s/$match/$match\n$insertB/" $file
 
 	fi
 

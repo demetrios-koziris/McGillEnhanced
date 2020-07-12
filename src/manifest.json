@@ -8,12 +8,17 @@
     "storage",
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*",
-    "*://www.docuum.com/*"
+    "*://www.docuum.com/*",
+    "webRequest"
+  ],
+  "optional_permissions": [
+    "downloads"
   ],
   "background": {
     "scripts": [
       "js/backgroundHTTP.js",
-      "js/background.js"
+      "js/background.js",
+      "js/xhr.js"
     ]
   },
   "browser_action": {
