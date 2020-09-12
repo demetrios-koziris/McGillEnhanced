@@ -27,14 +27,11 @@
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)&nbsp;
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=&logoColor=white&label=total%20weekly%20users)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde?hl=en)&nbsp;
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=&logoColor=white)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en/reviews)&nbsp;
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/jlacaimkacnkhlcgapgakpklnibgfkde.svg?style=flat-square&logo=&logoColor=white&label=%23%20of%20ratings)](https://chrome.google.com/webstore/detail/mcgill-enhanced/jlacaimkacnkhlcgapgakpklnibgfkde/reviews?hl=en)
 
 ### [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/) compatible with &nbsp;&nbsp;[![firefox icon](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png)](https://www.mozilla.org/en-US/firefox/new/?v=b)&nbsp;&nbsp;[![waterfox icon](https://raw.githubusercontent.com/alrra/browser-logos/48.0.4/src/waterfox/waterfox_24x24.png)](https://www.waterfoxproject.org/en-US/)
  
-[![Mozilla Add-on](https://img.shields.io/amo/v/mcgillenhanced.svg?style=flat-square&logo=mozilla-firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)&nbsp;
-[![Mozilla Add-on](https://img.shields.io/amo/users/mcgillenhanced.svg?style=flat-square&logo=&logoColor=white&label=average%20daily%20users)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)&nbsp;
-[![Mozilla Add-on](https://img.shields.io/amo/stars/mcgillenhanced.svg?style=flat-square&logo=&logoColor=white&label=rating)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/reviews/)
+[![Mozilla Add-on](https://img.shields.io/amo/v/mcgillenhanced.svg?style=flat-square&logo=firefox-browser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)&nbsp;
+[![Mozilla Add-on](https://img.shields.io/amo/users/mcgillenhanced.svg?style=flat-square&logo=&logoColor=white&label=avg%20daily%20users)](https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/)&nbsp;
 
 
 <br>
