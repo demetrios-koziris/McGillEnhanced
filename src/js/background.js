@@ -65,7 +65,7 @@ chrome.storage.onChanged.addListener(function(changes, areaName) {
 function tryUpdateEnabledSetting(boolEnabledSetting) {
 	if (boolEnabledSetting === true || boolEnabledSetting === false) {
 		// set extension icon according to enabled setting
-		chrome.browserAction.setIcon({path: '/icons/mcgill-' + (boolEnabledSetting ? '' : 'disabled-') + '128.png'});
+		chrome.browserAction.setIcon({path: '/images/mcgill-' + (boolEnabledSetting ? '' : 'disabled-') + '128.png'});
 		return true;
 	}
 	return false;

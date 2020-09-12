@@ -39,6 +39,7 @@ function addOneClickVSBRegistration() {
 	regButton.setAttribute('onclick', 'document.dispatchEvent(new Event("register"));');
 	regButton.id = 'mcen-vsb-registration';
 	regButton.title = 'Click to register for the above CRN codes.\nMust be already signed into Minerva!';
+	regButton.style.backgroundImage = 'url(' + chrome.runtime.getURL('images/mcgill-128.png') + ')';
 	regButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"');
 	regButton.setAttribute('onmouseout', 'this.style.border="2px solid #5B5B5A"');
 	regButton.appendChild(document.createTextNode('McGill Enhanced:'));

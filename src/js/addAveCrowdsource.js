@@ -128,7 +128,7 @@ function generateAveCrowdsourceSection() {
 
 	const crowdsourceContentLeftP = document.createElement('p');
 	if (classAveragesData) {
-		crowdsourceContentLeftP.innerText = 'These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript and allow you to submit them.';
+		crowdsourceContentLeftP.innerText = 'These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript and let you submit them.';
 	}
 	else {
 		crowdsourceContentLeftP.innerText = 'McGill Enhanced is currently undertaking a crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript classes and allow you to submit them.';
@@ -147,6 +147,7 @@ function generateAveCrowdsourceSection() {
 	downloadClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("downloadClassAverages"));');
 	downloadClassAveragesButton.id = 'mcen-class-averages-download';
 	downloadClassAveragesButton.className = 'mcen-class-averages-button';
+	downloadClassAveragesButton.style.backgroundImage = 'url(' + chrome.runtime.getURL('images/mcgill-128.png') + ')';
 	downloadClassAveragesButton.innerText = 'McGill Enhanced: Retrieve Your Class Averages!';
 	downloadClassAveragesButton.title = 'Click to retrieve the class averages from your transcript.\nMust be already signed into Minerva!';
 	classAveragesButtonDiv.appendChild(downloadClassAveragesButton);
@@ -230,6 +231,7 @@ function averageGPAsDownloader() {
 						submitClassAveragesButton.setAttribute('onclick', 'document.dispatchEvent(new Event("submitClassAverages"));');					
 						submitClassAveragesButton.id = 'mcen-class-averages-submit';
 						submitClassAveragesButton.className = 'mcen-class-averages-button';
+						submitClassAveragesButton.style.backgroundImage = 'url(' + chrome.runtime.getURL('images/mcgill-128.png') + ')';
 						submitClassAveragesButton.innerText = 'Submit Class Averages';
 						submitClassAveragesButton.title = 'Click to submit the above class averages\nthat were retrieved from your transcript!';
 
@@ -291,14 +293,14 @@ function averageGPAsDownloader() {
 			classAveragesThanksMessageLink.innerText = 'Crowdsourced Averages';
 
 			const classAveragesThanksMessageImage = document.createElement('img');
-			classAveragesThanksMessageImage.src = 'https://i.imgur.com/ClIR1CX.png'
+			classAveragesThanksMessageImage.src = chrome.runtime.getURL('images/crowdsourced-ave-menu.png');
 			classAveragesThanksMessageImage.setAttribute('style', 'margin-top: 10px;');
 
 			const classAveragesThanksMessage = document.createElement('p');
 			classAveragesThanksMessage.id = 'mcen-class-averages-thanks';
 			classAveragesThanksMessage.appendChild(classAveragesThanksMessageHeader)
 			classAveragesThanksMessage.appendChild(document.createElement('br'));
-			classAveragesThanksMessage.appendChild(document.createTextNode('The results can be accessed by clicking the '));
+			classAveragesThanksMessage.appendChild(document.createTextNode('Results can be accessed by clicking the '));
 			classAveragesThanksMessage.appendChild(classAveragesThanksMessageLink)
 			classAveragesThanksMessage.appendChild(document.createElement('br'));
 			classAveragesThanksMessage.appendChild(document.createTextNode('link in the McGill Enhanced section of the Extension menu:'));

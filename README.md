@@ -1,15 +1,9 @@
-[![license](https://img.shields.io/github/license/demetrios-koziris/mcgillenhanced.svg?style=flat-square)](https://github.com/demetrios-koziris/McGillEnhanced/blob/master/LICENSE.txt)&nbsp;
-[![top language](https://img.shields.io/github/languages/top/demetrios-koziris/McGillEnhanced.svg?style=flat-square)](https://github.com/demetrios-koziris/McGillEnhanced)&nbsp;
-[![commits since latest release](https://img.shields.io/github/commits-since/demetrios-koziris/McGillEnhanced/latest.svg?style=flat-square)](https://github.com/demetrios-koziris/McGillEnhanced/releases)&nbsp;
-[![made with love](https://img.shields.io/badge/made%20with-%E2%9D%A4-brightgreen.svg?style=flat-square&color=ED1B2F)](https://github.com/demetrios-koziris)
-
-
-<br>
 
 # McGill Enhanced
+[![made with love](https://img.shields.io/badge/made%20with-%E2%9D%A4-brightgreen.svg?style=flat-square&color=ED1B2F)](https://github.com/demetrios-koziris)
 
 <h4 align="center">
-  <img src="https://raw.githubusercontent.com/demetrios-koziris/McGillEnhanced/master/src/icons/mcgill-128.png">
+  <img src="https://raw.githubusercontent.com/demetrios-koziris/McGillEnhanced/master/src/images/mcgill-128.png">
   <br><br>
   A Browser Extension Enhancing the McGill User Experience
   <br><br>
@@ -18,8 +12,8 @@
   • <a href="https://demetrios-koziris.github.io/McGillEnhanced/support">Support</a>
 </h4>
 
-
 <br>
+
 
 ## Installation
 

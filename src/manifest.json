@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.3.3",
+  "version": "4.3.4",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
@@ -22,14 +22,14 @@
   },
   "browser_action": {
     "default_icon": {
-      "38": "icons/mcgill-128.png",
-      "128": "icons/mcgill-128.png"
+      "38": "images/mcgill-128.png",
+      "128": "images/mcgill-128.png"
     },
     "default_popup": "menu/quicklinksMenu.html",
     "default_title": "Click to view Quick Links Menu!"
   },
   "icons": {
-    "128": "icons/mcgill-128.png"
+    "128": "images/mcgill-128.png"
   },
   "content_scripts": [
     {
@@ -86,6 +86,6 @@
     "css/programs.css",
     "css/vsb.css",
     "css/minerva.css",
-    "icons/empty-15.png"
+    "images/*.png"
   ]
 }

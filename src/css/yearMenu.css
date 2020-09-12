@@ -1,6 +1,6 @@
 
 .mcen-yearMenuBarDIV {
-	background-color: #444844 !important;
+	background-color: #1E1E1E !important;
 	height: 33px !important;
 }
 
@@ -10,16 +10,16 @@
 
 
 .mcen-yearMenuItemLI {
-	background-color: #444844 !important;
+	background-color: #1E1E1E !important;
 	text-align: center !important;
 }
 .mcen-yearMenuItemDIV {
-	background-color: #444844 !important;
+	background-color: #1E1E1E !important;
 	width: 100% !important;
 	height: 33px !important;
 }
 .mcen-yearMenuItemDIV:hover {
-	background-color: #0C0C0C !important;
+	background-color: #5B5B5A !important;
 	border-radius: 6px 6px 0px 0px !important;
 }
 .mcen-yearMenuItemA {
@@ -43,7 +43,7 @@
 	background-color: #FFFFFF !important;
 }
 .mcen-yearMenuItemLI.mcen-yearLeft:hover {
-	background-color: #444844 !important;
+	background-color: #1E1E1E !important;
 }
 .mcen-yearMenuItemDIV.mcen-yearLeft {
 	border-radius: 0px 0px 8px 0px !important;
@@ -57,7 +57,7 @@
 	background-color: #FFFFFF !important;
 }
 .mcen-yearMenuItemLI.mcen-yearRight:hover {
-	background-color: #444844 !important;
+	background-color: #1E1E1E !important;
 }
 .mcen-yearMenuItemDIV.mcen-yearRight {
 	border-radius: 0px 0px 0px 8px !important;
