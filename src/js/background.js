@@ -71,3 +71,23 @@ chrome.storage.onChanged.addListener(function(changes, areaName) {
 function setIcon(enabledSetting) {
 	chrome.browserAction.setIcon({path: '/icons/mcgill-' + (enabledSetting ? '' : 'disabled-') + '128.png'});
 }
+
+
+/* Script to detect network requests matching *://*.campus.mcgill.ca/api/tsmedia*.
+   The url captured contains the lecture recording download link.
+   Every mcgill lecture recording download link starts with pcdn (pcdn01, pcdn02, ...)
+*/
+chrome.webRequest.onCompleted.addListener(
+	function(details) {
+		if (new URL(details.url).hostname.startsWith('pcdn')) {
+			chrome.storage.sync.get('lecture', function(result) {
+				if (details.url !== result.lecture) {
+					chrome.storage.sync.set({lecture: details.url}, function() {
+						console.log('New lecture recording url saved.');
+					});
+				}
+			});
+		}
+	}, 
+	{ urls: ['*://*.campus.mcgill.ca/api/tsmedia*'] }
+);

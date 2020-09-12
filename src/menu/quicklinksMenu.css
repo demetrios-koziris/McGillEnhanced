@@ -58,7 +58,7 @@ a {
 
 .meButton {
 	background: #FFF;
-	border: 2px solid #C5C5C5 !important;
+	border: 2px solid #C5C5C5;
 	border-radius: 3px;
 	padding: 3px;
 	cursor: pointer;
@@ -69,8 +69,16 @@ a {
 }
 
 .meButton:hover {
-	background: #D5D7D9 !important;
-	border: 2px solid #5B5B5A !important;
+	background: #D5D7D9;
+	border: 2px solid #5B5B5A;
+}
+
+.meButton[disabled] {
+	background: #FFF;
+	border: 1px solid #D5D7D9;
+	padding: 4px;
+	cursor: default;
+	color: #5B5B5A;
 }
 
 .simvo-text {

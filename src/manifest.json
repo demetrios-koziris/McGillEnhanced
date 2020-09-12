@@ -2,7 +2,7 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
@@ -17,8 +17,7 @@
   "background": {
     "scripts": [
       "js/backgroundHTTP.js",
-      "js/background.js",
-      "js/xhr.js"
+      "js/background.js"
     ]
   },
   "browser_action": {

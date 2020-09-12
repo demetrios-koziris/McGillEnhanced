@@ -16,20 +16,18 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 const prodIDs = ['jlacaimkacnkhlcgapgakpklnibgfkde', '{fbd3b601-613b-4747-a92b-4d37b2fd7667}'];
 const intIDs = ['fmjglinhknddndjfblbjoinijenppenk', 'fdjidmiaclmoakbolclpiefedoiodinf', '{1510757c-cb05-47b4-b47a-fe08a0866f71}'];
+const mcenFirefoxAddonURL = 'https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/';
 
 const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
+const isFirefox = chrome.runtime.id.startsWith('{');
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
-let downloadLec = document.getElementById('downloadLec');
 
-
-document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
-
-document.getElementById('enabledSwitch').addEventListener('click', updateEnabledSetting);
+const enabledSwitch = document.getElementById('enabledSwitch');
 
 function updateEnabledSetting() {
-	const newEnabledSetting = document.getElementById('enabledSwitch').checked;
+	const newEnabledSetting = enabledSwitch.checked;
 	updateEnabledSwitchLabel(newEnabledSetting);
 	setEnabled(newEnabledSetting);
 }
@@ -49,30 +47,62 @@ function initializeEnabledSwitch() {
 			updateEnabledSetting();
 		}
 		else {
+			enabledSwitch.checked = enabledSetting;
 			updateEnabledSwitchLabel(enabledSetting);
-			document.getElementById('enabledSwitch').checked = enabledSetting;
 		}
 	});
+	enabledSwitch.addEventListener('click', updateEnabledSetting);
 }
-initializeEnabledSwitch();
+
+
+const downloadLecButton = document.getElementById('downloadLec');
 
 // Functionality for download lecture button.
 // Gets the url from storage and prompts a download.
-downloadLec.onclick = function() {
-	chrome.storage.sync.get('lecture', function(data) {
-		if (data.lecture) { // The download will not happen if the link is empty.
-			chrome.permissions.request({permissions: ['downloads']}, function(granted) {
+function downloadLastViewedLectureRecording() {
+	chrome.storage.sync.get('lecture', function(result) {
+		if (result.lecture) { // The download will not happen if the link is empty.
+			chrome.permissions.request({permissions:['downloads']}, function(granted) {
 				if (granted) {
+					
 					chrome.downloads.download({
-						url: data.lecture,
-						filename: 'last-viewed-lecture-recording.mp4',
+						url: result.lecture,
+						filename: genLectureRecordingDownloadName(result.lecture),
 						saveAs: true
 					});
 				} 
 				else {
-					alert('Download permission not granted.');
+					alert('Lecture recording download cannot proceed because permission not granted.');
 				}
 			});
 		}
 	});
-};
+}
+
+function genLectureRecordingDownloadName(recordingURL) {
+	const etime = new URLSearchParams(recordingURL).get('etime');
+	return 'lecture-recording-viewed-' + etime +'.mp4';
+}
+
+function initializeDownloadLecButton() {
+	chrome.storage.sync.get('lecture', function(result) {
+		if (result.lecture) {
+			downloadLec.removeAttribute('disabled');
+			downloadLec.title = 'Download ' + genLectureRecordingDownloadName(result.lecture);
+		}
+	});
+	downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
+}
+
+
+function setFirefoxRateLink() {
+	if (isFirefox) {
+		document.getElementById('rateLink').href = mcenFirefoxAddonURL;
+	}
+}
+
+
+document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
+initializeEnabledSwitch();
+initializeDownloadLecButton();
+setFirefoxRateLink();
