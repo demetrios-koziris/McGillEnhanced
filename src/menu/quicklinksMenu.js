@@ -24,38 +24,37 @@ const isFirefox = chrome.runtime.id.startsWith('{');
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
 
+if (isFirefox) {
+	document.getElementById('rateLink').href = mcenFirefoxAddonURL;
+}
+
+document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
+
+
 const enabledSwitch = document.getElementById('enabledSwitch');
+initializeEnabledSwitch();
+enabledSwitch.addEventListener('click', updateEnabledSetting);
 
 function updateEnabledSetting() {
-	const newEnabledSetting = enabledSwitch.checked;
-	updateEnabledSwitchLabel(newEnabledSetting);
-	setEnabled(newEnabledSetting);
+	updateEnabledSwitchLabel(enabledSwitch.checked);
+	chrome.storage.local.set({'enabled':enabledSwitch.checked});
 }
 
 function updateEnabledSwitchLabel(enabledSetting) {
 	document.getElementById('enabledLabel').innerText = (enabledSetting ? 'Enabled' : 'Disabled');
 }
 
-function setEnabled(enabledSetting) {
-	chrome.storage.local.set({'enabled':enabledSetting});
-}
-
 function initializeEnabledSwitch() {
 	chrome.storage.local.get('enabled', function(result) {
-		let enabledSetting = result.enabled;
-		if (enabledSetting === undefined) {
-			updateEnabledSetting();
-		}
-		else {
-			enabledSwitch.checked = enabledSetting;
-			updateEnabledSwitchLabel(enabledSetting);
-		}
+		enabledSwitch.checked = result.enabled;
+		updateEnabledSwitchLabel(result.enabled);
 	});
-	enabledSwitch.addEventListener('click', updateEnabledSetting);
 }
 
 
 const downloadLecButton = document.getElementById('downloadLec');
+initializeDownloadLecButton();
+downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
 
 // Functionality for download lecture button.
 // Gets the url from storage and prompts a download.
@@ -64,7 +63,6 @@ function downloadLastViewedLectureRecording() {
 		if (result.lecture) { // The download will not happen if the link is empty.
 			chrome.permissions.request({permissions:['downloads']}, function(granted) {
 				if (granted) {
-					
 					chrome.downloads.download({
 						url: result.lecture,
 						filename: genLectureRecordingDownloadName(result.lecture),
@@ -75,6 +73,9 @@ function downloadLastViewedLectureRecording() {
 					alert('Lecture recording download cannot proceed because permission not granted.');
 				}
 			});
+		}
+		else {
+			initializeDownloadLecButton();
 		}
 	});
 }
@@ -90,19 +91,9 @@ function initializeDownloadLecButton() {
 			downloadLec.removeAttribute('disabled');
 			downloadLec.title = 'Download ' + genLectureRecordingDownloadName(result.lecture);
 		}
+		else {
+			downloadLec.setAttribute('disabled', '');
+			downloadLec.title = 'No viewed lecture recording found.';
+		}
 	});
-	downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
 }
-
-
-function setFirefoxRateLink() {
-	if (isFirefox) {
-		document.getElementById('rateLink').href = mcenFirefoxAddonURL;
-	}
-}
-
-
-document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
-initializeEnabledSwitch();
-initializeDownloadLecButton();
-setFirefoxRateLink();
