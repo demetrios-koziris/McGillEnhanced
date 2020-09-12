@@ -142,7 +142,7 @@ function makeSidebarContent() {
 		const recordings = generateSidebarSection('Lecture Recordings');
 		sidebarLinksBlock.appendChild(recordings);
 
-		const lrsplusURL = 'https://jhcccc.github.io/LRSPlus/?subject=' + courseSubject.toUpperCase() + '&number=' + courseNumber;
+		const lrsplusURL = 'https://jiahao-c.github.io/LRSPlus/?subject=' + courseSubject.toUpperCase() + '&number=' + courseNumber;
 		const lrsplusButtonString = courseNameSpaced + ' on LRS+';
 		recordings.appendChild(generateSidebarLink(lrsplusURL, 'mcen-red', lrsplusButtonString, false));
 
