@@ -57,25 +57,24 @@ const downloadLecButton = document.getElementById('downloadLec');
 initializeDownloadLecButton();
 downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
 
-// Functionality for download lecture button.
-// Gets the url from storage and prompts a download.
+// Functionality for download lecture button. Gets the url from storage and prompts a download.
+// Must be called as a user input handler callback (e.g. click event) due to Firefox enforcement for permissions.request
 function downloadLastViewedLectureRecording() {
-	let lectureURL = '';
-	chrome.storage.sync.get('lecture', function(result) {
-		if (!result.lecture) { // The download will not happen if the link is empty.
-			initializeDownloadLecButton();
-			return;
-		}
-		lectureURL = result.lecture;
-	});
-	// permissions.request call cannot be nested within the above storage.sync callback
-	// because firefox requires it to be called directly from a user input handler (e.g. click event)
 	chrome.permissions.request({permissions:['downloads']}, function(granted) {
 		if (granted) {
-			chrome.downloads.download({
-				url: lectureURL,
-				filename: genLectureRecordingDownloadName(lectureURL),
-				saveAs: true
+			chrome.storage.sync.get('lecture', function(result) {
+				const lectureURL = result.lecture;
+				if (lectureURL === undefined || !validURL(lectureURL)) {
+					// re initialize button if url is not found or is invalid
+					initializeDownloadLecButton();
+				}
+				else {
+					chrome.downloads.download({
+						url: lectureURL,
+						filename: genLectureRecordingDownloadName(lectureURL),
+						saveAs: true
+					});
+				}
 			});
 		} 
 		else {
@@ -84,20 +83,37 @@ function downloadLastViewedLectureRecording() {
 	});
 }
 
-function genLectureRecordingDownloadName(recordingURL) {
-	const etime = new URLSearchParams(recordingURL).get('etime');
+function genLectureRecordingDownloadName(lectureURL) {
+	const etime = new URLSearchParams(lectureURL).get('etime');
 	return 'lecture-recording-viewed-' + etime +'.mp4';
 }
 
 function initializeDownloadLecButton() {
 	chrome.storage.sync.get('lecture', function(result) {
-		if (result.lecture) {
-			downloadLec.removeAttribute('disabled');
-			downloadLec.title = 'Download ' + genLectureRecordingDownloadName(result.lecture);
+		const lectureURL = result.lecture;
+		if (lectureURL === undefined) {
+			downloadLec.setAttribute('disabled', '');
+			downloadLec.title = 'No viewed lecture recording url found.';
+		}
+		else if (!validURL(lectureURL)) {
+			downloadLec.setAttribute('disabled', '');
+			downloadLec.title = 'Last viewed lecture recording url found was invalid.';
+			chrome.storage.sync.remove('lecture');
 		}
 		else {
-			downloadLec.setAttribute('disabled', '');
-			downloadLec.title = 'No viewed lecture recording found.';
+			downloadLec.removeAttribute('disabled');
+			downloadLec.title = 'Download ' + genLectureRecordingDownloadName(lectureURL);
 		}
 	});
+}
+
+function validURL(stringURL) {
+	try {
+		new URL(stringURL);
+		return true;
+	}
+	catch (err) {
+		console.log('Unable to create URL from "' + stringURL + '" due to error: ' + err.toString());
+		return false;
+	}
 }
