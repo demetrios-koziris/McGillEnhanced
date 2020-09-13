@@ -21,6 +21,7 @@ const mcenFirefoxAddonURL = 'https://addons.mozilla.org/en-US/firefox/addon/mcgi
 const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
 const isFirefox = chrome.runtime.id.startsWith('{');
+
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
 
 
@@ -59,23 +60,26 @@ downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
 // Functionality for download lecture button.
 // Gets the url from storage and prompts a download.
 function downloadLastViewedLectureRecording() {
+	let lectureURL = '';
 	chrome.storage.sync.get('lecture', function(result) {
-		if (result.lecture) { // The download will not happen if the link is empty.
-			chrome.permissions.request({permissions:['downloads']}, function(granted) {
-				if (granted) {
-					chrome.downloads.download({
-						url: result.lecture,
-						filename: genLectureRecordingDownloadName(result.lecture),
-						saveAs: true
-					});
-				} 
-				else {
-					alert('Lecture recording download cannot proceed because permission not granted.');
-				}
-			});
-		}
-		else {
+		if (!result.lecture) { // The download will not happen if the link is empty.
 			initializeDownloadLecButton();
+			return;
+		}
+		lectureURL = result.lecture;
+	});
+	// permissions.request call cannot be nested within the above storage.sync callback
+	// because firefox requires it to be called directly from a user input handler (e.g. click event)
+	chrome.permissions.request({permissions:['downloads']}, function(granted) {
+		if (granted) {
+			chrome.downloads.download({
+				url: lectureURL,
+				filename: genLectureRecordingDownloadName(lectureURL),
+				saveAs: true
+			});
+		} 
+		else {
+			alert('Lecture recording download cannot proceed because permission not granted.');
 		}
 	});
 }
