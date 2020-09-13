@@ -46,28 +46,47 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 });
 
 
-// if enabled setting not in storage, create it and set to true
+// if failed to update icon based on storage 'enabled' value, reset 'enabled' in storage to true
 chrome.storage.local.get('enabled', function(result) {
-	const enabledSetting = result.enabled;
-	if (enabledSetting === undefined) {
+	if (!tryUpdateEnabledSetting(result.enabled)) {
 		chrome.storage.local.set({'enabled': true});
-	}
-	else {
-		setIcon(result.enabled);
 	}
 });
 
 // on changes to storage, update extension icon if enabled setting was changed
 chrome.storage.onChanged.addListener(function(changes, areaName) {
-	for(let key in changes) {
-		if(key === 'enabled') {
-			const enabledSetting = changes[key].newValue;
-			setIcon(enabledSetting);
+	if(areaName === 'local' && 'enabled' in changes) {
+		if (!tryUpdateEnabledSetting(changes.enabled.newValue)) {
+			chrome.storage.local.set({'enabled': changes.enabled.oldValue});
 		}
 	}
 });
 
-// set extension icon according to enabled setting
-function setIcon(enabledSetting) {
-	chrome.browserAction.setIcon({path: '/icons/mcgill-' + (enabledSetting ? '' : 'disabled-') + '128.png'});
+function tryUpdateEnabledSetting(boolEnabledSetting) {
+	if (boolEnabledSetting === true || boolEnabledSetting === false) {
+		// set extension icon according to enabled setting
+		chrome.browserAction.setIcon({path: '/images/mcgill-' + (boolEnabledSetting ? '' : 'disabled-') + '128.png'});
+		return true;
+	}
+	return false;
 }
+
+
+/* Script to detect network requests matching *://*.campus.mcgill.ca/api/tsmedia*.
+   The url captured contains the lecture recording download link.
+   Every mcgill lecture recording download link starts with pcdn (pcdn01, pcdn02, ...)
+*/
+chrome.webRequest.onCompleted.addListener(
+	function(details) {
+		if (new URL(details.url).hostname.startsWith('pcdn')) {
+			chrome.storage.sync.get('lecture', function(result) {
+				if (details.url !== result.lecture) {
+					chrome.storage.sync.set({lecture: details.url}, function() {
+						console.log('New lecture recording url saved.');
+					});
+				}
+			});
+		}
+	}, 
+	{ urls: ['*://*.campus.mcgill.ca/api/tsmedia*'] }
+);

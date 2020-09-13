@@ -16,39 +16,88 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 const prodIDs = ['jlacaimkacnkhlcgapgakpklnibgfkde', '{fbd3b601-613b-4747-a92b-4d37b2fd7667}'];
 const intIDs = ['fmjglinhknddndjfblbjoinijenppenk', 'fdjidmiaclmoakbolclpiefedoiodinf', '{1510757c-cb05-47b4-b47a-fe08a0866f71}'];
+const mcenFirefoxAddonURL = 'https://addons.mozilla.org/en-US/firefox/addon/mcgillenhanced/';
 
 const isPROD = prodIDs.includes(chrome.runtime.id);
 const isINT = intIDs.includes(chrome.runtime.id);
+const isFirefox = chrome.runtime.id.startsWith('{');
+
 const versionString = chrome.runtime.getManifest().version + (isPROD ? '' : (isINT ? ' INT' : ' DEV') + ' (' + chrome.runtime.id.substring(0, 6) + ')');
+
+
+if (isFirefox) {
+	document.getElementById('rateLink').href = mcenFirefoxAddonURL;
+}
 
 document.getElementById('version').innerText += 'McGill Enhanced Version ' + versionString;
 
-document.getElementById('enabledSwitch').addEventListener('click', updateEnabledSetting);
+
+const enabledSwitch = document.getElementById('enabledSwitch');
+initializeEnabledSwitch();
+enabledSwitch.addEventListener('click', updateEnabledSetting);
 
 function updateEnabledSetting() {
-	const newEnabledSetting = document.getElementById('enabledSwitch').checked;
-	updateEnabledSwitchLabel(newEnabledSetting);
-	setEnabled(newEnabledSetting);
+	updateEnabledSwitchLabel(enabledSwitch.checked);
+	chrome.storage.local.set({'enabled':enabledSwitch.checked});
 }
 
 function updateEnabledSwitchLabel(enabledSetting) {
 	document.getElementById('enabledLabel').innerText = (enabledSetting ? 'Enabled' : 'Disabled');
 }
 
-function setEnabled(enabledSetting) {
-	chrome.storage.local.set({'enabled':enabledSetting});
-}
-
 function initializeEnabledSwitch() {
 	chrome.storage.local.get('enabled', function(result) {
-		let enabledSetting = result.enabled;
-		if (enabledSetting === undefined) {
-			updateEnabledSetting();
+		enabledSwitch.checked = result.enabled;
+		updateEnabledSwitchLabel(result.enabled);
+	});
+}
+
+
+const downloadLecButton = document.getElementById('downloadLec');
+initializeDownloadLecButton();
+downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
+
+// Functionality for download lecture button.
+// Gets the url from storage and prompts a download.
+function downloadLastViewedLectureRecording() {
+	let lectureURL = '';
+	chrome.storage.sync.get('lecture', function(result) {
+		if (!result.lecture) { // The download will not happen if the link is empty.
+			initializeDownloadLecButton();
+			return;
 		}
+		lectureURL = result.lecture;
+	});
+	// permissions.request call cannot be nested within the above storage.sync callback
+	// because firefox requires it to be called directly from a user input handler (e.g. click event)
+	chrome.permissions.request({permissions:['downloads']}, function(granted) {
+		if (granted) {
+			chrome.downloads.download({
+				url: lectureURL,
+				filename: genLectureRecordingDownloadName(lectureURL),
+				saveAs: true
+			});
+		} 
 		else {
-			updateEnabledSwitchLabel(enabledSetting);
-			document.getElementById('enabledSwitch').checked = enabledSetting;
+			alert('Lecture recording download cannot proceed because permission not granted.');
 		}
 	});
 }
-initializeEnabledSwitch();
+
+function genLectureRecordingDownloadName(recordingURL) {
+	const etime = new URLSearchParams(recordingURL).get('etime');
+	return 'lecture-recording-viewed-' + etime +'.mp4';
+}
+
+function initializeDownloadLecButton() {
+	chrome.storage.sync.get('lecture', function(result) {
+		if (result.lecture) {
+			downloadLec.removeAttribute('disabled');
+			downloadLec.title = 'Download ' + genLectureRecordingDownloadName(result.lecture);
+		}
+		else {
+			downloadLec.setAttribute('disabled', '');
+			downloadLec.title = 'No viewed lecture recording found.';
+		}
+	});
+}

@@ -25,7 +25,7 @@ function getMonthToSemester() {
 }
 
 function getRecordingData() {
-	let recordingData = 	{
+	let recordingData = {
 		"ACCT354": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26005" }
 		],
@@ -51,10 +51,6 @@ function getRecordingData() {
 		"AEBI212": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22153" }
 		],
-		"AECH111": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11256" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "13093" }
-		],
 		"AEMA102": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21994" }
 		],
@@ -70,24 +66,13 @@ function getRecordingData() {
 		"AGRI493": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "24515" }
 		],
-		"ANAT214": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12204" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14135" }
-		],
 		"ANAT316": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21987" }
-		],
-		"ANAT321": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10435" }
-		],
-		"ANAT416": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11265" }
 		],
 		"ANAT542": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28607" }
 		],
 		"ANSC234": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12551" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22000" }
 		],
 		"ANSC312": [
@@ -106,6 +91,7 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22747" }
 		],
 		"ANTH209": [
+			{ "year": 2019, "month": 1, "section": "001", "id": "19735" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22466" }
 		],
 		"ANTH212": [
@@ -116,9 +102,6 @@ function getRecordingData() {
 		],
 		"ANTH343": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22472" }
-		],
-		"ANTH355": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14746" }
 		],
 		"ANTH359": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26021" }
@@ -169,11 +152,7 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22748" }
 		],
 		"ATOC184": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11293" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20561" }
-		],
-		"ATOC185": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "9858" }
 		],
 		"ATOC219": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28103" }
@@ -203,16 +182,11 @@ function getRecordingData() {
 			{ "year": 2018, "month": 1, "section": "001", "id": "17669" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22283" }
 		],
-		"BIOC300D2": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11297" }
-		],
 		"BIOC311": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10451" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17189" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19525" }
 		],
 		"BIOC312": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11264" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21990" }
 		],
 		"BIOC320": [
@@ -223,7 +197,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "28584" }
 		],
 		"BIOC450": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10452" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17190" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19526" }
 		],
@@ -244,26 +217,10 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22397" }
 		],
 		"BIOL115": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12042" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "16973" }
 		],
-		"BIOL200": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13768" }
-		],
-		"BIOL201": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12958" }
-		],
-		"BIOL202": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11132" },
-			{ "year": 2015, "month": 5, "section": "001", "id": "11425" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "12959" }
-		],
 		"BIOL205": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14868" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18105" }
-		],
-		"BIOL215": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13967" }
 		],
 		"BIOL219": [
 			{ "year": 2019, "month": 9, "section": "001", "id": "21232" }
@@ -271,14 +228,7 @@ function getRecordingData() {
 		"BIOL301": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22410" }
 		],
-		"BIOL309": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10255" }
-		],
-		"BIOL313": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12828" }
-		],
 		"BIOL314": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "14300" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19145" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21242" }
 		],
@@ -295,8 +245,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "25682" }
 		],
 		"BREE301": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14849" },
-			{ "year": 2017, "month": 1, "section": "002", "id": "14851" },
 			{ "year": 2018, "month": 1, "section": "002", "id": "18090" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22105" }
 		],
@@ -319,8 +267,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "28311" }
 		],
 		"BUS2365": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12197" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14349" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "17453" },
 			{ "year": 2018, "month": 9, "section": "003", "id": "19493" },
 			{ "year": 2019, "month": 9, "section": "003", "id": "21709" }
@@ -338,9 +284,6 @@ function getRecordingData() {
 		],
 		"BUSA499": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17243" }
-		],
-		"CACC521": [
-			{ "year": 2016, "month": 9, "section": "781", "id": "13488" }
 		],
 		"CACF210": [
 			{ "year": 2020, "month": 1, "section": "781", "id": "26836" }
@@ -424,7 +367,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "751", "id": "26623" }
 		],
 		"CFIN512": [
-			{ "year": 2016, "month": 9, "section": "751", "id": "13571" },
 			{ "year": 2020, "month": 1, "section": "741", "id": "23333" }
 		],
 		"CGM2510": [
@@ -447,54 +389,33 @@ function getRecordingData() {
 		"CHEE310": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22490" }
 		],
-		"CHEE351": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14642" }
-		],
-		"CHEE453": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13537" }
-		],
 		"CHEE591": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26077" }
 		],
 		"CHEM110": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10258" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "12039" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "13961" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "16970" }
 		],
 		"CHEM120": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14873" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18108" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20395" }
 		],
 		"CHEM181": [
-			{ "year": 2015, "month": 1, "section": "761", "id": "11287" },
-			{ "year": 2016, "month": 1, "section": "761", "id": "13124" },
 			{ "year": 2018, "month": 1, "section": "761", "id": "18264" },
 			{ "year": 2019, "month": 1, "section": "761", "id": "20555" },
-			{ "year": 2020, "month": 1, "section": "761", "id": "22165" },
 			{ "year": 2020, "month": 5, "section": "001", "id": "29449" }
 		],
 		"CHEM183": [
-			{ "year": 2014, "month": 9, "section": "761", "id": "9852" },
-			{ "year": 2015, "month": 9, "section": "761", "id": "11556" },
-			{ "year": 2016, "month": 9, "section": "761", "id": "13440" },
 			{ "year": 2017, "month": 9, "section": "761", "id": "16383" },
 			{ "year": 2018, "month": 9, "section": "761", "id": "18645" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "20838" }
 		],
 		"CHEM203": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13988" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17002" }
 		],
 		"CHEM204": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10286" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14876" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17003" }
 		],
 		"CHEM211": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12138" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14840" },
 			{ "year": 2017, "month": 5, "section": "001", "id": "16244" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17089" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19427" },
@@ -505,17 +426,11 @@ function getRecordingData() {
 			{ "year": 2018, "month": 5, "section": "003", "id": "18407" }
 		],
 		"CHEM214": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11146" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14878" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18112" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20400" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21924" }
 		],
 		"CHEM222": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10323" },
-			{ "year": 2015, "month": 5, "section": "001", "id": "11423" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14025" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14810" },
 			{ "year": 2017, "month": 5, "section": "001", "id": "16246" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17037" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18046" },
@@ -526,11 +441,7 @@ function getRecordingData() {
 			{ "year": 2019, "month": 5, "section": "001", "id": "20715" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22077" }
 		],
-		"CHEM232": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13966" }
-		],
 		"CHEM233": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "15061" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18299" }
 		],
 		"CHEM273": [
@@ -539,9 +450,6 @@ function getRecordingData() {
 		"CHEM281": [
 			{ "year": 2019, "month": 1, "section": "001", "id": "20419" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22120" }
-		],
-		"CHEM302": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12124" }
 		],
 		"CHEM392": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28237" }
@@ -572,10 +480,6 @@ function getRecordingData() {
 		"CIVE319": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21907" }
 		],
-		"CIVE320": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10225" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "11999" }
-		],
 		"CIVE327": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21910" }
 		],
@@ -596,10 +500,6 @@ function getRecordingData() {
 		],
 		"CIVE623": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28356" }
-		],
-		"CLAS203": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10001" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "11700" }
 		],
 		"CLAS240": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22427" }
@@ -680,11 +580,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22323" }
 		],
 		"COMP202": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12237" },
-			{ "year": 2015, "month": 9, "section": "003", "id": "12239" },
-			{ "year": 2016, "month": 5, "section": "001", "id": "13267" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14166" },
-			{ "year": 2016, "month": 9, "section": "003", "id": "14168" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17196" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18200" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20489" },
@@ -697,37 +592,25 @@ function getRecordingData() {
 			{ "year": 2019, "month": 9, "section": "001", "id": "21749" }
 		],
 		"COMP208": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13909" },
 			{ "year": 2018, "month": 9, "section": "002", "id": "19316" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20318" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22072" }
 		],
 		"COMP250": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10464" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "12243" },
-			{ "year": 2015, "month": 9, "section": "002", "id": "11806" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "13068" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14171" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17202" }
 		],
 		"COMP251": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "14172" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17203" }
 		],
 		"COMP273": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13075" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20506" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "20832" }
 		],
 		"COMP302": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13118" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "15019" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20549" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22163" }
 		],
 		"COMP310": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13081" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14983" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19302" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21983" }
 		],
@@ -767,14 +650,14 @@ function getRecordingData() {
 		"COMP551": [
 			{ "year": 2019, "month": 9, "section": "001", "id": "21070" }
 		],
-		"COMP557": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10865" }
-		],
 		"COMP559": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23243" }
 		],
 		"COMP598": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23241" }
+		],
+		"COMP602": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "38182" }
 		],
 		"COMP764": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23824" }
@@ -848,26 +731,8 @@ function getRecordingData() {
 		"DENT217": [
 			{ "year": 2017, "month": 9, "section": "001", "id": "17357" }
 		],
-		"DENT220D1": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12642" }
-		],
-		"DENT318J1": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12324" }
-		],
-		"DENT323J1": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12328" }
-		],
-		"DENT409": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12337" }
-		],
-		"DENT411": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12339" }
-		],
-		"DENT412D2": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12646" }
-		],
-		"DENT413": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12341" }
+		"DENT418D2": [
+			{ "year": 2020, "month": 1, "section": "001", "id": "24946" }
 		],
 		"EAST211": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22253" }
@@ -889,12 +754,11 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "26806" }
 		],
 		"ECON208": [
-			{ "year": 2015, "month": 1, "section": "004", "id": "11009" },
 			{ "year": 2019, "month": 9, "section": "002", "id": "20945" },
 			{ "year": 2019, "month": 9, "section": "004", "id": "21092" }
 		],
 		"ECON209": [
-			{ "year": 2015, "month": 1, "section": "003", "id": "11010" }
+			{ "year": 2020, "month": 5, "section": "001", "id": "29830" }
 		],
 		"ECON219": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22222" }
@@ -905,15 +769,8 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "003", "id": "25410" },
 			{ "year": 2020, "month": 1, "section": "005", "id": "26773" }
 		],
-		"ECON230D1": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10016" },
-			{ "year": 2015, "month": 9, "section": "002", "id": "11716" }
-		],
 		"ECON250D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22015" }
-		],
-		"ECON257D1": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13591" }
 		],
 		"ECON257D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22016" }
@@ -924,20 +781,10 @@ function getRecordingData() {
 		"ECON304": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22183" }
 		],
-		"ECON313": [
-			{ "year": 2014, "month": 9, "section": "002", "id": "10192" },
-			{ "year": 2015, "month": 5, "section": "001", "id": "11450" },
-			{ "year": 2015, "month": 9, "section": "002", "id": "11953" }
-		],
 		"ECON314": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "9891" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "11600" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "18692" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "20875" },
 			{ "year": 2020, "month": 1, "section": "002", "id": "22193" }
-		],
-		"ECON319": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13676" }
 		],
 		"ECON330D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22018" }
@@ -1005,6 +852,9 @@ function getRecordingData() {
 		],
 		"ECSE352": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "26155" }
+		],
+		"ECSE362": [
+			{ "year": 2018, "month": 9, "section": "001", "id": "19081" }
 		],
 		"ECSE461": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22526" }
@@ -1192,9 +1042,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "25390" }
 		],
 		"EPSC180": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11290" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "13127" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "15030" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18267" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20558" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22759" }
@@ -1203,13 +1050,14 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22312" }
 		],
 		"EPSC201": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12270" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14200" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17231" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19554" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20379" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21768" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21917" }
+		],
+		"EPSC320": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "32521" }
 		],
 		"EPSC549": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22291" }
@@ -1219,6 +1067,9 @@ function getRecordingData() {
 		],
 		"EXMD504": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "19544" }
+		],
+		"EXMD604": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "37950" }
 		],
 		"EXMD607": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25824" }
@@ -1230,8 +1081,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "26501" }
 		],
 		"FACC100": [
-			{ "year": 2015, "month": 1, "section": "002", "id": "11295" },
-			{ "year": 2016, "month": 9, "section": "002", "id": "13441" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "20834" }
 		],
 		"FACC300": [
@@ -1285,7 +1134,8 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "004", "id": "26596" }
 		],
 		"FINE441": [
-			{ "year": 2020, "month": 1, "section": "003", "id": "26260" }
+			{ "year": 2020, "month": 1, "section": "003", "id": "26260" },
+			{ "year": 2020, "month": 5, "section": "001", "id": "7945" }
 		],
 		"FINE442": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26262" }
@@ -1318,9 +1168,6 @@ function getRecordingData() {
 		],
 		"FINE622": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26275" }
-		],
-		"FINE682": [
-			{ "year": 2016, "month": 9, "section": "065", "id": "13842" }
 		],
 		"FINE691": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26475" }
@@ -1378,9 +1225,6 @@ function getRecordingData() {
 		],
 		"FRSL215": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23297" }
-		],
-		"GEOG200": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12169" }
 		],
 		"GEOG210": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22113" }
@@ -1450,8 +1294,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22224" }
 		],
 		"HIST249": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10371" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "12145" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17096" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21672" }
 		],
@@ -1503,19 +1345,7 @@ function getRecordingData() {
 		"INDR494": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22546" }
 		],
-		"INDS111": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13640" }
-		],
-		"INDS113": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "11778" }
-		],
-		"INDS115": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10810" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "12561" }
-		],
 		"INDS116": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12704" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "16163" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20625" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22792" }
 		],
@@ -1530,18 +1360,13 @@ function getRecordingData() {
 			{ "year": 2019, "month": 5, "section": "001", "id": "20705" }
 		],
 		"INDS211": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13688" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "16634" }
 		],
 		"INDS212": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13689" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "16635" }
 		],
 		"INDS224J2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23978" }
-		],
-		"INDS305": [
-			{ "year": 2015, "month": 5, "section": "001", "id": "11533" }
 		],
 		"INSY336": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "19108" },
@@ -1611,23 +1436,12 @@ function getRecordingData() {
 		"LAWG101D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21864" }
 		],
-		"LAWG210": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "11964" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "13779" }
-		],
 		"LAWG220D1": [
 			{ "year": 2018, "month": 9, "section": "002", "id": "19094" }
 		],
 		"LAWG220D2": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "22327" },
 			{ "year": 2020, "month": 1, "section": "003", "id": "24866" }
-		],
-		"LAWG273": [
-			{ "year": 2016, "month": 5, "section": "001", "id": "13346" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14439" }
-		],
-		"LAWG300": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12703" }
 		],
 		"LAWG415": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22365" }
@@ -1640,7 +1454,8 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22126" }
 		],
 		"LAWG536": [
-			{ "year": 2018, "month": 5, "section": "001", "id": "18400" }
+			{ "year": 2018, "month": 5, "section": "001", "id": "18400" },
+			{ "year": 2020, "month": 9, "section": "001", "id": "30486" }
 		],
 		"LAWG602": [
 			{ "year": 2020, "month": 1, "section": "009", "id": "22342" }
@@ -1650,9 +1465,6 @@ function getRecordingData() {
 		],
 		"LEEL570": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22255" }
-		],
-		"LING201": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10887" }
 		],
 		"LING350": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26565" }
@@ -1667,14 +1479,14 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22101" }
 		],
 		"MATH133": [
-			{ "year": 2018, "month": 9, "section": "001", "id": "19347" }
+			{ "year": 2018, "month": 9, "section": "001", "id": "19347" },
+			{ "year": 2019, "month": 9, "section": "001", "id": "21591" }
 		],
 		"MATH140": [
 			{ "year": 2019, "month": 9, "section": "001", "id": "21599" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21932" }
 		],
 		"MATH141": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12109" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18138" },
 			{ "year": 2018, "month": 1, "section": "024", "id": "17760" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21933" }
@@ -1704,13 +1516,13 @@ function getRecordingData() {
 			{ "year": 2020, "month": 5, "section": "001", "id": "29583" }
 		],
 		"MATH263": [
-			{ "year": 2020, "month": 1, "section": "001", "id": "22061" }
+			{ "year": 2020, "month": 1, "section": "001", "id": "22061" },
+			{ "year": 2020, "month": 5, "section": "001", "id": "29585" }
 		],
 		"MATH264": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22067" }
 		],
 		"MATH323": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13020" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19420" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21954" },
 			{ "year": 2020, "month": 5, "section": "001", "id": "29591" }
@@ -1723,6 +1535,9 @@ function getRecordingData() {
 		],
 		"MATH329": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21957" }
+		],
+		"MATH338": [
+			{ "year": 2019, "month": 9, "section": "001", "id": "21662" }
 		],
 		"MATH340": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21958" }
@@ -1764,11 +1579,11 @@ function getRecordingData() {
 		"MATH577": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28349" }
 		],
-		"MATH595": [
-			{ "year": 2015, "month": 5, "section": "001", "id": "11458" }
+		"MATH583": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "37820" }
 		],
-		"MATH598": [
-			{ "year": 2015, "month": 5, "section": "001", "id": "11459" }
+		"MATH596": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "36148" }
 		],
 		"MATH599": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26508" }
@@ -1808,7 +1623,8 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "21880" }
 		],
 		"MECH360": [
-			{ "year": 2020, "month": 1, "section": "001", "id": "23250" }
+			{ "year": 2020, "month": 1, "section": "001", "id": "23250" },
+			{ "year": 2020, "month": 9, "section": "001", "id": "33122" }
 		],
 		"MECH362": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23304" }
@@ -1844,12 +1660,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "24006" }
 		],
 		"MGCR222": [
-			{ "year": 2014, "month": 9, "section": "006", "id": "10063" },
-			{ "year": 2015, "month": 1, "section": "005", "id": "11337" },
-			{ "year": 2015, "month": 1, "section": "006", "id": "10745" },
-			{ "year": 2016, "month": 9, "section": "003", "id": "14046" },
-			{ "year": 2016, "month": 9, "section": "005", "id": "14048" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "15069" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22561" },
 			{ "year": 2020, "month": 1, "section": "002", "id": "22562" },
 			{ "year": 2020, "month": 1, "section": "003", "id": "22563" }
@@ -1861,16 +1671,12 @@ function getRecordingData() {
 			{ "year": 2017, "month": 9, "section": "001", "id": "17285" }
 		],
 		"MGCR331": [
-			{ "year": 2014, "month": 9, "section": "751", "id": "10179" },
-			{ "year": 2015, "month": 9, "section": "751", "id": "11870" },
-			{ "year": 2016, "month": 5, "section": "751", "id": "13333" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22567" },
 			{ "year": 2020, "month": 1, "section": "002", "id": "22568" },
 			{ "year": 2020, "month": 1, "section": "003", "id": "22569" },
 			{ "year": 2020, "month": 1, "section": "004", "id": "22570" }
 		],
 		"MGCR341": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12413" },
 			{ "year": 2018, "month": 5, "section": "061", "id": "18472" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21421" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22571" },
@@ -1881,10 +1687,11 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22575" },
 			{ "year": 2020, "month": 1, "section": "002", "id": "22576" },
 			{ "year": 2020, "month": 1, "section": "003", "id": "22577" },
-			{ "year": 2020, "month": 1, "section": "005", "id": "22578" }
+			{ "year": 2020, "month": 1, "section": "005", "id": "22578" },
+			{ "year": 2020, "month": 9, "section": "001", "id": "33214" },
+			{ "year": 2020, "month": 9, "section": "002", "id": "33215" }
 		],
 		"MGCR423": [
-			{ "year": 2017, "month": 1, "section": "751", "id": "14667" },
 			{ "year": 2017, "month": 9, "section": "751", "id": "17307" },
 			{ "year": 2020, "month": 1, "section": "004", "id": "26297" }
 		],
@@ -1907,9 +1714,6 @@ function getRecordingData() {
 		"MGPO630": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26319" }
 		],
-		"MGPO640": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10765" }
-		],
 		"MGSC372": [
 			{ "year": 2019, "month": 9, "section": "001", "id": "21444" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22596" },
@@ -1922,7 +1726,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "075", "id": "22600" }
 		],
 		"MIME260": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14729" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "17958" }
 		],
 		"MIME262": [
@@ -1946,20 +1749,10 @@ function getRecordingData() {
 		"MIME473": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23944" }
 		],
-		"MIMM212": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "9878" }
-		],
-		"MIMM214": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10715" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "12479" }
-		],
 		"MIMM314": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11200" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "13029" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20462" }
 		],
 		"MIMM323": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10424" },
 			{ "year": 2017, "month": 9, "section": "001", "id": "17156" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19496" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21712" }
@@ -1968,7 +1761,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "21964" }
 		],
 		"MIMM413": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11203" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18177" }
 		],
 		"MIMM466": [
@@ -2054,7 +1846,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "23309" }
 		],
 		"NSCI300": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13052" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "28467" }
 		],
 		"NUR1209": [
@@ -2084,9 +1875,6 @@ function getRecordingData() {
 		"NUR1339": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22765" }
 		],
-		"NUR1420": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12025" }
-		],
 		"NUR1428": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "18818" }
 		],
@@ -2111,14 +1899,8 @@ function getRecordingData() {
 		"NUTR301": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22644" }
 		],
-		"NUTR545": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "11552" }
-		],
 		"OCC1245": [
 			{ "year": 2018, "month": 9, "section": "001", "id": "19149" }
-		],
-		"OCC1547": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14979" }
 		],
 		"OCC1548": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22130" },
@@ -2131,14 +1913,12 @@ function getRecordingData() {
 			{ "year": 2018, "month": 9, "section": "001", "id": "19519" }
 		],
 		"OCC1551": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "13036" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22131" }
 		],
 		"OCC1617": [
 			{ "year": 2019, "month": 9, "section": "001", "id": "21788" }
 		],
 		"OCC1623": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "15009" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20538" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22158" }
 		],
@@ -2150,9 +1930,6 @@ function getRecordingData() {
 		],
 		"ORGB423": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26369" }
-		],
-		"ORGB685": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11171" }
 		],
 		"ORGB690": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26374" }
@@ -2173,17 +1950,10 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22277" }
 		],
 		"PHGY209": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12213" },
-			{ "year": 2015, "month": 9, "section": "002", "id": "12080" },
-			{ "year": 2015, "month": 9, "section": "004", "id": "11545" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14144" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21725" },
 			{ "year": 2019, "month": 9, "section": "002", "id": "21609" }
 		],
 		"PHGY210": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12906" },
-			{ "year": 2016, "month": 1, "section": "002", "id": "13060" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14817" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18050" },
 			{ "year": 2018, "month": 1, "section": "002", "id": "18202" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20330" },
@@ -2191,11 +1961,9 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "002", "id": "21970" }
 		],
 		"PHGY212": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12107" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21641" }
 		],
 		"PHGY213": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14837" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18075" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22094" }
 		],
@@ -2206,16 +1974,13 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "21971" }
 		],
 		"PHGY314": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12215" }
+			{ "year": 2017, "month": 9, "section": "001", "id": "17172" }
 		],
 		"PHGY459D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28698" }
 		],
-		"PHIL210": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "9987" }
-		],
-		"PHIL237": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10895" }
+		"PHIL343": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "34181" }
 		],
 		"PHIL361": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25841" }
@@ -2235,29 +2000,17 @@ function getRecordingData() {
 		"PHIL481": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26474" }
 		],
-		"PHTH440": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10806" }
-		],
 		"PHTH551": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "12229" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14159" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19524" },
 			{ "year": 2019, "month": 9, "section": "003", "id": "21762" }
 		],
 		"PHTH560": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22135" }
 		],
-		"PHTH622": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14524" }
-		],
 		"PHTH661": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28620" }
 		],
-		"PHYS102": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12987" }
-		],
 		"PHYS142": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14932" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "18169" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20458" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21959" }
@@ -2300,7 +2053,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "003", "id": "27228" }
 		],
 		"POLI227": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12798" },
 			{ "year": 2020, "month": 1, "section": "008", "id": "27271" },
 			{ "year": 2020, "month": 1, "section": "017", "id": "27280" }
 		],
@@ -2308,7 +2060,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "004", "id": "27237" }
 		],
 		"POLI243": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10977" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "17753" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "20000" }
 		],
@@ -2321,7 +2072,6 @@ function getRecordingData() {
 			{ "year": 2019, "month": 9, "section": "001", "id": "21057" }
 		],
 		"POLI346": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10463" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19071" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21103" }
 		],
@@ -2345,7 +2095,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "25898" }
 		],
 		"POLI423": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14613" },
 			{ "year": 2019, "month": 9, "section": "001", "id": "21160" }
 		],
 		"POLI432": [
@@ -2359,29 +2108,18 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22438" }
 		],
 		"POLI450": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14617" },
 			{ "year": 2019, "month": 1, "section": "001", "id": "19960" }
 		],
 		"POLI452": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22664" }
 		],
 		"POTH225": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12554" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22236" }
-		],
-		"POTH401": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11249" }
-		],
-		"POTH563": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "11771" }
 		],
 		"POTH627": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28819" }
 		],
 		"POTH684": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "10736" },
-			{ "year": 2016, "month": 1, "section": "001", "id": "12500" },
-			{ "year": 2017, "month": 1, "section": "001", "id": "14413" },
 			{ "year": 2018, "month": 1, "section": "001", "id": "17516" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22220" }
 		],
@@ -2396,30 +2134,23 @@ function getRecordingData() {
 			{ "year": 2019, "month": 1, "section": "001", "id": "19884" }
 		],
 		"PSYC215": [
-			{ "year": 2015, "month": 1, "section": "001", "id": "11129" },
 			{ "year": 2019, "month": 5, "section": "001", "id": "20719" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22111" }
 		],
 		"PSYC302": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22355" }
 		],
-		"PSYC331": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10132" },
-			{ "year": 2015, "month": 9, "section": "001", "id": "11817" }
-		],
-		"PSYC337": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10483" },
-			{ "year": 2016, "month": 9, "section": "001", "id": "14190" }
+		"PSYC311": [
+			{ "year": 2019, "month": 9, "section": "001", "id": "21724" }
 		],
 		"PSYC403": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22356" }
 		],
 		"PSYC406": [
-			{ "year": 2016, "month": 9, "section": "001", "id": "13830" },
 			{ "year": 2018, "month": 9, "section": "001", "id": "19009" }
 		],
-		"PSYC410": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10484" }
+		"PSYC475": [
+			{ "year": 2019, "month": 9, "section": "001", "id": "21278" }
 		],
 		"PSYC528": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25930" }
@@ -2431,14 +2162,11 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "26487" }
 		],
 		"PSYC538": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14450" },
-			{ "year": 2018, "month": 1, "section": "001", "id": "17542" }
+			{ "year": 2018, "month": 1, "section": "001", "id": "17542" },
+			{ "year": 2020, "month": 9, "section": "001", "id": "34427" }
 		],
 		"PSYC541": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25931" }
-		],
-		"PSYC744": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14672" }
 		],
 		"PUB2101D2": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "21866" }
@@ -2465,7 +2193,6 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22445" }
 		],
 		"RELG253": [
-			{ "year": 2017, "month": 1, "section": "001", "id": "14720" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "24855" }
 		],
 		"RELG254": [
@@ -2525,9 +2252,6 @@ function getRecordingData() {
 		"SOCI211": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22610" }
 		],
-		"SOCI225": [
-			{ "year": 2015, "month": 9, "section": "001", "id": "11839" }
-		],
 		"SOCI227": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22611" }
 		],
@@ -2535,17 +2259,10 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "22612" }
 		],
 		"SOCI254": [
-			{ "year": 2014, "month": 9, "section": "001", "id": "10039" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "22613" }
 		],
 		"SOCI255": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22654" }
-		],
-		"SOCI265": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12600" }
-		],
-		"SOCI270": [
-			{ "year": 2016, "month": 1, "section": "001", "id": "12601" }
 		],
 		"SOCI307": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22614" }
@@ -2574,6 +2291,9 @@ function getRecordingData() {
 		"SWRK525": [
 			{ "year": 2020, "month": 1, "section": "003", "id": "25218" }
 		],
+		"SWRK532": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "34572" }
+		],
 		"SWRK610": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "23635" }
 		],
@@ -2594,6 +2314,9 @@ function getRecordingData() {
 		],
 		"WOOD441": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23528" }
+		],
+		"YCBS118": [
+			{ "year": 2020, "month": 5, "section": "008", "id": "30346" }
 		],
 		"YCBS263": [
 			{ "year": 2019, "month": 5, "section": "001", "id": "20777" }

@@ -79,27 +79,30 @@
 }
 .mcen-class-averages-button {
 	box-sizing: border-box;
-	background: #FFF url(https://i.imgur.com/N0P89lL.png) no-repeat 3% 30%/24px 24px;
+	background-repeat: no-repeat;
+	background-position: 3% 30%;
+	background-size: 24px 24px;
+	background-color: #FFF;
 	border: 2px solid #C5C5C5 !important;
 	width: 100%;
 	margin: 4px 0px;
 	padding: 6px 6px 6px 40px !important;
 	font-family: CartoGothicStdBook, Helvetica, "Helvetica Neue", Arial, "sans serif";
 	font-size: 14.4px;
-	-webkit-box-shadow : none;
 }
 .mcen-class-averages-button:hover {
-	background: #D5D7D9 url(https://i.imgur.com/N0P89lL.png) no-repeat 3% 30%/24px 24px;
+	background-repeat: no-repeat;
+	background-position: 3% 30%;
+	background-size: 24px 24px;
+	background-color: #D5D7D9 !important;
 	border: 2px solid #5B5B5A !important;
 }
 #mcen-class-averages-submit {
 	width: 240px;
-	background: #FFF url(https://i.imgur.com/N0P89lL.png) no-repeat 5% 30%/24px 24px;
+	background-position: 5% 30% !important;
 	padding: 6px 6px 6px 30px !important;
 }
-#mcen-class-averages-submit:hover {
-	background: #D5D7D9 url(https://i.imgur.com/N0P89lL.png) no-repeat 5% 30%/24px 24px;
-}
+
 .mcen-class-averages-scroll {
 	box-sizing: border-box;
 	display: inline-block;

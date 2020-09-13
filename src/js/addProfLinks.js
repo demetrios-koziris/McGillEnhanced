@@ -50,6 +50,9 @@ function makeProfLinks() {
 	const mercuryProfs = getMercuryData();
 
 	const profsFullSourceElem = document.getElementsByClassName('catalog-instructors')[0];
+	if (profsFullSourceElem === undefined) {
+		return;
+	}
 	let profsFullSource = profsFullSourceElem.innerHTML;
 
 	const profLinkMessage = 'View other courses<br>taught by this instructor';
@@ -115,7 +118,7 @@ function makeProfLinks() {
 
 				const termImg = document.createElement('img');
 				termImg.className = 'mcen-termImg';
-				termImg.src = chrome.extension.getURL('icons/empty-15.png');
+				termImg.src = chrome.runtime.getURL('images/empty-15.png');
 				termDiv.appendChild(termImg);
 
 				if (termKey in prof.termsTeaching) {

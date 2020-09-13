@@ -5,8 +5,10 @@
 	margin: 10px 0px !important;
 	border: 2px solid #5B5B5A;
 	border-radius: 8px !important;
-	background: #FBF7C9 url(https://i.imgur.com/N0P89lL.png) no-repeat 6% 44% !important;
+	background-repeat: no-repeat !important;
+	background-position: 6% 44% !important;
 	background-size: 40px 40px !important;
+	background-color: #FBF7C9 !important;
 	box-shadow: 3px 3px 5px #dddddd !important;
 }
 

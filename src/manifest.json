@@ -2,13 +2,17 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.2.41",
+  "version": "4.3.10",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
+    "webRequest",
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*",
     "*://www.docuum.com/*"
+  ],
+  "optional_permissions": [
+    "downloads"
   ],
   "background": {
     "scripts": [
@@ -18,14 +22,14 @@
   },
   "browser_action": {
     "default_icon": {
-      "38": "icons/mcgill-128.png",
-      "128": "icons/mcgill-128.png"
+      "38": "images/mcgill-128.png",
+      "128": "images/mcgill-128.png"
     },
     "default_popup": "menu/quicklinksMenu.html",
     "default_title": "Click to view Quick Links Menu!"
   },
   "icons": {
-    "128": "icons/mcgill-128.png"
+    "128": "images/mcgill-128.png"
   },
   "content_scripts": [
     {
@@ -49,7 +53,7 @@
       ],
       "js": [
         "lib/purify.min.js",
-        "lib/jquery-3.3.1.min.js",
+        "lib/jquery-3.5.1.min.js",
         "lib/tooltipsy.min.js",
         "lib/md5.js",
         "lib/uuid-random.min.js",
@@ -82,6 +86,6 @@
     "css/programs.css",
     "css/vsb.css",
     "css/minerva.css",
-    "icons/empty-15.png"
+    "images/*.png"
   ]
 }
