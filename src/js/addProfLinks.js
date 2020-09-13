@@ -50,6 +50,9 @@ function makeProfLinks() {
 	const mercuryProfs = getMercuryData();
 
 	const profsFullSourceElem = document.getElementsByClassName('catalog-instructors')[0];
+	if (profsFullSourceElem === undefined) {
+		return;
+	}
 	let profsFullSource = profsFullSourceElem.innerHTML;
 
 	const profLinkMessage = 'View other courses<br>taught by this instructor';

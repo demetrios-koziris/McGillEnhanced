@@ -51,7 +51,11 @@ function generateClassAverageRow(data, rowIndex) {
 
 function addContentSeparators() {
 
-	const content = document.getElementsByClassName('node-catalog')[0].children[1];
+	const catalogDiv = document.getElementsByClassName('node-catalog')[0];
+	if (catalogDiv === undefined) {
+		return;
+	}
+	const content = catalogDiv.children[1];
 	content.id = 'mcen-content';
 	content.children[0].remove();
 

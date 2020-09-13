@@ -28,7 +28,11 @@ function makeSidebarContent() {
 	getVSBSemesters(vsbSidebarTerms);
 	const withinyearRangeVSB = (sysYear==urlYearF) || (sysYear==urlYearW && sysMonth<9);
 
-	const courseTerms = document.getElementsByClassName('catalog-terms')[0].innerHTML;
+	const courseTermsElem = document.getElementsByClassName('catalog-terms')[0];
+	if (courseTermsElem === undefined) {
+		return;
+	}
+	const courseTerms = courseTermsElem.innerHTML;
 	const courseTermsCodes = [];
 	if (courseTerms.match(termNames[lang][9])) {
 		courseTermsCodes.push( {

@@ -2,14 +2,14 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.3.9",
+  "version": "4.3.10",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
+    "webRequest",
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*",
-    "*://www.docuum.com/*",
-    "webRequest"
+    "*://www.docuum.com/*"
   ],
   "optional_permissions": [
     "downloads"
