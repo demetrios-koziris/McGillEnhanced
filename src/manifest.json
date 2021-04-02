@@ -2,16 +2,12 @@
   "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 2,
-  "version": "4.3.17",
+  "version": "4.3.18",
   "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage",
-    "webRequest",
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*"
-  ],
-  "optional_permissions": [
-    "downloads"
   ],
   "background": {
     "scripts": [
