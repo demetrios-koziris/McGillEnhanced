@@ -4,6 +4,10 @@
 	height: 33px !important;
 }
 
+.mcen-yearMenuBarDIV * {
+	box-sizing: initial !important;
+}
+
 .mcen-yearMenuBarUL {
 	height: 33px !important;
 }
