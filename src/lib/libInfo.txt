@@ -23,10 +23,10 @@ License:    https://code.google.com/p/crypto-js/wiki/License
 
 
 purify.min.js
-Source:     https://github.com/cure53/DOMPurify/blob/2.0.15/dist/purify.min.js
-SourceMap:  https://github.com/cure53/DOMPurify/blob/2.0.15/dist/purify.min.js.map
-Unminified: https://github.com/cure53/DOMPurify/blob/2.0.15/dist/purify.js
-License:    https://github.com/cure53/DOMPurify/blob/2.0.15/LICENSE
+Source:     https://github.com/cure53/DOMPurify/blob/2.2.7/dist/purify.min.js
+SourceMap:  https://github.com/cure53/DOMPurify/blob/2.2.7/dist/purify.min.js.map
+Unminified: https://github.com/cure53/DOMPurify/blob/2.2.7/dist/purify.js
+License:    https://github.com/cure53/DOMPurify/blob/2.2.7/LICENSE
 
 
 tooltipsy.min.js
