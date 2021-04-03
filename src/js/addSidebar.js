@@ -140,8 +140,6 @@ function makeSidebarContent() {
 
 	
 	//SIDEBAR SECTION: LECTURE RECORDINGS
-	const oldestAvailableTerm = calcOldestAvailableTerm(currentTermYear, currentTermMonth);
-	logForDebug('LRS oldestAvailableTerm: ' + oldestAvailableTerm);
 	if (recordingURLdata) {
 		const recordings = generateSidebarSection('Lecture Recordings');
 		sidebarLinksBlock.appendChild(recordings);
@@ -151,12 +149,10 @@ function makeSidebarContent() {
 		recordings.appendChild(generateSidebarLink(lrsplusURL, 'mcen-red', lrsplusButtonString, false));
 
 		for (let i = 0; i < recordingURLdata.length; i++) {
-			if (translateToTermCode(recordingURLdata[i].year, recordingURLdata[i].month) >= oldestAvailableTerm) {
-				const recordingData = recordingURLdata[i];
-				const recordingURL = 'https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=' + recordingData.id;
-				const recordingsButtonString = monthToSemester[recordingData.month] + ' ' + recordingData.year + ' Sec ' + recordingData.section + ' Recordings';
-				recordings.appendChild(generateSidebarLink(recordingURL, 'mcen-red', recordingsButtonString, false));
-			}
+			const recordingData = recordingURLdata[i];
+			const recordingURL = 'https://lrs.mcgill.ca/ListRecordings.aspx?CourseID=' + recordingData.id;
+			const recordingsButtonString = monthToSemester[recordingData.month] + ' ' + recordingData.year + ' Sec ' + recordingData.section + ' Recordings';
+			recordings.appendChild(generateSidebarLink(recordingURL, 'mcen-red', recordingsButtonString, false));
 		}
 	}
 

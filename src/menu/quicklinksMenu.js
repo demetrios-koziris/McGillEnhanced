@@ -53,59 +53,8 @@ function initializeEnabledSwitch() {
 }
 
 
-const downloadLecButton = document.getElementById('downloadLec');
-initializeDownloadLecButton();
-downloadLecButton.addEventListener('click', downloadLastViewedLectureRecording);
-
-// Functionality for download lecture button. Gets the url from storage and prompts a download.
-// Must be called as a user input handler callback (e.g. click event) due to Firefox enforcement for permissions.request
-function downloadLastViewedLectureRecording() {
-	chrome.permissions.request({permissions:['downloads']}, function(granted) {
-		if (granted) {
-			chrome.storage.sync.get('lecture', function(result) {
-				const lectureURL = result.lecture;
-				if (lectureURL === undefined || !validURL(lectureURL)) {
-					// re initialize button if url is not found or is invalid
-					initializeDownloadLecButton();
-				}
-				else {
-					chrome.downloads.download({
-						url: lectureURL,
-						filename: genLectureRecordingDownloadName(lectureURL),
-						saveAs: true
-					});
-				}
-			});
-		} 
-		else {
-			alert('Lecture recording download cannot proceed because permission not granted.');
-		}
-	});
-}
-
-function genLectureRecordingDownloadName(lectureURL) {
-	const etime = new URLSearchParams(lectureURL).get('etime');
-	return 'lecture-recording-viewed-' + etime +'.mp4';
-}
-
-function initializeDownloadLecButton() {
-	chrome.storage.sync.get('lecture', function(result) {
-		const lectureURL = result.lecture;
-		if (lectureURL === undefined) {
-			downloadLec.setAttribute('disabled', '');
-			downloadLec.title = 'No viewed lecture recording url found.';
-		}
-		else if (!validURL(lectureURL)) {
-			downloadLec.setAttribute('disabled', '');
-			downloadLec.title = 'Last viewed lecture recording url found was invalid.';
-			chrome.storage.sync.remove('lecture');
-		}
-		else {
-			downloadLec.removeAttribute('disabled');
-			downloadLec.title = 'Download ' + genLectureRecordingDownloadName(lectureURL);
-		}
-	});
-}
+downloadLec.setAttribute('disabled', '');
+downloadLec.title = 'This feature is no longer available.';
 
 function validURL(stringURL) {
 	try {
