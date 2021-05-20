@@ -97,6 +97,7 @@ function initEnhancement() {
 	// run on VSB pages
 	if (url.match(/.+vsb\.mcgill\.ca/)) {
 		addOneClickVSBRegistration();
+		addVSBClassLinks();
 	}
 }
 
