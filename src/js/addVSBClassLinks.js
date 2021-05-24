@@ -19,10 +19,9 @@ function addVSBClassLinks() {
 	// Add class link onto VSB class names
 	const classes = document.getElementsByClassName('class_code');
 
-	let i;
-	for (i = 0; i < classes.length; i++) {
+	for (let i = 0; i < classes.length; i++) {
 		let classTitle = classes[i];
-		classTitle.setAttribute("onclick", "window.open('https://mcgill.ca/study/courses/' + this.innerText.replace(' ', '-'));");
+		classTitle.setAttribute("onclick", "window.open('https://mcgill.ca/study/courses/' + this.innerText.replace(' ', '-'), '_blank', 'noreferrer');");
 		classTitle.setAttribute("onmouseover", "style='text-decoration:underline;cursor:pointer'");
 		classTitle.setAttribute("onmouseout", "style='text-decoration:none'");
 	}
