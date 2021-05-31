@@ -620,6 +620,9 @@ function getRecordingData() {
 		"DENT418D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "24946" }
 		],
+		"DENT671D2": [
+			{ "year": 2021, "month": 1, "section": "001", "id": "41189" }
+		],
 		"EAST211": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22253" }
 		],
@@ -1360,7 +1363,8 @@ function getRecordingData() {
 		],
 		"MATH263": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22061" },
-			{ "year": 2020, "month": 5, "section": "001", "id": "29585" }
+			{ "year": 2020, "month": 5, "section": "001", "id": "29585" },
+			{ "year": 2021, "month": 5, "section": "001", "id": "43544" }
 		],
 		"MATH264": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22067" }
@@ -1478,6 +1482,9 @@ function getRecordingData() {
 		],
 		"MECH362": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23304" }
+		],
+		"MECH383": [
+			{ "year": 2021, "month": 1, "section": "001", "id": "40753" }
 		],
 		"MECH393": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21883" }
@@ -1716,6 +1723,9 @@ function getRecordingData() {
 		"NUR1327": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25188" }
 		],
+		"NUR1331": [
+			{ "year": 2021, "month": 5, "section": "001", "id": "43268" }
+		],
 		"NUR1339": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22765" }
 		],
@@ -1758,6 +1768,9 @@ function getRecordingData() {
 		],
 		"OCC1623": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22158" }
+		],
+		"ONCO630": [
+			{ "year": 2021, "month": 1, "section": "001", "id": "42155" }
 		],
 		"ORGB321": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "22606" }
