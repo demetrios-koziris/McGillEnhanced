@@ -69,6 +69,9 @@ function getRecordingData() {
 		"ANAT316": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21987" }
 		],
+		"ANAT322": [
+			{ "year": 2020, "month": 1, "section": "001", "id": "22122" }
+		],
 		"ANAT542": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28607" }
 		],
@@ -250,6 +253,9 @@ function getRecordingData() {
 		],
 		"BUSA364": [
 			{ "year": 2020, "month": 1, "section": "051", "id": "26043" }
+		],
+		"BUSA433": [
+			{ "year": 2021, "month": 5, "section": "001", "id": "43069" }
 		],
 		"CACF210": [
 			{ "year": 2020, "month": 1, "section": "781", "id": "26836" }
@@ -530,9 +536,6 @@ function getRecordingData() {
 		],
 		"COMP421": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21984" }
-		],
-		"COMP535": [
-			{ "year": 2020, "month": 1, "section": "001", "id": "22751" }
 		],
 		"COMP547": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23240" }
