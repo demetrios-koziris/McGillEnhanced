@@ -939,6 +939,9 @@ function getRecordingData() {
 			{ "year": 2019, "month": 9, "section": "001", "id": "21768" },
 			{ "year": 2020, "month": 1, "section": "001", "id": "21917" }
 		],
+		"EPSC221": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "44420" }
+		],
 		"EPSC320": [
 			{ "year": 2020, "month": 9, "section": "001", "id": "32521" }
 		],
@@ -1438,7 +1441,8 @@ function getRecordingData() {
 			{ "year": 2020, "month": 9, "section": "001", "id": "37820" }
 		],
 		"MATH596": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "36148" }
+			{ "year": 2020, "month": 9, "section": "001", "id": "36148" },
+			{ "year": 2021, "month": 9, "section": "001", "id": "48505" }
 		],
 		"MATH599": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26508" }
@@ -1729,6 +1733,9 @@ function getRecordingData() {
 		"NUR1331": [
 			{ "year": 2021, "month": 5, "section": "001", "id": "43268" }
 		],
+		"NUR1332": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "47142" }
+		],
 		"NUR1339": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22765" }
 		],
@@ -1755,6 +1762,9 @@ function getRecordingData() {
 		],
 		"NUTR301": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22644" }
+		],
+		"NUTR345": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "45084" }
 		],
 		"OCC1548": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22130" },
@@ -2077,6 +2087,9 @@ function getRecordingData() {
 		"SOCI255": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22654" }
 		],
+		"SOCI304": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "45646" }
+		],
 		"SOCI307": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22614" }
 		],
@@ -2085,6 +2098,9 @@ function getRecordingData() {
 		],
 		"SOCI333": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "26381" }
+		],
+		"SWRK221": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "44086" }
 		],
 		"SWRK222": [
 			{ "year": 2020, "month": 1, "section": "003", "id": "28737" }
