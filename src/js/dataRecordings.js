@@ -153,6 +153,9 @@ function getRecordingData() {
 		"ATOC181": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22748" }
 		],
+		"ATOC214": [
+			{ "year": 2020, "month": 9, "section": "001", "id": "31208" }
+		],
 		"ATOC219": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "28103" }
 		],
@@ -623,6 +626,9 @@ function getRecordingData() {
 		"DENT418D2": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "24946" }
 		],
+		"DENT671D1": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "44973" }
+		],
 		"DENT671D2": [
 			{ "year": 2021, "month": 1, "section": "001", "id": "41189" }
 		],
@@ -740,6 +746,10 @@ function getRecordingData() {
 		],
 		"ECSE352": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "26155" }
+		],
+		"ECSE429": [
+			{ "year": 2021, "month": 1, "section": "001", "id": "40893" },
+			{ "year": 2021, "month": 9, "section": "001", "id": "45962" }
 		],
 		"ECSE461": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22526" }
@@ -899,11 +909,17 @@ function getRecordingData() {
 		"ENGL371": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25793" }
 		],
+		"ENGL378": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "45560" }
+		],
 		"ENGL389": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25210" }
 		],
 		"ENGL415": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "24457" }
+		],
+		"ENGL440": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "47320" }
 		],
 		"ENGL501": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "25812" }
@@ -916,6 +932,9 @@ function getRecordingData() {
 		],
 		"ENVR202": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "21960" }
+		],
+		"ENVR203": [
+			{ "year": 2021, "month": 9, "section": "051", "id": "47666" }
 		],
 		"ENVR301": [
 			{ "year": 2020, "month": 1, "section": "051", "id": "24807" }
@@ -1295,6 +1314,9 @@ function getRecordingData() {
 		"LAWG103": [
 			{ "year": 2020, "month": 9, "section": "003", "id": "37878" }
 		],
+		"LAWG110D1": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "47800" }
+		],
 		"LAWG220D2": [
 			{ "year": 2020, "month": 1, "section": "002", "id": "22327" },
 			{ "year": 2020, "month": 1, "section": "003", "id": "24866" }
@@ -1304,6 +1326,9 @@ function getRecordingData() {
 		],
 		"LAWG426": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22332" }
+		],
+		"LAWG516": [
+			{ "year": 2021, "month": 9, "section": "001", "id": "47806" }
 		],
 		"LAWG518": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22126" }
@@ -1555,6 +1580,9 @@ function getRecordingData() {
 		"MGCR423": [
 			{ "year": 2020, "month": 1, "section": "004", "id": "26297" }
 		],
+		"MGCR472": [
+			{ "year": 2020, "month": 5, "section": "052", "id": "37187" }
+		],
 		"MGPO364": [
 			{ "year": 2020, "month": 1, "section": "061", "id": "26309" },
 			{ "year": 2020, "month": 9, "section": "061", "id": "33249" }
@@ -1721,7 +1749,8 @@ function getRecordingData() {
 			{ "year": 2020, "month": 1, "section": "001", "id": "25183" }
 		],
 		"NUR1318": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "34054" }
+			{ "year": 2020, "month": 9, "section": "001", "id": "34054" },
+			{ "year": 2021, "month": 9, "section": "001", "id": "47096" }
 		],
 		"NUR1320": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22259" },
@@ -1737,7 +1766,8 @@ function getRecordingData() {
 			{ "year": 2021, "month": 9, "section": "001", "id": "47142" }
 		],
 		"NUR1339": [
-			{ "year": 2020, "month": 1, "section": "001", "id": "22765" }
+			{ "year": 2020, "month": 1, "section": "001", "id": "22765" },
+			{ "year": 2021, "month": 1, "section": "001", "id": "38893" }
 		],
 		"NUR2516": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "23230" }
