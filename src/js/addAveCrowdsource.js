@@ -132,10 +132,10 @@ function generateAveCrowdsourceSection() {
 
 	const crowdsourceContentLeftP = document.createElement('p');
 	if (classAveragesData) {
-		crowdsourceContentLeftP.innerText = 'These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript and let you submit them.';
+		crowdsourceContentLeftP.innerText = 'These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages.\nIf you would like to contribute, the button below will retrieve the class averages from your transcript and let you submit them.';
 	}
 	else {
-		crowdsourceContentLeftP.innerText = 'McGill Enhanced is currently undertaking a crowdsourcing initiative to build a dataset of historical class averages. If you would like to participate in this effort, the button below will retrieve the class averages from your transcript classes and allow you to submit them.';
+		crowdsourceContentLeftP.innerText = 'McGill Enhanced is currently undertaking a crowdsourcing initiative to build a dataset of historical class averages. If you would like to contribute, the button below will retrieve the class averages from your transcript classes and allow you to submit them.';
 		crowdsourceContentLeft.style.paddingLeft = '0px';
 		crowdsourceContentLeft.style.width = '100%';
 	}
