@@ -96,6 +96,9 @@ function getRecordingData() {
 		"ANTH207": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22747" }
 		],
+		"ANTH209": [
+			{ "year": 2022, "month": 5, "section": "001", "id": "54382" }
+		],
 		"ANTH212": [
 			{ "year": 2020, "month": 1, "section": "001", "id": "22467" }
 		],
