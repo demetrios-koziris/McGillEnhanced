@@ -90,6 +90,12 @@ function exportSchedule() {
 			const courseName = courseInfoTableTitle[1].replace(/\s/g,'');
 
 			const courseInfoTable = courseTables[i].getElementsByClassName('dddefault');
+			
+			if (courseInfoTable[2].innerText.indexOf('Waitlist') > -1) {
+				i+=2;
+				continue;
+			}
+			
 			courseTerm = courseInfoTable[0].innerText.replace(/\s/g,'');
 
 			const courseSchedTable = courseTables[i+1].getElementsByClassName('dddefault');
