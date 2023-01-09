@@ -27,292 +27,292 @@ function getMonthToSemester() {
 function getRecordingData() {
 	let recordingData = {
 		"ANSC350": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "40247" }
+			{"year": 2021, "month": 1, "section": "001", "id": "40247"}
 		],
 		"ANTH209": [
-			{ "year": 2022, "month": 5, "section": "001", "id": "54382" }
+			{"year": 2022, "month": 5, "section": "001", "id": "54382"}
 		],
 		"ANTH423": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "40873" }
+			{"year": 2021, "month": 1, "section": "001", "id": "40873"}
 		],
 		"ARCH378": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "52727" }
+			{"year": 2022, "month": 1, "section": "001", "id": "52727"}
 		],
 		"ARTH474": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "52403" }
+			{"year": 2022, "month": 1, "section": "001", "id": "52403"}
 		],
 		"ATOC214": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "31208" }
+			{"year": 2020, "month": 9, "section": "001", "id": "31208"}
 		],
 		"BUSA433": [
-			{ "year": 2021, "month": 5, "section": "001", "id": "43069" }
+			{"year": 2021, "month": 5, "section": "001", "id": "43069"}
 		],
 		"CCCS300": [
-			{ "year": 2022, "month": 1, "section": "784", "id": "49568" }
+			{"year": 2022, "month": 1, "section": "784", "id": "49568"}
 		],
 		"CCMA523": [
-			{ "year": 2020, "month": 5, "section": "751", "id": "30066" }
+			{"year": 2020, "month": 5, "section": "751", "id": "30066"}
 		],
 		"CEEN221": [
-			{ "year": 2020, "month": 5, "section": "751", "id": "30023" }
+			{"year": 2020, "month": 5, "section": "751", "id": "30023"}
 		],
 		"CEEN331": [
-			{ "year": 2020, "month": 5, "section": "701", "id": "30102" }
+			{"year": 2020, "month": 5, "section": "701", "id": "30102"}
 		],
 		"CEEN332": [
-			{ "year": 2020, "month": 5, "section": "752", "id": "30020" },
-			{ "year": 2022, "month": 1, "section": "751", "id": "49597" }
+			{"year": 2020, "month": 5, "section": "752", "id": "30020"},
+			{"year": 2022, "month": 1, "section": "751", "id": "49597"}
 		],
 		"CEFN211": [
-			{ "year": 2020, "month": 5, "section": "751", "id": "29998" }
+			{"year": 2020, "month": 5, "section": "751", "id": "29998"}
 		],
 		"CHEM181": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29449" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29449"}
 		],
 		"CMS2500": [
-			{ "year": 2020, "month": 5, "section": "771", "id": "30072" }
+			{"year": 2020, "month": 5, "section": "771", "id": "30072"}
 		],
 		"COMP599": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "52833" }
+			{"year": 2022, "month": 1, "section": "001", "id": "52833"}
 		],
 		"COMP602": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "38182" }
+			{"year": 2020, "month": 9, "section": "001", "id": "38182"}
 		],
 		"DENT671D1": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "44973" }
+			{"year": 2021, "month": 9, "section": "001", "id": "44973"}
 		],
 		"DENT671D2": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "41189" }
+			{"year": 2021, "month": 1, "section": "001", "id": "41189"}
 		],
 		"EAST230": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29862" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29862"}
 		],
 		"ECON209": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29830" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29830"}
 		],
 		"ECSE205": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29254" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29254"}
 		],
 		"ECSE429": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "40893" }
+			{"year": 2021, "month": 1, "section": "001", "id": "40893"}
 		],
 		"ECSE463": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "51590" }
+			{"year": 2022, "month": 1, "section": "001", "id": "51590"}
 		],
 		"EDER600": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "41548" }
+			{"year": 2021, "month": 1, "section": "001", "id": "41548"}
 		],
 		"EDER614": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29271" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29271"}
 		],
 		"EDPS600": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29524" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29524"}
 		],
 		"ENGL378": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "45560" }
+			{"year": 2021, "month": 9, "section": "001", "id": "45560"}
 		],
 		"ENGL440": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "47320" }
+			{"year": 2021, "month": 9, "section": "001", "id": "47320"}
 		],
 		"ENVR203": [
-			{ "year": 2021, "month": 9, "section": "051", "id": "47666" }
+			{"year": 2021, "month": 9, "section": "051", "id": "47666"}
 		],
 		"EPSC180": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "49268" }
+			{"year": 2022, "month": 1, "section": "001", "id": "49268"}
 		],
 		"EPSC201": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "49343" }
+			{"year": 2022, "month": 1, "section": "001", "id": "49343"}
 		],
 		"EPSC221": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "44420" }
+			{"year": 2021, "month": 9, "section": "001", "id": "44420"}
 		],
 		"EPSC320": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "32521" }
+			{"year": 2020, "month": 9, "section": "001", "id": "32521"}
 		],
 		"EXMD604": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "37950" }
+			{"year": 2020, "month": 9, "section": "001", "id": "37950"}
 		],
 		"FINE441": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "7945" }
+			{"year": 2020, "month": 5, "section": "001", "id": "7945"}
 		],
 		"FREN245": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "42343" }
+			{"year": 2021, "month": 1, "section": "001", "id": "42343"}
 		],
 		"INFS680": [
-			{ "year": 2022, "month": 9, "section": "001", "id": "58982" }
+			{"year": 2022, "month": 9, "section": "001", "id": "58982"}
 		],
 		"INSY446": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "32820" }
+			{"year": 2020, "month": 9, "section": "001", "id": "32820"}
 		],
 		"INSY662": [
-			{ "year": 2021, "month": 9, "section": "076", "id": "47713" }
+			{"year": 2021, "month": 9, "section": "076", "id": "47713"}
 		],
 		"INSY672": [
-			{ "year": 2021, "month": 1, "section": "075", "id": "39616" }
+			{"year": 2021, "month": 1, "section": "075", "id": "39616"}
 		],
 		"ISLA210": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "39862" }
+			{"year": 2021, "month": 1, "section": "001", "id": "39862"}
 		],
 		"LAWG103": [
-			{ "year": 2020, "month": 9, "section": "003", "id": "37878" }
+			{"year": 2020, "month": 9, "section": "003", "id": "37878"}
 		],
 		"LAWG110D1": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "47800" }
+			{"year": 2021, "month": 9, "section": "001", "id": "47800"}
 		],
 		"LAWG516": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "47806" }
+			{"year": 2021, "month": 9, "section": "001", "id": "47806"}
 		],
 		"LAWG536": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "30486" }
+			{"year": 2020, "month": 9, "section": "001", "id": "30486"}
 		],
 		"MATH141": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "50507" }
+			{"year": 2022, "month": 1, "section": "001", "id": "50507"}
 		],
 		"MATH242": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33015" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33015"}
 		],
 		"MATH249": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "50508" }
+			{"year": 2022, "month": 1, "section": "001", "id": "50508"}
 		],
 		"MATH262": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29583" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29583"}
 		],
 		"MATH263": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29585" },
-			{ "year": 2021, "month": 5, "section": "001", "id": "43544" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29585"},
+			{"year": 2021, "month": 5, "section": "001", "id": "43544"}
 		],
 		"MATH318": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33045" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33045"}
 		],
 		"MATH323": [
-			{ "year": 2020, "month": 5, "section": "001", "id": "29591" }
+			{"year": 2020, "month": 5, "section": "001", "id": "29591"}
 		],
 		"MATH338": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33050" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33050"}
 		],
 		"MATH583": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "37820" }
+			{"year": 2020, "month": 9, "section": "001", "id": "37820"}
 		],
 		"MATH596": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "36148" },
-			{ "year": 2021, "month": 9, "section": "001", "id": "48505" }
+			{"year": 2020, "month": 9, "section": "001", "id": "36148"},
+			{"year": 2021, "month": 9, "section": "001", "id": "48505"}
 		],
 		"MATH598": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "52826" }
+			{"year": 2022, "month": 1, "section": "001", "id": "52826"}
 		],
 		"MATH726": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "37990" },
-			{ "year": 2022, "month": 1, "section": "001", "id": "51761" }
+			{"year": 2020, "month": 9, "section": "001", "id": "37990"},
+			{"year": 2022, "month": 1, "section": "001", "id": "51761"}
 		],
 		"MATH740": [
-			{ "year": 2022, "month": 1, "section": "002", "id": "52669" }
+			{"year": 2022, "month": 1, "section": "002", "id": "52669"}
 		],
 		"MECH220": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33089" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33089"}
 		],
 		"MECH360": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33122" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33122"}
 		],
 		"MECH383": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "40753" }
+			{"year": 2021, "month": 1, "section": "001", "id": "40753"}
 		],
 		"MECH430": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "50263" }
+			{"year": 2022, "month": 1, "section": "001", "id": "50263"}
 		],
 		"MGCR352": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33214" },
-			{ "year": 2020, "month": 9, "section": "002", "id": "33215" },
-			{ "year": 2020, "month": 9, "section": "003", "id": "33216" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33214"},
+			{"year": 2020, "month": 9, "section": "002", "id": "33215"},
+			{"year": 2020, "month": 9, "section": "003", "id": "33216"}
 		],
 		"MGCR472": [
-			{ "year": 2020, "month": 5, "section": "052", "id": "37187" }
+			{"year": 2020, "month": 5, "section": "052", "id": "37187"}
 		],
 		"MGPO364": [
-			{ "year": 2020, "month": 9, "section": "061", "id": "33249" }
+			{"year": 2020, "month": 9, "section": "061", "id": "33249"}
 		],
 		"MGSC672": [
-			{ "year": 2020, "month": 5, "section": "075", "id": "29905" }
+			{"year": 2020, "month": 5, "section": "075", "id": "29905"}
 		],
 		"MGSC702": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "39603" }
+			{"year": 2021, "month": 1, "section": "001", "id": "39603"}
 		],
 		"MUIT203": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33894" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33894"}
 		],
 		"MUPG474": [
-			{ "year": 2020, "month": 9, "section": "005", "id": "38054" }
+			{"year": 2020, "month": 9, "section": "005", "id": "38054"}
 		],
 		"MUSP170": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "33995" }
+			{"year": 2020, "month": 9, "section": "001", "id": "33995"}
 		],
 		"MUSP381": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "42433" }
+			{"year": 2021, "month": 1, "section": "001", "id": "42433"}
 		],
 		"NUR1318": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "34054" },
-			{ "year": 2021, "month": 9, "section": "001", "id": "47096" }
+			{"year": 2020, "month": 9, "section": "001", "id": "34054"},
+			{"year": 2021, "month": 9, "section": "001", "id": "47096"}
 		],
 		"NUR1331": [
-			{ "year": 2021, "month": 5, "section": "001", "id": "43268" }
+			{"year": 2021, "month": 5, "section": "001", "id": "43268"}
 		],
 		"NUR1332": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "47142" }
+			{"year": 2021, "month": 9, "section": "001", "id": "47142"}
 		],
 		"NUR1339": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "38893" }
+			{"year": 2021, "month": 1, "section": "001", "id": "38893"}
 		],
 		"NUR2618": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "39403" }
+			{"year": 2021, "month": 1, "section": "001", "id": "39403"}
 		],
 		"NUTR345": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "45084" }
+			{"year": 2021, "month": 9, "section": "001", "id": "45084"}
 		],
 		"OCCH605": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "39801" }
+			{"year": 2021, "month": 1, "section": "001", "id": "39801"}
 		],
 		"ONCO630": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "42155" }
+			{"year": 2021, "month": 1, "section": "001", "id": "42155"}
 		],
 		"PHIL343": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "34181" }
+			{"year": 2020, "month": 9, "section": "001", "id": "34181"}
 		],
 		"PHIL344": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "52305" }
+			{"year": 2022, "month": 1, "section": "001", "id": "52305"}
 		],
 		"PHYS514": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "40684" },
-			{ "year": 2022, "month": 1, "section": "001", "id": "50379" }
+			{"year": 2021, "month": 1, "section": "001", "id": "40684"},
+			{"year": 2022, "month": 1, "section": "001", "id": "50379"}
 		],
 		"POLI364": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "41052" }
+			{"year": 2021, "month": 1, "section": "001", "id": "41052"}
 		],
 		"PSYC538": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "34427" }
+			{"year": 2020, "month": 9, "section": "001", "id": "34427"}
 		],
 		"PUB3116": [
-			{ "year": 2022, "month": 1, "section": "001", "id": "51965" }
+			{"year": 2022, "month": 1, "section": "001", "id": "51965"}
 		],
 		"SOCI304": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "45646" }
+			{"year": 2021, "month": 9, "section": "001", "id": "45646"}
 		],
 		"SWRK221": [
-			{ "year": 2021, "month": 9, "section": "001", "id": "44086" }
+			{"year": 2021, "month": 9, "section": "001", "id": "44086"}
 		],
 		"SWRK325": [
-			{ "year": 2020, "month": 9, "section": "003", "id": "34559" }
+			{"year": 2020, "month": 9, "section": "003", "id": "34559"}
 		],
 		"SWRK327": [
-			{ "year": 2021, "month": 1, "section": "001", "id": "41258" }
+			{"year": 2021, "month": 1, "section": "001", "id": "41258"}
 		],
 		"SWRK532": [
-			{ "year": 2020, "month": 9, "section": "001", "id": "34572" }
+			{"year": 2020, "month": 9, "section": "001", "id": "34572"}
 		],
 		"TESTA000": [
-			{ "year": 2020, "month": 5, "section": "999", "id": "30318" }
+			{"year": 2020, "month": 5, "section": "999", "id": "30318"}
 		],
 		"YCBS118": [
-			{ "year": 2020, "month": 5, "section": "008", "id": "30346" }
-		]
+			{"year": 2020, "month": 5, "section": "008", "id": "30346"}
+		],
 	};
 	return recordingData;
 }
