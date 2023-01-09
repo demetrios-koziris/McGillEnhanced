@@ -31,7 +31,7 @@ function getRecordingData() {
 
 formatted_json = ''
 
-with open('lrs_data_4_3_26.json', 'r') as input_file:
+with open('lrs_data.json', 'r') as input_file:
 	data = json.load(input_file)
 
 	for course_name, course_data in data.items():

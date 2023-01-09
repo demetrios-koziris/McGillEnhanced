@@ -70,7 +70,8 @@ function getRecordingData() {
 			{"year": 2020, "month": 5, "section": "001", "id": "29449"}
 		],
 		"CMS2500": [
-			{"year": 2020, "month": 5, "section": "771", "id": "30072"}
+			{"year": 2020, "month": 5, "section": "771", "id": "30072"},
+			{"year": 2021, "month": 9, "section": "771", "id": "45055"}
 		],
 		"COMP599": [
 			{"year": 2022, "month": 1, "section": "001", "id": "52833"}
@@ -105,6 +106,9 @@ function getRecordingData() {
 		"EDER614": [
 			{"year": 2020, "month": 5, "section": "001", "id": "29271"}
 		],
+		"EDPH689": [
+			{"year": 2022, "month": 1, "section": "001", "id": "52263"}
+		],
 		"EDPS600": [
 			{"year": 2020, "month": 5, "section": "001", "id": "29524"}
 		],
@@ -118,13 +122,16 @@ function getRecordingData() {
 			{"year": 2021, "month": 9, "section": "051", "id": "47666"}
 		],
 		"EPSC180": [
-			{"year": 2022, "month": 1, "section": "001", "id": "49268"}
+			{"year": 2022, "month": 1, "section": "001", "id": "49268"},
+			{"year": 2023, "month": 1, "section": "001", "id": "60426"}
 		],
 		"EPSC201": [
-			{"year": 2022, "month": 1, "section": "001", "id": "49343"}
+			{"year": 2022, "month": 1, "section": "001", "id": "49343"},
+			{"year": 2023, "month": 1, "section": "001", "id": "61139"}
 		],
 		"EPSC221": [
-			{"year": 2021, "month": 9, "section": "001", "id": "44420"}
+			{"year": 2021, "month": 9, "section": "001", "id": "44420"},
+			{"year": 2022, "month": 9, "section": "001", "id": "57221"}
 		],
 		"EPSC320": [
 			{"year": 2020, "month": 9, "section": "001", "id": "32521"}
@@ -141,11 +148,18 @@ function getRecordingData() {
 		"INFS680": [
 			{"year": 2022, "month": 9, "section": "001", "id": "58982"}
 		],
-		"INSY446": [
-			{"year": 2020, "month": 9, "section": "001", "id": "32820"}
+		"INFS681": [
+			{"year": 2023, "month": 1, "section": "001", "id": "63172"}
 		],
-		"INSY662": [
-			{"year": 2021, "month": 9, "section": "076", "id": "47713"}
+		"INFS683": [
+			{"year": 2022, "month": 9, "section": "001", "id": "58983"}
+		],
+		"INSY446": [
+			{"year": 2020, "month": 9, "section": "001", "id": "32820"},
+			{"year": 2021, "month": 9, "section": "001", "id": "46731"}
+		],
+		"INSY652": [
+			{"year": 2021, "month": 9, "section": "001", "id": "47000"}
 		],
 		"INSY672": [
 			{"year": 2021, "month": 1, "section": "075", "id": "39616"}
@@ -193,6 +207,9 @@ function getRecordingData() {
 		"MATH583": [
 			{"year": 2020, "month": 9, "section": "001", "id": "37820"}
 		],
+		"MATH595": [
+			{"year": 2022, "month": 9, "section": "001", "id": "59411"}
+		],
 		"MATH596": [
 			{"year": 2020, "month": 9, "section": "001", "id": "36148"},
 			{"year": 2021, "month": 9, "section": "001", "id": "48505"}
@@ -200,12 +217,18 @@ function getRecordingData() {
 		"MATH598": [
 			{"year": 2022, "month": 1, "section": "001", "id": "52826"}
 		],
+		"MATH720": [
+			{"year": 2023, "month": 1, "section": "001", "id": "62152"}
+		],
 		"MATH726": [
 			{"year": 2020, "month": 9, "section": "001", "id": "37990"},
 			{"year": 2022, "month": 1, "section": "001", "id": "51761"}
 		],
 		"MATH740": [
 			{"year": 2022, "month": 1, "section": "002", "id": "52669"}
+		],
+		"MECH201": [
+			{"year": 2022, "month": 9, "section": "001", "id": "57646"}
 		],
 		"MECH220": [
 			{"year": 2020, "month": 9, "section": "001", "id": "33089"}
