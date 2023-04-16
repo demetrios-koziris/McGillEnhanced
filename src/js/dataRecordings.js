@@ -48,7 +48,8 @@ function getRecordingData() {
 			{"year": 2021, "month": 5, "section": "001", "id": "43069"}
 		],
 		"CCCS300": [
-			{"year": 2022, "month": 1, "section": "784", "id": "49568"}
+			{"year": 2022, "month": 1, "section": "784", "id": "49568"},
+			{"year": 2023, "month": 1, "section": "764", "id": "62624"}
 		],
 		"CCMA523": [
 			{"year": 2020, "month": 5, "section": "751", "id": "30066"}
@@ -73,6 +74,9 @@ function getRecordingData() {
 			{"year": 2020, "month": 5, "section": "771", "id": "30072"},
 			{"year": 2021, "month": 9, "section": "771", "id": "45055"}
 		],
+		"COMP551": [
+			{"year": 2022, "month": 9, "section": "001", "id": "57802"}
+		],
 		"COMP599": [
 			{"year": 2022, "month": 1, "section": "001", "id": "52833"}
 		],
@@ -93,6 +97,9 @@ function getRecordingData() {
 		],
 		"ECSE205": [
 			{"year": 2020, "month": 5, "section": "001", "id": "29254"}
+		],
+		"ECSE307": [
+			{"year": 2021, "month": 1, "section": "001", "id": "40900"}
 		],
 		"ECSE429": [
 			{"year": 2021, "month": 1, "section": "001", "id": "40893"}
@@ -151,6 +158,9 @@ function getRecordingData() {
 		"INFS681": [
 			{"year": 2023, "month": 1, "section": "001", "id": "63172"}
 		],
+		"INFS682": [
+			{"year": 2023, "month": 1, "section": "001", "id": "63791"}
+		],
 		"INFS683": [
 			{"year": 2022, "month": 9, "section": "001", "id": "58983"}
 		],
@@ -179,6 +189,10 @@ function getRecordingData() {
 		"LAWG536": [
 			{"year": 2020, "month": 9, "section": "001", "id": "30486"}
 		],
+		"MATH133": [
+			{"year": 2020, "month": 9, "section": "001", "id": "32959"},
+			{"year": 2022, "month": 9, "section": "004", "id": "58076"}
+		],
 		"MATH141": [
 			{"year": 2022, "month": 1, "section": "001", "id": "50507"}
 		],
@@ -194,6 +208,9 @@ function getRecordingData() {
 		"MATH263": [
 			{"year": 2020, "month": 5, "section": "001", "id": "29585"},
 			{"year": 2021, "month": 5, "section": "001", "id": "43544"}
+		],
+		"MATH315": [
+			{"year": 2022, "month": 1, "section": "001", "id": "50869"}
 		],
 		"MATH318": [
 			{"year": 2020, "month": 9, "section": "001", "id": "33045"}
@@ -252,6 +269,9 @@ function getRecordingData() {
 		],
 		"MGPO364": [
 			{"year": 2020, "month": 9, "section": "061", "id": "33249"}
+		],
+		"MGSC434": [
+			{"year": 2022, "month": 1, "section": "001", "id": "51866"}
 		],
 		"MGSC672": [
 			{"year": 2020, "month": 5, "section": "075", "id": "29905"}
