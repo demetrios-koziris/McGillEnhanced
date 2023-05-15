@@ -22,7 +22,7 @@ function getClassAveragesData() {
 
 formatted_json = ''
 
-with open('input/ClassAverages__2023-04-15_23_20_07__8377___4.3.32.json', 'r') as input_file:
+with open('input/ClassAverages__2023-05-15_00_33_59__8467___4.3.33.json', 'r') as input_file:
 	data = json.load(input_file)
 
 	for course_name, course_data in data.items():
