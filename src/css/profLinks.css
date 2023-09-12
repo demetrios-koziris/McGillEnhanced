@@ -2,6 +2,13 @@
 	padding-top: 0px !important;
 }
 
+.block-bean-mcgill-block .block-inner {
+	padding: 0px;
+}
+.block.block-bean {
+	margin-bottom: 0;
+}
+
 .mcen-profDiv {
 	margin: 6px 0px;
 }
