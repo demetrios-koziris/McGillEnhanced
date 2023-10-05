@@ -22,6 +22,11 @@ function getMapData() {
 			"address":"3450 rue University",
 			"map":["Adams"]
 		},
+		"Armstrong Building": {
+			"minerva":"ARMST",
+			"address":"3420 rue McTavish",
+			"map":["Armstrong"]
+		},
 		"Arts Building": {
 			"minerva":"ARTS",
 			"address":"853 rue Sherbrooke ouest",
