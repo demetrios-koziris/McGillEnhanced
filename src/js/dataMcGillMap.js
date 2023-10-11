@@ -516,8 +516,72 @@ function getMapData() {
 			"minerva":"AGTECH",
 			"address":"21111 Lakeshore Road",
 			"map":["TechicalServices"]
+		},
+		"5858 Cote des Neiges": {
+			"minerva":"000254",
+			"address":"5858 chemin Cote des Neiges",
+			"map":["CDN5858"]
+		},
+		"2001 Mcgill College (Dent)": {
+			"minerva":"DENT",
+			"address":"2001 av McGill College",
+			"map":["McGillCollege2001"]
+		},
+		"Ferrier Building": {
+			"minerva":"FERR",
+			"address":"840 ave du Docteur-Penfield",
+			"map":["Ferrier"]
+		},
+		"Pulp and Paper": {
+			"minerva":"P&P",
+			"address":"3420 rue University",
+			"map":["PulpPaper"]
+		},
+		"Dr. Penfield 1085": {
+			"minerva":"PE1085",
+			"address":"1085 rue Docteur Penfield",
+			"map":["Penfield1085"]
+		},
+		"Redpath Hall": {
+			"minerva":"REDPTH",
+			"address":"3461 rue McTavish",
+			"map":["RedpathHall"]
+		},
+		"Sherbrooke 550": {
+			"minerva":"SH550",
+			"address":"550 ave Sherbrooke",
+			"map":["Sherbrooke550"]
+		},
+		"Sherbrooke 680": {
+			"minerva":"SH680",
+			"address":"680 rue Sherbrooke ouest",
+			"map":["Sherbrooke680_688"]
+		},
+		"Douglas Hall":{
+			"minerva":"000125",
+			"address":"3851 rue University",
+			"map":["Douglas"]
+		},
+		"Campus1 MTL - 420 Sherbrooke W":{
+			"minerva":"CMPUS1",
+			"address":"420 Sherbrooke Ouest",
+			"map":["campus1"]
+		},
+		"Rowles House":{
+			"minerva":"ROWLES",
+			"address":"21111 Lakeshore Road",
+			"map":["Rowles"]
+		},
+		"Simulation Centre":{
+			"minerva":"SIMCEN",
+			"address":"3675 rue Parc",
+			"map":["Steinberg"]
+		},
+		"University Hall (000251) lab":{
+			"minerva":"UNVHLL",
+			"address":"3473 rue University",
+			"map":["UniversityHallRes"]
 		}
 	};
 	return mapData;
 }
-
