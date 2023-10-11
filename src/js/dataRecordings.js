@@ -53,6 +53,9 @@ function getRecordingData() {
 		"COMP551": [
 			{"year": 2022, "month": 9, "section": "001", "id": "57802"}
 		],
+		"ECON230D1": [
+			{"year": 2023, "month": 9, "section": "002", "id": "65809"}
+		],
 		"EPSC180": [
 			{"year": 2023, "month": 1, "section": "001", "id": "60426"}
 		],
@@ -77,8 +80,14 @@ function getRecordingData() {
 		"INFS683": [
 			{"year": 2022, "month": 9, "section": "001", "id": "58983"}
 		],
+		"LAWG532": [
+			{"year": 2023, "month": 9, "section": "001", "id": "67640"}
+		],
 		"MATH133": [
 			{"year": 2022, "month": 9, "section": "004", "id": "58076"}
+		],
+		"MATH456": [
+			{"year": 2023, "month": 9, "section": "001", "id": "67164"}
 		],
 		"MATH564": [
 			{"year": 2023, "month": 9, "section": "001", "id": "67168"}
@@ -94,6 +103,15 @@ function getRecordingData() {
 		],
 		"MGCR211": [
 			{"year": 2023, "month": 9, "section": "010", "id": "68430"}
+		],
+		"MUHL591D1": [
+			{"year": 2023, "month": 9, "section": "001", "id": "66309"}
+		],
+		"MUPG315D1": [
+			{"year": 2023, "month": 9, "section": "022", "id": "68186"}
+		],
+		"PHAR200": [
+			{"year": 2023, "month": 9, "section": "001", "id": "65558"}
 		],
 		"POLI360": [
 			{"year": 2023, "month": 9, "section": "001", "id": "65900"}
