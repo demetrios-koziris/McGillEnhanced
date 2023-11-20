@@ -52,10 +52,6 @@ function initializeEnabledSwitch() {
 	});
 }
 
-
-downloadLec.setAttribute('disabled', '');
-downloadLec.title = 'This feature is no longer available.';
-
 function validURL(stringURL) {
 	try {
 		new URL(stringURL);
