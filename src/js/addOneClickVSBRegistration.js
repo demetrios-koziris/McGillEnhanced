@@ -56,17 +56,16 @@ function addOneClickVSBRegistration() {
 		const minervaRegister = 'https://horizon.mcgill.ca/pban1/bwskfreg.P_AltPin?term_in=' + termCode;
 		logForDebug(minervaRegister);
 
-		const xmlRequestInfo = {
-			method: 'GET',
-			action: 'xhttp',
+		const requestInfo = {
+			action: 'fetch',
 			url: minervaRegister
 		};
-		console.log(xmlRequestInfo);
+		console.log(requestInfo);
 
-		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+		chrome.runtime.sendMessage(requestInfo, function(responseText) {
 			try {
 				const htmlParser = new DOMParser();
-				const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
+				const htmlDoc = htmlParser.parseFromString(responseText, 'text/html');
 				logForDebug(htmlDoc);
 
 				const infotext = htmlDoc.getElementsByClassName('infotext')[0].innerText.trim(' ');

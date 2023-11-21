@@ -317,19 +317,17 @@ function sidebarTooltipsy(className, offset) {
 
 
 function getVSBSemesters(vsbSidebarTerms) {
-	const xmlRequestInfo = {
-		method: 'GET',
-		action: 'xhttp',
-		url: 'https://vsb.mcgill.ca/vsb'
-	};
-	chrome.runtime.sendMessage(xmlRequestInfo, generateGetVSBSemestersCallback(vsbSidebarTerms));
+	chrome.runtime.sendMessage(
+		{ action:'fetch', url:'https://vsb.mcgill.ca/vsb' },
+		generateGetVSBSemestersCallback(vsbSidebarTerms)
+	);
 }
 
 
 function generateGetVSBSemestersCallback(vsbSidebarTerms) {
-	return function(data) {
+	return function(responseText) {
 		const htmlParser = new DOMParser();
-		const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
+		const htmlDoc = htmlParser.parseFromString(responseText, 'text/html');
 
 		const vsbAvailableTerms = [];
 		const vsbTermButtons = htmlDoc.getElementsByClassName('termRadio');

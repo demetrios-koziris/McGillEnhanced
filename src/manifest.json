@@ -1,21 +1,20 @@
 {
-  "name": "McGill Enhanced",
+  "name": "McGill Enhanced BETA",
   "author": "kozirisdev",
-  "manifest_version": 2,
-  "version": "4.3.37",
-  "description": "Enhance the functionality of McGill.ca",
+  "manifest_version": 3,
+  "version": "4.4.0",
+  "description": "THIS EXTENSION IS FOR BETA TESTING. Enhance the functionality of McGill.ca",
   "permissions": [
-    "storage",
+    "storage"
+  ],
+  "host_permissions": [
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*"
   ],
   "background": {
-    "scripts": [
-      "js/backgroundHTTP.js",
-      "js/background.js"
-    ]
+    "service_worker": "js/serviceWorker.js"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "38": "images/mcgill-128.png",
       "128": "images/mcgill-128.png"
@@ -31,8 +30,7 @@
       "all_frames": true,
       "matches" : [
         "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*",
-        "*://www.docuum.com/*"
+        "*://demetrios-koziris.github.io/*"
       ],
       "js" : [
         "js/preInit.js",
@@ -43,8 +41,7 @@
     {
       "matches" : [
         "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*",
-        "*://www.docuum.com/*"
+        "*://demetrios-koziris.github.io/*"
       ],
       "js": [
         "lib/purify.min.js",
@@ -75,13 +72,21 @@
     }
   ],
   "web_accessible_resources": [
-    "css/sidebar.css",
-    "css/yearMenu.css",
-    "css/aveCrowdsource.css",
-    "css/profLinks.css",
-    "css/programs.css",
-    "css/vsb.css",
-    "css/minerva.css",
-    "images/*.png"
+    {
+      "resources": [
+        "css/sidebar.css",
+        "css/yearMenu.css",
+        "css/aveCrowdsource.css",
+        "css/profLinks.css",
+        "css/programs.css",
+        "css/vsb.css",
+        "css/minerva.css",
+        "images/*.png"
+      ],
+      "matches": [
+        "*://*.mcgill.ca/*",
+        "*://demetrios-koziris.github.io/*"
+      ]
+    }
   ]
 }

@@ -176,17 +176,16 @@ function averageGPAsDownloader() {
 
 	document.addEventListener('downloadClassAverages', function() {
 
-		const xmlRequestInfo = {
-			method: 'GET',
-			action: 'xhttp',
+		const requestInfo = {
+			action: 'fetch',
 			url: transriptURL
 		};
-		logForDebug(xmlRequestInfo);
+		logForDebug(requestInfo);
 
-		chrome.runtime.sendMessage(xmlRequestInfo, function(data) {
+		chrome.runtime.sendMessage(requestInfo, function(responseText) {
 			try {
 				const htmlParser = new DOMParser();
-				const htmlDoc = htmlParser.parseFromString(data.responseXML, 'text/html');
+				const htmlDoc = htmlParser.parseFromString(responseText, 'text/html');
 				logForDebug(htmlDoc);
 
 				if (htmlDoc.getElementById('mcg_id_submit')) {
@@ -273,13 +272,13 @@ function averageGPAsDownloader() {
 				logForDebug(currClassAveragesSubmission);
 
 				if (currClassAveragesSubmission !== '') {
-					const averageXMLRequestInfo = {
-						method: 'GET',
-						action: 'xhttp',
+					// no-cors since we don't need the response (and don't want permissions to docs.google.com)
+					const averageRequestInfo = {
+						action: 'fetch-no-cors',
 						url: 'https://docs.google.com/forms/d/e/1FAIpQLSdfzbhOe2wvxgQ9IhzPmJ3iIyRM9-0FN3vkuuS-Pr4YX5plCQ/formResponse?ifq&entry.988087755=' + currClassAveragesSubmission + '&submit=Submit'
 					};
-					logForDebug(averageXMLRequestInfo);
-					chrome.runtime.sendMessage(averageXMLRequestInfo);
+					logForDebug(averageRequestInfo);
+					chrome.runtime.sendMessage(averageRequestInfo);
 				}
 				else {
 					logForDebug('The following class average data has already been submitted: '+ prevClassAveragesSubmission);
