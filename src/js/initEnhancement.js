@@ -15,9 +15,15 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-if (enabledSetting) {
-	initEnhancement();
-}
+getStorageValue('enabled')
+	.then(enabledSetting => {
+		if (enabledSetting) {
+			initEnhancement();
+		}
+	})
+	.catch(error => {
+		console.error('Error fetching storage value:', error);
+	});
 
 function initEnhancement() {
 

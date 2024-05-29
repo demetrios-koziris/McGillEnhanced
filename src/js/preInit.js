@@ -25,20 +25,34 @@ logForDebug('McGill Enhanced Debug mode is ON');
 
 
 const start = Date.now();
-chrome.storage.local.get('enabled', function(result) {
-	enabledSetting = result.enabled;
-
-	const time = Date.now() - start;
-	logForDebug('McGill Enhanced took ' + time + ' ms to fetch enabled setting.');
-	
-	if (enabledSetting === false) {
-		console.log('McGill Enhanced is currently disabled.');
-	}
-	else {
-		if (enabledSetting === undefined) {
-			chrome.storage.local.set({'enabled': true});
+getStorageValue('enabled')
+	.then(enabledSetting => {
+		const time = Date.now() - start;
+		logForDebug('McGill Enhanced took ' + time + ' ms to fetch enabled setting.');
+		
+		if (enabledSetting === false) {
+			console.log('McGill Enhanced is currently disabled.');
 		}
-		initStyling();
-	}
-});
+		else {
+			if (enabledSetting === undefined) {
+				chrome.storage.local.set({'enabled': true});
+			}
+			initStyling();
+		}
+	})
+	.catch(error => {
+		console.error('Error fetching storage value:', error);
+	});
 
+
+function getStorageValue(key) {
+    return new Promise((resolve, reject) => {
+        chrome.storage.local.get(key, function(result) {
+            if (chrome.runtime.lastError) {
+                reject(chrome.runtime.lastError);
+            } else {
+                resolve(result[key]);
+            }
+        });
+    });
+}
