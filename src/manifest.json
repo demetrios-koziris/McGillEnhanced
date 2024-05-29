@@ -1,9 +1,9 @@
 {
-  "name": "McGill Enhanced BETA",
+  "name": "McGill Enhanced",
   "author": "kozirisdev",
   "manifest_version": 3,
-  "version": "4.4.1",
-  "description": "THIS EXTENSION IS FOR BETA TESTING. Enhance the functionality of McGill.ca",
+  "version": "4.4.2",
+  "description": "Enhance the functionality of McGill.ca",
   "permissions": [
     "storage"
   ],
