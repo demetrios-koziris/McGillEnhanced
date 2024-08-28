@@ -26,8 +26,6 @@ function addScheduleExporter() {
 		schedDownloadButton.id = 'mcen-sched-download';
 		schedDownloadButton.title = 'ICS file can be imported into many calendar apps\nsuch as Google Calendar, Apple iCal, or Outlook!';
 		schedDownloadButton.style.backgroundImage = 'url(' + chrome.runtime.getURL('images/sched-download.png') + ')';
-		schedDownloadButton.setAttribute('onmouseover', 'this.style.border="2px solid #E54944"');
-		schedDownloadButton.setAttribute('onmouseout', 'this.style.border="2px solid #5B5B5A"');
 		schedDownloadButton.appendChild(document.createTextNode('McGill Enhanced:'));
 		schedDownloadButton.appendChild(document.createElement('br'));
 		schedDownloadButton.appendChild(document.createTextNode('Export Course Schedule as ICS file!'));
