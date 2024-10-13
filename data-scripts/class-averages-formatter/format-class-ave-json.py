@@ -1,4 +1,5 @@
 import json
+import pathlib
 
 file_string = """/*
 McGill Enhanced is a chrome extension that improves the functionality and navigability of McGill.ca
@@ -20,9 +21,10 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 function getClassAveragesData() {
 \tlet classAveragesData = {"""
 
+input_json_path = 'input/ClassAverages__2024-10-12_20_45_22__10681.json'
 formatted_json = ''
 
-with open('input/ClassAverages__2023-10-10_21_33_10__9146___4.3.37.json', 'r') as input_file:
+with open(input_json_path, 'r') as input_file:
 	data = json.load(input_file)
 
 	for course_name, course_data in data.items():
@@ -34,5 +36,6 @@ with open('input/ClassAverages__2023-10-10_21_33_10__9146___4.3.37.json', 'r') a
 file_string += formatted_json
 file_string += '\n\t};\n\treturn classAveragesData;\n}'
 
-with open('dataClassAverages.js', 'w') as output_file:
+pathlib.Path('./out/').mkdir(parents=True, exist_ok=True) 
+with open('./out/dataClassAverages.js', 'w') as output_file:
 	output_file.write(file_string)

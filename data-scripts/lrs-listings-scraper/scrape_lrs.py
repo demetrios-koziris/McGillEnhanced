@@ -2,23 +2,28 @@ import mechanicalsoup
 import re
 from collections import OrderedDict
 import json
+import pathlib
 
+lrs_url = 'https://lrs.mcgill.ca/'
 
 def main():
 	browser = mechanicalsoup.StatefulBrowser()
 	print("Retrieving lrs page")
-	browser.open('http://lrs.mcgill.ca/')
+	browser.open(lrs_url)
 	
 	terms = scrape_lrs_terms(browser)
 	lrs_data = sort_lrs_data(scrape_lrs_data(terms, browser))
-	export_json(lrs_data, 'lrs_data.json')
+	pathlib.Path('./out/').mkdir(parents=True, exist_ok=True) 
+	export_json(lrs_data, './out/lrs_data.json')
 
+def navigate_to_lrs(browser):
+	if (browser.get_url() != lrs_url):
+		print("Retrieving lrs page")
+		browser.open(lrs_url)
 
 def scrape_lrs_terms(browser):
+	navigate_to_lrs(browser)
 	print("Retrieving terms from lrs page")
-	if (browser.get_url() != 'http://lrs.mcgill.ca/'):
-		print("Retrieving lrs page")
-		browser.open('http://lrs.mcgill.ca/')
 		
 	options = browser.get_current_page().find(id='DropDownListSemesterID').find_all('option')
 	return [opt.get('value') for opt in options if re.match('20[0-9]{2}0[159]', opt.get('value'))]
@@ -47,12 +52,9 @@ def scrape_lrs_data(terms, browser):
 
 
 def scrape_term_lrs_data(term, browser):
-	if (browser.get_url() != 'http://lrs.mcgill.ca/'):
-		print("Retrieving lrs page")
-		browser.open('http://lrs.mcgill.ca/')
-
+	navigate_to_lrs(browser)
 	print("Retrieving lrs data from term " + term)
-	open_lrs_page(term, browser)
+	select_lrs_page(term, browser)
 
 	lrs_listings = []
 	links = browser.get_current_page().find_all('a')
@@ -71,7 +73,7 @@ def scrape_term_lrs_data(term, browser):
 	return lrs_listings
 
 
-def open_lrs_page(term, browser):
+def select_lrs_page(term, browser):
 	form = browser.select_form('#form1')
 	form.set('DropDownListSemesterID', term)
 	browser.submit_selected()

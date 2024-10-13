@@ -8,9 +8,9 @@ $ pip install --upgrade pip
 $ pip install virtualenv
 ```
 
-Create a virtualenv and set it to use python3 (if your python3 is installed in a different location, set the path from `/usr/bin/python3` to that location) then activate the virtualenv:
+Create a virtualenv then activate the virtualenv:
 ```
-$ virtualenv -p /usr/bin/python3 virtenv
+$ virtualenv virtenv
 $ source virtenv/bin/activate
 ```
 
@@ -18,16 +18,14 @@ Install dependencies
 ```
 $ pip install -r requirements.txt
 ```
-
 Note that if you install more libraries that are required, update requirements.txt  
-You can add all current installed libraries to requirements.txt with:
-```
-$ pip freeze > requirements.txt 
-```
+
 
 ### Running
 
-Run scrape_lrs.py:
+Scrape, format, then copy output to extension src
 ```
 $ python scrape_lrs.py
+$ python format-lrs-json.py
+$ cp out/dataRecordings.js ../../src/js/dataRecordings.js
 ```
