@@ -44,23 +44,26 @@ For a full list of features, please see the following link:
 
 #### Usage:  
 ```
-$ ./runbuild.sh [options] [<platform>...]
+$ ./build.sh [options] [<platform>...]
 ```
 ```
 Options:
-    -c       Clear the /build directory before building  
+  -b  Build as BETA version
+  -c  Clear the /out directory before building
+  -h  Show help message
+
 Platform:
-    publish  For publishing in chrome web store or mozilla add-on site
-    edge     For dev purposes (Edge extension)
-    firefox  For dev purposes (Firefox add-on)
-             If no parameters are passed, script will default to building all platforms
+  chrome   Web extension compatible with Chrome (published on Chrome Web Store)
+  firefox  Web extension compatible with Firefox (published on Mozilla Add-ons site)
+           If no platforms are specified, the script will build for both platforms
 ```
 #### Examples:
 ```
-$ ./runbuild.sh
-$ ./runbuild.sh publish  
-$ ./runbuild.sh -c edge  
-$ ./runbuild.sh publish firefox  
+$ ./build.sh
+$ ./build.sh -c
+$ ./build.sh chrome
+$ ./build.sh chrome -b
+$ ./build.sh firefox
 ```
 
 

@@ -7,5 +7,6 @@
 *.xpi
 *.crx
 *.pem
-build
+.DS_Store
+builds
 out
