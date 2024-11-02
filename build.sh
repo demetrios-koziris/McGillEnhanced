@@ -90,7 +90,7 @@ for platform in "$@"; do
   fi
 
   if [ "$platform" == "firefox" ]; then
-    sed -i '' 's/{/{\n  "browser_specific_settings": {"gecko": {"id": "{fbd3b601-613b-4747-a92b-4d37b2fd7667}"}},/' "$MANIFEST_FILE"
+    sed -i '' '1s/{/{\n  "browser_specific_settings": {"gecko": {"id": "{fbd3b601-613b-4747-a92b-4d37b2fd7667}"}},/' "$MANIFEST_FILE"
   	sed -i '' 's/"service_worker": "js\/serviceWorker.js"/"scripts": ["js\/serviceWorker.js"]/g' "$MANIFEST_FILE"
   fi
 
