@@ -138,6 +138,9 @@ function getRecordingData() {
 		"LAWG532": [
 			{"year": 2023, "month": 9, "section": "001", "id": "67640"}
 		],
+		"LAWG554": [
+			{"year": 2024, "month": 9, "section": "001", "id": "78528"}
+		],
 		"MATH133": [
 			{"year": 2022, "month": 9, "section": "004", "id": "58076"}
 		],
