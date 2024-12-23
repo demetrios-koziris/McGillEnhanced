@@ -21,7 +21,7 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 function getClassAveragesData() {
 \tlet classAveragesData = {"""
 
-input_json_path = 'input/ClassAverages__2024-11-02_17_58_01__10729.json'
+input_json_path = 'input/ClassAverages__2024-12-22_22_27_03__10847.json'
 formatted_json = ''
 
 with open(input_json_path, 'r') as input_file:

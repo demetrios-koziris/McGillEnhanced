@@ -102,6 +102,9 @@ function getRecordingData() {
 		"ENVR200": [
 			{"year": 2024, "month": 1, "section": "051", "id": "73562"}
 		],
+		"ENVR401": [
+			{"year": 2024, "month": 9, "section": "001", "id": "76615"}
+		],
 		"EPIB668": [
 			{"year": 2024, "month": 5, "section": "001", "id": "74992"}
 		],
@@ -183,6 +186,10 @@ function getRecordingData() {
 		"MGCR472": [
 			{"year": 2023, "month": 1, "section": "002", "id": "60738"}
 		],
+		"MGSC702": [
+			{"year": 2022, "month": 9, "section": "001", "id": "59115"},
+			{"year": 2024, "month": 9, "section": "001", "id": "79298"}
+		],
 		"MIME340": [
 			{"year": 2024, "month": 9, "section": "001", "id": "78634"}
 		],
@@ -203,6 +210,9 @@ function getRecordingData() {
 		],
 		"PHYS512": [
 			{"year": 2024, "month": 9, "section": "001", "id": "76714"}
+		],
+		"POLI210": [
+			{"year": 2024, "month": 9, "section": "001", "id": "78052"}
 		],
 		"POLI360": [
 			{"year": 2023, "month": 9, "section": "001", "id": "65900"}
