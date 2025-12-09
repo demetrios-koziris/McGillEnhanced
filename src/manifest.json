@@ -9,7 +9,8 @@
   ],
   "host_permissions": [
     "*://*.mcgill.ca/*",
-    "*://demetrios-koziris.github.io/*"
+    "*://demetrios-koziris.github.io/*",
+    "*://mycourses2.mcgill.ca/*"
   ],
   "background": {
     "service_worker": "js/serviceWorker.js"
@@ -30,7 +31,8 @@
       "all_frames": true,
       "matches" : [
         "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*"
+        "*://demetrios-koziris.github.io/*",
+        "*://mycourses2.mcgill.ca/*"
       ],
       "js" : [
         "js/preInit.js",
@@ -41,7 +43,8 @@
     {
       "matches" : [
         "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*"
+        "*://demetrios-koziris.github.io/*",
+        "*://mycourses2.mcgill.ca/*"
       ],
       "js": [
         "lib/purify.min.js",
@@ -67,7 +70,8 @@
         "js/addScheduleExporter.js",
         "js/addOneClickVSBRegistration.js",
         "js/addVSBClassLinks.js",
-        "js/initEnhancement.js"
+        "js/initEnhancement.js",
+        "js/addGradeNeededCalculator.js"
       ]
     }
   ],
@@ -85,7 +89,8 @@
       ],
       "matches": [
         "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*"
+        "*://demetrios-koziris.github.io/*",
+        "*://mycourses2.mcgill.ca/*"
       ]
     }
   ]
