@@ -27,9 +27,15 @@ function addGradeNeededCalculator() {
         else if (selection === 'grade') {
             index = 2;
 
+        } 
+        else if (selection === 'gradeItem') {
+            const nameCell = row.querySelector('th, td');
+            const rowName = nameCell ? nameCell.textContent.trim() : '';
+            return rowName;
         } else {
             return null;
         }
+        
 
         
         const tds = row.querySelectorAll('td');
@@ -54,16 +60,25 @@ function addGradeNeededCalculator() {
                 return { achieved, total };
             }
         }
+        
+
     }
 
 
     // Find all D2L-grade tables inside their wrappers
     const tables = document.querySelectorAll('d2l-table-wrapper table.d2l-table');
-    var grades = [];
+    let totalRows = 0; 
+    let filledRows = 0;
+    let weights = [];
+    var missingGrade = null;
+    let lastTableWrapper = null; // track the wrapper of the last processed table
 
     tables.forEach(table => {
         const rows = table.querySelectorAll('tr');
         if (!rows.length) return;
+
+        // remember the wrapper of this table so we can insert the card after it
+        lastTableWrapper = table.closest('d2l-table-wrapper') || table.parentElement;
 
         const headerRow = rows[0];
 
@@ -74,9 +89,9 @@ function addGradeNeededCalculator() {
         if (hasPredicted) return;
 
 
-        const totalRows = rows.length - 1; // Exclude header row
-        var filledRows = 0;
-        
+        totalRows = rows.length - 1; // Exclude header row
+        filledRows = 0;
+  
 
         rows.forEach((row, index) => {
          
@@ -95,11 +110,70 @@ function addGradeNeededCalculator() {
                 if (rowGrade !== 0 ) {
                     filledRows += 1;
                 }
+                weights[index - 1] = getDataFromTable(row, "weightAchieved");
+                if (rowGrade === 0){
+                    missingGrade = [index - 1, getDataFromTable(row, "gradeItem")];
+                }
             }
             
         });
         
     });
+
+    var gradeCardText = 'Placeholder text for the grade calculator card';
+
+
+    console.log(`Total Rows: ${totalRows}, Filled Rows: ${filledRows}`);
+    var totalGrade = 0;
+    if (filledRows === (totalRows)) {
+        for (let i = 1; i <= weights.length; i++) {
+            totalGrade += weights[i-1].achieved;
+        }
+
+        gradeCardText = `All Grades Entered! Your final grade is: ${totalGrade}%`;
+    }
+
+    else if (filledRows === (totalRows - 1)) {
+        for (let i = 1; i <= weights.length; i++) {
+            totalGrade += weights[i-1].achieved;
+        }
+
+        gradeCardText = `To get an A (85%), you need to score at least: ${Math.max(0, (85 - totalGrade) / weights[missingGrade[0]].total * 100).toFixed(2)}% on ${missingGrade[1]}.`;
+    }
+    else {
+        gradeCardText = `Please fill in all grades except one to calculate the needed grade for that item.`;
+    }
+
+
+    // Avoid adding the card more than once
+    if (!document.getElementById('me-grade-card')) {
+        const card = document.createElement('div');
+        card.id = 'me-grade-card';
+        card.textContent = gradeCardText;
+
+        Object.assign(card.style, {
+            // no `position: fixed` so it scrolls with the page
+            margin: '8px auto 0', // smaller top margin so it's close to the element above
+            maxWidth: '600px',
+            padding: '16px 24px',
+            backgroundColor: '#ffffff',
+            borderRadius: '8px',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+            fontSize: '14px',
+        });
+
+        // Insert the card right after the last processed table wrapper so it sits close
+        if (lastTableWrapper && lastTableWrapper.parentNode) {
+            lastTableWrapper.insertAdjacentElement('afterend', card);
+        } else {
+            // fallback: append to body
+            document.body.appendChild(card);
+        }
+    }
+
+
+
 }
 
 
