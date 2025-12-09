@@ -72,6 +72,8 @@ function addGradeNeededCalculator() {
     let weights = [];
     var missingGrade = null;
     let lastTableWrapper = null; // track the wrapper of the last processed table
+    let needsToBeCalculated = false;
+    let gradeCardText = "";
 
     tables.forEach(table => {
         const rows = table.querySelectorAll('tr');
@@ -120,9 +122,6 @@ function addGradeNeededCalculator() {
         
     });
 
-    var gradeCardText = 'Placeholder text for the grade calculator card';
-
-
     console.log(`Total Rows: ${totalRows}, Filled Rows: ${filledRows}`);
     var totalGrade = 0;
     if (filledRows === (totalRows)) {
@@ -137,8 +136,7 @@ function addGradeNeededCalculator() {
         for (let i = 1; i <= weights.length; i++) {
             totalGrade += weights[i-1].achieved;
         }
-
-        gradeCardText = `To get an A (85%), you need to score at least: ${Math.max(0, (85 - totalGrade) / weights[missingGrade[0]].total * 100).toFixed(2)}% on ${missingGrade[1]}.`;
+        needsToBeCalculated = true;
     }
     else {
         gradeCardText = `Please fill in all grades except one to calculate the needed grade for that item.`;
@@ -163,7 +161,118 @@ function addGradeNeededCalculator() {
             fontSize: '14px',
         });
 
-        // Insert the card right after the last processed table wrapper so it sits close
+        if ( missingGrade && needsToBeCalculated ) {
+            const intro = document.createElement('p');
+            intro.style.margin = '0 0 12px';
+            intro.textContent = gradeCardText;
+            card.appendChild(intro);
+
+            const controls = document.createElement('div');
+            controls.style.display = 'flex';
+            controls.style.flexWrap = 'wrap';
+            controls.style.gap = '8px';
+            card.appendChild(controls);
+
+            const label = document.createElement('label');
+            label.textContent = 'Target grade:';
+            label.setAttribute('for', 'me-target-grade-select');
+            label.style.fontWeight = '600';
+            controls.appendChild(label);
+
+            const select = document.createElement('select');
+            select.id = 'me-target-grade-select';
+            select.style.flex = '1';
+            select.style.padding = '6px 8px';
+            select.style.fontSize = '14px';
+            controls.appendChild(select);
+
+            const gradeOptions = [
+                { label: 'A (4.0): 85-100%', value: 85 },
+                { label: 'A- (3.7): 80-84%', value: 80 },
+                { label: 'B+ (3.3): 75-79%', value: 75 },
+                { label: 'B (3.0): 70-74%', value: 70 },
+                { label: 'B- (2.7): 65-69%', value: 65 },
+                { label: 'C+ (2.3): 60-64%', value: 60 },
+                { label: 'C (2.0): 55-59%', value: 55 },
+                { label: 'D (1.0): 50-54%', value: 50 },
+                { label: 'F (0.0): 0-49%', value: 49 },
+                { label: 'Custom target', value: 'custom' }
+            ];
+
+            gradeOptions.forEach(optionData => {
+                const option = document.createElement('option');
+                option.value = optionData.value;
+                option.dataset.label = optionData.label;
+                option.textContent = optionData.label;
+                select.appendChild(option);
+            });
+
+            const customContainer = document.createElement('div');
+            customContainer.style.display = 'none';
+            customContainer.style.marginTop = '8px';
+            card.appendChild(customContainer);
+
+            const customInput = document.createElement('input');
+            customInput.type = 'number';
+            customInput.id = 'me-target-grade-custom';
+            customInput.placeholder = 'Enter custom %';
+            customInput.min = '0';
+            customInput.max = '100';
+            customInput.style.width = '100%';
+            customInput.style.padding = '6px 8px';
+            customInput.style.fontSize = '14px';
+            customContainer.appendChild(customInput);
+
+            const resultText = document.createElement('p');
+            resultText.style.marginTop = '12px';
+            resultText.style.fontWeight = '600';
+            card.appendChild(resultText);
+
+            const updateNeededScore = (targetPercent, labelText) => {
+                const missingWeight = weights[missingGrade[0]];
+                if (!missingWeight || !missingWeight.total) {
+                    resultText.textContent = 'Missing grade data to perform this calculation.';
+                    return;
+                }
+
+                if (isNaN(targetPercent)) {
+                    resultText.textContent = 'Enter a valid target percentage.';
+                    return;
+                }
+
+                const achievedWithoutMissing = totalGrade - (missingWeight.achieved || 0);
+                const numerator = targetPercent - achievedWithoutMissing;
+                const neededRaw = (numerator / missingWeight.total) * 100;
+                const neededScore = Math.max(0, neededRaw);
+
+                const labelDescription = labelText || `${targetPercent}%`;
+                resultText.textContent = `To get ${labelDescription}, you need at least ${neededScore.toFixed(2)}% on ${missingGrade[1]}.`;
+            };
+
+            select.addEventListener('change', () => {
+                if (select.value === 'custom') {
+                    customContainer.style.display = 'block';
+                    customInput.focus();
+                    updateNeededScore(parseFloat(customInput.value), `your custom target of ${customInput.value || '?'}%`);
+                } else {
+                    customContainer.style.display = 'none';
+                    const selectedOption = select.options[select.selectedIndex];
+                    const target = parseFloat(select.value);
+                    updateNeededScore(target, selectedOption.dataset.label);
+                }
+            });
+
+            customInput.addEventListener('input', () => {
+                const customValue = parseFloat(customInput.value);
+                updateNeededScore(customValue, `your custom target of ${customValue || '?'}%`);
+            });
+
+            const firstOption = select.options[0];
+            updateNeededScore(parseFloat(firstOption.value), firstOption.dataset.label);
+        } else {
+            card.textContent = gradeCardText;
+        }
+
         if (lastTableWrapper && lastTableWrapper.parentNode) {
             lastTableWrapper.insertAdjacentElement('afterend', card);
         } else {
@@ -179,6 +288,8 @@ function addGradeNeededCalculator() {
 
 
 
-//Table class:
-// d2l-table d2l-grid d_gl
-
+//TODO: Add an edge case if there is a total grade at the top
+//TODO: Make it so it works if the grade is undefined instead of 0
+//TODO: Make it so it updates dynamically as you type in grades, update the ones with values
+//TODO: Add up all the total possilbe points, if it is less than 100, add the option to add a 'final' which gets the remaining amount of points
+//TODO: Make it so you can add your own points if it is missing
