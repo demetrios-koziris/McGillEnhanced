@@ -89,7 +89,7 @@ function addGradeNeededCalculator() {
 
         // Avoid adding the column more than once
         const hasPredicted = Array.from(headerRow.cells).some(cell =>
-            cell.textContent.trim().toLowerCase() === 'Predicted Grade (%)'
+            cell.textContent.trim().toLowerCase() === 'predicted grade (%)' // <-- FIX
         );
         if (hasPredicted) return;
 
@@ -214,7 +214,7 @@ function addGradeNeededCalculator() {
 
     function getGrades() {
         let weightedGrades = 0;
-        
+        let missingCounter = 0;
         tables.forEach(table => {
             const rows = table.querySelectorAll('tr');
             rows.forEach((row, index) => {
@@ -228,17 +228,22 @@ function addGradeNeededCalculator() {
                     weightedGrades += exisitng.achieved;
                 } else {
                     const gradeInput = row.querySelector(`input[name="grade%"]`);
-                    if (!gradeInput) return;
+                    
 
                     const gradeValue = parseFloat(gradeInput.value);
-                    if (!isNaN(gradeValue)) {
+                    if (!isNaN(gradeValue) && gradeValue > 0) {
                         const weight = exisitng.total;
                         const weightedGrade = (gradeValue / 100) * weight;
                         weightedGrades += weightedGrade;
                     }
+                    else {
+                        missingGrade = [index - 1, getDataFromTable(row, "gradeItem")];
+                        missingCounter += 1;
+                        return;
+                    }
                 }
             });
-            
+
             if (table.querySelector(`tr[data-me-added-final="1"]`)) {
                 const finalRow = table.querySelector(`tr[data-me-added-final="1"]`);
                 const finalInput = finalRow.querySelector(`input[name="final"]`);
@@ -250,8 +255,59 @@ function addGradeNeededCalculator() {
                 }
             }
         });
-
+        if (missingCounter > 1) {
+            needsToBeCalculated = true; // more than one missing
+        }
         return Math.round(weightedGrades * 100) / 100;
+    }
+
+    function recomputeNeededScoreFromUI() {
+        if (!missingGrade || !needsToBeCalculated) return;
+
+        const resultText = document.getElementById('me-needed-score-result');
+        const select = document.getElementById('me-target-grade-select');
+        const customInput = document.getElementById('me-target-grade-custom');
+        const customContainer = document.getElementById('me-target-grade-custom-container');
+
+        if (!resultText || !select) return;
+
+        const missingWeight = weights[missingGrade[0]];
+        if (!missingWeight || !missingWeight.total) {
+            resultText.textContent = 'Missing grade data to perform this calculation.';
+            return;
+        }
+
+        let targetPercent;
+        let labelText;
+
+        if (select.value === 'custom') {
+            if (customContainer) customContainer.style.display = 'block';
+
+            const customValue = parseFloat(customInput?.value);
+            targetPercent = customValue;
+            labelText = `your custom target of ${customInput?.value || '?'}%`;
+        } else {
+            if (customContainer) customContainer.style.display = 'none';
+
+            targetPercent = parseFloat(select.value);
+            const selectedOption = select.options[select.selectedIndex];
+            labelText = selectedOption?.dataset?.label || `${targetPercent}%`;
+        }
+
+        if (isNaN(targetPercent)) {
+            resultText.textContent = 'Enter a valid target percentage.';
+            return;
+        }
+
+        const currentWeighted = getGrades(); // live weighted grade so far
+        const neededRaw = ((targetPercent - currentWeighted) / missingWeight.total) * 100;
+        const neededScore = Math.max(0, neededRaw);
+
+        resultText.textContent =
+            `To get ${labelText}, you need at least ${neededScore.toFixed(2)}% on ${missingGrade[1]}.`;
+    
+
+        
     }
 
     function attachGradeInputListeners() {
@@ -263,7 +319,7 @@ function addGradeNeededCalculator() {
 
             input.addEventListener('input', () => {
                 console.log('Weighted grade:', getGrades());
-                updateNeededScore()
+                recomputeNeededScoreFromUI(); // <-- update needed grade live
             });
         });
     }
@@ -333,6 +389,7 @@ function addGradeNeededCalculator() {
             });
 
             const customContainer = document.createElement('div');
+            customContainer.id = 'me-target-grade-custom-container'; // <-- add id
             customContainer.style.display = 'none';
             customContainer.style.marginTop = '8px';
             card.appendChild(customContainer);
@@ -349,55 +406,21 @@ function addGradeNeededCalculator() {
             customContainer.appendChild(customInput);
 
             const resultText = document.createElement('p');
+            resultText.id = 'me-needed-score-result'; // <-- add id
             resultText.style.marginTop = '12px';
             resultText.style.fontWeight = '600';
             card.appendChild(resultText);
 
-           
-            const updateNeededScore = (targetPercent, labelText) => {
-                const missingWeight = weights[missingGrade[0]];
-                if (!missingWeight || !missingWeight.total) {
-                    resultText.textContent = 'Missing grade data to perform this calculation.';
-                    return;
-                }
-
-                if (isNaN(targetPercent)) {
-                    resultText.textContent = 'Enter a valid target percentage.';
-                    return;
-                }
-
-                // Use live computed weighted grade (excluding the missing item, since it has no input/value)
-                const currentWeighted = getGrades(); // e.g. 62.35 (out of 100)
-
-                const numerator = targetPercent - currentWeighted;
-                const neededRaw = (numerator / missingWeight.total) * 100;
-                const neededScore = Math.max(0, neededRaw);
-
-                const labelDescription = labelText || `${targetPercent}%`;
-                resultText.textContent =
-                    `To get ${labelDescription}, you need at least ${neededScore.toFixed(2)}% on ${missingGrade[1]}.`;
-            };
-
             select.addEventListener('change', () => {
-                if (select.value === 'custom') {
-                    customContainer.style.display = 'block';
-                    customInput.focus();
-                    updateNeededScore(parseFloat(customInput.value), `your custom target of ${customInput.value || '?'}%`);
-                } else {
-                    customContainer.style.display = 'none';
-                    const selectedOption = select.options[select.selectedIndex];
-                    const target = parseFloat(select.value);
-                    updateNeededScore(target, selectedOption.dataset.label);
-                }
+                recomputeNeededScoreFromUI();
             });
 
             customInput.addEventListener('input', () => {
-                const customValue = parseFloat(customInput.value);
-                updateNeededScore(customValue, `your custom target of ${customValue || '?'}%`);
+                recomputeNeededScoreFromUI();
             });
 
-            const firstOption = select.options[0];
-            updateNeededScore(parseFloat(firstOption.value), firstOption.dataset.label);
+            // initialize once
+            recomputeNeededScoreFromUI();
         } else {
             card.textContent = gradeCardText;
         }
@@ -410,8 +433,8 @@ function addGradeNeededCalculator() {
         }
     }
 
-
-
+    // ensure listeners are attached (inputs exist by now)
+    attachGradeInputListeners();
 }
 
 
