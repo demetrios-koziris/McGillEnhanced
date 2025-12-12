@@ -72,13 +72,16 @@ function addGradeNeededCalculator() {
     let weights = [];
     var missingGrade = null;
     let lastTableWrapper = null; // track the wrapper of the last processed table
+    let lastTable = null;        // track the actual table we last processed
     let needsToBeCalculated = false;
     let gradeCardText = "";
-
+    let totalWeight = 0;
+    
     tables.forEach(table => {
         const rows = table.querySelectorAll('tr');
         if (!rows.length) return;
 
+        lastTable = table;
         // remember the wrapper of this table so we can insert the card after it
         lastTableWrapper = table.closest('d2l-table-wrapper') || table.parentElement;
 
@@ -96,29 +99,36 @@ function addGradeNeededCalculator() {
   
 
         rows.forEach((row, index) => {
-         
+
             if (index === 0) {
                 // Header cell
                 const th = document.createElement('th');
                 th.scope = 'col';
                 th.textContent = 'Predicted Grade (%)';
+                th.style.textAlign = 'right'; // <-- align header to the right
                 row.appendChild(th);
             } else {
                 // Data cell
                 const td = document.createElement('td');
+                td.style.textAlign = 'right'; // <-- align the cell to the right
+
                 const rowGrade = getDataFromTable(row, "grade");
-                td.innerHTML = `<input type="number" id="grade${index}" name="grade%" min="0" max="200" placeholder=${rowGrade} style="height: 60%; width: 80%;padding: 8px; font-size: 16px">`;
+                td.innerHTML = `<input type="number" id="grade${index}" name="grade%" min="0" max="200" placeholder=${rowGrade} style="height: 60%; width: 80%; padding: 8px; font-size: 16px; text-align: right;">`;
                 row.appendChild(td);
+
                 if (rowGrade !== 0 ) {
                     filledRows += 1;
                 }
                 weights[index - 1] = getDataFromTable(row, "weightAchieved");
-                if (rowGrade === 0){
+                totalWeight += weights[index - 1].total;
+                if (rowGrade === 0 || rowGrade === null) {
                     missingGrade = [index - 1, getDataFromTable(row, "gradeItem")];
                 }
             }
-            
+
         });
+
+        console.log(`Total Weight: ${totalWeight}`);
         
     });
 
@@ -143,6 +153,122 @@ function addGradeNeededCalculator() {
     }
 
 
+    if (totalWeight == 0 || totalWeight == null) {
+        gradeCardText = `Unable to calculate needed grade as total weight is 0 or undefined.`;
+    }
+    else if (totalWeight < 99) {
+        const remaining = Math.max(0, 100 - totalWeight);
+
+        if (lastTable && remaining > 0.01) {
+            const tbody = lastTable.tBodies[0] || lastTable.appendChild(document.createElement('tbody'));
+
+            // prevent duplicates if this runs multiple times
+            if (!tbody.querySelector('tr[data-me-added-final="1"]')) {
+                const tr = document.createElement('tr');
+                tr.dataset.meAddedFinal = "1";
+
+                const th = document.createElement('th');
+                th.scope = 'row';
+                th.textContent = 'Final (added by McGill Enhanced)';
+                tr.appendChild(th);
+
+                // Points column (optional/unknown here)
+                const tdPoints = document.createElement('td');
+                tdPoints.style.textAlign = 'right';
+                tdPoints.innerHTML = '<span>-</span>';
+                tr.appendChild(tdPoints);
+
+                // Weight Achieved column (match your existing parsing: "achieved / total")
+                const tdWeight = document.createElement('td');
+                tdWeight.style.textAlign = 'right';
+                tdWeight.innerHTML = `<span>0 / ${remaining.toFixed(2)}</span>`;
+                tr.appendChild(tdWeight);
+
+                // Grade column
+                const tdGrade = document.createElement('td');
+                tdGrade.style.textAlign = 'right';
+                tdGrade.innerHTML = '<span>0 %</span>';
+                tr.appendChild(tdGrade);
+
+                const tdComments = document.createElement('td');
+                tdComments.innerHTML = '<span></span>';
+                tr.appendChild(tdComments);
+
+                // Predicted Grade (%) input column (to match the column you add)
+                const tdPredicted = document.createElement('td');
+                tdPredicted.style.textAlign = 'right';
+                // NOTE: remove duplicate name="grade%" so querySelector('input[name="final"]') works reliably
+                tdPredicted.innerHTML = `<input type="number" id="final" name="final" min="0" max="200" placeholder="0" style="height: 60%; width: 80%; padding: 8px; font-size: 16px; text-align: right;">`;
+                tr.appendChild(tdPredicted);
+
+                tbody.appendChild(tr);
+            }
+            needsToBeCalculated = true;
+            
+        }
+    }
+
+    else if (totalWeight > 100.01) {
+        gradeCardText = `Unable to calculate needed grade as total weight is more than 100%.`;
+    }
+
+    function getGrades() {
+        let weightedGrades = 0;
+        
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach((row, index) => {
+                if (index === 0) return; // skip header row
+                if (row.dataset.meAddedFinal === "1") return; // skip added final row (handled below)
+
+                const exisitng = getDataFromTable(row, "weightAchieved");
+                if (!exisitng) return;
+
+                if (exisitng.achieved > 0 && exisitng.achieved != null) {
+                    weightedGrades += exisitng.achieved;
+                } else {
+                    const gradeInput = row.querySelector(`input[name="grade%"]`);
+                    if (!gradeInput) return;
+
+                    const gradeValue = parseFloat(gradeInput.value);
+                    if (!isNaN(gradeValue)) {
+                        const weight = exisitng.total;
+                        const weightedGrade = (gradeValue / 100) * weight;
+                        weightedGrades += weightedGrade;
+                    }
+                }
+            });
+            
+            if (table.querySelector(`tr[data-me-added-final="1"]`)) {
+                const finalRow = table.querySelector(`tr[data-me-added-final="1"]`);
+                const finalInput = finalRow.querySelector(`input[name="final"]`);
+                const finalValue = parseFloat(finalInput?.value);
+                if (!isNaN(finalValue)) {
+                    const finalWeight = Math.max(0, 100 - totalWeight);
+                    const finalWeightedGrade = (finalValue / 100) * finalWeight;
+                    weightedGrades += finalWeightedGrade;
+                }
+            }
+        });
+
+        return Math.round(weightedGrades * 100) / 100;
+    }
+
+    function attachGradeInputListeners() {
+        const inputs = document.querySelectorAll('input[name="grade%"], input[name="final"]');
+
+        inputs.forEach((input) => {
+            if (input.dataset.meListenerAttached === "1") return;
+            input.dataset.meListenerAttached = "1";
+
+            input.addEventListener('input', () => {
+                console.log('Weighted grade:', getGrades());
+                updateNeededScore()
+            });
+        });
+    }
+
+     // attach listeners once inputs exist
     // Avoid adding the card more than once
     if (!document.getElementById('me-grade-card')) {
         const card = document.createElement('div');
@@ -150,7 +276,6 @@ function addGradeNeededCalculator() {
         card.textContent = gradeCardText;
 
         Object.assign(card.style, {
-            // no `position: fixed` so it scrolls with the page
             margin: '8px auto 0', // smaller top margin so it's close to the element above
             maxWidth: '600px',
             padding: '16px 24px',
@@ -228,6 +353,7 @@ function addGradeNeededCalculator() {
             resultText.style.fontWeight = '600';
             card.appendChild(resultText);
 
+           
             const updateNeededScore = (targetPercent, labelText) => {
                 const missingWeight = weights[missingGrade[0]];
                 if (!missingWeight || !missingWeight.total) {
@@ -240,13 +366,16 @@ function addGradeNeededCalculator() {
                     return;
                 }
 
-                const achievedWithoutMissing = totalGrade - (missingWeight.achieved || 0);
-                const numerator = targetPercent - achievedWithoutMissing;
+                // Use live computed weighted grade (excluding the missing item, since it has no input/value)
+                const currentWeighted = getGrades(); // e.g. 62.35 (out of 100)
+
+                const numerator = targetPercent - currentWeighted;
                 const neededRaw = (numerator / missingWeight.total) * 100;
                 const neededScore = Math.max(0, neededRaw);
 
                 const labelDescription = labelText || `${targetPercent}%`;
-                resultText.textContent = `To get ${labelDescription}, you need at least ${neededScore.toFixed(2)}% on ${missingGrade[1]}.`;
+                resultText.textContent =
+                    `To get ${labelDescription}, you need at least ${neededScore.toFixed(2)}% on ${missingGrade[1]}.`;
             };
 
             select.addEventListener('change', () => {
