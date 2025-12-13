@@ -105,6 +105,11 @@ function initEnhancement() {
 		addOneClickVSBRegistration();
 		addVSBClassLinks();
 	}
+
+	// run on MyCourses2 pages
+	if (url.match(/.+mycourses2\.mcgill\.ca.+\/grades\/my_grades\//)) {
+			addGradeNeededCalculator();
+	}
 }
 
 function redirect(message, url) {
