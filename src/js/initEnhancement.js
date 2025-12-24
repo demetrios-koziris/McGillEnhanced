@@ -14,114 +14,136 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 
 //jshint esversion: 6
 
-
-getStorageValue('enabled')
-	.then(enabledSetting => {
-		if (enabledSetting) {
-			initEnhancement();
-		}
-	})
-	.catch(error => {
-		console.error('Error fetching storage value:', error);
-	});
+getStorageValue("enabled")
+  .then((enabledSetting) => {
+    if (enabledSetting) {
+      initEnhancement();
+    }
+  })
+  .catch((error) => {
+    console.error("Error fetching storage value:", error);
+  });
 
 function initEnhancement() {
+  const courseCatalogueUrlRegex =
+    /https?:\/\/coursecatalogue\.mcgill\.ca\/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})(?:\/?|$)/i;
 
-	// run on McGill.ca pages
-	if (url.match(/.+(www\.)?mcgill\.ca\/study\/.+/)) {
+  const isECalendarPage = /.+(www\.)?mcgill\.ca\/study\/.+/.test(url);
+  const isCourseCataloguePage = courseCatalogueUrlRegex.test(url);
 
-		const start = Date.now();
-		
-		// setup global variales used by other js scripts
-		courseNameRegex = /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
-		urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
-		urlYearW = urlYearF + 1;
-		urlYears = urlYearF + '-' + urlYearW;
+  // run on McGill.ca pages
+  if (isECalendarPage) {
+    const start = Date.now();
 
-		sysDate = new Date();
-		sysYear = sysDate.getFullYear();
-		sysMonth = sysDate.getMonth()+1;
-		sysCode = translateToTermCode(sysYear, sysMonth);
+    // setup global variales used by other js scripts
+    courseNameRegex =
+      /([A-Z]{3,4}[0-9]{0,1})\s([0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/g;
+    urlYearF = parseInt(url.match(/.+(20[0-9][0-9])-.+/)[1]);
+    urlYearW = urlYearF + 1;
+    urlYears = urlYearF + "-" + urlYearW;
 
-		currentTermYear = sysYear;
-		currentTermMonth = (sysMonth>=9 ? 9 : (sysMonth>=5 ? 5 : 1));
+    sysDate = new Date();
+    sysYear = sysDate.getFullYear();
+    sysMonth = sysDate.getMonth() + 1;
+    sysCode = translateToTermCode(sysYear, sysMonth);
 
-		lang = (url.match(/\/fr\//) ? 'fr' : 'en');
-		termNames = {
-			'en': {
-				9: 'Fall',
-				1: 'Winter',
-				5: 'Summer'
-			},
-			'fr': {
-				9: 'Automne',
-				1: 'Hiver',
-				5: 'Été'
-			}
-		};
-		numYearsInMenu = 10;
-		firstYear = Math.max(sysYear-numYearsInMenu+1, 2009);
+    currentTermYear = sysYear;
+    currentTermMonth = sysMonth >= 9 ? 9 : sysMonth >= 5 ? 5 : 1;
 
-		courseUrlRegex = /.+study\/.+courses\/[A-za-z0-9]{4}-[0-9]{3}/;
+    lang = url.match(/\/fr\//) ? "fr" : "en";
+    termNames = {
+      en: {
+        9: "Fall",
+        1: "Winter",
+        5: "Summer",
+      },
+      fr: {
+        9: "Automne",
+        1: "Hiver",
+        5: "Été",
+      },
+    };
+    numYearsInMenu = 10;
+    firstYear = Math.max(sysYear - numYearsInMenu + 1, 2009);
 
-		
-		if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
-			// run on McGill.ca Calendar pages (mcgill.ca url with year in path) 
-			addYearMenu();
-		}
+    courseUrlRegex = /.+study\/.+courses\/[A-za-z0-9]{4}-[0-9]{3}/;
 
-		if (url.match(courseUrlRegex)) {
-			// run on McGill Course Overview pages:
+    if (url.match(/.+(20[0-9][0-9])-(20[0-9][0-9]).+/)) {
+      // run on McGill.ca Calendar pages (mcgill.ca url with year in path)
+      addYearMenu();
+    }
 
-			urlCourseName = url.match(/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/)[1].toUpperCase();
-			courseSubject = urlCourseName.split('-')[0];
-			courseNumber = urlCourseName.split('-')[1];
-			courseName = courseSubject + courseNumber;
-			courseNameSpaced = courseSubject + ' ' + courseNumber;
+    if (url.match(courseUrlRegex)) {
+      // run on McGill Course Overview pages:
 
-			makeProfLinks();
-			makeCourseLinks();
-			makeSidebarContent();
-			addContentSeparators();
-			addCourseTitleTooltips();
-			applyToolTipsy();
-		}
-		else {
-			// run on McGill Program Overview pages
-			programOverview();
-		}
+      urlCourseName = url
+        .match(
+          /courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})/,
+        )[1]
+        .toUpperCase();
+      courseSubject = urlCourseName.split("-")[0];
+      courseNumber = urlCourseName.split("-")[1];
+      courseName = courseSubject + courseNumber;
+      courseNameSpaced = courseSubject + " " + courseNumber;
 
-		const time = Date.now() - start;
-		console.log('McGill Enhanced took ' + time + ' ms to improve this page!');
-	}
+      makeProfLinks();
+      makeCourseLinks();
+      makeSidebarContent();
+      addContentSeparators();
+      addCourseTitleTooltips();
+      applyToolTipsy();
+    } else {
+      // run on McGill Program Overview pages
+      programOverview();
+    }
 
-	// run on Minerva Course Schedule page
-	if (url.match(/horizon.mcgill.ca\/pban1\/bwskfshd.P_CrseSchdDetl.*/)) {
-		addScheduleExporter();
-	}
+    const time = Date.now() - start;
+    console.log("McGill Enhanced took " + time + " ms to improve this page!");
+  } else if (isCourseCataloguePage) {
+    const start = Date.now();
 
-	// run on VSB pages
-	if (url.match(/.+vsb\.mcgill\.ca/)) {
-		addOneClickVSBRegistration();
-		addVSBClassLinks();
-	}
+    const catalogueMatch = url.match(courseCatalogueUrlRegex);
+
+    urlCourseName = catalogueMatch[1].toUpperCase();
+    courseSubject = urlCourseName.split("-")[0];
+    courseNumber = urlCourseName.split("-")[1];
+    courseName = courseSubject + courseNumber;
+    courseNameSpaced = courseSubject + " " + courseNumber;
+
+    addContentSeparatorsCourseCatalogue();
+    addCourseCatalogueClassAverages();
+
+    const time = Date.now() - start;
+    console.log("McGill Enhanced took " + time + " ms to improve this page!");
+  }
+
+  // run on Minerva Course Schedule page
+  if (url.match(/horizon.mcgill.ca\/pban1\/bwskfshd.P_CrseSchdDetl.*/)) {
+    addScheduleExporter();
+  }
+
+  // run on VSB pages
+  if (url.match(/.+vsb\.mcgill\.ca/)) {
+    addOneClickVSBRegistration();
+    addVSBClassLinks();
+  }
 }
 
 function redirect(message, url) {
-	if (message) {
-		alert(message);
-	}
-	window.open(url, '_blank');
+  if (message) {
+    alert(message);
+  }
+  window.open(url, "_blank");
 }
 
 function insertAfter(newNode, referenceNode) {
-	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 function monthAsTwoDigitString(month) {
-	return ('0'+month).slice(-2);
+  return ("0" + month).slice(-2);
 }
 
 function translateToTermCode(year, month) {
-	return '' + year + monthAsTwoDigitString(month);
+  return "" + year + monthAsTwoDigitString(month);
 }
