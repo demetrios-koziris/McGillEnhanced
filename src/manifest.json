@@ -48,6 +48,7 @@
         "js/dataMcGillMap.js",
         "js/addSidebar.js",
         "js/addYearMenu.js",
+        "js/averageGPAsDownloader.js",
         "js/addAveCrowdsource.js",
         "js/addAveCrowdsourceCourseCatalogue.js",
         "js/addProfLinks.js",

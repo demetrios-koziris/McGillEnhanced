@@ -96,10 +96,38 @@ function addCourseCatalogueClassAverages() {
   crowdsourceContent.innerText =
     "These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages.\n\nIf you would like to contribute, the button below will retrieve the class averages from your transcript and let you submit them.";
 
+  const classAveragesButtonDiv = document.createElement("div");
+  classAveragesButtonDiv.id = "mcen-class-averages-button-div";
+  crowdsourceContent.appendChild(classAveragesButtonDiv);
+
+  const downloadClassAveragesButton = document.createElement("button");
+  downloadClassAveragesButton.setAttribute("type", "button");
+  downloadClassAveragesButton.setAttribute(
+    "onclick",
+    'document.dispatchEvent(new Event("downloadClassAverages"));',
+  );
+  downloadClassAveragesButton.id = "mcen-class-averages-download";
+  downloadClassAveragesButton.className = "mcen-class-averages-button";
+  downloadClassAveragesButton.style.backgroundImage =
+    "url(" + chrome.runtime.getURL("images/mcgill-128.png") + ")";
+  downloadClassAveragesButton.innerText =
+    "McGill Enhanced: Retrieve Your Class Averages!";
+  downloadClassAveragesButton.title =
+    "Click to retrieve the class averages from your transcript.\nMust be already signed into Minerva!";
+  classAveragesButtonDiv.appendChild(downloadClassAveragesButton);
+
   averagesBlock.appendChild(averagesList);
   averagesContentArea.appendChild(averagesBlock);
   averagesContentArea.appendChild(crowdsourceContent);
   contentCol.appendChild(averagesContentArea);
+
+  if (typeof averageGPAsDownloader === "function") {
+    averageGPAsDownloader();
+  } else {
+    logForDebug(
+      "averageGPAsDownloader is unavailable; crowdsource button disabled.",
+    );
+  }
 }
 
 function getCourseCatalogueSeparatorConfig() {
