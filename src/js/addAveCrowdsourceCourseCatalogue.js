@@ -58,6 +58,10 @@ function addCourseCatalogueClassAverages() {
     return;
   }
 
+  const averagesContentArea = document.createElement("div");
+  averagesContentArea.className = "mcen-course-catalogue-averages-content-area";
+  averagesContentArea.id = "mcen-course-catalogue-averages-content-area";
+
   const averagesBlock = document.createElement("div");
   averagesBlock.className = "mcen-course-catalogue-averages-block";
   averagesBlock.id = "mcen-course-catalogue-averages-block";
@@ -85,8 +89,17 @@ function addCourseCatalogueClassAverages() {
     averagesList.appendChild(listItem);
   });
 
+  const crowdsourceContent = document.createElement("div");
+  crowdsourceContent.className = "mcen-course-catalogue-crowdsource-content";
+  crowdsourceContent.id = "mcen-course-catalogue-crowdsource-content";
+
+  crowdsourceContent.innerText =
+    "These class averages are unofficial and were gathered by McGill students as part of a McGill Enhanced crowdsourcing initiative to build a dataset of historical class averages.\n\nIf you would like to contribute, the button below will retrieve the class averages from your transcript and let you submit them.";
+
   averagesBlock.appendChild(averagesList);
-  contentCol.appendChild(averagesBlock);
+  averagesContentArea.appendChild(averagesBlock);
+  averagesContentArea.appendChild(crowdsourceContent);
+  contentCol.appendChild(averagesContentArea);
 }
 
 function getCourseCatalogueSeparatorConfig() {
@@ -102,8 +115,8 @@ function getCourseCatalogueSeparatorConfig() {
       headingMatchers: [/details/i, /information/i, /notes/i],
     },
     {
-      label: "CLASS AVERAGEe",
-      selectors: ["#mcen-course-catalogue-averages-block"],
+      label: "CLASS AVERAGES",
+      selectors: ["#mcen-course-catalogue-averages-content-area"],
     },
   ];
 }

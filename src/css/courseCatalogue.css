@@ -40,6 +40,18 @@
   font-size: 14px;
 }
 
+.mcen-course-catalogue-averages-content-area {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.mcen-course-catalogue-crowdsource-content {
+  width: 75%;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
 .mcen-course-catalogue-averages-block {
   margin-top: 10px;
   border: 1px solid #5B5B5A;
@@ -62,13 +74,13 @@
 .mcen-course-catalogue-averages-list {
   list-style: none;
   margin: 0;
-  padding: 8px 20px;
+  padding: 8px 10px;
 }
 
 .mcen-course-catalogue-averages-list-item {
   display: flex;
   justify-content: space-between;
-  padding: 6px 0;
+  padding: 6px 10px;
   border-bottom: 1px solid #E1E1D9;
   font-size: 100%;
 }
