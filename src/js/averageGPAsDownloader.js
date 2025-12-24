@@ -206,10 +206,9 @@ function averageGPAsDownloader() {
         document.createTextNode("Results can be accessed by clicking the "),
       );
       classAveragesThanksMessage.appendChild(classAveragesThanksMessageLink);
-      classAveragesThanksMessage.appendChild(document.createElement("br"));
       classAveragesThanksMessage.appendChild(
         document.createTextNode(
-          "link in the McGill Enhanced section of the Extension menu:",
+          " link in the McGill Enhanced section of the Extension menu:",
         ),
       );
       classAveragesThanksMessage.appendChild(document.createElement("br"));

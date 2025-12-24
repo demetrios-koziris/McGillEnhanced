@@ -47,9 +47,11 @@ function addCourseCatalogueClassAverages() {
 
   const classAveragesMap = getClassAveragesData();
   const classAveragesData = classAveragesMap[courseName];
-  if (!classAveragesData || classAveragesData.length === 0) {
+  const classAverageDataFound =
+    classAveragesData && classAveragesData.length !== 0;
+
+  if (!classAveragesData) {
     logForDebug("No class averages found for " + courseName);
-    return;
   }
 
   const contentCol = document.getElementById("contentarea");
@@ -63,31 +65,34 @@ function addCourseCatalogueClassAverages() {
   averagesContentArea.id = "mcen-course-catalogue-averages-content-area";
 
   const averagesBlock = document.createElement("div");
-  averagesBlock.className = "mcen-course-catalogue-averages-block";
-  averagesBlock.id = "mcen-course-catalogue-averages-block";
-
   const averagesList = document.createElement("ul");
-  averagesList.className = "mcen-course-catalogue-averages-list";
-  const sortedAverages = classAveragesData
-    .slice()
-    .sort((a, b) => parseInt(b.termcode, 10) - parseInt(a.termcode, 10));
 
-  sortedAverages.forEach((row) => {
-    const listItem = document.createElement("li");
-    listItem.className = "mcen-course-catalogue-averages-list-item";
+  if (classAveragesData) {
+    averagesBlock.className = "mcen-course-catalogue-averages-block";
+    averagesBlock.id = "mcen-course-catalogue-averages-block";
 
-    const labelSpan = document.createElement("span");
-    labelSpan.className = "mcen-course-catalogue-averages-term";
-    labelSpan.textContent = row.year + " " + row.term + ": ";
+    averagesList.className = "mcen-course-catalogue-averages-list";
+    const sortedAverages = classAveragesData
+      .slice()
+      .sort((a, b) => parseInt(b.termcode, 10) - parseInt(a.termcode, 10));
 
-    const valueSpan = document.createElement("span");
-    valueSpan.className = "mcen-course-catalogue-averages-value";
-    valueSpan.textContent = row.average;
+    sortedAverages.forEach((row) => {
+      const listItem = document.createElement("li");
+      listItem.className = "mcen-course-catalogue-averages-list-item";
 
-    listItem.appendChild(labelSpan);
-    listItem.appendChild(valueSpan);
-    averagesList.appendChild(listItem);
-  });
+      const labelSpan = document.createElement("span");
+      labelSpan.className = "mcen-course-catalogue-averages-term";
+      labelSpan.textContent = row.year + " " + row.term + ": ";
+
+      const valueSpan = document.createElement("span");
+      valueSpan.className = "mcen-course-catalogue-averages-value";
+      valueSpan.textContent = row.average;
+
+      listItem.appendChild(labelSpan);
+      listItem.appendChild(valueSpan);
+      averagesList.appendChild(listItem);
+    });
+  }
 
   const crowdsourceContent = document.createElement("div");
   crowdsourceContent.className = "mcen-course-catalogue-crowdsource-content";
@@ -116,8 +121,10 @@ function addCourseCatalogueClassAverages() {
     "Click to retrieve the class averages from your transcript.\nMust be already signed into Minerva!";
   classAveragesButtonDiv.appendChild(downloadClassAveragesButton);
 
-  averagesBlock.appendChild(averagesList);
-  averagesContentArea.appendChild(averagesBlock);
+  if (classAverageDataFound) {
+    averagesBlock.appendChild(averagesList);
+    averagesContentArea.appendChild(averagesBlock);
+  }
   averagesContentArea.appendChild(crowdsourceContent);
   contentCol.appendChild(averagesContentArea);
 

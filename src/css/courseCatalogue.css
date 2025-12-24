@@ -47,7 +47,7 @@
 }
 
 .mcen-course-catalogue-crowdsource-content {
-  width: 75%;
+  flex:1;
   margin-top: 10px;
   padding-left: 15px;
 }
@@ -57,7 +57,7 @@
   border: 1px solid #5B5B5A;
   border-radius: 4px;
   background-color: #FFFFFF;
-  width: 25%;
+  flex: 0 0 25%;
 }
 
 .mcen-course-catalogue-averages-heading {
