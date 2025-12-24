@@ -39,6 +39,10 @@ function initStyling() {
 		injectCSS('css/vsb.css');
 	}
 
+	if (url.match(/https?:\/\/coursecatalogue\.mcgill\.ca\/courses\/([A-Za-z]{3,4}[0-9]{0,1}-[0-9]{3}[A-Za-z]{0,1}[0-9]{0,1})(?:\/?|$)/i)) {
+		injectCSS('css/courseCatalogue.css');
+	}
+
 	if (url.match(/.+horizon\.mcgill\.ca\/pban1\/bwskfshd\.P_CrseSchdDetl/) || url.match(/mymcgill\.mcgill\.ca\/portal\/page\/portal\/myMcGill\/MINERVA_TAB/)) {
 		// inject CSS for minerva sched downloader
 		injectCSS('css/minerva.css');

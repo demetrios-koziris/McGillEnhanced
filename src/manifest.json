@@ -4,9 +4,7 @@
   "manifest_version": 3,
   "version": "4.4.7",
   "description": "Enhance the functionality of McGill.ca",
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "host_permissions": [
     "*://*.mcgill.ca/*",
     "*://demetrios-koziris.github.io/*"
@@ -28,21 +26,12 @@
   "content_scripts": [
     {
       "all_frames": true,
-      "matches" : [
-        "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*"
-      ],
-      "js" : [
-        "js/preInit.js",
-        "js/initStyling.js"
-      ],
+      "matches": ["*://*.mcgill.ca/*", "*://demetrios-koziris.github.io/*"],
+      "js": ["js/preInit.js", "js/initStyling.js"],
       "run_at": "document_start"
     },
     {
-      "matches" : [
-        "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*"
-      ],
+      "matches": ["*://*.mcgill.ca/*", "*://demetrios-koziris.github.io/*"],
       "js": [
         "lib/purify.min.js",
         "lib/jquery-3.5.1.min.js",
@@ -59,7 +48,9 @@
         "js/dataMcGillMap.js",
         "js/addSidebar.js",
         "js/addYearMenu.js",
+        "js/averageGPAsDownloader.js",
         "js/addAveCrowdsource.js",
+        "js/addAveCrowdsourceCourseCatalogue.js",
         "js/addProfLinks.js",
         "js/addCourseLinks.js",
         "js/applyToolTipsy.js",
@@ -77,16 +68,14 @@
         "css/sidebar.css",
         "css/yearMenu.css",
         "css/aveCrowdsource.css",
+        "css/courseCatalogue.css",
         "css/profLinks.css",
         "css/programs.css",
         "css/vsb.css",
         "css/minerva.css",
         "images/*.png"
       ],
-      "matches": [
-        "*://*.mcgill.ca/*",
-        "*://demetrios-koziris.github.io/*"
-      ]
+      "matches": ["*://*.mcgill.ca/*", "*://demetrios-koziris.github.io/*"]
     }
   ]
 }
