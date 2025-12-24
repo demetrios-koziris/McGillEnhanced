@@ -52,19 +52,15 @@ function addCourseCatalogueClassAverages() {
     return;
   }
 
-  const contentCol = document.getElementById("col-content");
+  const contentCol = document.getElementById("contentarea");
   if (!contentCol) {
-    logForDebug("#col-contentnot found; skipping class averages block.");
+    logForDebug("#contentarea not found; skipping class averages block.");
     return;
   }
 
   const averagesBlock = document.createElement("div");
   averagesBlock.className = "mcen-course-catalogue-averages-block";
-
-  const averagesHeading = document.createElement("h3");
-  averagesHeading.className = "mcen-course-catalogue-averages-heading";
-  averagesHeading.textContent = "Class Averages";
-  averagesBlock.appendChild(averagesHeading);
+  averagesBlock.id = "mcen-course-catalogue-averages-block";
 
   const averagesList = document.createElement("ul");
   averagesList.className = "mcen-course-catalogue-averages-list";
@@ -78,7 +74,7 @@ function addCourseCatalogueClassAverages() {
 
     const labelSpan = document.createElement("span");
     labelSpan.className = "mcen-course-catalogue-averages-term";
-    labelSpan.textContent = row.year + " " + row.term;
+    labelSpan.textContent = row.year + " " + row.term + ": ";
 
     const valueSpan = document.createElement("span");
     valueSpan.className = "mcen-course-catalogue-averages-value";
@@ -104,6 +100,10 @@ function getCourseCatalogueSeparatorConfig() {
       label: "ADDITIONAL INFORMATION",
       selectors: ["#textcontainer > div > div:nth-child(3)"],
       headingMatchers: [/details/i, /information/i, /notes/i],
+    },
+    {
+      label: "CLASS AVERAGEe",
+      selectors: ["#mcen-course-catalogue-averages-block"],
     },
   ];
 }

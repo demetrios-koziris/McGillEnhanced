@@ -110,8 +110,8 @@ function initEnhancement() {
     courseName = courseSubject + courseNumber;
     courseNameSpaced = courseSubject + " " + courseNumber;
 
-    addContentSeparatorsCourseCatalogue();
     addCourseCatalogueClassAverages();
+    addContentSeparatorsCourseCatalogue();
 
     const time = Date.now() - start;
     console.log("McGill Enhanced took " + time + " ms to improve this page!");
