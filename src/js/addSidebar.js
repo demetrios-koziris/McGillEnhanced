@@ -169,9 +169,11 @@ function generateSidebarLinksBlock(courseTermsCodes, deps, options) {
 	sidebarLinksBlock.appendChild(courseEval);
 
 	if (docuumURLdata) { 
-		const docuumURL = 'http://www.docuum.com/McGill/review/read_course/' + docuumURLdata;
-		const docuumButtonString = 'Docuum Course Reviews';
-		courseEval.appendChild(generateSidebarLink(docuumURL, 'mcen-blue', docuumButtonString, false));
+		// docuum.com is dead; mcgill.courses hosts the course reviews now.
+		// Its course route is /course/<subject>-<number>, lowercased.
+		const reviewsURL = 'https://mcgill.courses/course/' + (courseSubject + '-' + courseNumber).toLowerCase();
+		const reviewsButtonString = 'mcgill.courses Course Reviews';
+		courseEval.appendChild(generateSidebarLink(reviewsURL, 'mcen-blue', reviewsButtonString, false));
 	}
 
 	const mercuryURL = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&subj_tab_in='+courseSubject+'&crse_in='+courseNumber;
@@ -204,9 +206,9 @@ function generateSidebarLinksBlock(courseTermsCodes, deps, options) {
 		sidebarLinksBlock.appendChild(other);
 	
 		if (docuumURLdata) {
-			const docuumURL = 'https://mycookies.ca/course/' + courseName;
-			const docuumButtonString = courseNameSpaced + ' on Docuum';
-			other.appendChild(generateSidebarLink(docuumURL, 'mcen-blue', docuumButtonString, false));
+			const mycookiesURL = 'https://mycookies.ca/course/' + courseName;
+			const mycookiesButtonString = courseNameSpaced + ' on MyCookies';
+			other.appendChild(generateSidebarLink(mycookiesURL, 'mcen-blue', mycookiesButtonString, false));
 		}
 		if (wikinotesURLdata) {
 			const wikinotesURL = 'https://www.wikinotes.ca/' + wikinotesURLdata;
