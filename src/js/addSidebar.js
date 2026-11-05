@@ -164,7 +164,7 @@ function makeSidebarContent() {
 		sidebarLinksBlock.appendChild(other);
 	
 		if (docuumURLdata) {
-			const docuumURL = 'http://www.docuum.com/McGill/document/view_class/' + docuumURLdata;
+			const docuumURL = 'https://mycookies.ca/course/' + courseName;
 			const docuumButtonString = courseNameSpaced + ' on Docuum';
 			other.appendChild(generateSidebarLink(docuumURL, 'mcen-blue', docuumButtonString, false));
 		}
