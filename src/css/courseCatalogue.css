@@ -1,0 +1,89 @@
+/*
+McGill Enhanced is a chrome extension that improves the functionality and navigability of McGill.ca
+Copyright (C) 2016 Demetrios Koziris
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
+as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+A copy of the GNU General Public License is provided in the LICENSE.txt file along with this program.  
+The GNU General Public License can also be found at <http://www.gnu.org/licenses/>.
+*/
+
+/* Styles specific to the Course Catalogue (coursecatalogue.mcgill.ca).
+   The shared sidebar/averages styles live in sidebar.css and aveCrowdsource.css. */
+
+
+/* --- Enhanced sidebar -------------------------------------------------------
+   The catalogue's #col-nav is a flex column that is only 25% wide on large
+   screens, so drop the eCalendar min-width or it overflows. */
+
+.mcen-course-catalogue-sidebar {
+	min-width: 0 !important;
+	padding-top: 0 !important;
+	margin-bottom: 24px;
+}
+
+.mcen-course-catalogue-sidebar a {
+	text-decoration: none !important;
+}
+
+.mcen-course-catalogue-sidebar .mcen-linkButton {
+	width: 100%;
+}
+
+.mcen-course-catalogue-sidebar .mcen-sidebarSectionTitle {
+	color: #1E1E1E;
+}
+
+
+/* --- Section separators -----------------------------------------------------
+   The catalogue hides its own section headings (body.course-page .section__title
+   is display:none), so these separators are the only visible block labels. */
+
+.mcen-course-catalogue-separator {
+	margin-top: 20px;
+	margin-bottom: 12px;
+}
+
+.mcen-course-catalogue-separator .mcen-contentSeparatorLabel {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/* --- Class averages block -------------------------------------------------- */
+
+#mcen-course-catalogue-averages {
+	margin-top: 28px;
+}
+
+#mcen-course-catalogue-averages #mcen-class-averages-content {
+	margin-top: 8px;
+}
+
+#mcen-course-catalogue-averages #mcen-class-averages-content-left {
+	padding-left: 0;
+}
+
+@media (max-width: 767px) {
+	#mcen-class-averages-content {
+		flex-direction: column;
+	}
+
+	#mcen-class-averages-content-left,
+	#mcen-class-averages-content-right {
+		width: 100% !important;
+	}
+}
+
+
+/* --- Course code links ----------------------------------------------------- */
+
+#textcontainer a[href*="/courses/"],
+#contentarea td.codecol a {
+	font-weight: 500;
+}

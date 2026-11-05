@@ -15,7 +15,11 @@ The GNU General Public License can also be found at <http://www.gnu.org/licenses
 //jshint esversion: 6
 
 
-function generateClassAverageRow(data, rowIndex) {
+function generateClassAverageRow(data, rowIndex, options) {
+	options = options || {};
+	// On pages without a year menu (the Course Catalogue) there is no older-edition
+	// URL to link to, so every row is rendered as non-active.
+	const linkYears = options.linkYears !== false;
 	const aveYearF = data.year - (data.term === 'Winter' || data.term === 'Summer' ? 1 : 0);
 
 	const classAverageRow = document.createElement('div');
@@ -23,7 +27,7 @@ function generateClassAverageRow(data, rowIndex) {
 	classAverageRow.id = 'mcen-class-average-row' + rowIndex;
 	
 	const classAverageTerm = document.createElement('div');
-	if (aveYearF === urlYearF) {
+	if (aveYearF === urlYearF || !linkYears) {
 		classAverageTerm.className = 'mcen-class-average-term-nonactive';
 		classAverageTerm.innerText = '\u2022 ' + data.year + ' ' + data.term + ':';
 
@@ -98,7 +102,9 @@ function addContentSeparators() {
 
 }
 
-function generateAveCrowdsourceSection() {
+function generateAveCrowdsourceSection(options) {
+
+	options = options || {};
 
 	const classAveragesData = getClassAveragesData()[courseName];
 	logForDebug(classAveragesData);
@@ -116,14 +122,16 @@ function generateAveCrowdsourceSection() {
 		crowdsourceContentRight.appendChild(crowdsourceContentRightTable);
 
 		// filter out class averages from terms before the fall term of the first year in the year menu
-		const firstTerm = (firstYear*100 + 09);
-		for (let i = classAveragesData.length-1; i >= 0; i--) {
-			if (classAveragesData[i].termcode < firstTerm) {
-				classAveragesData.splice(i, 1);
+		if (options.filterByFirstYear !== false) {
+			const firstTerm = (firstYear*100 + 9);
+			for (let i = classAveragesData.length-1; i >= 0; i--) {
+				if (classAveragesData[i].termcode < firstTerm) {
+					classAveragesData.splice(i, 1);
+				}
 			}
 		}
 		for (let i = classAveragesData.length-1; i >= 0; i--) {
-			crowdsourceContentRightTable.appendChild(generateClassAverageRow(classAveragesData[i], i));
+			crowdsourceContentRightTable.appendChild(generateClassAverageRow(classAveragesData[i], i, options));
 		}
 	}
 

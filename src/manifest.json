@@ -67,7 +67,8 @@
         "js/addScheduleExporter.js",
         "js/addOneClickVSBRegistration.js",
         "js/addVSBClassLinks.js",
-        "js/initEnhancement.js"
+        "js/initEnhancement.js",
+        "js/addCourseCatalogue.js"
       ]
     }
   ],
@@ -77,6 +78,7 @@
         "css/sidebar.css",
         "css/yearMenu.css",
         "css/aveCrowdsource.css",
+        "css/courseCatalogue.css",
         "css/profLinks.css",
         "css/programs.css",
         "css/vsb.css",
