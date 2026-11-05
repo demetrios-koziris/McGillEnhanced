@@ -114,7 +114,6 @@ function generateSidebarLinksBlock(courseTermsCodes, deps, options) {
 	const recordingURLdata = getRecordingData()[courseName];
 	const monthToSemester = getMonthToSemester();
 	const wikinotesURLdata = getWikinotesData()[courseName];
-	const docuumURLdata = getDocuumData()[courseName];
 
 	const vsbSidebarTerms = [];
 	getVSBSemesters(vsbSidebarTerms);
@@ -168,13 +167,12 @@ function generateSidebarLinksBlock(courseTermsCodes, deps, options) {
 	const courseEval = generateSidebarSection('Course Reviews');
 	sidebarLinksBlock.appendChild(courseEval);
 
-	if (docuumURLdata) { 
-		// docuum.com is dead; mcgill.courses hosts the course reviews now.
-		// Its course route is /course/<subject>-<number>, lowercased.
-		const reviewsURL = 'https://mcgill.courses/course/' + (courseSubject + '-' + courseNumber).toLowerCase();
-		const reviewsButtonString = 'mcgill.courses Course Reviews';
-		courseEval.appendChild(generateSidebarLink(reviewsURL, 'mcen-blue', reviewsButtonString, false));
-	}
+	// docuum.com is dead; mcgill.courses hosts the course reviews now.
+	// Its course route is /course/<subject>-<number>, lowercased. Both this and the
+	// mycookies link below are keyed by course code, so they need no dataset lookup.
+	const reviewsURL = 'https://mcgill.courses/course/' + (courseSubject + '-' + courseNumber).toLowerCase();
+	const reviewsButtonString = 'mcgill.courses Course Reviews';
+	courseEval.appendChild(generateSidebarLink(reviewsURL, 'mcen-blue', reviewsButtonString, false));
 
 	const mercuryURL = 'https://horizon.mcgill.ca/pban1/bzskmcer.p_display_form?form_mode=ar&subj_tab_in='+courseSubject+'&crse_in='+courseNumber;
 	const mercuryButtonString = 'Mercury Course Evaluations';
@@ -199,22 +197,18 @@ function generateSidebarLinksBlock(courseTermsCodes, deps, options) {
 	}
 
 
-	if ( docuumURLdata || wikinotesURLdata) {
+	//SIDEBAR SECTION: OTHER RESOURCES
+	const other = generateSidebarSection('Other Resources');
+	sidebarLinksBlock.appendChild(other);
 
-		//SIDEBAR SECTION: OTHER RESOURCES
-		const other = generateSidebarSection('Other Resources');
-		sidebarLinksBlock.appendChild(other);
-	
-		if (docuumURLdata) {
-			const mycookiesURL = 'https://mycookies.ca/course/' + courseName;
-			const mycookiesButtonString = courseNameSpaced + ' on MyCookies';
-			other.appendChild(generateSidebarLink(mycookiesURL, 'mcen-blue', mycookiesButtonString, false));
-		}
-		if (wikinotesURLdata) {
-			const wikinotesURL = 'https://www.wikinotes.ca/' + wikinotesURLdata;
-			const wikinotesButtonString = courseNameSpaced + ' on Wikinotes';
-			other.appendChild(generateSidebarLink(wikinotesURL, 'mcen-white', wikinotesButtonString, false));
-		}
+	const mycookiesURL = 'https://mycookies.ca/course/' + courseName;
+	const mycookiesButtonString = courseNameSpaced + ' on MyCookies';
+	other.appendChild(generateSidebarLink(mycookiesURL, 'mcen-blue', mycookiesButtonString, false));
+
+	if (wikinotesURLdata) {
+		const wikinotesURL = 'https://www.wikinotes.ca/' + wikinotesURLdata;
+		const wikinotesButtonString = courseNameSpaced + ' on Wikinotes';
+		other.appendChild(generateSidebarLink(wikinotesURL, 'mcen-white', wikinotesButtonString, false));
 	}
 
 	sidebarLinksBlock.appendChild(document.createElement('br'));
